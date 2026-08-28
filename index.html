@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,123 +7,66 @@
 <title>Paramed Daily Operations</title>
 
 <style>
-
 :root{
   --bg:#eef0ff;
   --panel:rgba(255,255,255,.58);
-  --panel-solid:#ffffff;
-
+  --panel-solid:#fff;
   --text:#17172b;
   --secondary:#626886;
   --muted:#9298b2;
-
   --line:rgba(28,112,196,.22);
-
   --blue:#1C70C4;
   --cyan:#3FA9F5;
   --green:#00d995;
   --purple:#a855f7;
   --orange:#ff8b32;
-
   --input:rgba(248,251,255,.72);
-
-  --blue-bg:rgba(28,112,196,.15);
-  --green-bg:rgba(0,217,149,.14);
-  --purple-bg:rgba(168,85,247,.14);
-
   --accent-rgb:28,112,196;
   --accent-2-rgb:63,169,245;
-
-  --shadow:
-    0 12px 35px rgba(28,112,196,.12);
-
-  --glow-blue:
-    0 0 14px rgba(28,112,196,.38),
-    0 0 32px rgba(28,112,196,.14);
+  --shadow:0 12px 35px rgba(28,112,196,.12);
 }
 
 body.dark{
   --bg:#080704;
   --panel:rgba(22,18,8,.66);
   --panel-solid:#17140a;
-
   --text:#fffbea;
   --secondary:#b9ae8c;
   --muted:#766f5a;
-
-  --line:rgba(229,194,22,.25);
-
-  --blue:#E5C216;
+  --line:rgba(255,122,0,.25);
+  --blue:#FF7A00;
   --cyan:#FFE45C;
-
   --green:#00e69a;
   --purple:#bd72ff;
   --orange:#FF7A00;
-
   --input:rgba(25,21,8,.82);
-
-  --blue-bg:rgba(229,194,22,.18);
-  --green-bg:rgba(0,220,145,.17);
-  --purple-bg:rgba(175,80,255,.18);
-
-  --accent-rgb:229,194,22;
+  --accent-rgb:255,122,0;
   --accent-2-rgb:255,228,92;
-
-  --shadow:
-    0 15px 45px rgba(0,0,0,.48);
-
-  --glow-blue:
-    0 0 16px rgba(229,194,22,.45),
-    0 0 38px rgba(229,194,22,.18);
+  --shadow:0 15px 45px rgba(0,0,0,.48);
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "SF Pro Text",
-    Inter,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+  "SF Pro Text",Inter,"Helvetica Neue",Arial,sans-serif;
   background:
-    radial-gradient(
-      circle at 10% -10%,
-      rgba(var(--accent-rgb),.18),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 92% 5%,
-      rgba(var(--accent-2-rgb),.12),
-      transparent 30%
-    ),
+    radial-gradient(circle at 10% -10%,rgba(var(--accent-rgb),.18),transparent 32%),
+    radial-gradient(circle at 92% 5%,rgba(var(--accent-2-rgb),.12),transparent 30%),
     var(--bg);
-
   color:var(--text);
-
   -webkit-font-smoothing:antialiased;
-
-  transition:
-    background .4s ease,
-    color .35s ease;
+  transition:background .4s ease,color .35s ease;
 }
 
-button,
-input,
-textarea{
-  font-family:inherit;
+button,input,textarea{font-family:inherit}
+
+button:disabled,input:disabled,textarea:disabled{
+  cursor:not-allowed;
+  opacity:.72;
 }
 
 .wrap{
@@ -132,10 +76,7 @@ textarea{
   padding:24px 28px 60px;
 }
 
-
-/* =========================================================
-   TOP BAR
-========================================================= */
+/* TOP BAR */
 
 .topbar{
   display:flex;
@@ -153,27 +94,16 @@ textarea{
 .date-icon{
   width:45px;
   height:45px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border-radius:14px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(var(--accent-rgb),.24),
-      rgba(var(--accent-2-rgb),.10)
-    );
-
-  border:
-    1px solid
-    rgba(var(--accent-rgb),.58);
-
+  background:linear-gradient(145deg,
+    rgba(var(--accent-rgb),.24),
+    rgba(var(--accent-2-rgb),.10));
+  border:1px solid rgba(var(--accent-rgb),.58);
   color:var(--blue);
   font-size:21px;
-
   box-shadow:
     0 0 18px rgba(var(--accent-rgb),.28),
     inset 0 0 18px rgba(var(--accent-rgb),.09);
@@ -201,59 +131,94 @@ textarea{
   height:37px;
   min-width:37px;
   padding:0 12px;
-
   display:flex;
   align-items:center;
   justify-content:center;
   gap:7px;
-
-  border:
-    1px solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:12px;
-
   background:var(--panel);
-
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
-
   color:var(--text);
-
   font-size:12px;
   font-weight:700;
-
   cursor:pointer;
-
   transition:.25s ease;
 }
 
 .small-button:hover{
-  border-color:
-    rgba(var(--accent-rgb),.72);
-
+  border-color:rgba(var(--accent-rgb),.72);
   box-shadow:
     0 0 0 3px rgba(var(--accent-rgb),.08),
     0 0 22px rgba(var(--accent-rgb),.25);
 }
 
-.small-button:active{
-  transform:scale(.95);
-}
+.small-button:active{transform:scale(.95)}
 
-.calendar-button{
-  min-width:145px;
-}
+.calendar-button{min-width:145px}
 
-.calendar-button .calendar-date{
+.calendar-date{
   color:var(--blue);
   font-weight:800;
 }
 
+.admin-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#9aa2b2;
+}
 
-/* =========================================================
-   WORKSPACE
-========================================================= */
+.admin-button.active .admin-dot{
+  background:var(--green);
+  box-shadow:0 0 9px var(--green);
+}
+
+/* FIREBASE STATUS */
+
+.firebase-status{
+  position:fixed;
+  left:18px;
+  bottom:18px;
+  z-index:900;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 11px;
+  border-radius:10px;
+  background:var(--panel-solid);
+  border:1px solid var(--line);
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
+  color:var(--secondary);
+  font-size:10px;
+  font-weight:700;
+  backdrop-filter:blur(15px);
+}
+
+.firebase-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#9aa2b2;
+}
+
+.firebase-status.connected .firebase-dot{
+  background:var(--green);
+  box-shadow:0 0 10px var(--green);
+}
+
+.firebase-status.saving .firebase-dot{
+  background:#ffd000;
+  box-shadow:0 0 10px #ffd000;
+}
+
+.firebase-status.error .firebase-dot{
+  background:#ff5252;
+  box-shadow:0 0 10px #ff5252;
+}
+
+/* WORKSPACE */
 
 .workspace{
   display:grid;
@@ -264,321 +229,169 @@ textarea{
 
 .panel{
   background:var(--panel);
-
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
-
-  border:
-    1px solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:18px;
-
   box-shadow:var(--shadow);
-
   overflow:hidden;
-
-  transition:
-    border-color .3s ease,
-    box-shadow .3s ease;
+  transition:border-color .3s ease,box-shadow .3s ease;
 }
 
 .panel:hover{
-  border-color:
-    rgba(var(--accent-rgb),.42);
+  border-color:rgba(var(--accent-rgb),.42);
 }
 
-.panel + .panel{
-  margin-top:14px;
-}
+.panel+.panel{margin-top:14px}
 
 .panel-header{
   padding:15px 18px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  border-bottom:
-    1px solid
-    var(--line);
+  border-bottom:1px solid var(--line);
 }
 
 .panel-title{
   margin:0;
-
   font-size:16px;
   font-weight:750;
-
   letter-spacing:-.015em;
 }
 
 .panel-sub{
   margin:4px 0 0;
-
   color:var(--secondary);
-
   font-size:12px;
 }
 
-
-/* =========================================================
-   AREAS
-========================================================= */
+/* AREAS */
 
 .results{
   display:flex;
   flex-direction:column;
   gap:6px;
-
   padding:10px;
 }
 
 .card{
   display:flex;
   align-items:stretch;
-
   width:100%;
   min-height:46px;
-
   overflow:hidden;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.72),
-      rgba(247,249,255,.58)
-    );
-
-  border:
-    1px solid
-    var(--line);
-
+  background:linear-gradient(90deg,
+    rgba(255,255,255,.72),
+    rgba(247,249,255,.58));
+  border:1px solid var(--line);
   border-radius:10px;
-
-  box-shadow:
-    0 2px 7px rgba(0,0,0,.025);
-
-  transition:
-    background .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease,
-    transform .2s ease,
-    min-height .3s ease;
+  box-shadow:0 2px 7px rgba(0,0,0,.025);
+  transition:.25s ease;
 }
 
 body.dark .card{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(29,24,10,.86),
-      rgba(20,17,9,.74)
-    );
+  background:linear-gradient(90deg,
+    rgba(29,24,10,.86),
+    rgba(20,17,9,.74));
 }
 
-.card:hover{
-  transform:translateY(-1px);
-}
-
-
-/* =========================================================
-   ON-CALL ACTIVE ROW
-========================================================= */
+.card:hover{transform:translateY(-1px)}
 
 .card.oncall-active{
-
   min-height:60px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(var(--accent-rgb),.34),
-      rgba(var(--accent-2-rgb),.22),
-      rgba(var(--accent-rgb),.12)
-    );
-
-  border-color:
-    rgba(var(--accent-rgb),.92);
-
+  background:linear-gradient(90deg,
+    rgba(var(--accent-rgb),.34),
+    rgba(var(--accent-2-rgb),.22),
+    rgba(var(--accent-rgb),.12));
+  border-color:rgba(var(--accent-rgb),.92);
   box-shadow:
     0 0 0 1px rgba(var(--accent-rgb),.42),
     0 0 20px rgba(var(--accent-rgb),.42),
     0 0 44px rgba(var(--accent-rgb),.18);
 }
 
-body.dark .card.oncall-active{
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(229,194,22,.38),
-      rgba(255,228,92,.22),
-      rgba(229,194,22,.11)
-    );
-
-  border-color:
-    rgba(229,194,22,.96);
-
-  box-shadow:
-    0 0 0 1px rgba(229,194,22,.46),
-    0 0 22px rgba(229,194,22,.48),
-    0 0 48px rgba(229,194,22,.20);
-}
-
-
-/* =========================================================
-   AREA BUTTON
-========================================================= */
-
 .area{
   flex:1;
   min-width:0;
-
   min-height:46px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   padding:9px 14px;
-
   border:0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(var(--accent-rgb),.055),
-      rgba(var(--accent-2-rgb),.025)
-    );
-
+  background:linear-gradient(135deg,
+    rgba(var(--accent-rgb),.055),
+    rgba(var(--accent-2-rgb),.025));
   color:var(--text);
-
   font-size:13px;
   font-weight:700;
-
   text-align:left;
-
   cursor:pointer;
   user-select:none;
-
-  transition:
-    background .25s ease,
-    color .25s ease,
-    box-shadow .25s ease,
-    transform .2s ease;
+  transition:.25s ease;
 }
 
 .area:hover{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(var(--accent-rgb),.13),
-      rgba(var(--accent-2-rgb),.06)
-    );
-
+  background:linear-gradient(135deg,
+    rgba(var(--accent-rgb),.13),
+    rgba(var(--accent-2-rgb),.06));
   color:var(--blue);
-
-  box-shadow:
-    inset 0 0 18px
-    rgba(var(--accent-rgb),.06);
-}
-
-.area:active{
-  transform:scale(.995);
 }
 
 .area:focus-visible{
   outline:none;
-
-  box-shadow:
-    inset 0 0 0 2px
-    rgba(var(--accent-rgb),.55),
-    0 0 14px
-    rgba(var(--accent-rgb),.18);
+  box-shadow:inset 0 0 0 2px rgba(var(--accent-rgb),.55);
 }
 
 .area-name{
   display:flex;
   align-items:center;
-
   min-width:0;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
   white-space:nowrap;
 }
 
 .area-indicator{
   flex:0 0 auto;
-
   width:8px;
   height:8px;
-
   margin-right:10px;
-
   border-radius:50%;
-
-  background:
-    rgba(var(--accent-rgb),.35);
-
-  box-shadow:
-    0 0 7px
-    rgba(var(--accent-rgb),.20);
-
-  transition:
-    background .25s ease,
-    box-shadow .25s ease,
-    transform .25s ease;
+  background:rgba(var(--accent-rgb),.35);
+  box-shadow:0 0 7px rgba(var(--accent-rgb),.20);
+  transition:.25s ease;
 }
 
 .card.open .area-indicator{
   background:var(--blue);
-
   box-shadow:
     0 0 7px var(--blue),
-    0 0 15px
-    rgba(var(--accent-rgb),.55);
-
+    0 0 15px rgba(var(--accent-rgb),.55);
   transform:scale(1.15);
 }
 
 .card.open .area{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(var(--accent-rgb),.16),
-      rgba(var(--accent-2-rgb),.07)
-    );
-
+  background:linear-gradient(135deg,
+    rgba(var(--accent-rgb),.16),
+    rgba(var(--accent-2-rgb),.07));
   color:var(--blue);
-
-  box-shadow:
-    inset 0 0 20px
-    rgba(var(--accent-rgb),.08);
 }
 
 .code{
   margin-left:6px;
-
   color:var(--muted);
-
   font-size:11px;
   font-weight:600;
 }
 
-
-/* =========================================================
-   DETAILS
-========================================================= */
+/* DETAILS */
 
 .details-wrapper{
   display:grid;
   grid-template-columns:0fr;
-
   opacity:0;
   overflow:hidden;
-
   transition:
     grid-template-columns .4s cubic-bezier(.4,0,.2,1),
     opacity .2s ease;
@@ -591,72 +404,58 @@ body.dark .card.oncall-active{
 
 .details{
   min-width:0;
-
   display:flex;
   align-items:stretch;
-
   overflow:hidden;
-
   border-left:1px solid transparent;
 }
 
-.card.open .details{
-  border-left-color:var(--line);
-}
+.card.open .details{border-left-color:var(--line)}
 
 .info{
   min-width:190px;
-
   display:flex;
   align-items:center;
-
   padding:0 15px;
-
   white-space:nowrap;
 }
 
-.info + .info{
-  border-left:
-    1px solid
-    var(--line);
-}
+.info+.info{border-left:1px solid var(--line)}
 
-.label{
+.label,
+.coverage-label,
+.oncall-label{
   margin-bottom:4px;
-
   color:var(--secondary);
-
   font-size:9px;
   font-weight:750;
-
   letter-spacing:.075em;
   text-transform:uppercase;
 }
 
 .person{
   color:var(--text);
-
   font-size:13px;
   font-weight:620;
 }
 
-.edit-input{
+.edit-input,
+.oncall-input,
+.coverage-input,
+.coverage-notes,
+.directory-edit,
+.oncall-edit{
   width:100%;
-  height:29px;
-
-  padding:0 8px;
-
-  border:
-    1px solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:7px;
-
   outline:none;
-
   background:var(--input);
   color:var(--text);
+}
 
+.edit-input{
+  height:29px;
+  padding:0 8px;
   font-size:12px;
   font-weight:600;
 }
@@ -666,502 +465,211 @@ body.dark .card.oncall-active{
 .coverage-input:focus,
 .coverage-notes:focus,
 .important-notes:focus,
-.directory-edit:focus{
+.directory-edit:focus,
+.oncall-edit:focus{
   border-color:var(--blue);
-
-  box-shadow:
-    0 0 0 3px rgba(var(--accent-rgb),.10),
-    0 0 13px rgba(var(--accent-rgb),.18);
+  box-shadow:0 0 0 3px rgba(var(--accent-rgb),.10);
 }
 
 .supervisor{
   padding:0;
-
   border:0;
   background:none;
-
   color:var(--blue);
-
   font-size:13px;
   font-weight:650;
-
   cursor:pointer;
 }
 
 .supervisor:hover{
   color:var(--cyan);
-
-  text-shadow:
-    0 0 9px
-    rgba(var(--accent-rgb),.48);
+  text-shadow:0 0 9px rgba(var(--accent-rgb),.48);
 }
 
 .phone{
   max-width:0;
-
   margin-left:0;
-
   overflow:hidden;
-
   opacity:0;
   white-space:nowrap;
-
-  transition:
-    max-width .3s ease,
-    margin-left .3s ease,
-    opacity .2s ease;
+  transition:.3s ease;
 }
 
 .phone.show{
   max-width:150px;
-
   margin-left:10px;
-
   opacity:1;
 }
 
 .phone a{
   color:var(--text);
-
   font-size:12px;
   font-weight:650;
-
   text-decoration:none;
 }
 
-
-/* =========================================================
-   ON CALL — NORMAL
-========================================================= */
+/* ON CALL */
 
 .oncall-cell{
-
   flex:0 0 245px;
   min-width:245px;
-
   display:flex;
   align-items:center;
-
   padding:8px 16px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(var(--accent-rgb),.045),
-      rgba(var(--accent-rgb),.09)
-    );
-
-  border-left:
-    1px solid
-    rgba(var(--accent-rgb),.22);
-
-  transition:
-    flex-basis .3s ease,
-    min-width .3s ease,
-    padding .3s ease,
-    background .3s ease,
-    border-color .3s ease,
-    box-shadow .3s ease;
+  background:linear-gradient(90deg,
+    rgba(var(--accent-rgb),.045),
+    rgba(var(--accent-rgb),.09));
+  border-left:1px solid rgba(var(--accent-rgb),.22);
+  transition:.3s ease;
 }
-
-
-/* =========================================================
-   ON CALL — ACTIVE
-========================================================= */
 
 .card.oncall-active .oncall-cell{
-
   flex:1 1 360px;
   min-width:360px;
-
-  padding:
-    13px 21px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(var(--accent-rgb),.17),
-      rgba(var(--accent-2-rgb),.27),
-      rgba(var(--accent-rgb),.14)
-    );
-
-  border-left:
-    2px solid
-    rgba(var(--accent-rgb),.78);
-
-  box-shadow:
-    inset 0 0 25px
-      rgba(var(--accent-rgb),.11),
-    0 0 20px
-      rgba(var(--accent-rgb),.12);
-}
-
-
-/* =========================================================
-   ON CALL LABEL
-========================================================= */
-
-.oncall-label{
-
-  margin-bottom:4px;
-
-  color:var(--secondary);
-
-  font-size:9px;
-  font-weight:750;
-
-  letter-spacing:.075em;
-  text-transform:uppercase;
-
-  transition:
-    color .25s ease,
-    font-size .25s ease,
-    text-shadow .25s ease;
+  padding:13px 21px;
+  background:linear-gradient(90deg,
+    rgba(var(--accent-rgb),.17),
+    rgba(var(--accent-2-rgb),.27),
+    rgba(var(--accent-rgb),.14));
+  border-left:2px solid rgba(var(--accent-rgb),.78);
+  box-shadow:inset 0 0 25px rgba(var(--accent-rgb),.11);
 }
 
 .card.oncall-active .oncall-label{
-
   color:var(--blue);
-
   font-size:10px;
   font-weight:850;
-
   letter-spacing:.10em;
-
-  text-shadow:
-    0 0 9px
-    rgba(var(--accent-rgb),.62);
+  text-shadow:0 0 9px rgba(var(--accent-rgb),.62);
 }
-
-
-/* =========================================================
-   ON CALL NAME
-========================================================= */
 
 .card.oncall-active .oncall-cell .person{
-
   font-size:15px;
   font-weight:800;
-
-  color:var(--text);
-
-  text-shadow:
-    0 0 8px
-    rgba(var(--accent-rgb),.34);
 }
 
-
-/* =========================================================
-   ON CALL STATUS — DAY
-========================================================= */
-
 @keyframes onCallPulse{
-
-  0%,
-  100%{
+  0%,100%{
     opacity:1;
     transform:scale(1);
-
     box-shadow:
       0 0 6px #7B2CBF,
       0 0 14px #7B2CBF,
       0 0 25px rgba(123,44,191,.95);
   }
-
   50%{
     opacity:.32;
     transform:scale(.72);
-
     box-shadow:
       0 0 2px #7B2CBF,
-      0 0 6px #7B2CBF,
-      0 0 12px rgba(123,44,191,.55);
+      0 0 6px #7B2CBF;
   }
-
 }
 
-
-/* =========================================================
-   ON CALL STATUS — NIGHT
-========================================================= */
-
 @keyframes onCallPulseNight{
-
-  0%,
-  100%{
+  0%,100%{
     opacity:1;
     transform:scale(1);
-
     box-shadow:
       0 0 6px #FF7A00,
       0 0 14px #FF7A00,
       0 0 25px rgba(255,122,0,.95);
   }
-
   50%{
     opacity:.32;
     transform:scale(.72);
-
     box-shadow:
       0 0 2px #FF7A00,
-      0 0 6px #FF7A00,
-      0 0 12px rgba(255,122,0,.55);
+      0 0 6px #FF7A00;
   }
-
 }
 
 .oncall-status{
-
   display:inline-block;
-
   width:7px;
   height:7px;
-
   margin-right:5px;
-
   border-radius:50%;
-
   background:#aeb9c7;
-
-  transition:
-    width .25s ease,
-    height .25s ease,
-    margin-right .25s ease,
-    box-shadow .25s ease;
 }
 
 .card.oncall-active .oncall-status{
-
   width:9px;
   height:9px;
-
   margin-right:7px;
-
   background:#7B2CBF;
-
-  animation:
-    onCallPulse 1.15s ease-in-out infinite;
+  animation:onCallPulse 1.15s ease-in-out infinite;
 }
 
 body.dark .card.oncall-active .oncall-status{
-
   background:#FF7A00;
-
-  animation:
-    onCallPulseNight 1.15s ease-in-out infinite;
+  animation:onCallPulseNight 1.15s ease-in-out infinite;
 }
 
-
-/* =========================================================
-   ON CALL INPUT
-========================================================= */
-
 .oncall-input{
-
   width:165px;
   height:28px;
-
   padding:0 8px;
-
-  border:
-    1px solid
-    var(--line);
-
-  border-radius:7px;
-
-  outline:none;
-
-  background:var(--input);
-  color:var(--text);
-
   font-size:12px;
 }
 
 .card.oncall-active .oncall-input{
-
   width:100%;
   height:35px;
-
   font-size:13px;
   font-weight:700;
-
-  border-color:
-    rgba(var(--accent-rgb),.60);
-
-  background:
-    rgba(var(--accent-rgb),.11);
-
-  box-shadow:
-    0 0 11px
-    rgba(var(--accent-rgb),.14);
 }
 
-body.dark .card.oncall-active .oncall-cell{
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(229,194,22,.18),
-      rgba(255,228,92,.30),
-      rgba(229,194,22,.13)
-    );
-
-  border-left-color:
-    rgba(229,194,22,.86);
-
-  box-shadow:
-    inset 0 0 27px
-      rgba(229,194,22,.12),
-    0 0 22px
-      rgba(229,194,22,.15);
-}
-
-body.dark .card.oncall-active .oncall-label{
-
-  color:#FFE45C;
-
-  text-shadow:
-    0 0 10px
-    rgba(229,194,22,.72);
-}
-
-body.dark .card.oncall-active .oncall-input{
-
-  border-color:
-    rgba(229,194,22,.62);
-
-  background:
-    rgba(229,194,22,.12);
-
-  box-shadow:
-    0 0 13px
-    rgba(229,194,22,.18);
-}
-
-
-/* =========================================================
-   COVERAGE
-========================================================= */
+/* COVERAGE */
 
 .coverage-grid{
   display:flex;
   flex-direction:column;
   gap:8px;
-
   padding:10px;
 }
 
 .coverage-card{
   padding:12px;
-
   border-radius:12px;
-
   transition:.25s ease;
 }
 
 .coverage-card.psw{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,130,255,.16),
-      rgba(0,190,255,.06)
-    );
-
-  border:
-    1px solid
-    rgba(0,140,255,.40);
-
-  box-shadow:
-    inset 0 0 18px rgba(0,140,255,.05),
-    0 0 14px rgba(0,140,255,.06);
-}
-
-.coverage-card.psw:hover{
-  border-color:
-    rgba(0,170,255,.72);
-
-  box-shadow:
-    0 0 18px
-    rgba(0,150,255,.16);
+  background:linear-gradient(135deg,
+    rgba(0,130,255,.16),
+    rgba(0,190,255,.06));
+  border:1px solid rgba(0,140,255,.40);
 }
 
 .coverage-card.nursing{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,200,125,.17),
-      rgba(0,230,150,.06)
-    );
-
-  border:
-    1px solid
-    rgba(0,205,130,.40);
-
-  box-shadow:
-    inset 0 0 18px rgba(0,205,130,.05),
-    0 0 14px rgba(0,205,130,.06);
-}
-
-.coverage-card.nursing:hover{
-  border-color:
-    rgba(0,225,150,.72);
-
-  box-shadow:
-    0 0 18px
-    rgba(0,220,145,.16);
+  background:linear-gradient(135deg,
+    rgba(0,200,125,.17),
+    rgba(0,230,150,.06));
+  border:1px solid rgba(0,205,130,.40);
 }
 
 .coverage-card.intake{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(155,80,255,.18),
-      rgba(190,100,255,.07)
-    );
-
-  border:
-    1px solid
-    rgba(160,85,255,.43);
-
-  box-shadow:
-    inset 0 0 18px rgba(160,85,255,.05),
-    0 0 14px rgba(160,85,255,.06);
-}
-
-.coverage-card.intake:hover{
-  border-color:
-    rgba(190,105,255,.75);
-
-  box-shadow:
-    0 0 18px
-    rgba(175,90,255,.17);
+  background:linear-gradient(135deg,
+    rgba(155,80,255,.18),
+    rgba(190,100,255,.07));
+  border:1px solid rgba(160,85,255,.43);
 }
 
 .coverage-category{
   display:flex;
   align-items:center;
   gap:7px;
-
   margin-bottom:9px;
-
   font-size:11px;
   font-weight:800;
-
   letter-spacing:.06em;
   text-transform:uppercase;
 }
 
-.psw .coverage-category{
-  color:#0098ff;
-}
-
-.nursing .coverage-category{
-  color:var(--green);
-}
-
-.intake .coverage-category{
-  color:var(--purple);
-}
+.psw .coverage-category{color:#0098ff}
+.nursing .coverage-category{color:var(--green)}
+.intake .coverage-category{color:var(--purple)}
 
 .coverage-dot{
   width:7px;
@@ -1184,82 +692,12 @@ body.dark .card.oncall-active .oncall-input{
   box-shadow:0 0 10px var(--purple);
 }
 
-.coverage-label{
-  display:block;
-
-  margin:0 0 4px;
-
-  color:var(--secondary);
-
-  font-size:9px;
-  font-weight:750;
-
-  letter-spacing:.07em;
-  text-transform:uppercase;
-}
-
-.coverage-input,
-.coverage-notes{
-  width:100%;
-
-  border:
-    1px solid
-    var(--line);
-
-  border-radius:7px;
-
-  outline:none;
-
-  background:var(--input);
-  color:var(--text);
-}
-
 .coverage-input{
   height:31px;
-
   padding:0 8px;
   margin-bottom:8px;
-
   font-size:12px;
-}
-
-.coverage-card .coverage-input{
   font-weight:800;
-}
-
-.coverage-card.psw .coverage-input{
-  color:#0098ff;
-  text-shadow:0 0 8px rgba(0,152,255,.30);
-}
-
-.coverage-card.nursing .coverage-input{
-  color:#00d995;
-  text-shadow:0 0 8px rgba(0,217,149,.30);
-}
-
-.coverage-card.intake .coverage-input{
-  color:#a855f7;
-  text-shadow:0 0 8px rgba(168,85,247,.30);
-}
-
-body.dark .coverage-card.psw .coverage-input{
-  color:#3FA9F5;
-  text-shadow:0 0 9px rgba(63,169,245,.38);
-}
-
-body.dark .coverage-card.nursing .coverage-input{
-  color:#00e69a;
-  text-shadow:0 0 9px rgba(0,230,154,.35);
-}
-
-body.dark .coverage-card.intake .coverage-input{
-  color:#bd72ff;
-  text-shadow:0 0 9px rgba(189,114,255,.38);
-}
-
-.coverage-input::placeholder{
-  color:var(--muted);
-  font-weight:500;
 }
 
 .coverage-notes{
@@ -1270,107 +708,64 @@ body.dark .coverage-card.intake .coverage-input{
   line-height:1.4;
 }
 
+.coverage-input::placeholder,
+.coverage-notes::placeholder{
+  color:var(--muted);
+}
 
-/* =========================================================
-   IMPORTANT
-========================================================= */
+/* IMPORTANT */
 
 .important-panel{
-  border-color:
-    rgba(255,135,45,.42);
-
-  box-shadow:
-    0 0 0 1px rgba(255,135,45,.08),
-    0 7px 28px rgba(255,120,30,.07);
-}
-
-.important-panel:hover{
-  border-color:
-    rgba(255,145,50,.72);
-
-  box-shadow:
-    0 0 18px rgba(255,125,35,.12);
-}
-
-.important-panel .panel-header{
-  border-bottom-color:
-    rgba(255,135,45,.28);
+  border-color:rgba(255,135,45,.42);
 }
 
 .important-title{
   display:flex;
   align-items:center;
   gap:7px;
-
   color:var(--orange);
 }
 
 .important-icon{
   width:22px;
   height:22px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border-radius:7px;
-
   background:rgba(255,130,35,.14);
-
   font-size:12px;
-
-  box-shadow:
-    0 0 10px
-    rgba(255,130,35,.10);
 }
 
 .important-notes{
   width:100%;
   min-height:145px;
-
   display:block;
-
   padding:14px;
-
   border:0;
   outline:none;
-
   resize:vertical;
-
   background:transparent;
   color:var(--text);
-
   font-size:13px;
   line-height:1.5;
 }
 
-.important-notes::placeholder{
-  color:var(--muted);
-}
+.important-notes::placeholder{color:var(--muted)}
 
+/* DIRECTORY */
 
-/* =========================================================
-   DIRECTORY
-========================================================= */
-
-.directory-panel{
-  margin-top:14px;
-}
+.directory-panel{margin-top:14px}
 
 .directory-toggle{
   width:100%;
-
   padding:15px 18px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   border:0;
-
   background:transparent;
   color:var(--text);
-
   cursor:pointer;
   text-align:left;
 }
@@ -1384,51 +779,31 @@ body.dark .coverage-card.intake .coverage-input{
 .directory-icon{
   width:28px;
   height:28px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border-radius:9px;
-
-  background:
-    rgba(var(--accent-rgb),.12);
-
+  background:rgba(var(--accent-rgb),.12);
   color:var(--blue);
-
-  font-size:15px;
-
-  box-shadow:
-    0 0 12px
-    rgba(var(--accent-rgb),.12);
 }
 
 .directory-toggle-title{
   display:block;
-
   font-size:16px;
   font-weight:750;
-
-  letter-spacing:-.015em;
 }
 
 .directory-toggle-sub{
   display:block;
-
   margin-top:3px;
-
   color:var(--secondary);
-
   font-size:12px;
 }
 
 .directory-arrow{
   color:var(--muted);
   font-size:20px;
-
-  transition:
-    transform .3s ease,
-    color .25s ease;
+  transition:.3s ease;
 }
 
 .directory-panel.open .directory-arrow{
@@ -1439,15 +814,9 @@ body.dark .coverage-card.intake .coverage-input{
 .directory-content{
   display:grid;
   grid-template-rows:0fr;
-
   opacity:0;
-
   border-top:1px solid transparent;
-
-  transition:
-    grid-template-rows .4s ease,
-    opacity .2s ease,
-    border-color .2s ease;
+  transition:.4s ease;
 }
 
 .directory-panel.open .directory-content{
@@ -1465,55 +834,32 @@ body.dark .coverage-card.intake .coverage-input{
 .directory-section{
   margin:10px 0;
   overflow:hidden;
-
-  border:
-    1px solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:12px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(var(--accent-rgb),.045),
-      rgba(150,80,255,.025)
-    );
+  background:linear-gradient(135deg,
+    rgba(var(--accent-rgb),.045),
+    rgba(150,80,255,.025));
 }
 
 .directory-section-title{
   padding:10px 12px;
-
   color:var(--blue);
-
   font-size:10px;
   font-weight:800;
-
   letter-spacing:.065em;
   text-transform:uppercase;
-
-  background:
-    rgba(var(--accent-rgb),.045);
-
-  border-bottom:
-    1px solid
-    var(--line);
+  background:rgba(var(--accent-rgb),.045);
+  border-bottom:1px solid var(--line);
 }
 
 .directory-fax{
   padding:8px 12px;
-
   color:var(--secondary);
-
   font-size:10px;
-
-  border-bottom:
-    1px solid
-    var(--line);
+  border-bottom:1px solid var(--line);
 }
 
-.directory-table-wrap{
-  overflow-x:auto;
-}
+.directory-table-wrap{overflow-x:auto}
 
 .directory-table{
   width:100%;
@@ -1523,28 +869,19 @@ body.dark .coverage-card.intake .coverage-input{
 
 .directory-table th{
   padding:8px 10px;
-
   color:var(--secondary);
   background:var(--input);
-
   font-size:8px;
   font-weight:800;
-
   letter-spacing:.06em;
-
   text-align:left;
   text-transform:uppercase;
 }
 
 .directory-table td{
   padding:8px 10px;
-
-  border-top:
-    1px solid
-    var(--line);
-
+  border-top:1px solid var(--line);
   color:var(--text);
-
   font-size:11px;
   line-height:1.35;
 }
@@ -1560,22 +897,8 @@ body.dark .coverage-card.intake .coverage-input{
 }
 
 .directory-edit{
-  width:100%;
   height:27px;
-
   padding:0 7px;
-
-  border:
-    1px solid
-    var(--line);
-
-  border-radius:6px;
-
-  outline:none;
-
-  background:var(--input);
-  color:var(--text);
-
   font-size:11px;
 }
 
@@ -1587,39 +910,22 @@ body.dark .coverage-card.intake .coverage-input{
 
 .directory-people{
   padding:10px 12px;
-
   font-size:11px;
   line-height:1.5;
 }
 
+/* ONCALL COORDINATORS */
 
-/* =========================================================
-   ON-CALL COORDINATORS
-========================================================= */
-
-.oncall-coordinators-panel{
-  margin-top:14px;
-}
+.oncall-coordinators-panel{margin-top:14px}
 
 .oncall-coordinators-title{
   padding:14px 16px;
-
   text-align:center;
-
   font-size:16px;
   font-weight:800;
-
-  letter-spacing:-.015em;
-
-  border-bottom:
-    1px solid
-    var(--line);
-
+  border-bottom:1px solid var(--line);
   color:var(--blue);
-
-  text-shadow:
-    0 0 10px
-    rgba(var(--accent-rgb),.28);
+  text-shadow:0 0 10px rgba(var(--accent-rgb),.28);
 }
 
 .oncall-coordinators-table-wrap{
@@ -1629,123 +935,56 @@ body.dark .coverage-card.intake .coverage-input{
 
 .oncall-coordinators-table{
   width:100%;
-
   border-collapse:separate;
   border-spacing:5px;
-
   table-layout:fixed;
 }
 
 .oncall-coordinators-table td{
   padding:10px 8px;
-
-  border:
-    1px solid
-    rgba(var(--accent-rgb),.28);
-
+  border:1px solid rgba(var(--accent-rgb),.28);
   border-radius:8px;
-
   color:var(--text);
-
-  background:
-    rgba(var(--accent-rgb),.055);
-
+  background:rgba(var(--accent-rgb),.055);
   font-size:11px;
   line-height:1.25;
-
   text-align:center;
-
-  transition:.2s ease;
-}
-
-.oncall-coordinators-table td:hover{
-  background:
-    rgba(var(--accent-rgb),.14);
-
-  border-color:
-    rgba(var(--accent-rgb),.62);
-
-  box-shadow:
-    0 0 12px
-    rgba(var(--accent-rgb),.15);
-}
-
-.oncall-coordinators-table tr:last-child td{
-  border-bottom:
-    1px solid
-    rgba(var(--accent-rgb),.28);
 }
 
 .oncall-edit{
-  width:100%;
   height:28px;
-
   padding:0 6px;
-
-  border:
-    1px solid
-    rgba(var(--accent-rgb),.25);
-
-  border-radius:6px;
-
-  outline:none;
-
-  background:
-    rgba(var(--accent-rgb),.08);
-
-  color:var(--text);
-
-  font-size:11px;
-
   text-align:center;
+  font-size:11px;
 }
 
-
-/* =========================================================
-   LOCK
-========================================================= */
+/* LOCK */
 
 .locked-indicator{
   display:none;
-
   align-items:center;
   gap:5px;
-
   color:var(--muted);
-
   font-size:10px;
 }
 
-body:not(.admin-mode) .locked-indicator{
-  display:flex;
-}
+body:not(.admin-mode) .locked-indicator{display:flex}
 
-
-/* =========================================================
-   CALENDAR
-========================================================= */
+/* OVERLAYS */
 
 .calendar-overlay,
 .admin-overlay{
   position:fixed;
   inset:0;
-
   z-index:1000;
-
   display:flex;
   align-items:flex-start;
   justify-content:flex-end;
-
   padding:75px 30px 30px;
-
-  background:
-    rgba(0,20,40,.16);
-
+  background:rgba(0,20,40,.16);
   backdrop-filter:blur(5px);
-
   opacity:0;
   pointer-events:none;
-
   transition:opacity .25s ease;
 }
 
@@ -1757,41 +996,23 @@ body:not(.admin-mode) .locked-indicator{
 
 .calendar-popup{
   width:330px;
-
   padding:20px;
-
-  border:
-    1px solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:24px;
-
   background:var(--panel-solid);
-
-  box-shadow:
-    0 20px 60px rgba(20,50,90,.20),
-    0 0 30px rgba(var(--accent-rgb),.12);
-
-  transform:
-    translateY(-12px)
-    scale(.97);
-
-  transition:
-    transform .3s
-    cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 20px 60px rgba(20,50,90,.20);
+  transform:translateY(-12px) scale(.97);
+  transition:.3s cubic-bezier(.2,.8,.2,1);
 }
 
 .calendar-overlay.show .calendar-popup{
-  transform:
-    translateY(0)
-    scale(1);
+  transform:translateY(0) scale(1);
 }
 
 .calendar-head{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   margin-bottom:16px;
 }
 
@@ -1803,13 +1024,10 @@ body:not(.admin-mode) .locked-indicator{
 .calendar-close{
   width:30px;
   height:30px;
-
   border:0;
   border-radius:50%;
-
   background:var(--input);
   color:var(--secondary);
-
   cursor:pointer;
   font-size:17px;
 }
@@ -1821,42 +1039,30 @@ body:not(.admin-mode) .locked-indicator{
   gap:4px;
 }
 
-.weekdays{
-  margin-bottom:6px;
-}
+.weekdays{margin-bottom:6px}
 
 .weekdays div{
   text-align:center;
-
   color:var(--muted);
-
   font-size:9px;
   font-weight:700;
 }
 
 .calendar-day{
   aspect-ratio:1;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border:0;
   border-radius:10px;
-
   background:transparent;
   color:var(--text);
-
   font-size:12px;
-
   cursor:pointer;
-  transition:.2s ease;
 }
 
 .calendar-day:hover{
-  background:
-    rgba(var(--accent-rgb),.12);
-
+  background:rgba(var(--accent-rgb),.12);
   color:var(--blue);
 }
 
@@ -1866,118 +1072,63 @@ body:not(.admin-mode) .locked-indicator{
 }
 
 .calendar-day.today{
-  background:
-    rgba(var(--accent-rgb),.12);
-
+  background:rgba(var(--accent-rgb),.12);
   color:var(--blue);
-
-  box-shadow:
-    inset 0 0 0 1px
-    rgba(var(--accent-rgb),.25);
 }
 
 .calendar-day.selected{
-  background:
-    linear-gradient(
-      145deg,
-      var(--blue),
-      var(--cyan)
-    );
-
+  background:linear-gradient(145deg,var(--blue),var(--cyan));
   color:#fff;
-
-  box-shadow:
-    0 0 16px
-    rgba(var(--accent-rgb),.42);
+  box-shadow:0 0 16px rgba(var(--accent-rgb),.42);
 }
 
-
-/* =========================================================
-   ADMIN
-========================================================= */
+/* ADMIN */
 
 .admin-overlay{
   align-items:center;
   justify-content:center;
-
   padding:20px;
-
   z-index:1100;
-
-  background:
-    rgba(0,10,25,.40);
-
+  background:rgba(0,10,25,.40);
   backdrop-filter:blur(8px);
 }
 
 .admin-modal{
   width:330px;
-
   padding:23px;
-
-  border:
-    1px solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:21px;
-
   background:var(--panel-solid);
-
-  box-shadow:
-    0 25px 70px
-    rgba(0,0,0,.25);
-
-  transform:
-    translateY(10px)
-    scale(.97);
-
-  transition:
-    transform .3s ease;
+  box-shadow:0 25px 70px rgba(0,0,0,.25);
+  transform:translateY(10px) scale(.97);
+  transition:.3s ease;
 }
 
 .admin-overlay.show .admin-modal{
-  transform:
-    translateY(0)
-    scale(1);
+  transform:translateY(0) scale(1);
 }
 
 .admin-modal-icon{
   width:44px;
   height:44px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   margin-bottom:12px;
-
   border-radius:13px;
-
-  background:
-    rgba(var(--accent-rgb),.13);
-
+  background:rgba(var(--accent-rgb),.13);
   color:var(--blue);
-
   font-size:20px;
-
-  box-shadow:
-    0 0 15px
-    rgba(var(--accent-rgb),.13);
 }
 
 .admin-modal h3{
   margin:0;
-
   font-size:19px;
-
-  letter-spacing:-.025em;
 }
 
 .admin-modal p{
   margin:5px 0 16px;
-
   color:var(--secondary);
-
   font-size:12px;
   line-height:1.45;
 }
@@ -1985,38 +1136,19 @@ body:not(.admin-mode) .locked-indicator{
 .admin-password{
   width:100%;
   height:41px;
-
   padding:0 12px;
-
-  border:
-    1px solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:10px;
-
   outline:none;
-
   background:var(--input);
   color:var(--text);
-
   font-size:13px;
-}
-
-.admin-password:focus{
-  border-color:var(--blue);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(var(--accent-rgb),.10);
 }
 
 .admin-error{
   min-height:17px;
-
   margin-top:6px;
-
   color:#d65c5c;
-
   font-size:10px;
 }
 
@@ -2028,15 +1160,11 @@ body:not(.admin-mode) .locked-indicator{
 
 .admin-action{
   flex:1;
-
   height:37px;
-
   border:0;
   border-radius:10px;
-
   font-size:11px;
   font-weight:700;
-
   cursor:pointer;
 }
 
@@ -2046,69 +1174,34 @@ body:not(.admin-mode) .locked-indicator{
 }
 
 .admin-unlock{
-  background:
-    linear-gradient(
-      135deg,
-      var(--blue),
-      var(--cyan)
-    );
-
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
   color:#fff;
-
-  box-shadow:
-    0 5px 18px
-    rgba(var(--accent-rgb),.30);
 }
 
-
-/* =========================================================
-   EMPTY
-========================================================= */
+/* EMPTY */
 
 .empty{
   padding:28px;
-
   text-align:center;
-
   color:var(--secondary);
-
   background:var(--panel-solid);
-
-  border:
-    1px dashed
-    var(--line);
-
+  border:1px dashed var(--line);
   border-radius:12px;
-
   font-size:12px;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+/* RESPONSIVE */
 
 @media(max-width:1050px){
-
-  .workspace{
-    grid-template-columns:1fr;
-  }
-
+  .workspace{grid-template-columns:1fr}
 }
 
 @media(max-width:750px){
+  .wrap{padding:16px 12px 45px}
 
-  .wrap{
-    padding:16px 12px 45px;
-  }
+  .topbar{align-items:flex-start}
 
-  .topbar{
-    align-items:flex-start;
-  }
-
-  .date-title{
-    font-size:17px;
-  }
+  .date-title{font-size:17px}
 
   .date-icon{
     width:38px;
@@ -2126,17 +1219,11 @@ body:not(.admin-mode) .locked-indicator{
     display:none;
   }
 
-  .workspace{
-    display:block;
-  }
+  .workspace{display:block}
 
-  .right-column{
-    margin-top:14px;
-  }
+  .right-column{margin-top:14px}
 
-  .card{
-    display:block;
-  }
+  .card{display:block}
 
   .area{
     width:100%;
@@ -2146,14 +1233,9 @@ body:not(.admin-mode) .locked-indicator{
 
   .details-wrapper{
     display:block;
-
     max-height:0;
-
     opacity:0;
-
-    transition:
-      max-height .45s ease,
-      opacity .2s ease;
+    transition:max-height .45s ease,opacity .2s ease;
   }
 
   .card.open .details-wrapper{
@@ -2163,12 +1245,8 @@ body:not(.admin-mode) .locked-indicator{
 
   .details{
     display:block;
-
     border-left:0;
-
-    border-top:
-      1px solid
-      var(--line);
+    border-top:1px solid var(--line);
   }
 
   .info{
@@ -2176,69 +1254,23 @@ body:not(.admin-mode) .locked-indicator{
     padding:11px 12px;
   }
 
-  .info + .info{
+  .info+.info{
     border-left:0;
-
-    border-top:
-      1px solid
-      var(--line);
-  }
-
-  .card.oncall-active{
-    min-height:auto;
-
-    box-shadow:
-      0 0 0 1px
-        rgba(var(--accent-rgb),.42),
-      0 0 20px
-        rgba(var(--accent-rgb),.38),
-      0 0 40px
-        rgba(var(--accent-rgb),.17);
+    border-top:1px solid var(--line);
   }
 
   .oncall-cell{
     min-width:0;
-
     padding:11px 12px;
-
     border-left:0;
-
-    border-top:
-      1px solid
-      var(--line);
+    border-top:1px solid var(--line);
   }
 
   .card.oncall-active .oncall-cell{
-
     min-width:0;
-
     padding:14px 12px;
-
     border-left:0;
-
-    border-top:
-      2px solid
-      rgba(var(--accent-rgb),.72);
-
-    background:
-      linear-gradient(
-        90deg,
-        rgba(var(--accent-rgb),.15),
-        rgba(var(--accent-2-rgb),.25),
-        rgba(var(--accent-rgb),.12)
-      );
-
-    box-shadow:
-      inset 0 0 22px
-        rgba(var(--accent-rgb),.10);
-  }
-
-  .card.oncall-active .oncall-cell .person{
-    font-size:15px;
-  }
-
-  .card.oncall-active .oncall-label{
-    font-size:10px;
+    border-top:2px solid rgba(var(--accent-rgb),.72);
   }
 
   .oncall-input{
@@ -2267,8 +1299,11 @@ body:not(.admin-mode) .locked-indicator{
     max-width:350px;
   }
 
+  .firebase-status{
+    left:10px;
+    bottom:10px;
+  }
 }
-
 </style>
 </head>
 
@@ -2279,64 +1314,34 @@ body:not(.admin-mode) .locked-indicator{
 <header class="topbar">
 
   <div class="date-area">
-
     <div class="date-icon">▣</div>
-
     <div>
-
       <div id="currentDate" class="date-title"></div>
-
-      <div class="date-sub">
-        Paramed Daily Operations
-      </div>
-
+      <div class="date-sub">Paramed Daily Operations</div>
     </div>
-
   </div>
 
   <div class="top-actions">
 
-    <button
-      id="calendarButton"
-      class="small-button calendar-button"
-      type="button">
-
+    <button id="calendarButton"
+            class="small-button calendar-button"
+            type="button">
       <span>▣</span>
-
-      <span class="calendar-day">
-        Today
-      </span>
-
-      <span
-        id="calendarButtonDate"
-        class="calendar-date">
-      </span>
-
+      <span class="calendar-day">Today</span>
+      <span id="calendarButtonDate" class="calendar-date"></span>
     </button>
 
-    <button
-      id="themeToggle"
-      class="small-button"
-      type="button"
-      aria-label="Toggle theme">
-
-      <span id="themeIcon">
-        ☀️
-      </span>
-
+    <button id="themeToggle"
+            class="small-button"
+            type="button">
+      <span id="themeIcon">☀️</span>
     </button>
 
-    <button
-      id="adminButton"
-      class="small-button admin-button"
-      type="button">
-
+    <button id="adminButton"
+            class="small-button admin-button"
+            type="button">
       <span class="admin-dot"></span>
-
-      <span id="adminText">
-        Admin
-      </span>
-
+      <span id="adminText">Admin</span>
     </button>
 
   </div>
@@ -2351,29 +1356,15 @@ body:not(.admin-mode) .locked-indicator{
 <section class="panel">
 
   <div class="panel-header">
-
     <div>
-
-      <h2 class="panel-title">
-        Areas
-      </h2>
-
-      <p class="panel-sub">
-        Coordinator and supervisor directory
-      </p>
-
+      <h2 class="panel-title">Areas</h2>
+      <p class="panel-sub">Coordinator and supervisor directory</p>
     </div>
 
     <div class="locked-indicator">
-
       <span>🔒</span>
-
-      <span>
-        Read only
-      </span>
-
+      <span>Read only</span>
     </div>
-
   </div>
 
   <div id="results" class="results"></div>
@@ -2389,9 +1380,8 @@ body:not(.admin-mode) .locked-indicator{
 
   <div class="oncall-coordinators-table-wrap">
 
-    <table
-      id="oncallCoordinatorsTable"
-      class="oncall-coordinators-table">
+    <table id="oncallCoordinatorsTable"
+           class="oncall-coordinators-table">
 
       <tbody>
 
@@ -2445,7 +1435,6 @@ body:not(.admin-mode) .locked-indicator{
         </tr>
 
       </tbody>
-
     </table>
 
   </div>
@@ -2460,107 +1449,74 @@ body:not(.admin-mode) .locked-indicator{
 <section class="panel">
 
   <div class="panel-header">
-
     <div>
-
-      <h2 class="panel-title">
-        Coverage
-      </h2>
-
-      <p class="panel-sub">
-        Daily coordinator coverage
-      </p>
-
+      <h2 class="panel-title">Coverage</h2>
+      <p class="panel-sub">Daily coordinator coverage</p>
     </div>
-
   </div>
 
   <div class="coverage-grid">
 
     <div class="coverage-card psw">
-
       <div class="coverage-category">
         <span class="coverage-dot"></span>
         PSW
       </div>
 
-      <label class="coverage-label">
-        Coordinator
-      </label>
+      <label class="coverage-label">Coordinator</label>
 
-      <input
-        id="coveragePSW"
-        class="coverage-input"
-        type="text"
-        placeholder="Enter coordinator…">
+      <input id="coveragePSW"
+             class="coverage-input"
+             type="text"
+             placeholder="Enter coordinator…">
 
-      <label class="coverage-label">
-        Notes
-      </label>
+      <label class="coverage-label">Notes</label>
 
-      <textarea
-        id="notesPSW"
-        class="coverage-notes"
-        placeholder="Add notes for today…"></textarea>
-
+      <textarea id="notesPSW"
+                class="coverage-notes"
+                placeholder="Add notes for today…"></textarea>
     </div>
 
 
     <div class="coverage-card nursing">
-
       <div class="coverage-category">
         <span class="coverage-dot"></span>
         Nursing
       </div>
 
-      <label class="coverage-label">
-        Coordinator
-      </label>
+      <label class="coverage-label">Coordinator</label>
 
-      <input
-        id="coverageNursing"
-        class="coverage-input"
-        type="text"
-        placeholder="Enter coordinator…">
+      <input id="coverageNursing"
+             class="coverage-input"
+             type="text"
+             placeholder="Enter coordinator…">
 
-      <label class="coverage-label">
-        Notes
-      </label>
+      <label class="coverage-label">Notes</label>
 
-      <textarea
-        id="notesNursing"
-        class="coverage-notes"
-        placeholder="Add notes for today…"></textarea>
-
+      <textarea id="notesNursing"
+                class="coverage-notes"
+                placeholder="Add notes for today…"></textarea>
     </div>
 
 
     <div class="coverage-card intake">
-
       <div class="coverage-category">
         <span class="coverage-dot"></span>
         Intake
       </div>
 
-      <label class="coverage-label">
-        Coordinator
-      </label>
+      <label class="coverage-label">Coordinator</label>
 
-      <input
-        id="coverageIntake"
-        class="coverage-input"
-        type="text"
-        placeholder="Enter coordinator…">
+      <input id="coverageIntake"
+             class="coverage-input"
+             type="text"
+             placeholder="Enter coordinator…">
 
-      <label class="coverage-label">
-        Notes
-      </label>
+      <label class="coverage-label">Notes</label>
 
-      <textarea
-        id="notesIntake"
-        class="coverage-notes"
-        placeholder="Add notes for today…"></textarea>
-
+      <textarea id="notesIntake"
+                class="coverage-notes"
+                placeholder="Add notes for today…"></textarea>
     </div>
 
   </div>
@@ -2571,68 +1527,47 @@ body:not(.admin-mode) .locked-indicator{
 <section class="panel important-panel">
 
   <div class="panel-header">
-
     <div>
-
       <h2 class="panel-title important-title">
-
-        <span class="important-icon">
-          !
-        </span>
-
+        <span class="important-icon">!</span>
         Important Information
-
       </h2>
 
       <p class="panel-sub">
         Daily notices and important updates
       </p>
-
     </div>
-
   </div>
 
-  <textarea
-    id="importantNotes"
-    class="important-notes"
-    placeholder="Write an important notice for today…"></textarea>
+  <textarea id="importantNotes"
+            class="important-notes"
+            placeholder="Write an important notice for today…"></textarea>
 
 </section>
 
 
-<section
-  class="panel directory-panel"
-  id="directoryPanel">
+<section class="panel directory-panel" id="directoryPanel">
 
-  <button
-    class="directory-toggle"
-    id="directoryToggle"
-    type="button"
-    aria-expanded="false">
+  <button class="directory-toggle"
+          id="directoryToggle"
+          type="button"
+          aria-expanded="false">
 
     <span class="directory-toggle-left">
 
-      <span class="directory-icon">
-        ▦
-      </span>
+      <span class="directory-icon">▦</span>
 
       <span>
-
-        <span class="directory-toggle-title">
-          Directory
-        </span>
+        <span class="directory-toggle-title">Directory</span>
 
         <span class="directory-toggle-sub">
           Office contacts and operational directory
         </span>
-
       </span>
 
     </span>
 
-    <span class="directory-arrow">
-      ›
-    </span>
+    <span class="directory-arrow">›</span>
 
   </button>
 
@@ -2733,11 +1668,9 @@ body:not(.admin-mode) .locked-indicator{
               </tr>
 
             </tbody>
-
           </table>
 
         </div>
-
       </section>
 
 
@@ -2782,11 +1715,9 @@ body:not(.admin-mode) .locked-indicator{
               <tr><td>Sandy Arevalo</td><td class="role">Customer Care Coordinator</td></tr>
 
             </tbody>
-
           </table>
 
         </div>
-
       </section>
 
 
@@ -2811,9 +1742,7 @@ body:not(.admin-mode) .locked-indicator{
 
               <tr>
                 <td>Lillian Dey</td>
-                <td class="role">
-                  Onboarding &amp; Engagement Partner
-                </td>
+                <td class="role">Onboarding &amp; Engagement Partner</td>
               </tr>
 
               <tr>
@@ -2827,56 +1756,44 @@ body:not(.admin-mode) .locked-indicator{
               </tr>
 
             </tbody>
-
           </table>
 
         </div>
-
       </section>
 
 
       <div class="directory-bottom-grid">
 
         <section class="directory-section">
-
           <div class="directory-section-title">
             Clinical Office Supervisors
           </div>
-
           <div class="directory-people">
             Atiyya Mohammed / Chandni Patel
           </div>
-
         </section>
 
         <section class="directory-section">
-
           <div class="directory-section-title">
             Clinical Office Supervisors
           </div>
-
           <div class="directory-people">
             Simran Kaur / Jilah Parungao
           </div>
-
         </section>
 
         <section class="directory-section">
-
           <div class="directory-section-title">
             Clinical Educator
           </div>
-
           <div class="directory-people">
             Ramandeep Kaur / Onika Rousseau
           </div>
-
         </section>
 
       </div>
 
     </div>
-
   </div>
 
 </section>
@@ -2884,31 +1801,30 @@ body:not(.admin-mode) .locked-indicator{
 </aside>
 
 </div>
-
 </main>
 
 
-<!-- =========================================================
-     CALENDAR
-========================================================= -->
+<!-- FIREBASE STATUS -->
 
-<div
-  id="calendarOverlay"
-  class="calendar-overlay">
+<div id="firebaseStatus" class="firebase-status">
+  <span class="firebase-dot"></span>
+  <span id="firebaseStatusText">Connecting…</span>
+</div>
+
+
+<!-- CALENDAR -->
+
+<div id="calendarOverlay" class="calendar-overlay">
 
   <div class="calendar-popup">
 
     <div class="calendar-head">
 
-      <div
-        id="calendarMonth"
-        class="calendar-month">
-      </div>
+      <div id="calendarMonth" class="calendar-month"></div>
 
-      <button
-        id="calendarClose"
-        class="calendar-close"
-        type="button">
+      <button id="calendarClose"
+              class="calendar-close"
+              type="button">
         ×
       </button>
 
@@ -2924,33 +1840,22 @@ body:not(.admin-mode) .locked-indicator{
       <div>Sat</div>
     </div>
 
-    <div
-      id="calendarDays"
-      class="calendar-days">
-    </div>
+    <div id="calendarDays" class="calendar-days"></div>
 
   </div>
 
 </div>
 
 
-<!-- =========================================================
-     ADMIN
-========================================================= -->
+<!-- ADMIN -->
 
-<div
-  id="adminOverlay"
-  class="admin-overlay">
+<div id="adminOverlay" class="admin-overlay">
 
   <div class="admin-modal">
 
-    <div class="admin-modal-icon">
-      🔐
-    </div>
+    <div class="admin-modal-icon">🔐</div>
 
-    <h3>
-      Administrator Access
-    </h3>
+    <h3>Administrator Access</h3>
 
     <p>
       Enter the administrator password to enable editing
@@ -2958,31 +1863,25 @@ body:not(.admin-mode) .locked-indicator{
       on-call coordinators and directory information.
     </p>
 
-    <input
-      id="adminPassword"
-      class="admin-password"
-      type="password"
-      placeholder="Administrator password…"
-      autocomplete="off">
+    <input id="adminPassword"
+           class="admin-password"
+           type="password"
+           placeholder="Administrator password…"
+           autocomplete="off">
 
-    <div
-      id="adminError"
-      class="admin-error">
-    </div>
+    <div id="adminError" class="admin-error"></div>
 
     <div class="admin-actions">
 
-      <button
-        id="adminCancel"
-        class="admin-action admin-cancel"
-        type="button">
+      <button id="adminCancel"
+              class="admin-action admin-cancel"
+              type="button">
         Cancel
       </button>
 
-      <button
-        id="adminUnlock"
-        class="admin-action admin-unlock"
-        type="button">
+      <button id="adminUnlock"
+              class="admin-action admin-unlock"
+              type="button">
         Unlock Editing
       </button>
 
@@ -2993,7 +1892,59 @@ body:not(.admin-mode) .locked-indicator{
 </div>
 
 
-<script>
+<!-- =========================================================
+     FIREBASE + APPLICATION
+========================================================= -->
+
+<script type="module">
+
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getFirestore,
+  doc,
+  onSnapshot,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE CONFIGURATION
+========================================================= */
+
+const firebaseConfig = {
+  apiKey:"AIzaSyBl0oF-Xxyvx8kAj49-FGZSA9S6B4YRX10",
+  authDomain:"directory-bef45.firebaseapp.com",
+  projectId:"directory-bef45",
+  storageBucket:"directory-bef45.firebasestorage.app",
+  messagingSenderId:"68500514572",
+  appId:"1:68500514572:web:65a5b95bfeca48b4ca8b29"
+};
+
+
+/* =========================================================
+   FIREBASE INITIALIZATION
+========================================================= */
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+/*
+  One shared Firestore document.
+
+  Firestore:
+  paramedOperations / main
+*/
+
+const operationsRef =
+  doc(db,"paramedOperations","main");
+
+
+/* =========================================================
+   ADMIN PASSWORD
+========================================================= */
 
 const ADMIN_PASSWORD =
   "CHANGE_THIS_PASSWORD";
@@ -3032,75 +1983,9 @@ const data = [
 ];
 
 
-function loadJSON(key,fallback){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(key) ||
-      JSON.stringify(fallback)
-    );
-
-  }catch(e){
-
-    return fallback;
-
-  }
-
-}
-
-
-function saveJSON(key,value){
-
-  localStorage.setItem(
-    key,
-    JSON.stringify(value)
-  );
-
-}
-
-
-let onCallData =
-  loadJSON(
-    "paramedOnCall",
-    {}
-  );
-
-
-let customData =
-  loadJSON(
-    "paramedAreaEdits",
-    {}
-  );
-
-
-let coverageData =
-  loadJSON(
-    "paramedCoverage",
-    {
-      psw:{
-        coordinator:"",
-        notes:""
-      },
-
-      nursing:{
-        coordinator:"",
-        notes:""
-      },
-
-      intake:{
-        coordinator:"",
-        notes:""
-      }
-    }
-  );
-
-
-let importantNotes =
-  localStorage.getItem(
-    "paramedImportantNotes"
-  ) || "";
-
+/* =========================================================
+   DEFAULT ON-CALL COORDINATORS
+========================================================= */
 
 const defaultOnCallCoordinators = [
 
@@ -3156,18 +2041,388 @@ const defaultOnCallCoordinators = [
 ];
 
 
+/* =========================================================
+   LOCAL FALLBACK
+========================================================= */
+
+function localGet(key,fallback){
+
+  try{
+
+    const value =
+      localStorage.getItem(key);
+
+    return value
+      ? JSON.parse(value)
+      : fallback;
+
+  }catch(e){
+
+    return fallback;
+
+  }
+
+}
+
+
+function localSet(key,value){
+
+  try{
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(value)
+    );
+
+  }catch(e){}
+
+}
+
+
+/* =========================================================
+   APPLICATION STATE
+========================================================= */
+
+let onCallData =
+  localGet("paramedOnCall", {});
+
+let customData =
+  localGet("paramedAreaEdits", {});
+
+let coverageData =
+  localGet(
+    "paramedCoverage",
+    {
+      psw:{
+        coordinator:"",
+        notes:""
+      },
+
+      nursing:{
+        coordinator:"",
+        notes:""
+      },
+
+      intake:{
+        coordinator:"",
+        notes:""
+      }
+    }
+  );
+
+let importantNotes =
+  localStorage.getItem(
+    "paramedImportantNotes"
+  ) || "";
+
 let onCallCoordinators =
-  loadJSON(
+  localGet(
     "paramedOnCallCoordinators",
     defaultOnCallCoordinators
   );
 
-
 let directoryEdits =
-  loadJSON(
+  localGet(
     "paramedDirectoryEdits",
     {}
   );
+
+
+/* =========================================================
+   FIREBASE STATUS
+========================================================= */
+
+const firebaseStatus =
+  document.getElementById(
+    "firebaseStatus"
+  );
+
+const firebaseStatusText =
+  document.getElementById(
+    "firebaseStatusText"
+  );
+
+
+function setFirebaseStatus(
+  state,
+  text
+){
+
+  firebaseStatus.classList.remove(
+    "connected",
+    "saving",
+    "error"
+  );
+
+  if(state)
+    firebaseStatus.classList.add(state);
+
+  firebaseStatusText.textContent =
+    text;
+
+}
+
+
+/* =========================================================
+   SAVE EVERYTHING TO FIRESTORE
+========================================================= */
+
+let saveTimer = null;
+
+
+function getFirebasePayload(){
+
+  return {
+
+    onCallData,
+
+    customData,
+
+    coverageData,
+
+    importantNotes,
+
+    onCallCoordinators,
+
+    directoryEdits,
+
+    updatedAt:
+      new Date().toISOString()
+
+  };
+
+}
+
+
+function saveToFirebase(){
+
+  if(!adminMode)
+    return;
+
+  setFirebaseStatus(
+    "saving",
+    "Saving…"
+  );
+
+  clearTimeout(saveTimer);
+
+  saveTimer =
+    setTimeout(
+      async ()=>{
+
+        try{
+
+          await setDoc(
+            operationsRef,
+            getFirebasePayload(),
+            {
+              merge:true
+            }
+          );
+
+          setFirebaseStatus(
+            "connected",
+            "Connected"
+          );
+
+        }catch(error){
+
+          console.error(
+            "Firebase save error:",
+            error
+          );
+
+          setFirebaseStatus(
+            "error",
+            "Offline / Save failed"
+          );
+
+        }
+
+      },
+      250
+    );
+
+}
+
+
+/* =========================================================
+   LOCAL + FIREBASE SAVE HELPERS
+========================================================= */
+
+function saveState(){
+
+  localSet(
+    "paramedOnCall",
+    onCallData
+  );
+
+  localSet(
+    "paramedAreaEdits",
+    customData
+  );
+
+  localSet(
+    "paramedCoverage",
+    coverageData
+  );
+
+  localStorage.setItem(
+    "paramedImportantNotes",
+    importantNotes
+  );
+
+  localSet(
+    "paramedOnCallCoordinators",
+    onCallCoordinators
+  );
+
+  localSet(
+    "paramedDirectoryEdits",
+    directoryEdits
+  );
+
+  saveToFirebase();
+
+}
+
+
+/* =========================================================
+   FIREBASE REAL-TIME LISTENER
+========================================================= */
+
+let firstFirebaseLoad = true;
+
+
+onSnapshot(
+  operationsRef,
+
+  snapshot=>{
+
+    if(snapshot.exists()){
+
+      const remote =
+        snapshot.data();
+
+      if(remote.onCallData)
+        onCallData =
+          remote.onCallData;
+
+      if(remote.customData)
+        customData =
+          remote.customData;
+
+      if(remote.coverageData)
+        coverageData =
+          remote.coverageData;
+
+      if(
+        typeof remote.importantNotes ===
+        "string"
+      )
+        importantNotes =
+          remote.importantNotes;
+
+      if(remote.onCallCoordinators)
+        onCallCoordinators =
+          remote.onCallCoordinators;
+
+      if(remote.directoryEdits)
+        directoryEdits =
+          remote.directoryEdits;
+
+
+      /*
+        Keep local fallback synchronized.
+      */
+
+      saveLocalOnly();
+
+      /*
+        Refresh UI from Firebase.
+      */
+
+      refreshAllUI();
+
+    }else{
+
+      /*
+        First visitor creates the
+        Firebase document from the
+        local/default state.
+      */
+
+      if(firstFirebaseLoad){
+
+        saveToFirebase();
+
+      }
+
+    }
+
+    firstFirebaseLoad=false;
+
+    setFirebaseStatus(
+      "connected",
+      "Connected"
+    );
+
+  },
+
+  error=>{
+
+    console.error(
+      "Firebase listener error:",
+      error
+    );
+
+    setFirebaseStatus(
+      "error",
+      "Offline"
+    );
+
+  }
+
+);
+
+
+/* =========================================================
+   LOCAL-ONLY SAVE
+========================================================= */
+
+function saveLocalOnly(){
+
+  localSet(
+    "paramedOnCall",
+    onCallData
+  );
+
+  localSet(
+    "paramedAreaEdits",
+    customData
+  );
+
+  localSet(
+    "paramedCoverage",
+    coverageData
+  );
+
+  localStorage.setItem(
+    "paramedImportantNotes",
+    importantNotes
+  );
+
+  localSet(
+    "paramedOnCallCoordinators",
+    onCallCoordinators
+  );
+
+  localSet(
+    "paramedDirectoryEdits",
+    directoryEdits
+  );
+
+}
 
 
 /* =========================================================
@@ -3184,10 +2439,10 @@ if(!savedTheme){
 
   savedTheme =
     window.matchMedia(
-      "(prefers-color-scheme: dark)"
+      "(prefers-color-scheme:dark)"
     ).matches
-    ? "dark"
-    : "light";
+      ? "dark"
+      : "light";
 
 }
 
@@ -3196,7 +2451,6 @@ const themeToggle =
   document.getElementById(
     "themeToggle"
   );
-
 
 const themeIcon =
   document.getElementById(
@@ -3208,13 +2462,13 @@ function applyTheme(){
 
   document.body.classList.toggle(
     "dark",
-    savedTheme === "dark"
+    savedTheme==="dark"
   );
 
   themeIcon.textContent =
-    savedTheme === "dark"
-    ? "🌙"
-    : "☀️";
+    savedTheme==="dark"
+      ? "🌙"
+      : "☀️";
 
 }
 
@@ -3224,9 +2478,9 @@ themeToggle.addEventListener(
   ()=>{
 
     savedTheme =
-      savedTheme === "dark"
-      ? "light"
-      : "dark";
+      savedTheme==="dark"
+        ? "light"
+        : "dark";
 
     localStorage.setItem(
       "paramedTheme",
@@ -3256,18 +2510,19 @@ const directoryToggle =
     "directoryToggle"
   );
 
+
 directoryToggle.addEventListener(
   "click",
   ()=>{
 
-    const isOpen =
+    const open =
       directoryPanel.classList.toggle(
         "open"
       );
 
     directoryToggle.setAttribute(
       "aria-expanded",
-      isOpen
+      open
         ? "true"
         : "false"
     );
@@ -3281,6 +2536,7 @@ directoryToggle.addEventListener(
 ========================================================= */
 
 let adminMode=false;
+
 
 const adminButton =
   document.getElementById(
@@ -3459,7 +2715,7 @@ function getAreaData(d){
 
   return {
 
-    code:code,
+    code,
 
     area:
       edits.area ?? d[1],
@@ -3492,10 +2748,7 @@ function saveAreaEdit(
 
   customData[code][field]=value;
 
-  saveJSON(
-    "paramedAreaEdits",
-    customData
-  );
+  saveState();
 
 }
 
@@ -3515,10 +2768,7 @@ function saveOnCall(
   else
     delete onCallData[code];
 
-  saveJSON(
-    "paramedOnCall",
-    onCallData
-  );
+  saveState();
 
 }
 
@@ -3548,7 +2798,7 @@ function render(){
 
   if(!data.length){
 
-    el.innerHTML =
+    el.innerHTML=
       `<div class="empty">
         No areas available.
       </div>`;
@@ -3556,6 +2806,7 @@ function render(){
     return;
 
   }
+
 
   el.innerHTML =
     data.map(original=>{
@@ -3567,6 +2818,7 @@ function render(){
 
       const onCall =
         onCallData[code] || "";
+
 
       return `
 
@@ -3584,13 +2836,11 @@ function render(){
             <span class="area-indicator"></span>
 
             <span>
-
               ${escapeHTML(d.area)}
 
               <span class="code">
                 · ${escapeHTML(code)}
               </span>
-
             </span>
 
           </span>
@@ -3648,11 +2898,7 @@ function render(){
                     value="${escapeHTML(d.supervisor)}"
                     autocomplete="off">`
                   :
-                  `<div
-                    style="
-                      display:flex;
-                      align-items:center;
-                    ">
+                  `<div style="display:flex;align-items:center">
 
                     <button
                       class="supervisor"
@@ -3765,9 +3011,7 @@ function render(){
     }).join("");
 
 
-  /* =======================================================
-     AREA BUTTON TOGGLE
-  ======================================================= */
+  /* AREA BUTTONS */
 
   el.querySelectorAll(
     ".area"
@@ -3786,10 +3030,6 @@ function render(){
           card.classList.contains("open");
 
 
-        /*
-          Close every other area
-        */
-
         el.querySelectorAll(
           ".card.open"
         ).forEach(other=>{
@@ -3798,26 +3038,19 @@ function render(){
             "open"
           );
 
-          const otherButton =
+          const btn =
             other.querySelector(
               ".area"
             );
 
-          if(otherButton){
-
-            otherButton.setAttribute(
+          if(btn)
+            btn.setAttribute(
               "aria-expanded",
               "false"
             );
 
-          }
-
         });
 
-
-        /*
-          Open selected area
-        */
 
         if(!wasOpen){
 
@@ -3838,9 +3071,7 @@ function render(){
   });
 
 
-  /* =======================================================
-     SUPERVISOR PHONE
-  ======================================================= */
+  /* SUPERVISOR PHONE */
 
   el.querySelectorAll(
     ".supervisor"
@@ -3855,13 +3086,9 @@ function render(){
         const code =
           button.dataset.code;
 
-        const phoneId =
-          "phone-" +
-          code.replace(/\s/g,"-");
-
         const phone =
           document.getElementById(
-            phoneId
+            "phone-"+code.replace(/\s/g,"-")
           );
 
         if(phone)
@@ -3875,9 +3102,7 @@ function render(){
   });
 
 
-  /* =======================================================
-     AREA EDITING
-  ======================================================= */
+  /* AREA EDITING */
 
   el.querySelectorAll(
     ".area-edit"
@@ -3909,9 +3134,7 @@ function render(){
   });
 
 
-  /* =======================================================
-     ON-CALL EDITING
-  ======================================================= */
+  /* ON CALL */
 
   el.querySelectorAll(
     ".oncall-input"
@@ -3966,26 +3189,38 @@ const coverageFields={
 
   psw:{
     coordinator:
-      document.getElementById("coveragePSW"),
+      document.getElementById(
+        "coveragePSW"
+      ),
 
     notes:
-      document.getElementById("notesPSW")
+      document.getElementById(
+        "notesPSW"
+      )
   },
 
   nursing:{
     coordinator:
-      document.getElementById("coverageNursing"),
+      document.getElementById(
+        "coverageNursing"
+      ),
 
     notes:
-      document.getElementById("notesNursing")
+      document.getElementById(
+        "notesNursing"
+      )
   },
 
   intake:{
     coordinator:
-      document.getElementById("coverageIntake"),
+      document.getElementById(
+        "coverageIntake"
+      ),
 
     notes:
-      document.getElementById("notesIntake")
+      document.getElementById(
+        "notesIntake"
+      )
   }
 
 };
@@ -3994,17 +3229,6 @@ const coverageFields={
 Object.keys(
   coverageFields
 ).forEach(key=>{
-
-  coverageFields[key]
-    .coordinator
-    .value =
-      coverageData[key]?.coordinator || "";
-
-  coverageFields[key]
-    .notes
-    .value =
-      coverageData[key]?.notes || "";
-
 
   coverageFields[key]
     .coordinator
@@ -4021,10 +3245,7 @@ Object.keys(
               .coordinator
               .value;
 
-        saveJSON(
-          "paramedCoverage",
-          coverageData
-        );
+        saveState();
 
       }
     );
@@ -4045,10 +3266,7 @@ Object.keys(
               .notes
               .value;
 
-        saveJSON(
-          "paramedCoverage",
-          coverageData
-        );
+        saveState();
 
       }
     );
@@ -4066,10 +3284,6 @@ const importantNotesField =
   );
 
 
-importantNotesField.value =
-  importantNotes;
-
-
 importantNotesField.addEventListener(
   "input",
   ()=>{
@@ -4080,14 +3294,15 @@ importantNotesField.addEventListener(
     importantNotes =
       importantNotesField.value;
 
-    localStorage.setItem(
-      "paramedImportantNotes",
-      importantNotes
-    );
+    saveState();
 
   }
 );
 
+
+/* =========================================================
+   REFRESH EDITABLE FIELDS
+========================================================= */
 
 function refreshEditableFields(){
 
@@ -4097,19 +3312,30 @@ function refreshEditableFields(){
 
     coverageFields[key]
       .coordinator
-      .disabled =
-        !adminMode;
+      .disabled=!adminMode;
 
     coverageFields[key]
       .notes
-      .disabled =
-        !adminMode;
+      .disabled=!adminMode;
+
+    coverageFields[key]
+      .coordinator
+      .value =
+        coverageData[key]?.coordinator || "";
+
+    coverageFields[key]
+      .notes
+      .value =
+        coverageData[key]?.notes || "";
 
   });
 
 
-  importantNotesField.disabled =
+  importantNotesField.disabled=
     !adminMode;
+
+  importantNotesField.value=
+    importantNotes || "";
 
 }
 
@@ -4140,7 +3366,7 @@ function renderOnCallCoordinators(){
 
     if(adminMode){
 
-      cell.innerHTML = `
+      cell.innerHTML=`
 
         <input
           class="oncall-edit"
@@ -4153,8 +3379,7 @@ function renderOnCallCoordinators(){
 
     }else{
 
-      cell.textContent =
-        value;
+      cell.textContent=value;
 
     }
 
@@ -4184,10 +3409,7 @@ function renderOnCallCoordinators(){
           input.value;
 
 
-        saveJSON(
-          "paramedOnCallCoordinators",
-          onCallCoordinators
-        );
+        saveState();
 
       }
     );
@@ -4241,11 +3463,11 @@ function makeDirectoryEditable(){
 
                 const value =
                   saved !== undefined
-                  ? saved
-                  : cell.textContent;
+                    ? saved
+                    : cell.textContent;
 
 
-                cell.innerHTML = `
+                cell.innerHTML=`
 
                   <input
                     class="directory-edit"
@@ -4277,14 +3499,10 @@ function makeDirectoryEditable(){
 
         directoryEdits[
           input.dataset.key
-        ] =
+        ]=
           input.value;
 
-
-        saveJSON(
-          "paramedDirectoryEdits",
-          directoryEdits
-        );
+        saveState();
 
       }
     );
@@ -4296,15 +3514,112 @@ function makeDirectoryEditable(){
 
 function renderDirectory(){
 
-  if(!adminMode){
+  if(adminMode){
 
-    location.reload();
+    makeDirectoryEditable();
 
-    return;
+  }else{
+
+    /*
+      Reload the original HTML
+      so saved directory values
+      are displayed cleanly.
+    */
+
+    restoreDirectoryFromEdits();
 
   }
 
-  makeDirectoryEditable();
+}
+
+
+/* =========================================================
+   RESTORE DIRECTORY
+========================================================= */
+
+function restoreDirectoryFromEdits(){
+
+  /*
+    Directory HTML contains the
+    original values.
+
+    We only need to apply saved
+    values without making them inputs.
+  */
+
+  const tables =
+    document.querySelectorAll(
+      ".directory-table"
+    );
+
+
+  tables.forEach(
+    (table,tableIndex)=>{
+
+      const rows =
+        table.querySelectorAll(
+          "tbody tr"
+        );
+
+
+      rows.forEach(
+        (row,rowIndex)=>{
+
+          const cells =
+            row.querySelectorAll(
+              "td"
+            );
+
+
+          cells.forEach(
+            (cell,colIndex)=>{
+
+              const key =
+                `${tableIndex}-${rowIndex}-${colIndex}`;
+
+              if(
+                directoryEdits[key] !==
+                undefined
+              ){
+
+                cell.textContent =
+                  directoryEdits[key];
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   REFRESH ALL UI
+========================================================= */
+
+function refreshAllUI(){
+
+  render();
+
+  refreshEditableFields();
+
+  renderOnCallCoordinators();
+
+  if(adminMode){
+
+    renderDirectory();
+
+  }else{
+
+    restoreDirectoryFromEdits();
+
+  }
 
 }
 
@@ -4362,7 +3677,6 @@ let calendarView =
 
 
 const monthNames=[
-
   "January",
   "February",
   "March",
@@ -4375,12 +3689,10 @@ const monthNames=[
   "October",
   "November",
   "December"
-
 ];
 
 
 const weekdayNames=[
-
   "Sunday",
   "Monday",
   "Tuesday",
@@ -4388,20 +3700,17 @@ const weekdayNames=[
   "Thursday",
   "Friday",
   "Saturday"
-
 ];
 
 
 function formatDate(date){
 
   return (
-
     weekdayNames[date.getDay()]
     + ", "
     + monthNames[date.getMonth()]
     + " "
     + date.getDate()
-
   );
 
 }
@@ -4410,11 +3719,9 @@ function formatDate(date){
 function sameDate(a,b){
 
   return (
-
     a.getFullYear()===b.getFullYear() &&
     a.getMonth()===b.getMonth() &&
     a.getDate()===b.getDate()
-
   );
 
 }
@@ -4430,50 +3737,30 @@ function renderCalendar(){
 
 
   calendarMonth.textContent =
-    monthNames[month] +
-    " " +
-    year;
+    monthNames[month]
+    + " "
+    + year;
 
 
   calendarDays.innerHTML="";
 
 
   const firstDay =
-    new Date(
-      year,
-      month,
-      1
-    );
-
+    new Date(year,month,1);
 
   const lastDay =
-    new Date(
-      year,
-      month + 1,
-      0
-    );
-
+    new Date(year,month+1,0);
 
   const previousLast =
-    new Date(
-      year,
-      month,
-      0
-    );
-
+    new Date(year,month,0);
 
   const start =
     firstDay.getDay();
 
-
   const total =
     Math.ceil(
-      (
-        start +
-        lastDay.getDate()
-      ) / 7
-    ) * 7;
-
+      (start+lastDay.getDate())/7
+    )*7;
 
   const today =
     new Date();
@@ -4490,11 +3777,8 @@ function renderCalendar(){
         "button"
       );
 
-
     button.type="button";
-
-    button.className =
-      "calendar-day";
+    button.className="calendar-day";
 
 
     let date;
@@ -4504,51 +3788,44 @@ function renderCalendar(){
 
     if(i<start){
 
-      day =
+      day=
         previousLast.getDate()
-        - start
-        + i
-        + 1;
+        -start
+        +i
+        +1;
 
-
-      date =
+      date=
         new Date(
           year,
           month-1,
           day
         );
 
-
       other=true;
 
     }else if(
-      i-start >=
+      i-start>=
       lastDay.getDate()
     ){
 
-      day =
-        i-start -
-        lastDay.getDate()
-        + 1;
+      day=
+        i-start-lastDay.getDate()+1;
 
-
-      date =
+      date=
         new Date(
           year,
           month+1,
           day
         );
 
-
       other=true;
 
     }else{
 
-      day =
+      day=
         i-start+1;
 
-
-      date =
+      date=
         new Date(
           year,
           month,
@@ -4558,8 +3835,7 @@ function renderCalendar(){
     }
 
 
-    button.textContent =
-      day;
+    button.textContent=day;
 
 
     if(other)
@@ -4568,23 +3844,13 @@ function renderCalendar(){
       );
 
 
-    if(
-      sameDate(
-        date,
-        today
-      )
-    )
+    if(sameDate(date,today))
       button.classList.add(
         "today"
       );
 
 
-    if(
-      sameDate(
-        date,
-        selectedDate
-      )
-    )
+    if(sameDate(date,selectedDate))
       button.classList.add(
         "selected"
       );
@@ -4594,24 +3860,17 @@ function renderCalendar(){
       "click",
       ()=>{
 
-        selectedDate =
-          date;
+        selectedDate=date;
 
+        currentDate.textContent=
+          formatDate(selectedDate);
 
-        currentDate.textContent =
-          formatDate(
-            selectedDate
-          );
-
-
-        calendarButtonDate.textContent =
+        calendarButtonDate.textContent=
           selectedDate.getDate();
-
 
         calendarOverlay.classList.remove(
           "show"
         );
-
 
         renderCalendar();
 
@@ -4645,11 +3904,9 @@ calendarButton.addEventListener(
 calendarClose.addEventListener(
   "click",
   ()=>{
-
     calendarOverlay.classList.remove(
       "show"
     );
-
   }
 );
 
@@ -4658,10 +3915,7 @@ calendarOverlay.addEventListener(
   "click",
   e=>{
 
-    if(
-      e.target ===
-      calendarOverlay
-    ){
+    if(e.target===calendarOverlay){
 
       calendarOverlay.classList.remove(
         "show"
@@ -4677,25 +3931,29 @@ calendarOverlay.addEventListener(
    INITIALIZE
 ========================================================= */
 
-currentDate.textContent =
-  formatDate(
-    selectedDate
-  );
+currentDate.textContent=
+  formatDate(selectedDate);
 
-
-calendarButtonDate.textContent =
+calendarButtonDate.textContent=
   selectedDate.getDate();
-
 
 renderCalendar();
 
 render();
 
+refreshEditableFields();
+
 renderOnCallCoordinators();
 
-refreshEditableFields();
+restoreDirectoryFromEdits();
+
+setFirebaseStatus(
+  "",
+  "Connecting…"
+);
 
 </script>
 
 </body>
 </html>
+```
