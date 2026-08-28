@@ -2766,6 +2766,13 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 /* =========================================================
 FIREBASE CONFIGURATION
 ========================================================= */
@@ -2802,6 +2809,9 @@ const app =
 const db =
   getFirestore(app);
 
+  const auth =
+  getAuth(app);
+  
 const operationsRef =
   doc(
     db,
@@ -2809,12 +2819,7 @@ const operationsRef =
     "main"
   );
 
-/* =========================================================
-ADMIN PASSWORD
-========================================================= */
 
-const ADMIN_PASSWORD =
-  "CHANGE_THIS_PASSWORD";
 
 /* =========================================================
 AREA DATA
@@ -3892,12 +3897,33 @@ function closeAdmin(){
 
 }
 
-function unlockAdmin(){
+async function unlockAdmin(){
 
-  if(
-    adminPassword.value ===
-    ADMIN_PASSWORD
-  ){
+  const email =
+    prompt("Administrator email:");
+
+  if(!email)
+    return;
+
+  const password =
+    adminPassword.value;
+
+  if(!password){
+
+    adminError.textContent =
+      "Enter your password.";
+
+    return;
+
+  }
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
     adminMode = true;
 
@@ -3907,10 +3933,15 @@ function unlockAdmin(){
 
     render();
 
-  }else{
+  }catch(error){
+
+    console.error(
+      "Admin login error:",
+      error
+    );
 
     adminError.textContent =
-      "Incorrect administrator password.";
+      "Invalid administrator credentials.";
 
     adminPassword.select();
 
