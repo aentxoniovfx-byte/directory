@@ -3461,9 +3461,16 @@ FIREBASE PAYLOAD
 
 function getFirebasePayload(){
 
+ function getFirebasePayload(){
+
   return {
-    importantNotes: importantNotes || "",
-    test: "Firebase connection test"
+    onCallData,
+    customData,
+    coverageData,
+    importantNotes,
+    onCallCoordinators,
+    directoryEdits,
+    updatedAt: new Date().toISOString()
   };
 
 }
