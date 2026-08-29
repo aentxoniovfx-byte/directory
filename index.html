@@ -4002,6 +4002,10 @@ const adminError =
     "adminError"
   );
 
+/* =========================================================
+UPDATE ADMIN UI
+========================================================= */
+
 function updateAdminUI(){
 
   document.body.classList.toggle(
@@ -4027,15 +4031,35 @@ function updateAdminUI(){
 
 }
 
+/* =========================================================
+OPEN / CLOSE ADMIN
+========================================================= */
+
 function openAdmin(){
+
+  /*
+    If already authenticated,
+    clicking Admin ON signs out.
+  */
 
   if(adminMode){
 
-    adminMode = false;
+    signOut(auth)
+      .then(()=>{
 
-    updateAdminUI();
+        console.log(
+          "Administrator signed out."
+        );
 
-    render();
+      })
+      .catch(error=>{
+
+        console.error(
+          "Admin sign out error:",
+          error
+        );
+
+      });
 
     return;
 
@@ -4049,7 +4073,9 @@ function openAdmin(){
   );
 
   setTimeout(
-    ()=>adminPassword.focus(),
+    ()=>{
+      adminPassword.focus();
+    },
     100
   );
 
@@ -4063,10 +4089,16 @@ function closeAdmin(){
 
 }
 
+/* =========================================================
+ADMIN LOGIN
+========================================================= */
+
 async function unlockAdmin(){
 
   const email =
-    prompt("Administrator email:");
+    prompt(
+      "Administrator email:"
+    );
 
   if(!email)
     return;
@@ -4091,13 +4123,12 @@ async function unlockAdmin(){
       password
     );
 
-    adminMode = true;
-
-    updateAdminUI();
+    /*
+      Do NOT manually set adminMode here.
+      onAuthStateChanged will do it.
+    */
 
     closeAdmin();
-
-    render();
 
   }catch(error){
 
@@ -4114,6 +4145,53 @@ async function unlockAdmin(){
   }
 
 }
+
+/* =========================================================
+AUTH STATE
+========================================================= */
+
+onAuthStateChanged(
+  auth,
+  user=>{
+
+    if(user){
+
+      /*
+        Firebase restored an existing session
+        or the administrator just logged in.
+      */
+
+      console.log(
+        "Administrator authenticated:",
+        user.email
+      );
+
+      adminMode = true;
+
+    }else{
+
+      /*
+        No authenticated administrator.
+      */
+
+      console.log(
+        "No administrator authenticated."
+      );
+
+      adminMode = false;
+
+    }
+
+    updateAdminUI();
+
+    render();
+
+  }
+);
+
+/* =========================================================
+ADMIN EVENTS
+========================================================= */
 
 adminButton.addEventListener(
   "click",
@@ -4151,8 +4229,14 @@ adminOverlay.addEventListener(
   "click",
   e=>{
 
-    if(e.target === adminOverlay)
+    if(
+      e.target ===
+      adminOverlay
+    ){
+
       closeAdmin();
+
+    }
 
   }
 );
