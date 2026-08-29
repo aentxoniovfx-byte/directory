@@ -3778,9 +3778,50 @@ onSnapshot(
 
       }
 
-      if(remote.onCallCoordinators)
-        onCallCoordinators =
-          remote.onCallCoordinators;
+    if(remote.onCallCoordinators){
+
+  const remoteCoordinators =
+    remote.onCallCoordinators;
+
+  if(
+    remoteCoordinators &&
+    typeof remoteCoordinators === "object"
+  ){
+
+    onCallCoordinators =
+      Object.keys(remoteCoordinators)
+        .sort(
+          (a,b)=>Number(a)-Number(b)
+        )
+        .map(
+          rowKey=>{
+
+            const row =
+              remoteCoordinators[rowKey];
+
+            if(
+              !row ||
+              typeof row !== "object"
+            )
+              return [];
+
+            return Object.keys(row)
+              .sort(
+                (a,b)=>Number(a)-Number(b)
+              )
+              .map(
+                colKey =>
+                  String(
+                    row[colKey] ?? ""
+                  )
+              );
+
+          }
+        );
+
+  }
+
+}
 
       if(remote.directoryEdits)
         directoryEdits =
