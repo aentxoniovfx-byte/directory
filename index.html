@@ -3603,12 +3603,9 @@ findNestedArrays(payload);
           );
 
           await setDoc(
-            operationsRef,
-            payload,
-            {
-              merge:true
-            }
-          );
+  operationsRef,
+  payload
+);
 
           console.log(
             "Firebase save successful."
