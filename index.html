@@ -3709,9 +3709,15 @@ onSnapshot(
       const remote =
         snapshot.data();
 
-      if(remote.onCallData)
-        onCallData =
-          remote.onCallData;
+if(
+  remote.onCallData &&
+  typeof remote.onCallData === "object"
+){
+
+  onCallData =
+    remote.onCallData;
+
+}
 
       if(remote.customData)
         customData =
