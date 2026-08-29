@@ -254,7 +254,7 @@ WORKSPACE
 
 .workspace{
   display:grid;
-  grid-template-columns:minmax(0,1.45fr) minmax(390px,1fr);
+  grid-template-columns:minmax(0,1.7fr) minmax(370px,1fr);
   gap:16px;
   align-items:start;
 }
@@ -308,15 +308,15 @@ AREAS
 .results{
   display:flex;
   flex-direction:column;
-  gap:4px;
-  padding:8px;
+  gap:3px;
+  padding:7px 8px;
 }
 
 .card{
   display:flex;
   align-items:stretch;
   width:100%;
-  min-height:38px;
+  min-height:34px;
   overflow:hidden;
   background:
     linear-gradient(
@@ -344,7 +344,7 @@ body.dark .card{
 }
 
 .card.oncall-active{
-  min-height:44px;
+  min-height:39px;
   background:
     linear-gradient(
       90deg,
@@ -362,11 +362,11 @@ body.dark .card{
 .area{
   flex:1;
   min-width:0;
-  min-height:38px;
+  min-height:34px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:6px 12px;
+  padding:4px 12px;
   border:0;
   background:
     linear-gradient(
@@ -473,12 +473,6 @@ body.dark .card{
   border-color:transparent;
   background:transparent;
   box-shadow:none;
-}
-
-/* Hide the collapsed On Call preview while the Area is open,
-   so it never overlaps the expanded details text. */
-.card.open .area-oncall-preview{
-  display:none;
 }
 
 @keyframes onCallPreviewDotBlink{
