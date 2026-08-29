@@ -3506,25 +3506,7 @@ function getFirebasePayload(){
 
 }
 
-  onSnapshot(
-  operationsRef,
-  snapshot => {
-
-    if (snapshot.exists()) {
-
-      const remote = snapshot.data();
-
-      if (remote.importantNotes !== undefined) {
-
-        importantNotes =
-          remote.importantNotes;
-
-        localStorage.setItem(
-          "paramedImportantNotes",
-          importantNotes
-        );
-
-        refreshAllUI();
+  refreshAllUI();
 
       }
 
