@@ -4897,80 +4897,184 @@ function renderCoverage(){
   );
 
   const current =
-    coverageData[
-      coverageMode
-    ];
+    coverageData[coverageMode];
 
   [
     "psw",
     "nursing",
     "intake"
-  ].forEach(
-    key=>{
+  ].forEach(key=>{
 
-      const container =
-        coverageCoordinatorContainers[
-          key
-        ];
+    const container =
+      coverageCoordinatorContainers[key];
 
-      container.innerHTML = "";
+    if(!container)
+      return;
 
-      let coordinators =
-        current[key].coordinators;
+    /*
+      IMPORTANT:
+      Never render from a temporary array.
+      Always render directly from coverageData.
+    */
 
-      if(
-        coordinators.length === 0
-      ){
+    const coordinators =
+      current[key].coordinators;
 
-        coordinators = [""];
+    /*
+      Always keep at least one coordinator
+      input available.
+    */
 
-      }
+    if(
+      coordinators.length === 0
+    ){
 
-      coordinators.forEach(
-        (name,index)=>{
+      coordinators.push("");
 
-          const row =
-            document.createElement(
-              "div"
-            );
+    }
 
-          row.className =
-            "coverage-coordinator-row";
+    container.innerHTML = "";
 
-          const input =
-            document.createElement(
-              "input"
-            );
+    coordinators.forEach(
+      (name,index)=>{
 
-          input.type = "text";
+        const row =
+          document.createElement("div");
 
-          input.className =
-            "coverage-input";
+        row.className =
+          "coverage-coordinator-row";
 
-          input.placeholder =
-            "Add coordinator…";
+        const input =
+          document.createElement("input");
 
-          input.autocomplete =
-            "off";
+        input.type =
+          "text";
 
-          input.value =
-            name;
+        input.className =
+          "coverage-input";
 
-          input.disabled =
-            !adminMode;
+        input.placeholder =
+          "Add coordinator…";
 
-          input.addEventListener(
-            "input",
+        input.autocomplete =
+          "off";
+
+        input.value =
+          name ?? "";
+
+        input.disabled =
+          !adminMode;
+
+        /*
+          IMPORTANT:
+          Save the value directly into coverageData.
+        */
+
+        input.addEventListener(
+          "input",
+          ()=>{
+
+            if(!adminMode)
+              return;
+
+            /*
+              Make sure the index still exists.
+            */
+
+            if(
+              !Array.isArray(
+                current[key].coordinators
+              )
+            ){
+
+              current[key].coordinators =
+                [];
+
+            }
+
+            while(
+              current[key].coordinators.length
+              <= index
+            ){
+
+              current[key]
+                .coordinators
+                .push("");
+
+            }
+
+            current[key]
+              .coordinators[index] =
+              input.value;
+
+            saveState();
+
+          }
+        );
+
+        row.appendChild(input);
+
+        /*
+          REMOVE BUTTON
+        */
+
+        if(adminMode){
+
+          const remove =
+            document.createElement("button");
+
+          remove.type =
+            "button";
+
+          remove.className =
+            "coverage-remove";
+
+          remove.textContent =
+            "×";
+
+          remove.title =
+            "Remove coordinator";
+
+          remove.addEventListener(
+            "click",
             ()=>{
 
               if(!adminMode)
                 return;
 
+              /*
+                Remove the exact coordinator
+                from the actual data array.
+              */
+
               if(
-                index >=
+                Array.isArray(
+                  current[key].coordinators
+                ) &&
+                index <
                 current[key]
                   .coordinators
                   .length
+              ){
+
+                current[key]
+                  .coordinators
+                  .splice(
+                    index,
+                    1
+                  );
+
+              }
+
+              /*
+                Never leave the section
+                without an input.
+              */
+
+              if(
+                current[key]
+                  .coordinators
+                  .length === 0
               ){
 
                 current[key]
@@ -4979,90 +5083,36 @@ function renderCoverage(){
 
               }
 
-              current[key]
-                .coordinators[index] =
-                  input.value;
-
               saveState();
+
+              renderCoverage();
 
             }
           );
 
-          row.appendChild(
-            input
-          );
-
-          if(adminMode){
-
-            const remove =
-              document.createElement(
-                "button"
-              );
-
-            remove.type =
-              "button";
-
-            remove.className =
-              "coverage-remove";
-
-            remove.textContent =
-              "×";
-
-            remove.title =
-              "Remove coordinator";
-
-            remove.addEventListener(
-              "click",
-              ()=>{
-
-                if(
-                  index <
-                  current[key]
-                    .coordinators
-                    .length
-                ){
-
-                  current[key]
-                    .coordinators
-                    .splice(
-                      index,
-                      1
-                    );
-
-                }
-
-                saveState();
-
-                renderCoverage();
-
-              }
-            );
-
-            row.appendChild(
-              remove
-            );
-
-          }
-
-          container.appendChild(
-            row
-          );
+          row.appendChild(remove);
 
         }
-      );
 
-      coverageNotesFields[key]
-        .value =
-        current[key].notes || "";
+        container.appendChild(row);
 
-      coverageNotesFields[key]
-        .disabled =
-        !adminMode;
+      }
+    );
 
-    }
-  );
+    /*
+      NOTES
+    */
+
+    coverageNotesFields[key].value =
+      current[key].notes || "";
+
+    coverageNotesFields[key].disabled =
+      !adminMode;
+
+  });
 
 }
+
 
 /* =========================================================
 ADD COORDINATOR BUTTONS
@@ -5070,54 +5120,108 @@ ADD COORDINATOR BUTTONS
 
 document.querySelectorAll(
   ".coverage-add"
-).forEach(
-  button=>{
+).forEach(button=>{
 
-    button.addEventListener(
-      "click",
-      ()=>{
+  button.addEventListener(
+    "click",
+    ()=>{
 
-        if(!adminMode)
-          return;
+      if(!adminMode)
+        return;
 
-        const key =
-          button.dataset.coverage;
+      const key =
+        button.dataset.coverage;
 
-        normalizeCoverageData();
+      normalizeCoverageData();
 
-        coverageData[
-          coverageMode
-        ][key]
-          .coordinators
-          .push("");
+      const section =
+        coverageData[coverageMode][key];
 
-        saveState();
+      /*
+        IMPORTANT:
+        Before adding a new coordinator,
+        capture the CURRENT values from the DOM.
 
-        renderCoverage();
+        This protects against a render happening
+        while the user is editing.
+      */
 
-        const container =
-          coverageCoordinatorContainers[
-            key
-          ];
+      const container =
+        coverageCoordinatorContainers[key];
 
-        const inputs =
-          container.querySelectorAll(
-            "input"
-          );
+      const inputs =
+        container.querySelectorAll(
+          "input"
+        );
 
-        const last =
-          inputs[
-            inputs.length - 1
-          ];
+      inputs.forEach(
+        (input,index)=>{
 
-        if(last)
-          last.focus();
+          if(
+            index <
+            section.coordinators.length
+          ){
+
+            section.coordinators[index] =
+              input.value;
+
+          }
+
+        }
+      );
+
+      /*
+        Now add the new coordinator.
+      */
+
+      section.coordinators.push("");
+
+      /*
+        Save the updated state.
+      */
+
+      saveState();
+
+      /*
+        Re-render from the UPDATED state.
+      */
+
+      renderCoverage();
+
+      /*
+        Focus the new input.
+      */
+
+      const newInputs =
+        container.querySelectorAll(
+          "input"
+        );
+
+      const lastInput =
+        newInputs[
+          newInputs.length - 1
+        ];
+
+      if(lastInput){
+
+        lastInput.focus();
+
+        /*
+          Put cursor at the end.
+        */
+
+        lastInput.setSelectionRange(
+          lastInput.value.length,
+          lastInput.value.length
+        );
 
       }
-    );
 
-  }
-);
+    }
+  );
+
+});
+
 
 /* =========================================================
 COVERAGE NOTES
@@ -5125,32 +5229,30 @@ COVERAGE NOTES
 
 Object.keys(
   coverageNotesFields
-).forEach(
-  key=>{
+).forEach(key=>{
 
-    coverageNotesFields[key]
-      .addEventListener(
-        "input",
-        ()=>{
+  coverageNotesFields[key]
+    .addEventListener(
+      "input",
+      ()=>{
 
-          if(!adminMode)
-            return;
+        if(!adminMode)
+          return;
 
-          normalizeCoverageData();
+        normalizeCoverageData();
 
-          coverageData[
-            coverageMode
-          ][key].notes =
-            coverageNotesFields[key]
-              .value;
+        coverageData[
+          coverageMode
+        ][key].notes =
+          coverageNotesFields[key].value;
 
-          saveState();
+        saveState();
 
-        }
-      );
+      }
+    );
 
-  }
-);
+});
+
 
 /* =========================================================
 WEEKDAY / WEEKEND
@@ -5205,7 +5307,6 @@ weekendMode.addEventListener(
 
   }
 );
-
 /* =========================================================
 IMPORTANT NOTES
 ========================================================= */
