@@ -3463,17 +3463,32 @@ function getFirebasePayload(){
 
   return {
 
-    onCallData,
+    onCallData:
+      JSON.parse(
+        JSON.stringify(onCallData)
+      ),
 
-    customData,
+    customData:
+      JSON.parse(
+        JSON.stringify(customData)
+      ),
 
-    coverageData,
+    coverageData:
+      JSON.parse(
+        JSON.stringify(coverageData)
+      ),
 
     importantNotes,
 
-    onCallCoordinators,
+    onCallCoordinators:
+      JSON.parse(
+        JSON.stringify(onCallCoordinators)
+      ),
 
-    directoryEdits,
+    directoryEdits:
+      JSON.parse(
+        JSON.stringify(directoryEdits)
+      ),
 
     updatedAt:
       new Date().toISOString()
