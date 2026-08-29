@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Paramed Daily Operations</title>
+<title>Coverage August</title>
 
 <style>
 :root{
@@ -17,7 +17,7 @@
   --blue:#1C70C4;
   --cyan:#3FA9F5;
   --green:#00d995;
-  --purple:#a855f7;
+  --purple:#FF7A00;
   --orange:#ff8b32;
   --input:rgba(248,251,255,.72);
   --accent-rgb:28,112,196;
@@ -36,7 +36,7 @@ body.dark{
   --blue:#FF7A00;
   --cyan:#FFE45C;
   --green:#00e69a;
-  --purple:#bd72ff;
+  --purple:#FF7A00;
   --orange:#FF7A00;
   --input:rgba(25,21,8,.82);
   --accent-rgb:255,122,0;
@@ -216,7 +216,7 @@ FIREBASE STATUS
   align-items:center;
   gap:7px;
   padding:7px 11px;
-  border-radius:10px;
+  border-radius:8px;
   background:var(--panel-solid);
   border:1px solid var(--line);
   box-shadow:0 8px 25px rgba(0,0,0,.12);
@@ -254,8 +254,8 @@ WORKSPACE
 
 .workspace{
   display:grid;
-  grid-template-columns:minmax(0,1fr) 370px;
-  gap:20px;
+  grid-template-columns:minmax(0,1.7fr) minmax(370px,1fr);
+  gap:16px;
   align-items:start;
 }
 
@@ -308,15 +308,15 @@ AREAS
 .results{
   display:flex;
   flex-direction:column;
-  gap:6px;
-  padding:10px;
+  gap:3px;
+  padding:7px 8px;
 }
 
 .card{
   display:flex;
   align-items:stretch;
   width:100%;
-  min-height:46px;
+  min-height:34px;
   overflow:hidden;
   background:
     linear-gradient(
@@ -344,7 +344,7 @@ body.dark .card{
 }
 
 .card.oncall-active{
-  min-height:60px;
+  min-height:39px;
   background:
     linear-gradient(
       90deg,
@@ -362,11 +362,11 @@ body.dark .card{
 .area{
   flex:1;
   min-width:0;
-  min-height:46px;
+  min-height:34px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:9px 14px;
+  padding:4px 12px;
   border:0;
   background:
     linear-gradient(
@@ -445,6 +445,95 @@ body.dark .card{
   color:var(--muted);
   font-size:11px;
   font-weight:600;
+}
+
+
+.area-oncall-preview{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-left:14px;
+  padding:5px 0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--text);
+  font-size:11px;
+  font-weight:700;
+  white-space:nowrap;
+  opacity:0;
+  transform:translateX(4px);
+  pointer-events:none;
+  transition:.2s ease;
+}
+
+.card.oncall-active .area-oncall-preview{
+  opacity:1;
+  transform:translateX(0);
+  border-color:transparent;
+  background:transparent;
+  box-shadow:none;
+}
+
+@keyframes onCallPreviewDotBlink{
+  0%,100%{
+    opacity:1;
+    transform:scale(1);
+    box-shadow:
+      0 0 7px #FF7A00,
+      0 0 16px rgba(255,122,0,.95),
+      0 0 25px rgba(255,122,0,.60);
+  }
+  50%{
+    opacity:.28;
+    transform:scale(.68);
+    box-shadow:
+      0 0 2px #FF7A00,
+      0 0 6px rgba(255,122,0,.45);
+  }
+}
+
+.area-oncall-preview::before{
+  content:"";
+  width:7px;
+  height:7px;
+  flex:0 0 7px;
+  border-radius:50%;
+  background:#FF7A00;
+  box-shadow:0 0 8px rgba(255,122,0,.9);
+  animation:onCallPreviewDotBlink 1.15s ease-in-out infinite;
+}
+
+@keyframes onCallPreviewDotBlinkDark{
+  0%,100%{
+    opacity:1;
+    transform:scale(1);
+    box-shadow:
+      0 0 7px #4A90E2,
+      0 0 16px rgba(74,144,226,.95),
+      0 0 25px rgba(126,180,255,.65);
+  }
+  50%{
+    opacity:.28;
+    transform:scale(.68);
+    box-shadow:
+      0 0 2px #4A90E2,
+      0 0 6px rgba(74,144,226,.48);
+  }
+}
+
+body.dark .area-oncall-preview::before{
+  background:#4A90E2;
+  box-shadow:0 0 8px rgba(74,144,226,.95);
+  animation-name:onCallPreviewDotBlinkDark;
+}
+
+@media (max-width:720px){
+  .area-oncall-preview{
+    max-width:44%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
 }
 
 /* =========================================================
@@ -639,17 +728,17 @@ ON CALL
     opacity:1;
     transform:scale(1);
     box-shadow:
-      0 0 6px #7B2CBF,
-      0 0 14px #7B2CBF,
-      0 0 25px rgba(123,44,191,.95);
+      0 0 6px #FF7A00,
+      0 0 14px #FF7A00,
+      0 0 25px rgba(255,122,0,.95);
   }
 
   50%{
     opacity:.32;
     transform:scale(.72);
     box-shadow:
-      0 0 2px #7B2CBF,
-      0 0 6px #7B2CBF;
+      0 0 2px #FF7A00,
+      0 0 6px #FF7A00;
   }
 }
 
@@ -685,7 +774,7 @@ ON CALL
   width:9px;
   height:9px;
   margin-right:7px;
-  background:#7B2CBF;
+  background:#FF7A00;
   animation:
     onCallPulse
     1.15s ease-in-out infinite;
@@ -863,38 +952,38 @@ COVERAGE CARDS
 }
 
 /* =========================================================
-WEEKDAY — PSW PURPLE
+WEEKDAY — PSW CANARY YELLOW
 ========================================================= */
 
 .coverage-grid.weekday-mode .coverage-card.psw{
   background:
     linear-gradient(
       135deg,
-      rgba(168,85,247,.20),
-      rgba(124,58,237,.08)
+      rgba(255,239,0,.20),
+      rgba(255,239,0,.08)
     );
 
   border:1px solid
-    rgba(168,85,247,.58);
+    rgba(255,239,0,.58);
 
   box-shadow:
     inset 0 0 20px
-      rgba(168,85,247,.06),
+      rgba(255,239,0,.06),
     0 0 15px
-      rgba(168,85,247,.08);
+      rgba(255,239,0,.08);
 }
 
 .coverage-grid.weekday-mode .coverage-card.psw
 .coverage-category{
-  color:#A855F7;
+  color:#D6C900;
 }
 
 .coverage-grid.weekday-mode .coverage-card.psw
 .coverage-dot{
-  background:#A855F7;
+  background:#FF7A00;
   box-shadow:
-    0 0 8px #A855F7,
-    0 0 17px rgba(168,85,247,.65);
+    0 0 8px #FF7A00,
+    0 0 17px rgba(255,239,0,.65);
 }
 
 /* =========================================================
@@ -1070,6 +1159,109 @@ WEEKEND — INTAKE YELLOW
   box-shadow:
     0 0 8px #FFD21F,
     0 0 17px rgba(255,210,31,.70);
+}
+
+/* =========================================================
+COVERAGE — SUPERVISORS
+========================================================= */
+
+.coverage-grid.weekday-mode .coverage-card.supervisors{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,217,149,.18),
+      rgba(63,169,245,.07)
+    );
+  border:1px solid rgba(0,217,149,.55);
+  box-shadow:
+    inset 0 0 20px rgba(0,217,149,.05),
+    0 0 15px rgba(0,217,149,.08);
+}
+
+.coverage-grid.weekday-mode .coverage-card.supervisors .coverage-category{
+  color:#00B982;
+}
+
+.coverage-grid.weekday-mode .coverage-card.supervisors .coverage-dot{
+  background:#00D995;
+  box-shadow:
+    0 0 8px #00D995,
+    0 0 17px rgba(0,217,149,.62);
+}
+
+.coverage-grid.weekend-mode .coverage-card.supervisors{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(236,72,153,.18),
+      rgba(255,122,0,.07)
+    );
+  border:1px solid rgba(236,72,153,.55);
+  box-shadow:
+    inset 0 0 20px rgba(236,72,153,.05),
+    0 0 15px rgba(236,72,153,.08);
+}
+
+.coverage-grid.weekend-mode .coverage-card.supervisors .coverage-category{
+  color:#EC4899;
+}
+
+.coverage-grid.weekend-mode .coverage-card.supervisors .coverage-dot{
+  background:#EC4899;
+  box-shadow:
+    0 0 8px #EC4899,
+    0 0 17px rgba(236,72,153,.62);
+}
+
+.coverage-supervisors{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  margin-bottom:8px;
+}
+
+.coverage-supervisor-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) 29px;
+  gap:6px;
+  align-items:center;
+}
+
+body:not(.admin-mode) .coverage-supervisor-row{
+  grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+}
+
+.coverage-supervisor-row .coverage-input{
+  width:100%;
+  min-width:0;
+}
+
+.supervisor-add{
+  margin-bottom:0;
+}
+
+@media(max-width:520px){
+  .coverage-supervisor-row{
+    grid-template-columns:minmax(0,1fr) 29px;
+  }
+
+  .coverage-supervisor-row .supervisor-schedule-input{
+    grid-column:1 / -1;
+    grid-row:2;
+  }
+
+  .coverage-supervisor-row .coverage-remove{
+    grid-column:2;
+    grid-row:1;
+  }
+
+  body:not(.admin-mode) .coverage-supervisor-row{
+    grid-template-columns:1fr;
+  }
+
+  body:not(.admin-mode) .coverage-supervisor-row .supervisor-schedule-input{
+    grid-column:1;
+  }
 }
 
 /* =========================================================
@@ -1903,10 +2095,7 @@ RESPONSIVE
       <div
         id="currentDate"
         class="date-title">
-      </div>
-
-      <div class="date-sub">
-        Paramed Daily Operations
+        Coverage August
       </div>
 
     </div>
@@ -2121,6 +2310,29 @@ RESPONSIVE
     id="coverageGrid"
     class="coverage-grid weekday-mode">
 
+    <!-- SUPERVISORS -->
+
+    <div class="coverage-card supervisors">
+
+      <div class="coverage-category">
+        <span class="coverage-dot"></span>
+        Supervisors
+      </div>
+
+      <div
+        id="coverageSupervisors"
+        class="coverage-supervisors">
+      </div>
+
+      <button
+        id="addCoverageSupervisor"
+        class="coverage-add supervisor-add"
+        type="button">
+        ＋ Add Supervisor
+      </button>
+
+    </div>
+
     <!-- PSW -->
 
     <div class="coverage-card psw">
@@ -2231,6 +2443,8 @@ RESPONSIVE
       </textarea>
 
     </div>
+
+
 
   </div>
 
@@ -3158,7 +3372,9 @@ const defaultCoverageData = {
     intake:{
       coordinators:[],
       notes:""
-    }
+    },
+
+    supervisors:[]
 
   },
 
@@ -3177,7 +3393,9 @@ const defaultCoverageData = {
     intake:{
       coordinators:[],
       notes:""
-    }
+    },
+
+    supervisors:[]
 
   }
 
@@ -3478,6 +3696,67 @@ function normalizeCoverageData(){
         }
       );
 
+      const existingSupervisors =
+        coverageData[mode].supervisors;
+
+      /*
+        Migrate the previous single-supervisor
+        object into the new list format.
+      */
+
+      if(
+        existingSupervisors &&
+        typeof existingSupervisors === "object" &&
+        !Array.isArray(existingSupervisors)
+      ){
+
+        const oldName =
+          existingSupervisors.name == null
+            ? ""
+            : String(existingSupervisors.name);
+
+        const oldSchedule =
+          existingSupervisors.schedule == null
+            ? ""
+            : String(existingSupervisors.schedule);
+
+        coverageData[mode].supervisors =
+          oldName || oldSchedule
+            ? [{
+                name:oldName,
+                schedule:oldSchedule
+              }]
+            : [];
+
+      }else if(
+        !Array.isArray(existingSupervisors)
+      ){
+
+        coverageData[mode].supervisors = [];
+
+      }
+
+      coverageData[mode].supervisors =
+        coverageData[mode].supervisors
+          .filter(
+            supervisor=>
+              supervisor &&
+              typeof supervisor === "object" &&
+              !Array.isArray(supervisor)
+          )
+          .map(
+            supervisor=>({
+              name:
+                supervisor.name == null
+                  ? ""
+                  : String(supervisor.name),
+              schedule:
+                supervisor.schedule == null
+                  ? ""
+                  : String(supervisor.schedule)
+            })
+          );
+
     }
   );
 
@@ -3571,6 +3850,16 @@ const coverageNotesFields = {
     )
 
 };
+
+const coverageSupervisors =
+  document.getElementById(
+    "coverageSupervisors"
+  );
+
+const addCoverageSupervisor =
+  document.getElementById(
+    "addCoverageSupervisor"
+  );
 
 /* =========================================================
 FIREBASE STATUS
@@ -4631,6 +4920,12 @@ function render(){
 
             </span>
 
+            <span
+              class="area-oncall-preview"
+              data-oncall-preview="${escapeHTML(code)}">
+              ${escapeHTML(onCall)}
+            </span>
+
           </button>
 
           <div class="details-wrapper">
@@ -5007,6 +5302,15 @@ function render(){
             !!value
           );
 
+          const preview =
+            card.querySelector(
+              ".area-oncall-preview"
+            );
+
+          if(preview){
+            preview.textContent = value;
+          }
+
         }
       );
 
@@ -5248,7 +5552,158 @@ function renderCoverage(){
 
   });
 
+  /*
+    SUPERVISORS
+  */
+
+  coverageSupervisors.innerHTML = "";
+
+  current.supervisors.forEach(
+    (supervisor,index)=>{
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "coverage-supervisor-row";
+
+      const nameInput =
+        document.createElement("input");
+
+      nameInput.className =
+        "coverage-input supervisor-name-input";
+
+      nameInput.type = "text";
+      nameInput.placeholder =
+        "Enter supervisor…";
+      nameInput.autocomplete = "off";
+      nameInput.value =
+        supervisor.name || "";
+      nameInput.disabled =
+        !adminMode;
+
+      const scheduleInput =
+        document.createElement("input");
+
+      scheduleInput.className =
+        "coverage-input supervisor-schedule-input";
+
+      scheduleInput.type = "text";
+      scheduleInput.placeholder =
+        "e.g. 8:00 AM – 4:00 PM";
+      scheduleInput.autocomplete = "off";
+      scheduleInput.value =
+        supervisor.schedule || "";
+      scheduleInput.disabled =
+        !adminMode;
+
+      nameInput.addEventListener(
+        "input",
+        ()=>{
+
+          if(!adminMode)
+            return;
+
+          current.supervisors[index].name =
+            nameInput.value;
+
+          saveState();
+
+        }
+      );
+
+      scheduleInput.addEventListener(
+        "input",
+        ()=>{
+
+          if(!adminMode)
+            return;
+
+          current.supervisors[index].schedule =
+            scheduleInput.value;
+
+          saveState();
+
+        }
+      );
+
+      row.appendChild(nameInput);
+      row.appendChild(scheduleInput);
+
+      if(adminMode){
+
+        const remove =
+          document.createElement("button");
+
+        remove.className =
+          "coverage-remove";
+        remove.type = "button";
+        remove.textContent = "×";
+        remove.title =
+          "Remove supervisor";
+
+        remove.addEventListener(
+          "click",
+          ()=>{
+
+            current.supervisors.splice(
+              index,
+              1
+            );
+
+            saveState();
+            renderCoverage();
+
+          }
+        );
+
+        row.appendChild(remove);
+
+      }
+
+      coverageSupervisors.appendChild(
+        row
+      );
+
+    }
+  );
+
 }
+
+
+/* =========================================================
+SUPERVISOR COVERAGE
+========================================================= */
+
+addCoverageSupervisor.addEventListener(
+  "click",
+  ()=>{
+
+    if(!adminMode)
+      return;
+
+    normalizeCoverageData();
+
+    coverageData[coverageMode]
+      .supervisors.push({
+        name:"",
+        schedule:""
+      });
+
+    saveState();
+    renderCoverage();
+
+    const supervisorInputs =
+      coverageSupervisors.querySelectorAll(
+        ".supervisor-name-input"
+      );
+
+    supervisorInputs[
+      supervisorInputs.length - 1
+    ]?.focus();
+
+  }
+);
 
 
 /* =========================================================
@@ -6029,10 +6484,7 @@ function renderCalendar(){
         selectedDate =
           date;
 
-        currentDate.textContent =
-          formatDate(
-            selectedDate
-          );
+        updateCoverageMonthTitle();
 
         calendarButtonDate.textContent =
           selectedDate.getDate();
@@ -6096,14 +6548,28 @@ calendarOverlay.addEventListener(
   }
 );
 
+function updateCoverageMonthTitle(){
+
+  const coverageTitle =
+    "Coverage " +
+    selectedDate.toLocaleDateString(
+      "en-US",
+      { month:"long" }
+    );
+
+  currentDate.textContent =
+    coverageTitle;
+
+  document.title =
+    coverageTitle;
+
+}
+
 /* =========================================================
 INITIALIZE
 ========================================================= */
 
-currentDate.textContent =
-  formatDate(
-    selectedDate
-  );
+updateCoverageMonthTitle();
 
 calendarButtonDate.textContent =
   selectedDate.getDate();
