@@ -3195,19 +3195,51 @@ COVERAGE NORMALIZATION / MIGRATION
 
 function normalizeCoverageData(){
 
+  /*
+    IMPORTANT:
+    This function only guarantees that the existing
+    structure is valid.
+
+    It MUST NOT rebuild coverageData if valid data
+    already exists.
+  */
+
   if(
     !coverageData ||
-    typeof coverageData !== "object"
+    typeof coverageData !== "object" ||
+    Array.isArray(coverageData)
   ){
 
     coverageData = {};
 
   }
 
-  if(
+  /*
+    ---------------------------------------------------------
+    MIGRATE OLD FORMAT
+    Old format:
+      coverageData.psw
+      coverageData.nursing
+      coverageData.intake
+
+    New format:
+      coverageData.weekday.psw
+      coverageData.weekend.psw
+    ---------------------------------------------------------
+  */
+
+  const hasOldFormat =
     coverageData.psw ||
     coverageData.nursing ||
-    coverageData.intake
+    coverageData.intake;
+
+  const hasNewFormat =
+    coverageData.weekday ||
+    coverageData.weekend;
+
+  if(
+    hasOldFormat &&
+    !hasNewFormat
   ){
 
     const oldData =
@@ -3219,38 +3251,77 @@ function normalizeCoverageData(){
 
         psw:{
           coordinators:
-            oldData.psw?.coordinators ||
-            (
-              oldData.psw?.coordinator
-                ? [oldData.psw.coordinator]
-                : []
-            ),
+            Array.isArray(
+              oldData.psw?.coordinators
+            )
+              ? oldData.psw.coordinators
+                  .map(
+                    value =>
+                      String(value ?? "")
+                  )
+              : (
+                  typeof oldData.psw?.coordinator ===
+                  "string" &&
+                  oldData.psw.coordinator.trim()
+                    ? [oldData.psw.coordinator]
+                    : []
+                ),
+
           notes:
-            oldData.psw?.notes || ""
+            typeof oldData.psw?.notes ===
+            "string"
+              ? oldData.psw.notes
+              : ""
         },
 
         nursing:{
           coordinators:
-            oldData.nursing?.coordinators ||
-            (
-              oldData.nursing?.coordinator
-                ? [oldData.nursing.coordinator]
-                : []
-            ),
+            Array.isArray(
+              oldData.nursing?.coordinators
+            )
+              ? oldData.nursing.coordinators
+                  .map(
+                    value =>
+                      String(value ?? "")
+                  )
+              : (
+                  typeof oldData.nursing?.coordinator ===
+                  "string" &&
+                  oldData.nursing.coordinator.trim()
+                    ? [oldData.nursing.coordinator]
+                    : []
+                ),
+
           notes:
-            oldData.nursing?.notes || ""
+            typeof oldData.nursing?.notes ===
+            "string"
+              ? oldData.nursing.notes
+              : ""
         },
 
         intake:{
           coordinators:
-            oldData.intake?.coordinators ||
-            (
-              oldData.intake?.coordinator
-                ? [oldData.intake.coordinator]
-                : []
-            ),
+            Array.isArray(
+              oldData.intake?.coordinators
+            )
+              ? oldData.intake.coordinators
+                  .map(
+                    value =>
+                      String(value ?? "")
+                  )
+              : (
+                  typeof oldData.intake?.coordinator ===
+                  "string" &&
+                  oldData.intake.coordinator.trim()
+                    ? [oldData.intake.coordinator]
+                    : []
+                ),
+
           notes:
-            oldData.intake?.notes || ""
+            typeof oldData.intake?.notes ===
+            "string"
+              ? oldData.intake.notes
+              : ""
         }
 
       },
@@ -3278,25 +3349,55 @@ function normalizeCoverageData(){
 
   }
 
-  if(!coverageData.weekday)
+  /*
+    ---------------------------------------------------------
+    GUARANTEE BOTH MODES
+    ---------------------------------------------------------
+  */
+
+  if(
+    !coverageData.weekday ||
+    typeof coverageData.weekday !== "object" ||
+    Array.isArray(coverageData.weekday)
+  ){
+
     coverageData.weekday = {};
 
-  if(!coverageData.weekend)
+  }
+
+  if(
+    !coverageData.weekend ||
+    typeof coverageData.weekend !== "object" ||
+    Array.isArray(coverageData.weekend)
+  ){
+
     coverageData.weekend = {};
+
+  }
+
+  /*
+    ---------------------------------------------------------
+    GUARANTEE EACH COVERAGE SECTION
+    ---------------------------------------------------------
+  */
 
   ["weekday","weekend"].forEach(
     mode=>{
 
-      ["psw","nursing","intake"]
-        .forEach(key=>{
+      ["psw","nursing","intake"].forEach(
+        key=>{
 
           if(
-            !coverageData[mode][key]
+            !coverageData[mode][key] ||
+            typeof coverageData[mode][key] !== "object" ||
+            Array.isArray(coverageData[mode][key])
           ){
 
             coverageData[mode][key] = {
+
               coordinators:[],
               notes:""
+
             };
 
             return;
@@ -3306,19 +3407,10 @@ function normalizeCoverageData(){
           const item =
             coverageData[mode][key];
 
-          if(
-            typeof item.coordinator ===
-            "string"
-          ){
-
-            item.coordinators =
-              item.coordinator.trim()
-                ? [item.coordinator]
-                : [];
-
-            delete item.coordinator;
-
-          }
+          /*
+            Migrate single coordinator field
+            if one still exists.
+          */
 
           if(
             !Array.isArray(
@@ -3326,20 +3418,65 @@ function normalizeCoverageData(){
             )
           ){
 
-            item.coordinators = [];
+            if(
+              typeof item.coordinator ===
+              "string"
+            ){
+
+              item.coordinators =
+                item.coordinator.trim()
+                  ? [item.coordinator]
+                  : [];
+
+            }else{
+
+              item.coordinators = [];
+
+            }
 
           }
+
+          /*
+            Always keep coordinators as a
+            flat array of strings.
+          */
+
+          item.coordinators =
+            item.coordinators.map(
+              value =>
+                String(value ?? "")
+            );
+
+          /*
+            Remove legacy single-value field.
+          */
+
+          if(
+            "coordinator" in item
+          ){
+
+            delete item.coordinator;
+
+          }
+
+          /*
+            Notes must always remain a string.
+          */
 
           if(
             typeof item.notes !==
             "string"
           ){
 
-            item.notes = "";
+            item.notes =
+              item.notes == null
+                ? ""
+                : String(item.notes);
 
           }
 
-        });
+        }
+      );
 
     }
   );
