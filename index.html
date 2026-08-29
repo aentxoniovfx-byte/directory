@@ -3524,10 +3524,23 @@ SAVE TO FIREBASE
 
 let saveTimer = null;
 
-function saveToFirebase(){
+async function saveToFirebase(){
 
   if(!adminMode)
     return;
+
+  if(!auth.currentUser){
+    console.error(
+      "Firebase save blocked: no authenticated admin."
+    );
+
+    setFirebaseStatus(
+      "error",
+      "Not authenticated"
+    );
+
+    return;
+  }
 
   setFirebaseStatus(
     "saving",
@@ -3544,17 +3557,39 @@ function saveToFirebase(){
 
         try{
 
+          const payload =
+            getFirebasePayload();
+
+          console.log(
+            "Saving to Firebase:",
+            payload
+          );
+
           await setDoc(
             operationsRef,
-            getFirebasePayload(),
+            payload,
             {
               merge:true
             }
           );
 
+          console.log(
+            "Firebase save successful."
+          );
+
           setFirebaseStatus(
             "connected",
-            "Connected"
+            "Saved"
+          );
+
+          setTimeout(
+            ()=>{
+              setFirebaseStatus(
+                "connected",
+                "Connected"
+              );
+            },
+            1200
           );
 
         }catch(error){
@@ -3564,9 +3599,24 @@ function saveToFirebase(){
             error
           );
 
+          console.error(
+            "Firebase error code:",
+            error.code
+          );
+
+          console.error(
+            "Firebase error message:",
+            error.message
+          );
+
           setFirebaseStatus(
             "error",
-            "Offline / Save failed"
+            "Save failed: " +
+            (
+              error.code ||
+              error.message ||
+              "Unknown error"
+            )
           );
 
         }
@@ -3576,7 +3626,6 @@ function saveToFirebase(){
     );
 
 }
-
 /* =========================================================
 LOCAL + FIREBASE SAVE
 ========================================================= */
