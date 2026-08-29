@@ -3548,6 +3548,55 @@ async function saveToFirebase(){
           const payload =
             getFirebasePayload();
 
+          function findNestedArrays(value, path = "payload"){
+
+  if(Array.isArray(value)){
+
+    value.forEach(
+      (item,index)=>{
+
+        if(Array.isArray(item)){
+
+          console.error(
+            "NESTED ARRAY FOUND:",
+            path + "[" + index + "]"
+          );
+
+        }
+
+        findNestedArrays(
+          item,
+          path + "[" + index + "]"
+        );
+
+      }
+    );
+
+    return;
+  }
+
+  if(
+    value &&
+    typeof value === "object"
+  ){
+
+    Object.entries(value).forEach(
+      ([key,val])=>{
+
+        findNestedArrays(
+          val,
+          path + "." + key
+        );
+
+      }
+    );
+
+  }
+
+}
+
+findNestedArrays(payload);
+          
           console.log(
             "Saving to Firebase:",
             payload
