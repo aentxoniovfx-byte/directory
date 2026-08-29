@@ -3462,11 +3462,57 @@ FIREBASE PAYLOAD
 function getFirebasePayload(){
 
   return {
+    importantNotes: importantNotes || "",
     test: "Firebase connection test"
   };
 
 }
 
+  onSnapshot(
+  operationsRef,
+  snapshot => {
+
+    if (snapshot.exists()) {
+
+      const remote = snapshot.data();
+
+      if (remote.importantNotes !== undefined) {
+
+        importantNotes =
+          remote.importantNotes;
+
+        localStorage.setItem(
+          "paramedImportantNotes",
+          importantNotes
+        );
+
+        refreshAllUI();
+
+      }
+
+    }
+
+    setFirebaseStatus(
+      "connected",
+      "Connected"
+    );
+
+  },
+
+  error => {
+
+    console.error(
+      "Firebase listener error:",
+      error
+    );
+
+    setFirebaseStatus(
+      "error",
+      "Offline"
+    );
+
+  }
+);
 /* =========================================================
 SAVE TO FIREBASE
 ========================================================= */
