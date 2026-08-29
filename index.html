@@ -4291,23 +4291,25 @@ function saveAreaEdit(
 
 }
 
-```javascript
 function saveOnCall(
   code,
   value
 ){
+
   if(!adminMode)
     return;
 
-  value = value.trim();
+  value =
+    value.trim();
 
   if(value)
-    onCallData[code] = value;
+    onCallData[code] =
+      value;
   else
     delete onCallData[code];
 
-  // Save without rebuilding the UI
-  saveState(false);
+  saveState();
+
 }
 
 function escapeHTML(value){
