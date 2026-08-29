@@ -3459,16 +3459,49 @@ function setFirebaseStatus(
 FIREBASE PAYLOAD
 ========================================================= */
 
- function getFirebasePayload(){
+function getFirebaseOnCallCoordinators(){
+
+  const result = {};
+
+  if(!Array.isArray(onCallCoordinators))
+    return result;
+
+  onCallCoordinators.forEach(
+    (row,rowIndex)=>{
+
+      if(!Array.isArray(row))
+        return;
+
+      result[rowIndex] = {};
+
+      row.forEach(
+        (value,colIndex)=>{
+
+          result[rowIndex][colIndex] =
+            String(value ?? "");
+
+        }
+      );
+
+    }
+  );
+
+  return result;
+
+}
+
+function getFirebasePayload(){
 
   return {
     onCallData,
     customData,
     coverageData,
     importantNotes,
-    onCallCoordinators,
+    onCallCoordinators:
+      getFirebaseOnCallCoordinators(),
     directoryEdits,
-    updatedAt: new Date().toISOString()
+    updatedAt:
+      new Date().toISOString()
   };
 
 }
