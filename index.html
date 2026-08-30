@@ -3796,6 +3796,14 @@ body.dark .coverage-mode button:last-child{
 .right-column > .coverage-panel .coverage-card.supervisors .coverage-category{color:#0A2342 !important;}
 .right-column > .coverage-panel .coverage-card.supervisors .coverage-dot{background:#0A2342 !important;box-shadow:none !important;}
 
+.right-column > .coverage-panel .coverage-card.reception{
+  background:rgba(184,92,74,.17) !important;
+  border:1px solid rgba(184,92,74,.42) !important;
+  box-shadow:none !important;
+}
+.right-column > .coverage-panel .coverage-card.reception .coverage-category{color:#A94F3E !important;}
+.right-column > .coverage-panel .coverage-card.reception .coverage-dot{background:#B85C4A !important;box-shadow:none !important;}
+
 .right-column > .coverage-panel .coverage-card.psw{
   background:rgba(244,135,19,.17) !important;
   border:1px solid rgba(244,135,19,.40) !important;
@@ -3821,6 +3829,7 @@ body.dark .coverage-mode button:last-child{
 .right-column > .coverage-panel .coverage-card.intake .coverage-dot{background:#73C2FB !important;box-shadow:none !important;}
 
 body.dark .right-column > .coverage-panel .coverage-card.supervisors .coverage-category{color:#8BA9C7 !important;}
+body.dark .right-column > .coverage-panel .coverage-card.reception .coverage-category{color:#E38B78 !important;}
 body.dark .right-column > .coverage-panel .coverage-card.psw .coverage-category{color:#FFB044 !important;}
 body.dark .right-column > .coverage-panel .coverage-card.nursing .coverage-category{color:#6E9EFF !important;}
 body.dark .right-column > .coverage-panel .coverage-card.intake .coverage-category{color:#8FD3FF !important;}
@@ -4231,6 +4240,29 @@ html body .right-column > .coverage-panel
         class="coverage-add supervisor-add"
         type="button">
         ＋ Add Supervisor
+      </button>
+
+    </div>
+
+    <!-- RECEPTION -->
+
+    <div class="coverage-card reception">
+
+      <div class="coverage-category">
+        <span class="coverage-dot"></span>
+        Reception
+      </div>
+
+      <div
+        id="coverageReception"
+        class="coverage-supervisors">
+      </div>
+
+      <button
+        id="addCoverageReception"
+        class="coverage-add supervisor-add"
+        type="button">
+        ＋ Add Reception
       </button>
 
     </div>
@@ -5329,7 +5361,8 @@ const defaultCoverageData = {
       notes:""
     },
 
-    supervisors:[]
+    supervisors:[],
+    reception:[]
 
   },
 
@@ -5350,7 +5383,8 @@ const defaultCoverageData = {
       notes:""
     },
 
-    supervisors:[]
+    supervisors:[],
+    reception:[]
 
   }
 
@@ -5712,6 +5746,31 @@ function normalizeCoverageData(){
             })
           );
 
+      if(!Array.isArray(coverageData[mode].reception)){
+        coverageData[mode].reception = [];
+      }
+
+      coverageData[mode].reception =
+        coverageData[mode].reception
+          .filter(
+            receptionist=>
+              receptionist &&
+              typeof receptionist === "object" &&
+              !Array.isArray(receptionist)
+          )
+          .map(
+            receptionist=>({
+              name:
+                receptionist.name == null
+                  ? ""
+                  : String(receptionist.name),
+              schedule:
+                receptionist.schedule == null
+                  ? ""
+                  : String(receptionist.schedule)
+            })
+          );
+
     }
   );
 
@@ -5805,6 +5864,16 @@ const coverageSupervisors =
 const addCoverageSupervisor =
   document.getElementById(
     "addCoverageSupervisor"
+  );
+
+const coverageReception =
+  document.getElementById(
+    "coverageReception"
+  );
+
+const addCoverageReception =
+  document.getElementById(
+    "addCoverageReception"
   );
 
 /* =========================================================
@@ -7295,7 +7364,8 @@ function createEmptyCoverageDay(){
       coordinators:[],
       notes:""
     },
-    supervisors:[]
+    supervisors:[],
+    reception:[]
   };
 
 }
@@ -7342,6 +7412,10 @@ function ensureCoverageDate(){
 
   if(!Array.isArray(dayData.supervisors)){
     dayData.supervisors = [];
+  }
+
+  if(!Array.isArray(dayData.reception)){
+    dayData.reception = [];
   }
 
   return dayData;
@@ -7734,6 +7808,135 @@ function renderCoverage(){
     }
   );
 
+  /*
+    RECEPTION
+  */
+
+  coverageReception.innerHTML = "";
+
+  current.reception.forEach(
+    (receptionist,index)=>{
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "coverage-supervisor-row coverage-reception-row";
+
+      const nameInput =
+        document.createElement("input");
+
+      nameInput.className =
+        "coverage-input reception-name-input";
+
+      nameInput.type = "text";
+      nameInput.placeholder =
+        "Enter reception…";
+      nameInput.autocomplete = "off";
+      nameInput.value =
+        receptionist.name || "";
+      nameInput.disabled =
+        !adminMode;
+
+      const scheduleInput =
+        document.createElement("input");
+
+      scheduleInput.className =
+        "coverage-input reception-schedule-input";
+
+      scheduleInput.type = "text";
+      scheduleInput.placeholder =
+        "e.g. 8:00 AM – 4:00 PM";
+      scheduleInput.autocomplete = "off";
+      scheduleInput.value =
+        receptionist.schedule || "";
+      scheduleInput.disabled =
+        !adminMode;
+
+      nameInput.addEventListener(
+        "input",
+        ()=>{
+
+          if(!adminMode)
+            return;
+
+          syncVisibleReceptionToData();
+          saveState();
+
+        }
+      );
+
+      scheduleInput.addEventListener(
+        "input",
+        ()=>{
+
+          if(!adminMode)
+            return;
+
+          syncVisibleReceptionToData();
+          saveState();
+
+        }
+      );
+
+      row.appendChild(nameInput);
+      row.appendChild(scheduleInput);
+
+      if(adminMode){
+
+        const remove =
+          document.createElement("button");
+
+        remove.className =
+          "coverage-remove";
+        remove.type = "button";
+        remove.textContent = "×";
+        remove.title =
+          "Remove reception";
+
+        remove.addEventListener(
+          "click",
+          ()=>{
+
+            if(!adminMode)
+              return;
+
+            syncVisibleReceptionToData();
+
+            const reception =
+              coverageData[coverageMode]
+                .reception;
+
+            if(
+              Array.isArray(reception) &&
+              index >= 0 &&
+              index < reception.length
+            ){
+
+              reception.splice(
+                index,
+                1
+              );
+
+            }
+
+            saveState();
+            renderCoverage();
+
+          }
+        );
+
+        row.appendChild(remove);
+
+      }
+
+      coverageReception.appendChild(
+        row
+      );
+
+    }
+  );
+
 }
 
 
@@ -7795,10 +7998,6 @@ addCoverageSupervisor.addEventListener(
     if(!adminMode)
       return;
 
-    /*
-      Preserve exactly what is currently visible
-      BEFORE normalizing/re-rendering the list.
-    */
     syncVisibleSupervisorsToData();
 
     coverageData[coverageMode]
@@ -7817,6 +8016,87 @@ addCoverageSupervisor.addEventListener(
 
     supervisorInputs[
       supervisorInputs.length - 1
+    ]?.focus();
+
+  }
+);
+
+/* =========================================================
+RECEPTION COVERAGE
+========================================================= */
+
+function syncVisibleReceptionToData(){
+
+  normalizeCoverageData();
+
+  const current =
+    ensureCoverageDate();
+
+  const rows =
+    coverageReception.querySelectorAll(
+      ".coverage-reception-row"
+    );
+
+  rows.forEach(
+    (row,index)=>{
+
+      const nameInput =
+        row.querySelector(
+          ".reception-name-input"
+        );
+
+      const scheduleInput =
+        row.querySelector(
+          ".reception-schedule-input"
+        );
+
+      while(
+        current.reception.length <= index
+      ){
+
+        current.reception.push({
+          name:"",
+          schedule:""
+        });
+
+      }
+
+      current.reception[index].name =
+        nameInput?.value ?? "";
+
+      current.reception[index].schedule =
+        scheduleInput?.value ?? "";
+
+    }
+  );
+
+}
+
+addCoverageReception.addEventListener(
+  "click",
+  ()=>{
+
+    if(!adminMode)
+      return;
+
+    syncVisibleReceptionToData();
+
+    coverageData[coverageMode]
+      .reception.push({
+        name:"",
+        schedule:""
+      });
+
+    saveState();
+    renderCoverage();
+
+    const receptionInputs =
+      coverageReception.querySelectorAll(
+        ".reception-name-input"
+      );
+
+    receptionInputs[
+      receptionInputs.length - 1
     ]?.focus();
 
   }
