@@ -8,43 +8,9 @@
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-:root{
-  --bg:#F0FBFC;
-  --panel:rgba(255,255,255,.76);
-  --panel-solid:#FFFFFF;
-  --text:#15343A;
-  --secondary:#5C7479;
-  --muted:#8FA6AA;
-  --line:rgba(0,174,188,.24);
-  --blue:#00AEBB;
-  --cyan:#35D7E5;
-  --green:#00D995;
-  --purple:#21C4D3;
-  --orange:#00B8C8;
-  --input:rgba(247,253,254,.92);
-  --accent-rgb:0,174,187;
-  --accent-2-rgb:53,215,229;
-  --shadow:0 12px 35px rgba(0,174,187,.13);
-}
 
-body.dark{
-  --bg:#0B0D18;
-  --panel:rgba(21,24,42,.86);
-  --panel-solid:#15182A;
-  --text:#F7F5FF;
-  --secondary:#B9B6D3;
-  --muted:#77758F;
-  --line:rgba(155,109,255,.30);
-  --blue:#9B6DFF;
-  --cyan:#6EC8FF;
-  --green:#00e69a;
-  --purple:#B58AFF;
-  --orange:#D65CFF;
-  --input:rgba(27,30,52,.92);
-  --accent-rgb:155,109,255;
-  --accent-2-rgb:110,200,255;
-  --shadow:0 15px 42px rgba(0,0,0,.38);
-}
+
+
 
 *{
   box-sizing:border-box;
@@ -58,18 +24,7 @@ body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
   "SF Pro Text",Inter,"Helvetica Neue",Arial,sans-serif;
-  background:
-    radial-gradient(
-      circle at 10% -10%,
-      rgba(var(--accent-rgb),.18),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 92% 5%,
-      rgba(var(--accent-2-rgb),.12),
-      transparent 30%
-    ),
-    var(--bg);
+  
   color:var(--text);
   -webkit-font-smoothing:antialiased;
   transition:
@@ -94,12 +49,12 @@ textarea:disabled{
   width:100%;
   max-width:1500px;
   margin:0 auto;
-  padding:24px 28px 60px;
+  
 }
 
 .topbar{
   display:flex;
-  align-items:center;
+  
   justify-content:space-between;
   margin-bottom:18px;
 }
@@ -107,28 +62,21 @@ textarea:disabled{
 .date-area{
   display:flex;
   align-items:center;
-  gap:12px;
+  
 }
 
 .date-icon{
   width:45px;
   height:45px;
-  display:flex;
+  
   align-items:center;
   justify-content:center;
   border-radius:14px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(var(--accent-rgb),.24),
-      rgba(var(--accent-2-rgb),.10)
-    );
+  
   border:1px solid rgba(var(--accent-rgb),.58);
   color:var(--blue);
   font-size:21px;
-  box-shadow:
-    0 0 18px rgba(var(--accent-rgb),.28),
-    inset 0 0 18px rgba(var(--accent-rgb),.09);
+  
 }
 
 .date-title{
@@ -138,7 +86,7 @@ textarea:disabled{
 }
 
 .date-sub{
-  margin-top:3px;
+  
   color:var(--secondary);
   font-size:13px;
 }
@@ -146,7 +94,7 @@ textarea:disabled{
 .top-actions{
   display:flex;
   align-items:center;
-  gap:7px;
+  
 }
 
 .small-button{
@@ -227,10 +175,7 @@ textarea:disabled{
   background:#9aa2b2;
 }
 
-.firebase-status.connected .firebase-dot{
-  background:var(--green);
-  box-shadow:0 0 10px var(--green);
-}
+
 
 .firebase-status.saving .firebase-dot{
   background:#ffd000;
@@ -311,19 +256,12 @@ textarea:disabled{
       rgba(247,249,255,.58)
     );
   border:1px solid var(--line);
-  border-radius:10px;
+  
   box-shadow:0 2px 7px rgba(0,0,0,.025);
   transition:.25s ease;
 }
 
-body.dark .card{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(31,34,59,.94),
-      rgba(22,25,45,.90)
-    );
-}
+
 
 body.dark .panel{
   background:rgba(21,24,42,.88);
@@ -584,7 +522,7 @@ body.dark .area-oncall-preview::before{
 }
 
 .card.open .details{
-  border-left-color:var(--line);
+  
   min-width:0;
 }
 
@@ -919,7 +857,7 @@ body.dark
 .coverage-grid{
   display:flex;
   flex-direction:column;
-  gap:8px;
+  
   padding:10px;
   transition:
     background .4s ease,
@@ -959,8 +897,8 @@ body.dark
 }
 
 .coverage-card{
-  padding:13px;
-  border-radius:13px;
+  
+  
   transition:
     background .35s ease,
     border-color .35s ease,
@@ -973,12 +911,7 @@ body.dark
 }
 
 .coverage-grid.weekday-mode .coverage-card.psw{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,239,0,.20),
-      rgba(255,239,0,.08)
-    );
+  
 
   border:1px solid
     rgba(255,239,0,.58);
@@ -1004,12 +937,7 @@ body.dark
 }
 
 .coverage-grid.weekday-mode .coverage-card.nursing{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(49,91,255,.20),
-      rgba(59,130,246,.08)
-    );
+  
 
   border:1px solid
     rgba(49,91,255,.58);
@@ -1035,12 +963,7 @@ body.dark
 }
 
 .coverage-grid.weekday-mode .coverage-card.intake{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,210,210,.20),
-      rgba(63,169,245,.08)
-    );
+  
 
   border:1px solid
     rgba(0,210,210,.58);
@@ -1261,7 +1184,7 @@ body:not(.admin-mode) .coverage-supervisor-row{
   display:flex;
   align-items:center;
   gap:7px;
-  margin-bottom:9px;
+  
   font-size:11px;
   font-weight:800;
   letter-spacing:.06em;
@@ -1391,15 +1314,15 @@ body:not(.admin-mode) .coverage-add{
   align-items:center;
   justify-content:center;
   border-radius:7px;
-  background:rgba(255,130,35,.14);
+  
   font-size:12px;
 }
 
 .important-notes{
   width:100%;
-  min-height:145px;
+  
   display:block;
-  padding:14px;
+  
   border:0;
   outline:none;
   resize:vertical;
@@ -2025,44 +1948,11 @@ body:not(.admin-mode)
 
 }
 
-body:not(.dark) .card.oncall-active{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0,174,187,.44) 0%,
-      rgba(53,215,229,.31) 52%,
-      rgba(105,225,235,.19) 100%
-    );
-  border-color:rgba(0,174,187,.96);
-  box-shadow:
-    0 0 0 1px rgba(0,174,187,.50),
-    0 0 22px rgba(0,174,187,.34),
-    0 0 44px rgba(53,215,229,.20);
-}
 
-body:not(.dark) .card.oncall-active .area{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,174,187,.21),
-      rgba(53,215,229,.11)
-    );
-}
 
-body.dark .card.oncall-active{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(155,109,255,.58) 0%,
-      rgba(126,104,255,.40) 52%,
-      rgba(110,200,255,.20) 100%
-    );
-  border-color:rgba(166,126,255,.98);
-  box-shadow:
-    0 0 0 1px rgba(155,109,255,.62),
-    0 0 24px rgba(155,109,255,.50),
-    0 0 50px rgba(110,200,255,.20);
-}
+
+
+
 
 body.dark .card.oncall-active .area{
   background:
@@ -2091,32 +1981,7 @@ option{
   font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
 }
 
-body{
-  background:
-    radial-gradient(
-      circle at 14% 18%,
-      rgba(53,215,229,.075) 0%,
-      rgba(53,215,229,.025) 18%,
-      transparent 38%
-    ),
-    radial-gradient(
-      circle at 86% 12%,
-      rgba(0,174,187,.055) 0%,
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 72% 82%,
-      rgba(110,200,255,.050) 0%,
-      transparent 38%
-    ),
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.22),
-      rgba(240,251,252,.10)
-    ),
-    var(--bg);
-  background-attachment:fixed;
-}
+
 
 body::before{
   content:"";
@@ -2124,7 +1989,7 @@ body::before{
   inset:0;
   pointer-events:none;
   z-index:-1;
-  opacity:.18;
+  
   background-image:
     linear-gradient(
       rgba(0,174,187,.035) 1px,
@@ -2144,35 +2009,10 @@ body::before{
     );
 }
 
-body.dark{
-  background:
-    radial-gradient(
-      circle at 12% 16%,
-      rgba(155,109,255,.095) 0%,
-      rgba(155,109,255,.030) 20%,
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 88% 14%,
-      rgba(110,200,255,.060) 0%,
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 68% 86%,
-      rgba(126,180,255,.045) 0%,
-      transparent 40%
-    ),
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.012),
-      rgba(155,109,255,.012)
-    ),
-    var(--bg);
-  background-attachment:fixed;
-}
+
 
 body.dark::before{
-  opacity:.14;
+  
   background-image:
     linear-gradient(
       rgba(155,109,255,.035) 1px,
@@ -2219,8 +2059,8 @@ body::after{
       rgba(110,200,255,.12) 4.5%,
       transparent 12%
     );
-  filter:blur(1px);
-  opacity:.88;
+  
+  
 }
 
 body{
@@ -2249,31 +2089,7 @@ body{
   background-attachment:fixed;
 }
 
-body.dark{
-  background:
-    radial-gradient(
-      ellipse at 14% 10%,
-      rgba(155,109,255,.13),
-      transparent 35%
-    ),
-    radial-gradient(
-      ellipse at 82% 24%,
-      rgba(110,200,255,.095),
-      transparent 38%
-    ),
-    radial-gradient(
-      ellipse at 48% 100%,
-      rgba(126,104,255,.10),
-      transparent 45%
-    ),
-    linear-gradient(
-      145deg,
-      #090B16 0%,
-      #0E1121 50%,
-      #0A0D19 100%
-    );
-  background-attachment:fixed;
-}
+
 
 body.dark::after{
   background:
@@ -2334,32 +2150,11 @@ body::after{
     saturate(145%);
 }
 
-body:not(.dark) .panel,
-body:not(.dark) .topbar,
-body:not(.dark) .coverage-panel,
-body:not(.dark) .important-notes,
-body:not(.dark) .directory-section{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.58),
-      rgba(240,253,254,.32)
-    ) !important;
-  border-color:rgba(255,255,255,.72) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.82),
-    inset 0 -1px 0 rgba(0,174,187,.05),
-    0 12px 34px rgba(21,94,105,.08) !important;
-}
+
 
 body:not(.dark) .card{
-  background:
-    linear-gradient(
-      110deg,
-      rgba(255,255,255,.48),
-      rgba(225,250,252,.26)
-    ) !important;
-  border-color:rgba(255,255,255,.68) !important;
+  
+  
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.78),
     0 7px 20px rgba(0,174,187,.055);
@@ -2405,35 +2200,19 @@ select{
   backdrop-filter:blur(12px) saturate(135%);
 }
 
-body:not(.dark) .card.oncall-active{
-  background:
-    linear-gradient(
-      100deg,
-      rgba(0,174,187,.40),
-      rgba(53,215,229,.22),
-      rgba(255,255,255,.30)
-    ) !important;
-}
 
-body.dark .card.oncall-active{
-  background:
-    linear-gradient(
-      100deg,
-      rgba(155,109,255,.43),
-      rgba(126,104,255,.26),
-      rgba(110,200,255,.12)
-    ) !important;
-}
+
+
 
 .important-editor-toolbar{
   display:none;
   align-items:center;
   flex-wrap:wrap;
-  gap:6px;
-  padding:9px 11px;
+  
+  
   margin:0 12px 2px;
   border:1px solid var(--line);
-  border-radius:12px;
+  
   background:rgba(255,255,255,.22);
   -webkit-backdrop-filter:blur(14px) saturate(145%);
   backdrop-filter:blur(14px) saturate(145%);
@@ -2599,24 +2378,7 @@ body.admin-mode .important-editor-toolbar{
   border-radius:50%;
 }
 
-:root{
-  --bg:#F3FBFC;
-  --panel:rgba(255,255,255,.74);
-  --panel-solid:#FFFFFF;
-  --text:#17343A;
-  --secondary:#60757A;
-  --muted:#93A6AA;
-  --line:rgba(0,160,173,.20);
-  --blue:#16A7B3;
-  --cyan:#4BCDD8;
-  --green:#00D995;
-  --purple:#30BBC7;
-  --orange:#18AEBB;
-  --input:rgba(248,253,254,.90);
-  --accent-rgb:22,167,179;
-  --accent-2-rgb:75,205,216;
-  --shadow:0 12px 32px rgba(22,167,179,.10);
-}
+
 
 body.dark{
   --bg:#0C0E19;
@@ -2637,20 +2399,7 @@ body.dark{
   --shadow:0 14px 38px rgba(0,0,0,.32);
 }
 
-body:not(.dark) .card.oncall-active{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(22,167,179,.34) 0%,
-      rgba(75,205,216,.24) 52%,
-      rgba(255,255,255,.26) 100%
-    ) !important;
-  border-color:rgba(22,167,179,.76) !important;
-  box-shadow:
-    0 0 0 1px rgba(22,167,179,.32),
-    0 0 18px rgba(22,167,179,.22),
-    0 0 34px rgba(75,205,216,.12) !important;
-}
+
 
 body.dark .card.oncall-active{
   background:
@@ -2744,24 +2493,7 @@ body.dark .card.oncall-active{
     0 0 0 1px rgba(255,210,64,.16) !important;
 }
 
-:root{
-  --bg:#F3F7FF;
-  --panel:rgba(255,255,255,.74);
-  --panel-solid:#FFFFFF;
-  --text:#17233F;
-  --secondary:#64708A;
-  --muted:#96A0B5;
-  --line:rgba(72,111,210,.20);
-  --blue:#4F6FE8;
-  --cyan:#73C2FB;
-  --green:#00D995;
-  --purple:#6675E8;
-  --orange:#5B8DEF;
-  --input:rgba(248,250,255,.92);
-  --accent-rgb:79,111,232;
-  --accent-2-rgb:115,194,251;
-  --shadow:0 12px 32px rgba(79,111,232,.10);
-}
+
 
 .supervisor:hover,
 .card.oncall-active .oncall-label,
@@ -2775,28 +2507,9 @@ h1,h2,h3,h4,h5,h6{
   text-shadow:none !important;
 }
 
-body:not(.dark) .card.oncall-active{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(79,111,232,.30) 0%,
-      rgba(115,194,251,.21) 55%,
-      rgba(255,255,255,.28) 100%
-    ) !important;
-  border-color:rgba(79,111,232,.70) !important;
-  box-shadow:
-    0 0 0 1px rgba(79,111,232,.25),
-    0 10px 24px rgba(79,111,232,.13) !important;
-}
 
-body:not(.dark) .card.oncall-active .area{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(79,111,232,.14),
-      rgba(115,194,251,.08)
-    ) !important;
-}
+
+
 
 .coverage-grid.weekday-mode .coverage-card.psw .coverage-category,
 .coverage-grid.weekday-mode .coverage-card.nursing .coverage-category,
@@ -2862,56 +2575,13 @@ body.dark .coverage-grid.weekend-mode .coverage-card.intake .coverage-category{
   border-color:rgba(73,164,224,.46) !important;
 }
 
-:root{
-  --bg:#F3F9FF;
-  --panel:rgba(255,255,255,.75);
-  --panel-solid:#FFFFFF;
-  --text:#18304B;
-  --secondary:#64788E;
-  --muted:#96A8B9;
-  --line:rgba(74,163,224,.21);
-  --blue:#73C2FB;
-  --cyan:#8DD3FF;
-  --green:#00D995;
-  --purple:#5CAFEA;
-  --orange:#4AA3E0;
-  --input:rgba(248,252,255,.92);
-  --accent-rgb:115,194,251;
-  --accent-2-rgb:141,211,255;
-  --shadow:0 12px 32px rgba(74,163,224,.10);
-}
 
-body:not(.dark) .card.oncall-active{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(115,194,251,.34) 0%,
-      rgba(141,211,255,.23) 55%,
-      rgba(255,255,255,.30) 100%
-    ) !important;
-  border-color:rgba(74,163,224,.68) !important;
-  box-shadow:
-    0 0 0 1px rgba(74,163,224,.22),
-    0 10px 24px rgba(74,163,224,.13) !important;
-}
 
-body:not(.dark) .card.oncall-active .area{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(115,194,251,.17),
-      rgba(141,211,255,.09)
-    ) !important;
-}
 
-body:not(.dark) .coverage-supervisor-card .coverage-category,
-body:not(.dark) .supervisor-card .coverage-category,
-body:not(.dark) .coverage-supervisors .coverage-category,
-body:not(.dark) [class*="supervisor"] .coverage-category{
-  color:#173C63 !important;
-  text-shadow:none !important;
-  font-weight:800 !important;
-}
+
+
+
+
 
 body.dark .coverage-supervisor-card .coverage-category,
 body.dark .supervisor-card .coverage-category,
@@ -2945,30 +2615,7 @@ body.dark [class*="supervisor"] .coverage-category{
   --shadow:0 12px 32px rgba(11,78,162,.11);
 }
 
-body:not(.dark){
-  background:
-    radial-gradient(
-      ellipse at 10% 8%,
-      rgba(41,169,232,.14),
-      transparent 34%
-    ),
-    radial-gradient(
-      ellipse at 88% 20%,
-      rgba(11,78,162,.10),
-      transparent 38%
-    ),
-    radial-gradient(
-      ellipse at 48% 100%,
-      rgba(22,72,184,.07),
-      transparent 46%
-    ),
-    linear-gradient(
-      145deg,
-      #F6FBFF 0%,
-      #EAF6FF 52%,
-      #F2F9FF 100%
-    ) !important;
-}
+
 
 body:not(.dark) .panel,
 body:not(.dark) .topbar,
@@ -3068,35 +2715,11 @@ body:not(.dark) .oncall-status{
   color:#EF233C !important;
 }
 
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,116,23,.25),
-      rgba(255,181,88,.12)
-    ) !important;
-  border-color:rgba(255,116,23,.48) !important;
-}
 
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.nursing{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(11,78,162,.27),
-      rgba(22,72,184,.13)
-    ) !important;
-  border-color:rgba(11,78,162,.48) !important;
-}
 
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(41,169,232,.30),
-      rgba(105,207,247,.14)
-    ) !important;
-  border-color:rgba(41,169,232,.50) !important;
-}
+
+
+
 
 body:not(.dark) .coverage-grid .coverage-card .coverage-category{
   color:#082D61 !important;
@@ -3129,14 +2752,12 @@ body:not(.dark) h6{
 
 .coverage-panel{
   border-color:rgba(var(--accent-rgb),.12) !important;
-  box-shadow:
-    0 12px 28px rgba(11,78,162,.07) !important;
+  
 }
 
 body.dark .coverage-panel{
   border-color:rgba(200,190,255,.09) !important;
-  box-shadow:
-    0 12px 30px rgba(0,0,0,.18) !important;
+  
 }
 
 .coverage-header,
@@ -3146,16 +2767,9 @@ body.dark .coverage-panel{
   box-shadow:none !important;
 }
 
-.coverage-grid .coverage-card{
-  border-width:1px !important;
-  box-shadow:
-    0 8px 18px rgba(22,35,70,.075) !important;
-}
 
-body.dark .coverage-grid .coverage-card{
-  box-shadow:
-    0 8px 20px rgba(0,0,0,.14) !important;
-}
+
+
 
 .card.open{
   border-color:rgba(var(--accent-rgb),.20) !important;
@@ -3228,10 +2842,10 @@ body.dark .coverage-grid .coverage-card{
 }
 
 .topbar{
-  background:transparent !important;
-  border:0 !important;
+  
+  
   border-radius:0 !important;
-  box-shadow:none !important;
+  
   -webkit-backdrop-filter:none !important;
   backdrop-filter:none !important;
 }
@@ -3245,18 +2859,12 @@ body.dark .coverage-grid .coverage-card{
 }
 
 body.dark .topbar{
-  background:transparent !important;
+  
   border:0 !important;
   box-shadow:none !important;
 }
 
-body.dark .topbar .small-button{
-  background:rgba(28,31,54,.38) !important;
-  border-color:rgba(200,190,255,.09) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.045),
-    0 5px 14px rgba(0,0,0,.12) !important;
-}
+
 
 .topbar{
   position:relative;
@@ -3385,7 +2993,7 @@ body.dark .date-icon{
   align-items:center !important;
 }
 
-.date-area{ gap:10px !important; }
+
 .date-title{
   line-height:1.08 !important;
   margin:0 !important;
@@ -3474,7 +3082,7 @@ select{
 }
 
 .coverage-panel{ margin-top:14px !important; }
-.coverage-grid{ gap:10px !important; }
+
 
 .coverage-card{
   border-radius:14px !important;
@@ -3600,20 +3208,14 @@ body:not(.dark) .muted{
 }
 
 .coverage-grid .coverage-card{
-  box-shadow:none !important;
+  
   border-width:0 !important;
   outline:0 !important;
 }
 
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
-  background:rgba(255,116,23,.13) !important;
-}
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.nursing{
-  background:rgba(11,78,162,.12) !important;
-}
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
-  background:rgba(41,169,232,.14) !important;
-}
+
+
+
 
 body:not(.dark) .coverage-grid.weekend-mode .coverage-card.psw{
   box-shadow:none !important;
@@ -3764,12 +3366,10 @@ body.dark .right-column > .coverage-panel{
   outline:0 !important;
 }
 
-.right-column > .coverage-panel .coverage-card{
-  box-shadow:none !important;
-}
+
 
 body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
-  background:rgba(255,45,45,.13) !important;
+  
   border:0 !important;
   box-shadow:none !important;
 }
@@ -3889,19 +3489,9 @@ body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
     opacity .18s ease !important;
 }
 
-body:not(.dark) .coverage-switch button:first-child,
-body:not(.dark) .coverage-tabs button:first-child,
-body:not(.dark) .coverage-mode button:first-child{
-  background:#1D55A5 !important;
-  color:#FFFFFF !important;
-}
 
-body:not(.dark) .coverage-switch button:last-child,
-body:not(.dark) .coverage-tabs button:last-child,
-body:not(.dark) .coverage-mode button:last-child{
-  background:#E96F32 !important;
-  color:#FFFFFF !important;
-}
+
+
 
 body:not(.dark) .coverage-switch button.active:first-child,
 body:not(.dark) .coverage-tabs button.active:first-child,
@@ -3919,32 +3509,18 @@ body:not(.dark) .coverage-mode button.active:last-child{
   opacity:1 !important;
 }
 
-body:not(.dark) .coverage-switch button:not(.active),
-body:not(.dark) .coverage-tabs button:not(.active),
-body:not(.dark) .coverage-mode button:not(.active){
-  opacity:.72 !important;
-}
+
 
 body.dark .coverage-switch,
 body.dark .coverage-tabs,
 body.dark .coverage-mode{
-  background:#111D34 !important;
+  
   border-color:rgba(255,255,255,.07) !important;
 }
 
-body.dark .coverage-switch button:first-child,
-body.dark .coverage-tabs button:first-child,
-body.dark .coverage-mode button:first-child{
-  background:#234F91 !important;
-  color:#F8FAFF !important;
-}
 
-body.dark .coverage-switch button:last-child,
-body.dark .coverage-tabs button:last-child,
-body.dark .coverage-mode button:last-child{
-  background:#C85C2B !important;
-  color:#FFF8F4 !important;
-}
+
+
 
 body.dark .coverage-switch button:not(.active),
 body.dark .coverage-tabs button:not(.active),
@@ -3967,36 +3543,20 @@ body:not(.dark) .coverage-mode{
 body:not(.dark) .coverage-switch button:first-child,
 body:not(.dark) .coverage-tabs button:first-child,
 body:not(.dark) .coverage-mode button:first-child{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(11,78,162,.98) 0%,
-      rgba(22,72,184,.94) 48%,
-      rgba(41,169,232,.90) 100%
-    ) !important;
-  color:#FFFFFF !important;
-  border:1px solid rgba(11,78,162,.72) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.22),
-    0 7px 16px rgba(11,78,162,.22) !important;
+  
+  
+  
+  
   opacity:1 !important;
 }
 
 body:not(.dark) .coverage-switch button:last-child,
 body:not(.dark) .coverage-tabs button:last-child,
 body:not(.dark) .coverage-mode button:last-child{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(217,93,38,.98) 0%,
-      rgba(233,111,50,.96) 52%,
-      rgba(255,143,74,.90) 100%
-    ) !important;
-  color:#FFFFFF !important;
-  border:1px solid rgba(201,75,24,.68) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.22),
-    0 7px 16px rgba(217,93,38,.22) !important;
+  
+  
+  
+  
   opacity:1 !important;
 }
 
@@ -4020,12 +3580,7 @@ body:not(.dark) .coverage-mode button.active:last-child{
   transform:translateY(-1px);
 }
 
-body:not(.dark) .coverage-switch button:not(.active),
-body:not(.dark) .coverage-tabs button:not(.active),
-body:not(.dark) .coverage-mode button:not(.active){
-  opacity:.78 !important;
-  filter:saturate(.90) brightness(.97);
-}
+
 
 body.dark .coverage-switch,
 body.dark .coverage-tabs,
@@ -4040,34 +3595,18 @@ body.dark .coverage-mode{
 body.dark .coverage-switch button:first-child,
 body.dark .coverage-tabs button:first-child,
 body.dark .coverage-mode button:first-child{
-  background:
-    linear-gradient(
-      135deg,
-      #193E77 0%,
-      #234F91 56%,
-      #386DB3 100%
-    ) !important;
+  
   border:1px solid rgba(88,133,205,.34) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.09),
-    0 7px 16px rgba(18,47,91,.28) !important;
+  
   color:#F8FAFF !important;
 }
 
 body.dark .coverage-switch button:last-child,
 body.dark .coverage-tabs button:last-child,
 body.dark .coverage-mode button:last-child{
-  background:
-    linear-gradient(
-      135deg,
-      #9F431F 0%,
-      #C85C2B 55%,
-      #E7773D 100%
-    ) !important;
+  
   border:1px solid rgba(231,119,61,.30) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.08),
-    0 7px 16px rgba(116,47,20,.28) !important;
+  
   color:#FFF9F5 !important;
 }
 
@@ -4116,14 +3655,14 @@ body.dark .right-column > .coverage-panel{
 .right-column > .coverage-panel .coverage-switch,
 .right-column > .coverage-panel .coverage-tabs,
 .right-column > .coverage-panel .coverage-mode{
-  width:max-content !important;
-  min-width:260px !important;
-  margin:10px auto 14px !important;
+  
+  
+  
   display:flex !important;
   justify-content:center !important;
   align-items:center !important;
-  gap:6px !important;
-  padding:5px !important;
+  
+  
   border-radius:14px !important;
 
   background:
@@ -4141,14 +3680,14 @@ body.dark .right-column > .coverage-panel{
 .right-column > .coverage-panel .coverage-switch button,
 .right-column > .coverage-panel .coverage-tabs button,
 .right-column > .coverage-panel .coverage-mode button{
-  flex:1 1 0 !important;
-  min-width:118px !important;
+  
+  
   text-align:center !important;
   justify-content:center !important;
-  font-weight:800 !important;
+  
   letter-spacing:.01em !important;
   border-radius:10px !important;
-  padding:10px 16px !important;
+  
 }
 
 body:not(.dark) .coverage-switch button:first-child,
@@ -4301,46 +3840,7 @@ body.dark .coverage-mode button:last-child{
 
 
 /* Coverage by individual date */
-.right-column > .coverage-panel .coverage-switch.coverage-date-switch{
-  display:block !important;
-  width:100% !important;
-  margin:10px 0 16px !important;
-  padding:0 !important;
-  border:0 !important;
-  background:transparent !important;
-  box-shadow:none !important;
-}
 
-.coverage-date-selector{
-  width:100% !important;
-  min-height:56px !important;
-  padding:12px 18px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border:1px solid rgba(33,158,188,.30) !important;
-  border-radius:14px !important;
-  background:rgba(33,158,188,.10) !important;
-  color:#023047 !important;
-  box-shadow:none !important;
-  font-size:15px !important;
-  font-weight:800 !important;
-  letter-spacing:0 !important;
-  text-transform:none !important;
-  cursor:pointer !important;
-  transition:.2s ease !important;
-}
-
-.coverage-date-selector:hover{
-  background:rgba(33,158,188,.16) !important;
-  border-color:rgba(33,158,188,.45) !important;
-}
-
-body.dark .coverage-date-selector{
-  color:var(--text) !important;
-  background:rgba(var(--accent-rgb),.10) !important;
-  border-color:rgba(var(--accent-rgb),.30) !important;
-}
 
 .coverage-grid,
 .coverage-grid.weekday-mode,
@@ -4355,67 +3855,14 @@ body.dark .coverage-date-selector{
    COVERAGE — FINAL VISUAL OVERRIDE
    ========================================================= */
 .right-column > .coverage-panel .coverage-switch.coverage-date-switch{
-  display:flex !important;
+  
   justify-content:center !important;
-  width:100% !important;
-  margin:0 0 14px !important;
-  padding:0 10px !important;
-  border:0 !important;
-  background:transparent !important;
-  box-shadow:none !important;
-}
-
-.right-column > .coverage-panel .coverage-date-selector{
-  width:100% !important;
-  min-height:62px !important;
-  padding:14px 22px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  border:1px solid rgba(214,48,58,.62) !important;
-  border-radius:12px !important;
-  background:linear-gradient(
-    90deg,
-    rgba(214,48,58,.30),
-    rgba(240,76,84,.20),
-    rgba(214,48,58,.12)
-  ) !important;
-  color:#B4232C !important;
-  box-shadow:none !important;
-  filter:none !important;
-  opacity:1 !important;
-  font-size:20px !important;
-  font-weight:850 !important;
-  letter-spacing:-.02em !important;
-  text-transform:none !important;
-  cursor:pointer !important;
-}
-
-.right-column > .coverage-panel .coverage-date-selector:hover,
-.right-column > .coverage-panel .coverage-date-selector:focus{
-  background:linear-gradient(
-    90deg,
-    rgba(214,48,58,.36),
-    rgba(240,76,84,.25),
-    rgba(214,48,58,.16)
-  ) !important;
-  border-color:rgba(214,48,58,.78) !important;
-  color:#9F1F28 !important;
-  box-shadow:none !important;
-  outline:none !important;
-}
-
-body.dark .right-column > .coverage-panel .coverage-date-selector{
-  background:linear-gradient(
-    90deg,
-    rgba(255,82,92,.30),
-    rgba(255,104,112,.20),
-    rgba(255,82,92,.12)
-  ) !important;
-  border-color:rgba(255,92,102,.62) !important;
-  color:#FF8A91 !important;
-  box-shadow:none !important;
+  
+  
+  
+  
+  
+  
 }
 
 /* Palette: Blue Navy / Cempasúchil / Cobalt Blue / Maya Blue */
@@ -4455,58 +3902,6 @@ body.dark .right-column > .coverage-panel .coverage-card.supervisors .coverage-c
 body.dark .right-column > .coverage-panel .coverage-card.psw .coverage-category{color:#FFB044 !important;}
 body.dark .right-column > .coverage-panel .coverage-card.nursing .coverage-category{color:#6E9EFF !important;}
 body.dark .right-column > .coverage-panel .coverage-card.intake .coverage-category{color:#8FD3FF !important;}
-
-
-/* FINAL COVERAGE DATE BUTTON — muted red, flat */
-#coverageDateSelector{
-  width:100%;
-  min-height:58px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(220,60,70,.18) !important;
-  color:#C93643 !important;
-  border:1px solid rgba(220,60,70,.48) !important;
-  border-radius:12px;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  filter:none !important;
-  font-size:18px;
-  font-weight:800;
-  text-align:center;
-  cursor:pointer;
-}
-#coverageDateSelector:hover,
-#coverageDateSelector:focus,
-#coverageDateSelector:active{
-  background:rgba(220,60,70,.24) !important;
-  color:#C93643 !important;
-  border-color:rgba(220,60,70,.60) !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  filter:none !important;
-  transform:none !important;
-}
-
-/* FINAL COVERAGE + FIREBASE STATUS OVERRIDES */
-#coverageDateSelector{
-  background:rgba(220,45,55,.62) !important;
-  color:#fff !important;
-  border:1px solid rgba(220,45,55,.88) !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  filter:none !important;
-}
-#coverageDateSelector:hover,
-#coverageDateSelector:focus,
-#coverageDateSelector:active{
-  background:rgba(220,45,55,.72) !important;
-  color:#fff !important;
-  border-color:rgba(220,45,55,.96) !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  filter:none !important;
-}
 @keyframes firebaseConnectedFastBlink{
   0%,100%{opacity:1;}
   50%{opacity:.18;}
@@ -4520,89 +3915,6 @@ body.dark .right-column > .coverage-panel .coverage-card.intake .coverage-catego
   .firebase-status.connected .firebase-dot{animation:none !important;}
 }
 
-/* =========================================================
-   FINAL COVERAGE DATE BUTTON — ACTIVE / ON STATE
-   ========================================================= */
-.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector,
-.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:not(.active){
-  background:#D9363E !important;
-  background-image:none !important;
-  color:#FFFFFF !important;
-  border:1px solid #D9363E !important;
-  opacity:1 !important;
-  filter:none !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  transform:none !important;
-}
-
-.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:hover,
-.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:focus,
-.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:active{
-  background:#E34249 !important;
-  background-image:none !important;
-  color:#FFFFFF !important;
-  border-color:#E34249 !important;
-  opacity:1 !important;
-  filter:none !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  transform:none !important;
-}
-
-body.dark .right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector,
-body.dark .right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:not(.active){
-  background:#D9363E !important;
-  background-image:none !important;
-  color:#FFFFFF !important;
-  border-color:#D9363E !important;
-  opacity:1 !important;
-  filter:none !important;
-  box-shadow:none !important;
-}
-
-/* Coverage date — coverage-card opacity + slow pulse */
-@keyframes coverageDateSlowPulse{
-  0%,100%{background:rgba(217,54,62,.17);border-color:rgba(217,54,62,.40);}
-  50%{background:rgba(217,54,62,.30);border-color:rgba(217,54,62,.58);}
-}
-#coverageDateSelector,
-#coverageDateSelector.coverage-date-selector:not(.active),
-#coverageDateSelector:hover,
-#coverageDateSelector:focus,
-#coverageDateSelector:active{
-  background:rgba(217,54,62,.17) !important;
-  background-image:none !important;
-  color:#C92F38 !important;
-  border:1px solid rgba(217,54,62,.40) !important;
-  opacity:1 !important;filter:none !important;box-shadow:none !important;text-shadow:none !important;transform:none !important;
-  animation:coverageDateSlowPulse 2.4s ease-in-out infinite !important;
-}
-body.dark #coverageDateSelector,body.dark #coverageDateSelector.coverage-date-selector:not(.active){color:#FF8A91 !important;}
-@media (prefers-reduced-motion:reduce){#coverageDateSelector,#coverageDateSelector.coverage-date-selector:not(.active){animation:none !important;}}
-
-/* Coverage date — more translucent + visible slow blink */
-@keyframes coverageTranslucentBlink{
-  0%,100%{background:rgba(217,54,62,.10);border-color:rgba(217,54,62,.28);opacity:1;}
-  50%{background:rgba(217,54,62,.25);border-color:rgba(217,54,62,.48);opacity:1;}
-}
-#coverageDateSelector,
-#coverageDateSelector.coverage-date-selector:not(.active),
-#coverageDateSelector:hover,
-#coverageDateSelector:focus,
-#coverageDateSelector:active{
-  background:rgba(217,54,62,.10) !important;
-  background-image:none !important;
-  color:#C92F38 !important;
-  border:1px solid rgba(217,54,62,.28) !important;
-  opacity:1 !important;
-  filter:none !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  transform:none !important;
-  animation:coverageTranslucentBlink 1.8s ease-in-out infinite !important;
-}
-body.dark #coverageDateSelector{color:#FF8A91 !important;}
 
 
 /* IMPORTANT INFORMATION — intense red glowing ! */
@@ -4619,14 +3931,14 @@ body.dark #coverageDateSelector{color:#FF8A91 !important;}
   }
 }
 .important-icon{
-  color:#fff !important;
-  background:#FF1F35 !important;
+  
+  
   border:1px solid #FF5364 !important;
   opacity:1 !important;
   filter:none !important;
-  text-shadow:0 0 4px rgba(255,255,255,.95) !important;
-  box-shadow:0 0 8px rgba(255,31,53,.95),0 0 18px rgba(255,31,53,.72),0 0 30px rgba(255,31,53,.42) !important;
-  animation:importantAlertGlow 1.45s ease-in-out infinite !important;
+  
+  
+  
 }
 .important-icon::before{
   color:#fff !important;
@@ -4634,7 +3946,7 @@ body.dark #coverageDateSelector{color:#FF8A91 !important;}
 }
 
 
-/* FINAL TUNING — Important ! + Coverage date */
+
 @keyframes importantAlertSoftPulse{
   0%,100%{
     opacity:1;
@@ -4647,94 +3959,18 @@ body.dark #coverageDateSelector{color:#FF8A91 !important;}
 }
 
 .important-icon{
-  color:#111 !important;
+  
   background:#E83B46 !important;
   border-color:rgba(190,25,38,.62) !important;
-  text-shadow:none !important;
+  
   box-shadow:0 0 5px rgba(220,38,38,.42),0 0 10px rgba(220,38,38,.20) !important;
-  animation:importantAlertSoftPulse 1.6s ease-in-out infinite !important;
-}
-
-/* Coverage: translucent red, similar visual weight to PSW card */
-#coverageDateSelector,
-#coverageDateSelector.coverage-date-selector,
-#coverageDateSelector.coverage-date-selector:not(.active),
-#coverageDateSelector:hover,
-#coverageDateSelector:focus,
-#coverageDateSelector:active{
-  background:rgba(217,54,62,.17) !important;
-  background-image:none !important;
-  color:#B72D36 !important;
-  border:1px solid rgba(217,54,62,.40) !important;
-  opacity:1 !important;
-  filter:none !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  transform:none !important;
-}
-
-@keyframes coverageSoftBlink{
-  0%,100%{ background-color:rgba(217,54,62,.17); }
-  50%{ background-color:rgba(217,54,62,.09); }
-}
-
-#coverageDateSelector{
-  animation:coverageSoftBlink 2.2s ease-in-out infinite !important;
+  
 }
 
 
-/* FINAL CORRECTION — softer Coverage + black ! */
-.important-icon{
-  color:#000000 !important;
-  -webkit-text-fill-color:#000000 !important;
-  text-shadow:none !important;
-}
-.important-icon::before,
-.important-icon::after{
-  color:#000000 !important;
-  -webkit-text-fill-color:#000000 !important;
-  text-shadow:none !important;
-}
 
-/* Coverage was still intense because previous animations/rules were competing.
-   This override keeps the entire blink in a very translucent range. */
-@keyframes coverageVerySoftBlink{
-  0%,100%{
-    background:rgba(217,54,62,.105) !important;
-    border-color:rgba(217,54,62,.28) !important;
-  }
-  50%{
-    background:rgba(217,54,62,.045) !important;
-    border-color:rgba(217,54,62,.18) !important;
-  }
-}
 
-#coverageDateSelector,
-#coverageDateSelector.coverage-date-selector,
-#coverageDateSelector.coverage-date-selector:not(.active),
-.right-column > .coverage-panel #coverageDateSelector,
-.right-column > .coverage-panel .coverage-date-selector{
-  background:rgba(217,54,62,.105) !important;
-  background-image:none !important;
-  color:#B53A42 !important;
-  border:1px solid rgba(217,54,62,.28) !important;
-  opacity:1 !important;
-  filter:none !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  transform:none !important;
-  animation:coverageVerySoftBlink 2.2s ease-in-out infinite !important;
-}
 
-#coverageDateSelector:hover,
-#coverageDateSelector:focus,
-#coverageDateSelector:active{
-  background:rgba(217,54,62,.13) !important;
-  border-color:rgba(217,54,62,.34) !important;
-  color:#A92F38 !important;
-  box-shadow:none !important;
-  filter:none !important;
-}
 
 
 /* IMPORTANT INFORMATION — soft pulse, black ! */
@@ -4769,66 +4005,18 @@ body.dark #coverageDateSelector{color:#FF8A91 !important;}
 }
 
 
-@keyframes coverageEE6C4DPulse{
-  0%,100%{background:rgba(238,108,77,.18);border-color:rgba(238,108,77,.42);}
-  50%{background:rgba(238,108,77,.08);border-color:rgba(238,108,77,.25);}
-}
-#coverageDateSelector,
-.right-column > .coverage-panel #coverageDateSelector{
-  background:rgba(238,108,77,.18) !important;
-  background-image:none !important;
-  border:1px solid rgba(238,108,77,.42) !important;
-  color:#c84f35 !important;
-  opacity:1 !important;
-  filter:none !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  animation:coverageEE6C4DPulse 2.2s ease-in-out infinite !important;
-}
-#coverageDateSelector:hover,
-#coverageDateSelector:focus,
-#coverageDateSelector:active{
-  background:rgba(238,108,77,.23) !important;
-  border-color:rgba(238,108,77,.52) !important;
-  color:#b9442d !important;
-  box-shadow:none !important;
-}
-
-
-/* Coverage #ee6c4d — softer translucency */
-@keyframes coverageEE6C4DSoftPulse{
-  0%,100%{
-    background:rgba(238,108,77,.10);
-    border-color:rgba(238,108,77,.28);
-  }
-  50%{
-    background:rgba(238,108,77,.045);
-    border-color:rgba(238,108,77,.17);
-  }
-}
-
-#coverageDateSelector,
-.right-column > .coverage-panel #coverageDateSelector{
-  background:rgba(238,108,77,.10) !important;
-  border-color:rgba(238,108,77,.28) !important;
-  color:#b85a45 !important;
-  animation:coverageEE6C4DSoftPulse 2.2s ease-in-out infinite !important;
-}
-
-#coverageDateSelector:hover,
-#coverageDateSelector:focus,
-#coverageDateSelector:active{
-  background:rgba(238,108,77,.14) !important;
-  border-color:rgba(238,108,77,.34) !important;
-}
-
-
 
 
 /* =========================================================
    COVERAGE DATE SELECTOR — CANONICAL STYLE
    Visually behaves like one more active Area row.
    DAY = BLUE / NIGHT = PURPLE
+   ========================================================= */
+
+
+
+/* =========================================================
+   COVERAGE DATE SELECTOR — AREA WITH ON CALL STYLE
    ========================================================= */
 
 .right-column > .coverage-panel .coverage-switch.coverage-date-switch{
@@ -4841,81 +4029,96 @@ body.dark #coverageDateSelector{color:#FF8A91 !important;}
   box-shadow:none !important;
 }
 
-html body #coverageDateSelector.coverage-date-selector{
+html body .right-column > .coverage-panel
+#coverageDateSelector.coverage-date-selector{
   width:100% !important;
-  min-height:56px !important;
+  min-height:48px !important;
+  padding:10px 13px !important;
   display:flex !important;
   align-items:center !important;
   justify-content:center !important;
-  gap:8px !important;
-  border-radius:14px !important;
-  font:inherit !important;
-  font-weight:800 !important;
-  letter-spacing:.02em !important;
-  cursor:pointer !important;
+
+  border:1px solid rgba(11,78,162,.68) !important;
+  border-radius:10px !important;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11,78,162,.34) 0%,
+      rgba(41,169,232,.26) 52%,
+      rgba(255,255,255,.31) 100%
+    ) !important;
+
+  color:var(--text) !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  text-align:center !important;
+
   opacity:1 !important;
   filter:none !important;
   text-shadow:none !important;
   animation:none !important;
-  transition:
-    background .18s ease,
-    border-color .18s ease,
-    box-shadow .18s ease,
-    transform .18s ease !important;
-}
+  transform:none !important;
 
-/* DAY — same family as an active blue Area */
-html body:not(.dark) #coverageDateSelector.coverage-date-selector{
-  background:rgba(28,112,196,.16) !important;
-  background-image:none !important;
-  border:1px solid rgba(28,112,196,.48) !important;
-  color:#1C70C4 !important;
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.20),
-    0 0 14px rgba(28,112,196,.12) !important;
+    0 0 0 1px rgba(11,78,162,.20),
+    0 0 22px rgba(11,78,162,.14),
+    0 0 44px rgba(41,169,232,.10) !important;
+
+  cursor:pointer !important;
+  user-select:none !important;
+  transition:.25s ease !important;
 }
 
-html body:not(.dark) #coverageDateSelector.coverage-date-selector::before{
-  content:"" !important;
-  width:8px !important;
-  height:8px !important;
-  flex:0 0 8px !important;
-  border-radius:50% !important;
-  background:#1C70C4 !important;
+html body .right-column > .coverage-panel
+#coverageDateSelector.coverage-date-selector:hover{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11,78,162,.40) 0%,
+      rgba(41,169,232,.31) 52%,
+      rgba(255,255,255,.34) 100%
+    ) !important;
+  color:var(--text) !important;
+  transform:none !important;
+}
+
+body.dark .right-column > .coverage-panel
+#coverageDateSelector.coverage-date-selector{
+  border-color:rgba(166,126,255,.98) !important;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(155,109,255,.58) 0%,
+      rgba(126,104,255,.40) 52%,
+      rgba(110,200,255,.20) 100%
+    ) !important;
+
+  color:var(--text) !important;
+
   box-shadow:
-    0 0 6px rgba(28,112,196,.72),
-    0 0 12px rgba(28,112,196,.28) !important;
+    0 0 0 1px rgba(155,109,255,.62),
+    0 0 24px rgba(155,109,255,.50),
+    0 0 50px rgba(110,200,255,.20) !important;
 }
 
-/* NIGHT — same family as an active purple Area */
-html body.dark #coverageDateSelector.coverage-date-selector{
-  background:rgba(168,85,247,.16) !important;
-  background-image:none !important;
-  border:1px solid rgba(168,85,247,.50) !important;
-  color:#C084FC !important;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.035),
-    0 0 14px rgba(168,85,247,.14) !important;
+body.dark .right-column > .coverage-panel
+#coverageDateSelector.coverage-date-selector:hover{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(155,109,255,.66) 0%,
+      rgba(126,104,255,.47) 52%,
+      rgba(110,200,255,.25) 100%
+    ) !important;
 }
 
-html body.dark #coverageDateSelector.coverage-date-selector::before{
-  content:"" !important;
-  width:8px !important;
-  height:8px !important;
-  flex:0 0 8px !important;
-  border-radius:50% !important;
-  background:#A855F7 !important;
-  box-shadow:
-    0 0 6px rgba(168,85,247,.78),
-    0 0 12px rgba(168,85,247,.30) !important;
-}
-
-html body #coverageDateSelector.coverage-date-selector:hover{
-  transform:translateY(-1px) !important;
-}
-
-html body #coverageDateSelector.coverage-date-selector:active{
-  transform:translateY(0) !important;
+html body .right-column > .coverage-panel
+#coverageDateSelector.coverage-date-selector:focus-visible{
+  outline:none !important;
 }
 
 </style>
