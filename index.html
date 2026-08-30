@@ -5798,7 +5798,7 @@ ADD COORDINATOR BUTTONS
 ========================================================= */
 
 document.querySelectorAll(
-  ".coverage-add"
+  ".coverage-add[data-coverage]"
 ).forEach(button=>{
 
   button.addEventListener(
@@ -5810,6 +5810,12 @@ document.querySelectorAll(
 
       const key =
         button.dataset.coverage;
+
+      if(
+        !["psw","nursing","intake"].includes(key)
+      ){
+        return;
+      }
 
       normalizeCoverageData();
 
