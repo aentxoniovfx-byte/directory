@@ -97,10 +97,6 @@ textarea:disabled{
   padding:24px 28px 60px;
 }
 
-/* =========================================================
-TOP BAR
-========================================================= */
-
 .topbar{
   display:flex;
   align-items:center;
@@ -205,10 +201,6 @@ TOP BAR
   box-shadow:0 0 9px var(--green);
 }
 
-/* =========================================================
-FIREBASE STATUS
-========================================================= */
-
 .firebase-status{
   position:fixed;
   left:18px;
@@ -249,10 +241,6 @@ FIREBASE STATUS
   background:#ff5252;
   box-shadow:0 0 10px #ff5252;
 }
-
-/* =========================================================
-WORKSPACE
-========================================================= */
 
 .workspace{
   display:grid;
@@ -302,10 +290,6 @@ WORKSPACE
   color:var(--secondary);
   font-size:12px;
 }
-
-/* =========================================================
-AREAS
-========================================================= */
 
 .results{
   display:flex;
@@ -372,7 +356,6 @@ body.dark .directory-section,
 body.dark .oncall-coordinators-table td{
   background-color:rgba(255,255,255,.025);
 }
-
 
 .card:hover{
   transform:translateY(-1px);
@@ -482,7 +465,6 @@ body.dark .oncall-coordinators-table td{
   font-weight:600;
 }
 
-
 .area-oncall-preview{
   display:flex;
   align-items:center;
@@ -511,8 +493,6 @@ body.dark .oncall-coordinators-table td{
   box-shadow:none;
 }
 
-/* Hide the collapsed On Call preview while the Area is open,
-   so it never overlaps the expanded details text. */
 .card.open .area-oncall-preview{
   display:none !important;
   opacity:0 !important;
@@ -579,10 +559,6 @@ body.dark .area-oncall-preview::before{
     text-overflow:ellipsis;
   }
 }
-
-/* =========================================================
-DETAILS
-========================================================= */
 
 .details-wrapper{
   display:grid;
@@ -737,10 +713,6 @@ DETAILS
   text-decoration:none;
 }
 
-/* =========================================================
-ON CALL
-========================================================= */
-
 .oncall-cell{
   flex:0 0 245px;
   min-width:245px;
@@ -872,17 +844,9 @@ body.dark
   font-weight:700;
 }
 
-/* =========================================================
-COVERAGE
-========================================================= */
-
 .coverage-panel-header{
   padding-bottom:12px;
 }
-
-/* =========================================================
-WEEKDAY / WEEKEND SWITCH
-========================================================= */
 
 .coverage-switch{
   display:grid;
@@ -952,10 +916,6 @@ WEEKDAY / WEEKEND SWITCH
   opacity:.75;
 }
 
-/* =========================================================
-COVERAGE GRID
-========================================================= */
-
 .coverage-grid{
   display:flex;
   flex-direction:column;
@@ -965,8 +925,6 @@ COVERAGE GRID
     background .4s ease,
     box-shadow .4s ease;
 }
-
-/* WEEKDAY ENTIRE COVERAGE AREA */
 
 .coverage-grid.weekday-mode{
   background:
@@ -984,8 +942,6 @@ COVERAGE GRID
       rgba(168,85,247,.025);
 }
 
-/* WEEKEND ENTIRE COVERAGE AREA */
-
 .coverage-grid.weekend-mode{
   background:
     linear-gradient(
@@ -1002,10 +958,6 @@ COVERAGE GRID
       rgba(255,210,45,.025);
 }
 
-/* =========================================================
-COVERAGE CARDS
-========================================================= */
-
 .coverage-card{
   padding:13px;
   border-radius:13px;
@@ -1019,10 +971,6 @@ COVERAGE CARDS
 .coverage-card:hover{
   transform:translateY(-1px);
 }
-
-/* =========================================================
-WEEKDAY — PSW CANARY YELLOW
-========================================================= */
 
 .coverage-grid.weekday-mode .coverage-card.psw{
   background:
@@ -1055,10 +1003,6 @@ WEEKDAY — PSW CANARY YELLOW
     0 0 17px rgba(255,239,0,.65);
 }
 
-/* =========================================================
-WEEKDAY — NURSING BLUE
-========================================================= */
-
 .coverage-grid.weekday-mode .coverage-card.nursing{
   background:
     linear-gradient(
@@ -1089,10 +1033,6 @@ WEEKDAY — NURSING BLUE
     0 0 8px #315BFF,
     0 0 17px rgba(49,91,255,.65);
 }
-
-/* =========================================================
-WEEKDAY — INTAKE AQUA
-========================================================= */
 
 .coverage-grid.weekday-mode .coverage-card.intake{
   background:
@@ -1125,10 +1065,6 @@ WEEKDAY — INTAKE AQUA
     0 0 17px rgba(0,218,218,.65);
 }
 
-/* =========================================================
-WEEKEND — PSW RED
-========================================================= */
-
 .coverage-grid.weekend-mode .coverage-card.psw{
   background:
     linear-gradient(
@@ -1159,10 +1095,6 @@ WEEKEND — PSW RED
     0 0 8px #EF4444,
     0 0 17px rgba(239,68,68,.65);
 }
-
-/* =========================================================
-WEEKEND — NURSING ORANGE
-========================================================= */
 
 .coverage-grid.weekend-mode .coverage-card.nursing{
   background:
@@ -1195,10 +1127,6 @@ WEEKEND — NURSING ORANGE
     0 0 17px rgba(255,122,0,.68);
 }
 
-/* =========================================================
-WEEKEND — INTAKE YELLOW
-========================================================= */
-
 .coverage-grid.weekend-mode .coverage-card.intake{
   background:
     linear-gradient(
@@ -1229,10 +1157,6 @@ WEEKEND — INTAKE YELLOW
     0 0 8px #FFD21F,
     0 0 17px rgba(255,210,31,.70);
 }
-
-/* =========================================================
-COVERAGE — SUPERVISORS
-========================================================= */
 
 .coverage-grid.weekday-mode .coverage-card.supervisors{
   background:
@@ -1333,10 +1257,6 @@ body:not(.admin-mode) .coverage-supervisor-row{
   }
 }
 
-/* =========================================================
-COVERAGE CATEGORY
-========================================================= */
-
 .coverage-category{
   display:flex;
   align-items:center;
@@ -1355,10 +1275,6 @@ COVERAGE CATEGORY
   border-radius:50%;
   transition:.3s ease;
 }
-
-/* =========================================================
-MULTIPLE COORDINATORS
-========================================================= */
 
 .coverage-coordinators{
   display:flex;
@@ -1432,15 +1348,9 @@ MULTIPLE COORDINATORS
     rgba(var(--accent-rgb),.16);
 }
 
-/* ADMIN ONLY */
-
 body:not(.admin-mode) .coverage-add{
   display:none;
 }
-
-/* =========================================================
-COVERAGE INPUTS
-========================================================= */
 
 .coverage-input{
   height:31px;
@@ -1462,10 +1372,6 @@ COVERAGE INPUTS
 .coverage-notes::placeholder{
   color:var(--muted);
 }
-
-/* =========================================================
-IMPORTANT
-========================================================= */
 
 .important-panel{
   border-color:rgba(255,135,45,.42);
@@ -1506,10 +1412,6 @@ IMPORTANT
 .important-notes::placeholder{
   color:var(--muted);
 }
-
-/* =========================================================
-DIRECTORY
-========================================================= */
 
 .directory-panel{
   margin-top:14px;
@@ -1679,10 +1581,6 @@ DIRECTORY
   line-height:1.5;
 }
 
-/* =========================================================
-ONCALL COORDINATORS
-========================================================= */
-
 .oncall-coordinators-panel{
   margin-top:14px;
 }
@@ -1731,10 +1629,6 @@ ONCALL COORDINATORS
   font-size:11px;
 }
 
-/* =========================================================
-LOCK
-========================================================= */
-
 .locked-indicator{
   display:none;
   align-items:center;
@@ -1747,10 +1641,6 @@ body:not(.admin-mode)
 .locked-indicator{
   display:flex;
 }
-
-/* =========================================================
-OVERLAYS
-========================================================= */
 
 .calendar-overlay,
 .admin-overlay{
@@ -1882,10 +1772,6 @@ OVERLAYS
     rgba(var(--accent-rgb),.42);
 }
 
-/* =========================================================
-ADMIN
-========================================================= */
-
 .admin-overlay{
   align-items:center;
   justify-content:center;
@@ -1993,10 +1879,6 @@ ADMIN
   color:#fff;
 }
 
-/* =========================================================
-EMPTY
-========================================================= */
-
 .empty{
   padding:28px;
   text-align:center;
@@ -2006,10 +1888,6 @@ EMPTY
   border-radius:12px;
   font-size:12px;
 }
-
-/* =========================================================
-RESPONSIVE
-========================================================= */
 
 @media(max-width:1050px){
 
@@ -2147,11 +2025,6 @@ RESPONSIVE
 
 }
 
-/* =========================================================
-STRONGER VISUAL DIFFERENCE — AREAS WITH ON CALL
-========================================================= */
-
-/* DAY — aqua / cyan covered state */
 body:not(.dark) .card.oncall-active{
   background:
     linear-gradient(
@@ -2176,7 +2049,6 @@ body:not(.dark) .card.oncall-active .area{
     );
 }
 
-/* NIGHT — midnight violet/electric blue covered state */
 body.dark .card.oncall-active{
   background:
     linear-gradient(
@@ -2201,7 +2073,6 @@ body.dark .card.oncall-active .area{
     );
 }
 
-/* Make the active Area indicator unmistakable */
 .card.oncall-active .area-indicator{
   background:var(--blue);
   box-shadow:
@@ -2209,10 +2080,6 @@ body.dark .card.oncall-active .area{
     0 0 18px rgba(var(--accent-rgb),.85);
 }
 
-
-/* =========================================================
-GLOBAL TYPOGRAPHY — INTER
-========================================================= */
 html,
 body,
 body *,
@@ -2223,12 +2090,6 @@ select,
 option{
   font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
 }
-
-
-
-/* =========================================================
-SUBTLE APP BACKGROUND VISUAL
-========================================================= */
 
 body{
   background:
@@ -2324,13 +2185,6 @@ body.dark::before{
     );
 }
 
-
-
-/* =========================================================
-LIQUID GLASS / BUBBLE BACKGROUND
-========================================================= */
-
-/* Soft floating bubble atmosphere — DAY */
 body::after{
   content:"";
   position:fixed;
@@ -2369,7 +2223,6 @@ body::after{
   opacity:.88;
 }
 
-/* A little more depth behind the app */
 body{
   background:
     radial-gradient(
@@ -2396,7 +2249,6 @@ body{
   background-attachment:fixed;
 }
 
-/* NIGHT — violet / blue liquid bubbles */
 body.dark{
   background:
     radial-gradient(
@@ -2455,7 +2307,6 @@ body.dark::after{
   opacity:.92;
 }
 
-/* Reduce the old grid so bubbles become the visual language */
 body::before{
   opacity:.07;
 }
@@ -2464,19 +2315,11 @@ body.dark::before{
   opacity:.055;
 }
 
-
-
-/* =========================================================
-TRUE LIQUID GLASS — TRANSPARENCY / REFRACTION FEEL
-========================================================= */
-
-/* Remove the obvious bubble illustration feel */
 body::after{
   opacity:.20 !important;
   filter:blur(18px) !important;
 }
 
-/* Let the background show through the main surfaces */
 .panel,
 .card,
 .topbar,
@@ -2491,7 +2334,6 @@ body::after{
     saturate(145%);
 }
 
-/* DAY — translucent milky aqua glass */
 body:not(.dark) .panel,
 body:not(.dark) .topbar,
 body:not(.dark) .coverage-panel,
@@ -2523,7 +2365,6 @@ body:not(.dark) .card{
     0 7px 20px rgba(0,174,187,.055);
 }
 
-/* NIGHT — smoked violet glass */
 body.dark .panel,
 body.dark .topbar,
 body.dark .coverage-panel,
@@ -2555,7 +2396,6 @@ body.dark .card{
     0 8px 24px rgba(0,0,0,.15);
 }
 
-/* Glass controls */
 .small-button,
 button,
 input,
@@ -2565,7 +2405,6 @@ select{
   backdrop-filter:blur(12px) saturate(135%);
 }
 
-/* Preserve strong covered/on-call visual over the glass */
 body:not(.dark) .card.oncall-active{
   background:
     linear-gradient(
@@ -2585,12 +2424,6 @@ body.dark .card.oncall-active{
       rgba(110,200,255,.12)
     ) !important;
 }
-
-
-
-/* =========================================================
-IMPORTANT INFORMATION — RICH TEXT EDITOR
-========================================================= */
 
 .important-editor-toolbar{
   display:none;
@@ -2714,8 +2547,6 @@ body.admin-mode .important-editor-toolbar{
   margin:.16em 0;
 }
 
-
-
 .important-color-wrap{
   height:32px;
   min-width:40px;
@@ -2768,12 +2599,6 @@ body.admin-mode .important-editor-toolbar{
   border-radius:50%;
 }
 
-
-/* =========================================================
-SOFTER GLOBAL THEME + STRONGER COVERAGE CARDS
-========================================================= */
-
-/* DAY — slightly softer aqua intensity */
 :root{
   --bg:#F3FBFC;
   --panel:rgba(255,255,255,.74);
@@ -2793,7 +2618,6 @@ SOFTER GLOBAL THEME + STRONGER COVERAGE CARDS
   --shadow:0 12px 32px rgba(22,167,179,.10);
 }
 
-/* NIGHT — same identity, just a little calmer */
 body.dark{
   --bg:#0C0E19;
   --panel:rgba(22,25,44,.82);
@@ -2813,7 +2637,6 @@ body.dark{
   --shadow:0 14px 38px rgba(0,0,0,.32);
 }
 
-/* Slightly calmer active/on-call treatment */
 body:not(.dark) .card.oncall-active{
   background:
     linear-gradient(
@@ -2844,7 +2667,6 @@ body.dark .card.oncall-active{
     0 0 36px rgba(114,189,235,.10) !important;
 }
 
-/* Coverage cards: more separation, depth and color */
 .coverage-card,
 .coverage-item,
 .coverage-section-card{
@@ -2871,7 +2693,6 @@ body.dark .card.oncall-active{
     );
 }
 
-/* Try common per-coverage hooks already used by the app */
 .coverage-psw,
 [data-coverage="psw"],
 .psw-coverage{
@@ -2899,7 +2720,6 @@ body.dark .card.oncall-active{
     0 0 0 1px rgba(53,215,229,.14) !important;
 }
 
-/* Weekend retains its warm distinction but with more depth */
 .coverage-panel.weekend .coverage-psw,
 .weekend [data-coverage="psw"]{
   box-shadow:
@@ -2924,13 +2744,6 @@ body.dark .card.oncall-active{
     0 0 0 1px rgba(255,210,64,.16) !important;
 }
 
-
-
-/* =========================================================
-FINAL VISUAL TUNING — MAYA / INDIGO DAY + CLEAN TITLES
-========================================================= */
-
-/* DAY: Maya blue + indigo instead of aqua */
 :root{
   --bg:#F3F7FF;
   --panel:rgba(255,255,255,.74);
@@ -2950,7 +2763,6 @@ FINAL VISUAL TUNING — MAYA / INDIGO DAY + CLEAN TITLES
   --shadow:0 12px 32px rgba(79,111,232,.10);
 }
 
-/* Remove title/label glow effects */
 .supervisor:hover,
 .card.oncall-active .oncall-label,
 .coverage-category,
@@ -2963,7 +2775,6 @@ h1,h2,h3,h4,h5,h6{
   text-shadow:none !important;
 }
 
-/* DAY active areas now use Maya blue / indigo */
 body:not(.dark) .card.oncall-active{
   background:
     linear-gradient(
@@ -2987,7 +2798,6 @@ body:not(.dark) .card.oncall-active .area{
     ) !important;
 }
 
-/* Coverage titles: high contrast instead of matching each card */
 .coverage-grid.weekday-mode .coverage-card.psw .coverage-category,
 .coverage-grid.weekday-mode .coverage-card.nursing .coverage-category,
 .coverage-grid.weekday-mode .coverage-card.intake .coverage-category{
@@ -3014,7 +2824,6 @@ body.dark .coverage-grid.weekend-mode .coverage-card.intake .coverage-category{
   color:#FFF2F6 !important;
 }
 
-/* Keep the cards colorful, but use softer shadows instead of glow */
 .coverage-grid .coverage-card.psw,
 .coverage-grid .coverage-card.nursing,
 .coverage-grid .coverage-card.intake{
@@ -3023,7 +2832,6 @@ body.dark .coverage-grid.weekend-mode .coverage-card.intake .coverage-category{
     0 10px 22px rgba(22,35,70,.10) !important;
 }
 
-/* Slightly richer weekday card fills so Coverage stays visible */
 .coverage-grid.weekday-mode .coverage-card.psw{
   background:
     linear-gradient(
@@ -3054,12 +2862,6 @@ body.dark .coverage-grid.weekend-mode .coverage-card.intake .coverage-category{
   border-color:rgba(73,164,224,.46) !important;
 }
 
-
-
-/* =========================================================
-DAY MODE — MAYA BLUE + SUPERVISOR TITLE CONTRAST
-========================================================= */
-
 :root{
   --bg:#F3F9FF;
   --panel:rgba(255,255,255,.75);
@@ -3079,7 +2881,6 @@ DAY MODE — MAYA BLUE + SUPERVISOR TITLE CONTRAST
   --shadow:0 12px 32px rgba(74,163,224,.10);
 }
 
-/* Day on-call areas — Maya blue, not indigo */
 body:not(.dark) .card.oncall-active{
   background:
     linear-gradient(
@@ -3103,7 +2904,6 @@ body:not(.dark) .card.oncall-active .area{
     ) !important;
 }
 
-/* Supervisor title — contrast against its green/aqua card */
 body:not(.dark) .coverage-supervisor-card .coverage-category,
 body:not(.dark) .supervisor-card .coverage-category,
 body:not(.dark) .coverage-supervisors .coverage-category,
@@ -3113,7 +2913,6 @@ body:not(.dark) [class*="supervisor"] .coverage-category{
   font-weight:800 !important;
 }
 
-/* Night supervisor title — bright neutral contrast */
 body.dark .coverage-supervisor-card .coverage-category,
 body.dark .supervisor-card .coverage-category,
 body.dark .coverage-supervisors .coverage-category,
@@ -3122,13 +2921,6 @@ body.dark [class*="supervisor"] .coverage-category{
   text-shadow:none !important;
   font-weight:800 !important;
 }
-
-
-
-/* =========================================================
-DAY THEME — COBALT + MAYA BLUE + CYAN + ORANGE
-Inspired by supplied palette
-========================================================= */
 
 :root{
   --bg:#EAF6FF;
@@ -3153,7 +2945,6 @@ Inspired by supplied palette
   --shadow:0 12px 32px rgba(11,78,162,.11);
 }
 
-/* DAY background — rich blue atmosphere, still light */
 body:not(.dark){
   background:
     radial-gradient(
@@ -3179,7 +2970,6 @@ body:not(.dark){
     ) !important;
 }
 
-/* Glass surfaces tuned to the new blue palette */
 body:not(.dark) .panel,
 body:not(.dark) .topbar,
 body:not(.dark) .coverage-panel,
@@ -3207,7 +2997,6 @@ body:not(.dark) .card{
   border-color:rgba(13,87,166,.15) !important;
 }
 
-/* Covered areas — cobalt into Maya blue */
 body:not(.dark) .card.oncall-active{
   background:
     linear-gradient(
@@ -3231,7 +3020,6 @@ body:not(.dark) .card.oncall-active .area{
     ) !important;
 }
 
-/* Orange becomes the deliberate warm accent */
 body:not(.dark) .area-oncall-preview::before,
 body:not(.dark) .oncall-status{
   background:#FF7417 !important;
@@ -3240,7 +3028,6 @@ body:not(.dark) .oncall-status{
     0 0 15px rgba(255,116,23,.48) !important;
 }
 
-/* Important Information question mark — red blinking alert */
 @keyframes importantQuestionBlink{
   0%,100%{
     opacity:1;
@@ -3276,13 +3063,11 @@ body:not(.dark) .oncall-status{
   animation:importantQuestionBlink 1.15s ease-in-out infinite;
 }
 
-/* If the ? is a literal text/icon inside the important heading */
 .important-title span:first-child,
 .important-header span:first-child{
   color:#EF233C !important;
 }
 
-/* Coverage cards — richer color, controlled shadow */
 body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
   background:
     linear-gradient(
@@ -3313,14 +3098,12 @@ body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
   border-color:rgba(41,169,232,.50) !important;
 }
 
-/* Coverage titles — dark contrast instead of matching the card */
 body:not(.dark) .coverage-grid .coverage-card .coverage-category{
   color:#082D61 !important;
   font-weight:800 !important;
   text-shadow:none !important;
 }
 
-/* Supervisors: keep card identity, use contrasting cobalt title */
 body:not(.dark) .coverage-supervisor-card .coverage-category,
 body:not(.dark) .supervisor-card .coverage-category,
 body:not(.dark) .coverage-supervisors .coverage-category,
@@ -3330,7 +3113,6 @@ body:not(.dark) [class*="supervisor"] .coverage-category{
   text-shadow:none !important;
 }
 
-/* No title glow */
 body:not(.dark) .panel-title,
 body:not(.dark) .date-title,
 body:not(.dark) .date-sub,
@@ -3345,13 +3127,6 @@ body:not(.dark) h6{
   text-shadow:none !important;
 }
 
-
-
-/* =========================================================
-CLEANER UI — FEWER BORDERS / SOFTER OPEN AREAS
-========================================================= */
-
-/* Coverage shell: remove the stacked-box feeling */
 .coverage-panel{
   border-color:rgba(var(--accent-rgb),.12) !important;
   box-shadow:
@@ -3364,7 +3139,6 @@ body.dark .coverage-panel{
     0 12px 30px rgba(0,0,0,.18) !important;
 }
 
-/* Coverage August / section headings: clean edge, no extra outline */
 .coverage-header,
 .coverage-title,
 .coverage-mode,
@@ -3372,7 +3146,6 @@ body.dark .coverage-panel{
   box-shadow:none !important;
 }
 
-/* Coverage cards keep color, but lose unnecessary outline-on-outline */
 .coverage-grid .coverage-card{
   border-width:1px !important;
   box-shadow:
@@ -3384,7 +3157,6 @@ body.dark .coverage-grid .coverage-card{
     0 8px 20px rgba(0,0,0,.14) !important;
 }
 
-/* Open directory areas: one clean container instead of many visible boxes */
 .card.open{
   border-color:rgba(var(--accent-rgb),.20) !important;
   box-shadow:
@@ -3409,7 +3181,6 @@ body.dark .coverage-grid .coverage-card{
   border-left-color:rgba(var(--accent-rgb),.10) !important;
 }
 
-/* Individual information cells should feel like sections, not nested cards */
 .card.open .info,
 .card.open .oncall-cell{
   border-radius:0 !important;
@@ -3425,7 +3196,6 @@ body.dark .coverage-grid .coverage-card{
   border-color:rgba(var(--accent-rgb),.10) !important;
 }
 
-/* Inputs: softer edges when editing */
 .card.open input,
 .card.open textarea,
 .card.open select{
@@ -3442,12 +3212,10 @@ body.dark .coverage-grid .coverage-card{
     0 0 0 2px rgba(var(--accent-rgb),.07) !important;
 }
 
-/* Avoid doubled separators between adjacent cells */
 .card.open .details > * + *{
   border-left-color:rgba(var(--accent-rgb),.09) !important;
 }
 
-/* Mobile: use only horizontal separators */
 @media(max-width:750px){
   .card.open .details{
     border-left:0 !important;
@@ -3459,13 +3227,6 @@ body.dark .coverage-grid .coverage-card{
   }
 }
 
-
-
-/* =========================================================
-TOP BAR — BLEND INTO APP BACKGROUND
-========================================================= */
-
-/* Remove the strong separate strip around Coverage August */
 .topbar{
   background:transparent !important;
   border:0 !important;
@@ -3475,7 +3236,6 @@ TOP BAR — BLEND INTO APP BACKGROUND
   backdrop-filter:none !important;
 }
 
-/* Keep the actual controls readable without recreating a full-width bar */
 .topbar .small-button{
   background:rgba(255,255,255,.42) !important;
   border-color:rgba(11,78,162,.11) !important;
@@ -3498,13 +3258,6 @@ body.dark .topbar .small-button{
     0 5px 14px rgba(0,0,0,.12) !important;
 }
 
-
-
-/* =========================================================
-TOP AREA — FULLY DIFFUSED / NO VISIBLE CELL
-========================================================= */
-
-/* Make the whole first row visually melt into the page */
 .topbar{
   position:relative;
   background:
@@ -3517,14 +3270,12 @@ TOP AREA — FULLY DIFFUSED / NO VISIBLE CELL
   box-shadow:none !important;
 }
 
-/* Remove the boxed look from the date icon */
 .date-icon{
   background:rgba(255,255,255,.10) !important;
   border-color:rgba(var(--accent-rgb),.08) !important;
   box-shadow:none !important;
 }
 
-/* Controls become much closer to the page background */
 body:not(.dark) .topbar .small-button{
   background:rgba(255,255,255,.18) !important;
   border-color:rgba(11,78,162,.07) !important;
@@ -3537,7 +3288,6 @@ body:not(.dark) .topbar .small-button:hover{
   box-shadow:none !important;
 }
 
-/* Night: same treatment, almost no visible rectangular strip */
 body.dark .topbar{
   background:
     linear-gradient(
@@ -3565,13 +3315,6 @@ body.dark .topbar .small-button:hover{
   box-shadow:none !important;
 }
 
-
-
-/* =========================================================
-UNIFORM PAGE BACKGROUND — REMOVE TOP COLOR BAND
-========================================================= */
-
-/* DAY: continuous background from top to bottom */
 body:not(.dark){
   background:
     linear-gradient(
@@ -3583,7 +3326,6 @@ body:not(.dark){
   background-attachment:fixed;
 }
 
-/* NIGHT: same idea, no concentrated halo at the top */
 body.dark{
   background:
     linear-gradient(
@@ -3595,14 +3337,12 @@ body.dark{
   background-attachment:fixed;
 }
 
-/* Kill any remaining decorative layer that creates a different top strip */
 body::before,
 body::after{
   opacity:0 !important;
   background:none !important;
 }
 
-/* Top row must be visually identical to the page behind it */
 .topbar,
 body:not(.dark) .topbar,
 body.dark .topbar{
@@ -3614,7 +3354,6 @@ body.dark .topbar{
   backdrop-filter:none !important;
 }
 
-/* Make header controls float softly instead of forming another color band */
 body:not(.dark) .topbar .small-button,
 body:not(.dark) .date-icon{
   background:rgba(255,255,255,.12) !important;
@@ -3628,12 +3367,6 @@ body.dark .date-icon{
   border-color:rgba(200,190,255,.045) !important;
   box-shadow:none !important;
 }
-
-
-
-/* =========================================================
-CLEAN + HARMONIOUS UI PASS
-========================================================= */
 
 .wrap{
   padding:18px 20px 28px !important;
@@ -3843,13 +3576,6 @@ body:not(.dark) .muted{
   }
 }
 
-
-
-/* =========================================================
-COVERAGE — MINIMAL / FLAT / LESS VISUAL NOISE
-========================================================= */
-
-/* Remove the outer Coverage box feeling */
 .coverage-panel{
   background:transparent !important;
   border:0 !important;
@@ -3860,7 +3586,6 @@ COVERAGE — MINIMAL / FLAT / LESS VISUAL NOISE
   backdrop-filter:none !important;
 }
 
-/* Remove extra framing around Coverage header / mode controls */
 .coverage-header,
 .coverage-title,
 .coverage-tabs,
@@ -3870,7 +3595,6 @@ COVERAGE — MINIMAL / FLAT / LESS VISUAL NOISE
   box-shadow:none !important;
 }
 
-/* Let the cards breathe without looking like nested glowing boxes */
 .coverage-grid{
   gap:8px !important;
 }
@@ -3881,7 +3605,6 @@ COVERAGE — MINIMAL / FLAT / LESS VISUAL NOISE
   outline:0 !important;
 }
 
-/* Softer card surfaces — color remains, halo disappears */
 body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
   background:rgba(255,116,23,.13) !important;
 }
@@ -3902,7 +3625,6 @@ body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
   box-shadow:none !important;
 }
 
-/* Supervisors card should feel like part of the same group */
 .coverage-card.supervisors,
 .coverage-supervisor-card,
 .supervisor-card,
@@ -3912,7 +3634,6 @@ body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
   outline:0 !important;
 }
 
-/* Remove internal divider lines between Coverage sections */
 .coverage-grid .coverage-card + .coverage-card{
   border-left:0 !important;
 }
@@ -3923,7 +3644,6 @@ body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
   border:0 !important;
 }
 
-/* Remove extra borders from rows and controls inside Coverage */
 .coverage-coordinator-row,
 .coverage-supervisor-row,
 .coverage-note-row,
@@ -3938,7 +3658,6 @@ body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
   box-shadow:none !important;
 }
 
-/* Night mode: same clean treatment */
 body.dark .coverage-panel{
   background:transparent !important;
   border:0 !important;
@@ -3950,28 +3669,14 @@ body.dark .coverage-grid .coverage-card{
   border:0 !important;
 }
 
-/* =========================================================
-REMOVE TOP LOGO BOX
-========================================================= */
-
-/* Hide the square logo/icon block at the very top */
 .date-icon{
   display:none !important;
 }
 
-/* Close the gap left by the removed icon */
 .date-area{
   gap:0 !important;
 }
 
-
-
-/* =========================================================
-COVERAGE — REMOVE BACKPLATE + HEADER DIVIDER
-========================================================= */
-
-/* Completely remove the shaded rectangle behind
-   Supervisors / PSW / Nursing / Intake */
 .coverage-panel,
 body:not(.dark) .coverage-panel,
 body.dark .coverage-panel{
@@ -3985,7 +3690,6 @@ body.dark .coverage-panel{
   backdrop-filter:none !important;
 }
 
-/* Remove any pseudo-layer that could still create a backplate */
 .coverage-panel::before,
 .coverage-panel::after{
   content:none !important;
@@ -3995,13 +3699,10 @@ body.dark .coverage-panel{
   box-shadow:none !important;
 }
 
-/* Keep each individual Coverage card as the only visible surface */
 .coverage-grid .coverage-card{
   box-shadow:none !important;
 }
 
-/* Remove the line between Coverage title / Weekday-Weekend controls
-   and the cards */
 .coverage-header,
 .coverage-mode,
 .coverage-tabs{
@@ -4019,29 +3720,19 @@ body.dark .coverage-panel{
   background:transparent !important;
 }
 
-/* If the divider belongs to the grid itself, make it invisible */
 .coverage-grid{
   border-top:0 !important;
   box-shadow:none !important;
 }
 
-/* Preserve clean spacing without recreating a visible container */
 .coverage-grid{
   margin-top:8px !important;
 }
 
-
-
-/* =========================================================
-FINAL COVERAGE CLEANUP — TARGET ACTUAL COVERAGE PANEL
-========================================================= */
-
-/* Day palette contains no green */
 body:not(.dark){
   --green:#FF2D2D !important;
 }
 
-/* Actual outer Coverage panel: completely invisible */
 .right-column > .coverage-panel,
 body:not(.dark) .right-column > .coverage-panel,
 body.dark .right-column > .coverage-panel{
@@ -4056,7 +3747,6 @@ body.dark .right-column > .coverage-panel{
   backdrop-filter:none !important;
 }
 
-/* Remove divider under Coverage title */
 .right-column > .coverage-panel > .panel-header,
 .right-column > .coverage-panel .coverage-panel-header{
   border-bottom:0 !important;
@@ -4064,7 +3754,6 @@ body.dark .right-column > .coverage-panel{
   background:transparent !important;
 }
 
-/* Remove the colored/shaded backplate behind ALL coverage cards */
 .right-column > .coverage-panel .coverage-grid,
 .right-column > .coverage-panel .coverage-grid.weekday-mode,
 .right-column > .coverage-panel .coverage-grid.weekend-mode{
@@ -4075,12 +3764,10 @@ body.dark .right-column > .coverage-panel{
   outline:0 !important;
 }
 
-/* Keep only the individual cards */
 .right-column > .coverage-panel .coverage-card{
   box-shadow:none !important;
 }
 
-/* Day Supervisors: replace green with intense red */
 body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
   background:rgba(255,45,45,.13) !important;
   border:0 !important;
@@ -4096,21 +3783,18 @@ body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors .coverage
   box-shadow:none !important;
 }
 
-/* Any green status/accent in Day becomes the same red */
 body:not(.dark) .firebase-dot,
 body:not(.dark) .status-dot,
 body:not(.dark) [class*="status"]::before{
   border-color:transparent;
 }
 
-/* Weekday/Weekend switch: no enclosing framed strip */
 .right-column > .coverage-panel .coverage-switch{
   background:transparent !important;
   border-color:rgba(var(--accent-rgb),.08) !important;
   box-shadow:none !important;
 }
 
-/* Keep spacing, not framing */
 .right-column > .coverage-panel .coverage-panel-header{
   padding-bottom:8px !important;
 }
@@ -4120,13 +3804,6 @@ body:not(.dark) [class*="status"]::before{
   margin-top:0 !important;
 }
 
-
-
-/* =========================================================
-COVERAGE CARDS — RESTORE COLOR SURFACES WITHOUT HALO
-========================================================= */
-
-/* Weekday */
 body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
   background:rgba(255,45,45,.16) !important;
 }
@@ -4143,7 +3820,6 @@ body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
   background:rgba(41,169,232,.20) !important;
 }
 
-/* Weekend */
 body:not(.dark) .coverage-grid.weekend-mode .coverage-card.supervisors{
   background:rgba(184,15,31,.16) !important;
 }
@@ -4160,13 +3836,11 @@ body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
   background:rgba(255,184,57,.22) !important;
 }
 
-/* Keep cards visible but clean */
 .right-column > .coverage-panel .coverage-card{
   border:1px solid rgba(var(--accent-rgb),.07) !important;
   box-shadow:none !important;
 }
 
-/* Softer per-card borders matching their tones */
 body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
   border-color:rgba(255,45,45,.18) !important;
 }
@@ -4193,25 +3867,16 @@ body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
   border-color:rgba(255,184,57,.22) !important;
 }
 
-
-
-/* =========================================================
-COVERAGE WEEKDAY / WEEKEND BUTTONS
-Navy & Tangerine Floral — Cobalt Bloom / Midnight Navy / Dusty Taupe
-========================================================= */
-
-/* Base segmented controls */
 .coverage-switch,
 .coverage-tabs,
 .coverage-mode{
-  background:rgba(173,157,145,.13) !important; /* dusty taupe */
+  background:rgba(173,157,145,.13) !important;
   border:1px solid rgba(18,38,70,.09) !important;
   box-shadow:none !important;
   padding:3px !important;
   border-radius:11px !important;
 }
 
-/* Both buttons always have a visible palette color */
 .coverage-switch button,
 .coverage-tabs button,
 .coverage-mode button{
@@ -4224,7 +3889,6 @@ Navy & Tangerine Floral — Cobalt Bloom / Midnight Navy / Dusty Taupe
     opacity .18s ease !important;
 }
 
-/* WEEKDAY — Cobalt Bloom */
 body:not(.dark) .coverage-switch button:first-child,
 body:not(.dark) .coverage-tabs button:first-child,
 body:not(.dark) .coverage-mode button:first-child{
@@ -4232,7 +3896,6 @@ body:not(.dark) .coverage-mode button:first-child{
   color:#FFFFFF !important;
 }
 
-/* WEEKEND — Tangerine */
 body:not(.dark) .coverage-switch button:last-child,
 body:not(.dark) .coverage-tabs button:last-child,
 body:not(.dark) .coverage-mode button:last-child{
@@ -4240,7 +3903,6 @@ body:not(.dark) .coverage-mode button:last-child{
   color:#FFFFFF !important;
 }
 
-/* Selected state gets stronger; inactive stays colored, not transparent */
 body:not(.dark) .coverage-switch button.active:first-child,
 body:not(.dark) .coverage-tabs button.active:first-child,
 body:not(.dark) .coverage-mode button.active:first-child{
@@ -4263,7 +3925,6 @@ body:not(.dark) .coverage-mode button:not(.active){
   opacity:.72 !important;
 }
 
-/* Night: Midnight Navy base with cobalt/tangerine identity */
 body.dark .coverage-switch,
 body.dark .coverage-tabs,
 body.dark .coverage-mode{
@@ -4291,12 +3952,6 @@ body.dark .coverage-mode button:not(.active){
   opacity:.64 !important;
 }
 
-
-
-/* =========================================================
-COVERAGE TOGGLE — MATCH ONCALL ACTIVE VISUAL DEPTH
-========================================================= */
-
 body:not(.dark) .coverage-switch,
 body:not(.dark) .coverage-tabs,
 body:not(.dark) .coverage-mode{
@@ -4309,7 +3964,6 @@ body:not(.dark) .coverage-mode{
   border-radius:12px !important;
 }
 
-/* Weekday — same intense layered treatment as active On Call areas */
 body:not(.dark) .coverage-switch button:first-child,
 body:not(.dark) .coverage-tabs button:first-child,
 body:not(.dark) .coverage-mode button:first-child{
@@ -4328,7 +3982,6 @@ body:not(.dark) .coverage-mode button:first-child{
   opacity:1 !important;
 }
 
-/* Weekend — same depth, using Tangerine */
 body:not(.dark) .coverage-switch button:last-child,
 body:not(.dark) .coverage-tabs button:last-child,
 body:not(.dark) .coverage-mode button:last-child{
@@ -4347,7 +4000,6 @@ body:not(.dark) .coverage-mode button:last-child{
   opacity:1 !important;
 }
 
-/* Active mode is even stronger, like an On Call active card */
 body:not(.dark) .coverage-switch button.active:first-child,
 body:not(.dark) .coverage-tabs button.active:first-child,
 body:not(.dark) .coverage-mode button.active:first-child{
@@ -4368,7 +4020,6 @@ body:not(.dark) .coverage-mode button.active:last-child{
   transform:translateY(-1px);
 }
 
-/* Inactive still rich, just slightly calmer */
 body:not(.dark) .coverage-switch button:not(.active),
 body:not(.dark) .coverage-tabs button:not(.active),
 body:not(.dark) .coverage-mode button:not(.active){
@@ -4376,7 +4027,6 @@ body:not(.dark) .coverage-mode button:not(.active){
   filter:saturate(.90) brightness(.97);
 }
 
-/* NIGHT — Midnight Navy with cobalt/tangerine depth */
 body.dark .coverage-switch,
 body.dark .coverage-tabs,
 body.dark .coverage-mode{
@@ -4428,14 +4078,6 @@ body.dark .coverage-mode button.active{
   filter:saturate(1.08) brightness(1.04);
 }
 
-
-
-/* =========================================================
-COVERAGE — BRIGHT COBALT BLOOM + TANGERINE PETAL
-Centered toggle + glass panel background
-========================================================= */
-
-/* Restore a soft panel background like Directory / Important Information */
 .right-column > .coverage-panel,
 body:not(.dark) .right-column > .coverage-panel{
   background:
@@ -4471,7 +4113,6 @@ body.dark .right-column > .coverage-panel{
   padding:16px !important;
 }
 
-/* Center Weekday / Weekend in their own organized container */
 .right-column > .coverage-panel .coverage-switch,
 .right-column > .coverage-panel .coverage-tabs,
 .right-column > .coverage-panel .coverage-mode{
@@ -4497,7 +4138,6 @@ body.dark .right-column > .coverage-panel{
     0 7px 18px rgba(11,78,162,.08) !important;
 }
 
-/* Buttons equally sized and centered */
 .right-column > .coverage-panel .coverage-switch button,
 .right-column > .coverage-panel .coverage-tabs button,
 .right-column > .coverage-panel .coverage-mode button{
@@ -4511,7 +4151,6 @@ body.dark .right-column > .coverage-panel{
   padding:10px 16px !important;
 }
 
-/* WEEKDAY — brighter Cobalt Bloom */
 body:not(.dark) .coverage-switch button:first-child,
 body:not(.dark) .coverage-tabs button:first-child,
 body:not(.dark) .coverage-mode button:first-child{
@@ -4531,7 +4170,6 @@ body:not(.dark) .coverage-mode button:first-child{
   filter:saturate(1.12) brightness(1.06) !important;
 }
 
-/* WEEKEND — brighter Tangerine Petal */
 body:not(.dark) .coverage-switch button:last-child,
 body:not(.dark) .coverage-tabs button:last-child,
 body:not(.dark) .coverage-mode button:last-child{
@@ -4551,7 +4189,6 @@ body:not(.dark) .coverage-mode button:last-child{
   filter:saturate(1.12) brightness(1.06) !important;
 }
 
-/* Selected mode: brighter and more polished */
 body:not(.dark) .coverage-switch button.active,
 body:not(.dark) .coverage-tabs button.active,
 body:not(.dark) .coverage-mode button.active{
@@ -4560,7 +4197,6 @@ body:not(.dark) .coverage-mode button.active{
   filter:saturate(1.18) brightness(1.10) !important;
 }
 
-/* Inactive still colorful, not dull */
 body:not(.dark) .coverage-switch button:not(.active),
 body:not(.dark) .coverage-tabs button:not(.active),
 body:not(.dark) .coverage-mode button:not(.active){
@@ -4568,7 +4204,6 @@ body:not(.dark) .coverage-mode button:not(.active){
   filter:saturate(1.02) brightness(1.02) !important;
 }
 
-/* Night container stays organized */
 body.dark .right-column > .coverage-panel .coverage-switch,
 body.dark .right-column > .coverage-panel .coverage-tabs,
 body.dark .right-column > .coverage-panel .coverage-mode{
@@ -4584,7 +4219,6 @@ body.dark .right-column > .coverage-panel .coverage-mode{
     0 7px 18px rgba(0,0,0,.16) !important;
 }
 
-/* Night buttons with a little more luminance */
 body.dark .coverage-switch button:first-child,
 body.dark .coverage-tabs button:first-child,
 body.dark .coverage-mode button:first-child{
@@ -4615,13 +4249,6 @@ body.dark .coverage-mode button:last-child{
     0 8px 18px rgba(165,70,29,.25) !important;
 }
 
-
-
-/* =========================================================
-COVERAGE TOGGLE — FULL WIDTH + ACTIVE/INACTIVE EMPHASIS
-========================================================= */
-
-/* Toggle container uses the full available width */
 .right-column > .coverage-panel .coverage-switch,
 .right-column > .coverage-panel .coverage-tabs,
 .right-column > .coverage-panel .coverage-mode{
@@ -4634,7 +4261,6 @@ COVERAGE TOGGLE — FULL WIDTH + ACTIVE/INACTIVE EMPHASIS
   gap:7px !important;
 }
 
-/* Both buttons fill half of the Coverage window */
 .right-column > .coverage-panel .coverage-switch button,
 .right-column > .coverage-panel .coverage-tabs button,
 .right-column > .coverage-panel .coverage-mode button{
@@ -4647,7 +4273,6 @@ COVERAGE TOGGLE — FULL WIDTH + ACTIVE/INACTIVE EMPHASIS
   font-weight:800 !important;
 }
 
-/* Selected button: full brightness */
 .right-column > .coverage-panel .coverage-switch button.active,
 .right-column > .coverage-panel .coverage-tabs button.active,
 .right-column > .coverage-panel .coverage-mode button.active{
@@ -4656,7 +4281,6 @@ COVERAGE TOGGLE — FULL WIDTH + ACTIVE/INACTIVE EMPHASIS
   transform:translateY(-1px) !important;
 }
 
-/* Unselected button: clearly muted, but keeps its palette identity */
 .right-column > .coverage-panel .coverage-switch button:not(.active),
 .right-column > .coverage-panel .coverage-tabs button:not(.active),
 .right-column > .coverage-panel .coverage-mode button:not(.active){
@@ -4668,12 +4292,630 @@ COVERAGE TOGGLE — FULL WIDTH + ACTIVE/INACTIVE EMPHASIS
     0 3px 8px rgba(20,35,60,.08) !important;
 }
 
-/* Hover gives the inactive option a small preview without competing */
 .right-column > .coverage-panel .coverage-switch button:not(.active):hover,
 .right-column > .coverage-panel .coverage-tabs button:not(.active):hover,
 .right-column > .coverage-panel .coverage-mode button:not(.active):hover{
   opacity:.62 !important;
   filter:saturate(.78) brightness(1) !important;
+}
+
+
+/* Coverage by individual date */
+.right-column > .coverage-panel .coverage-switch.coverage-date-switch{
+  display:block !important;
+  width:100% !important;
+  margin:10px 0 16px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+.coverage-date-selector{
+  width:100% !important;
+  min-height:56px !important;
+  padding:12px 18px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border:1px solid rgba(33,158,188,.30) !important;
+  border-radius:14px !important;
+  background:rgba(33,158,188,.10) !important;
+  color:#023047 !important;
+  box-shadow:none !important;
+  font-size:15px !important;
+  font-weight:800 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  cursor:pointer !important;
+  transition:.2s ease !important;
+}
+
+.coverage-date-selector:hover{
+  background:rgba(33,158,188,.16) !important;
+  border-color:rgba(33,158,188,.45) !important;
+}
+
+body.dark .coverage-date-selector{
+  color:var(--text) !important;
+  background:rgba(var(--accent-rgb),.10) !important;
+  border-color:rgba(var(--accent-rgb),.30) !important;
+}
+
+.coverage-grid,
+.coverage-grid.weekday-mode,
+.coverage-grid.weekend-mode{
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+
+
+/* =========================================================
+   COVERAGE — FINAL VISUAL OVERRIDE
+   ========================================================= */
+.right-column > .coverage-panel .coverage-switch.coverage-date-switch{
+  display:flex !important;
+  justify-content:center !important;
+  width:100% !important;
+  margin:0 0 14px !important;
+  padding:0 10px !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+.right-column > .coverage-panel .coverage-date-selector{
+  width:100% !important;
+  min-height:62px !important;
+  padding:14px 22px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  border:1px solid rgba(214,48,58,.62) !important;
+  border-radius:12px !important;
+  background:linear-gradient(
+    90deg,
+    rgba(214,48,58,.30),
+    rgba(240,76,84,.20),
+    rgba(214,48,58,.12)
+  ) !important;
+  color:#B4232C !important;
+  box-shadow:none !important;
+  filter:none !important;
+  opacity:1 !important;
+  font-size:20px !important;
+  font-weight:850 !important;
+  letter-spacing:-.02em !important;
+  text-transform:none !important;
+  cursor:pointer !important;
+}
+
+.right-column > .coverage-panel .coverage-date-selector:hover,
+.right-column > .coverage-panel .coverage-date-selector:focus{
+  background:linear-gradient(
+    90deg,
+    rgba(214,48,58,.36),
+    rgba(240,76,84,.25),
+    rgba(214,48,58,.16)
+  ) !important;
+  border-color:rgba(214,48,58,.78) !important;
+  color:#9F1F28 !important;
+  box-shadow:none !important;
+  outline:none !important;
+}
+
+body.dark .right-column > .coverage-panel .coverage-date-selector{
+  background:linear-gradient(
+    90deg,
+    rgba(255,82,92,.30),
+    rgba(255,104,112,.20),
+    rgba(255,82,92,.12)
+  ) !important;
+  border-color:rgba(255,92,102,.62) !important;
+  color:#FF8A91 !important;
+  box-shadow:none !important;
+}
+
+/* Palette: Blue Navy / Cempasúchil / Cobalt Blue / Maya Blue */
+.right-column > .coverage-panel .coverage-card.supervisors{
+  background:rgba(10,35,66,.15) !important;
+  border:1px solid rgba(10,35,66,.36) !important;
+  box-shadow:none !important;
+}
+.right-column > .coverage-panel .coverage-card.supervisors .coverage-category{color:#0A2342 !important;}
+.right-column > .coverage-panel .coverage-card.supervisors .coverage-dot{background:#0A2342 !important;box-shadow:none !important;}
+
+.right-column > .coverage-panel .coverage-card.psw{
+  background:rgba(244,135,19,.17) !important;
+  border:1px solid rgba(244,135,19,.40) !important;
+  box-shadow:none !important;
+}
+.right-column > .coverage-panel .coverage-card.psw .coverage-category{color:#C96D08 !important;}
+.right-column > .coverage-panel .coverage-card.psw .coverage-dot{background:#F48713 !important;box-shadow:none !important;}
+
+.right-column > .coverage-panel .coverage-card.nursing{
+  background:rgba(0,71,171,.15) !important;
+  border:1px solid rgba(0,71,171,.38) !important;
+  box-shadow:none !important;
+}
+.right-column > .coverage-panel .coverage-card.nursing .coverage-category{color:#0047AB !important;}
+.right-column > .coverage-panel .coverage-card.nursing .coverage-dot{background:#0047AB !important;box-shadow:none !important;}
+
+.right-column > .coverage-panel .coverage-card.intake{
+  background:rgba(115,194,251,.20) !important;
+  border:1px solid rgba(64,156,220,.40) !important;
+  box-shadow:none !important;
+}
+.right-column > .coverage-panel .coverage-card.intake .coverage-category{color:#2589C7 !important;}
+.right-column > .coverage-panel .coverage-card.intake .coverage-dot{background:#73C2FB !important;box-shadow:none !important;}
+
+body.dark .right-column > .coverage-panel .coverage-card.supervisors .coverage-category{color:#8BA9C7 !important;}
+body.dark .right-column > .coverage-panel .coverage-card.psw .coverage-category{color:#FFB044 !important;}
+body.dark .right-column > .coverage-panel .coverage-card.nursing .coverage-category{color:#6E9EFF !important;}
+body.dark .right-column > .coverage-panel .coverage-card.intake .coverage-category{color:#8FD3FF !important;}
+
+
+/* FINAL COVERAGE DATE BUTTON — muted red, flat */
+#coverageDateSelector{
+  width:100%;
+  min-height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(220,60,70,.18) !important;
+  color:#C93643 !important;
+  border:1px solid rgba(220,60,70,.48) !important;
+  border-radius:12px;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  filter:none !important;
+  font-size:18px;
+  font-weight:800;
+  text-align:center;
+  cursor:pointer;
+}
+#coverageDateSelector:hover,
+#coverageDateSelector:focus,
+#coverageDateSelector:active{
+  background:rgba(220,60,70,.24) !important;
+  color:#C93643 !important;
+  border-color:rgba(220,60,70,.60) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  filter:none !important;
+  transform:none !important;
+}
+
+/* FINAL COVERAGE + FIREBASE STATUS OVERRIDES */
+#coverageDateSelector{
+  background:rgba(220,45,55,.62) !important;
+  color:#fff !important;
+  border:1px solid rgba(220,45,55,.88) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  filter:none !important;
+}
+#coverageDateSelector:hover,
+#coverageDateSelector:focus,
+#coverageDateSelector:active{
+  background:rgba(220,45,55,.72) !important;
+  color:#fff !important;
+  border-color:rgba(220,45,55,.96) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  filter:none !important;
+}
+@keyframes firebaseConnectedFastBlink{
+  0%,100%{opacity:1;}
+  50%{opacity:.18;}
+}
+.firebase-status.connected .firebase-dot{
+  background:#315BFF !important;
+  box-shadow:0 0 10px rgba(49,91,255,.72) !important;
+  animation:firebaseConnectedFastBlink .42s linear infinite !important;
+}
+@media (prefers-reduced-motion: reduce){
+  .firebase-status.connected .firebase-dot{animation:none !important;}
+}
+
+/* =========================================================
+   FINAL COVERAGE DATE BUTTON — ACTIVE / ON STATE
+   ========================================================= */
+.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector,
+.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:not(.active){
+  background:#D9363E !important;
+  background-image:none !important;
+  color:#FFFFFF !important;
+  border:1px solid #D9363E !important;
+  opacity:1 !important;
+  filter:none !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  transform:none !important;
+}
+
+.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:hover,
+.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:focus,
+.right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:active{
+  background:#E34249 !important;
+  background-image:none !important;
+  color:#FFFFFF !important;
+  border-color:#E34249 !important;
+  opacity:1 !important;
+  filter:none !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  transform:none !important;
+}
+
+body.dark .right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector,
+body.dark .right-column > .coverage-panel .coverage-switch.coverage-date-switch button#coverageDateSelector.coverage-date-selector:not(.active){
+  background:#D9363E !important;
+  background-image:none !important;
+  color:#FFFFFF !important;
+  border-color:#D9363E !important;
+  opacity:1 !important;
+  filter:none !important;
+  box-shadow:none !important;
+}
+
+/* Coverage date — coverage-card opacity + slow pulse */
+@keyframes coverageDateSlowPulse{
+  0%,100%{background:rgba(217,54,62,.17);border-color:rgba(217,54,62,.40);}
+  50%{background:rgba(217,54,62,.30);border-color:rgba(217,54,62,.58);}
+}
+#coverageDateSelector,
+#coverageDateSelector.coverage-date-selector:not(.active),
+#coverageDateSelector:hover,
+#coverageDateSelector:focus,
+#coverageDateSelector:active{
+  background:rgba(217,54,62,.17) !important;
+  background-image:none !important;
+  color:#C92F38 !important;
+  border:1px solid rgba(217,54,62,.40) !important;
+  opacity:1 !important;filter:none !important;box-shadow:none !important;text-shadow:none !important;transform:none !important;
+  animation:coverageDateSlowPulse 2.4s ease-in-out infinite !important;
+}
+body.dark #coverageDateSelector,body.dark #coverageDateSelector.coverage-date-selector:not(.active){color:#FF8A91 !important;}
+@media (prefers-reduced-motion:reduce){#coverageDateSelector,#coverageDateSelector.coverage-date-selector:not(.active){animation:none !important;}}
+
+/* Coverage date — more translucent + visible slow blink */
+@keyframes coverageTranslucentBlink{
+  0%,100%{background:rgba(217,54,62,.10);border-color:rgba(217,54,62,.28);opacity:1;}
+  50%{background:rgba(217,54,62,.25);border-color:rgba(217,54,62,.48);opacity:1;}
+}
+#coverageDateSelector,
+#coverageDateSelector.coverage-date-selector:not(.active),
+#coverageDateSelector:hover,
+#coverageDateSelector:focus,
+#coverageDateSelector:active{
+  background:rgba(217,54,62,.10) !important;
+  background-image:none !important;
+  color:#C92F38 !important;
+  border:1px solid rgba(217,54,62,.28) !important;
+  opacity:1 !important;
+  filter:none !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  transform:none !important;
+  animation:coverageTranslucentBlink 1.8s ease-in-out infinite !important;
+}
+body.dark #coverageDateSelector{color:#FF8A91 !important;}
+
+
+/* IMPORTANT INFORMATION — intense red glowing ! */
+@keyframes importantAlertGlow{
+  0%,100%{
+    opacity:1;
+    transform:scale(1);
+    box-shadow:0 0 8px rgba(255,31,53,.95),0 0 18px rgba(255,31,53,.72),0 0 30px rgba(255,31,53,.42);
+  }
+  50%{
+    opacity:.78;
+    transform:scale(.92);
+    box-shadow:0 0 4px rgba(255,31,53,.80),0 0 10px rgba(255,31,53,.48),0 0 18px rgba(255,31,53,.25);
+  }
+}
+.important-icon{
+  color:#fff !important;
+  background:#FF1F35 !important;
+  border:1px solid #FF5364 !important;
+  opacity:1 !important;
+  filter:none !important;
+  text-shadow:0 0 4px rgba(255,255,255,.95) !important;
+  box-shadow:0 0 8px rgba(255,31,53,.95),0 0 18px rgba(255,31,53,.72),0 0 30px rgba(255,31,53,.42) !important;
+  animation:importantAlertGlow 1.45s ease-in-out infinite !important;
+}
+.important-icon::before{
+  color:#fff !important;
+  text-shadow:0 0 4px rgba(255,255,255,.95) !important;
+}
+
+
+/* FINAL TUNING — Important ! + Coverage date */
+@keyframes importantAlertSoftPulse{
+  0%,100%{
+    opacity:1;
+    box-shadow:0 0 5px rgba(220,38,38,.42),0 0 10px rgba(220,38,38,.20);
+  }
+  50%{
+    opacity:.86;
+    box-shadow:0 0 2px rgba(220,38,38,.26),0 0 6px rgba(220,38,38,.12);
+  }
+}
+
+.important-icon{
+  color:#111 !important;
+  background:#E83B46 !important;
+  border-color:rgba(190,25,38,.62) !important;
+  text-shadow:none !important;
+  box-shadow:0 0 5px rgba(220,38,38,.42),0 0 10px rgba(220,38,38,.20) !important;
+  animation:importantAlertSoftPulse 1.6s ease-in-out infinite !important;
+}
+
+/* Coverage: translucent red, similar visual weight to PSW card */
+#coverageDateSelector,
+#coverageDateSelector.coverage-date-selector,
+#coverageDateSelector.coverage-date-selector:not(.active),
+#coverageDateSelector:hover,
+#coverageDateSelector:focus,
+#coverageDateSelector:active{
+  background:rgba(217,54,62,.17) !important;
+  background-image:none !important;
+  color:#B72D36 !important;
+  border:1px solid rgba(217,54,62,.40) !important;
+  opacity:1 !important;
+  filter:none !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  transform:none !important;
+}
+
+@keyframes coverageSoftBlink{
+  0%,100%{ background-color:rgba(217,54,62,.17); }
+  50%{ background-color:rgba(217,54,62,.09); }
+}
+
+#coverageDateSelector{
+  animation:coverageSoftBlink 2.2s ease-in-out infinite !important;
+}
+
+
+/* FINAL CORRECTION — softer Coverage + black ! */
+.important-icon{
+  color:#000000 !important;
+  -webkit-text-fill-color:#000000 !important;
+  text-shadow:none !important;
+}
+.important-icon::before,
+.important-icon::after{
+  color:#000000 !important;
+  -webkit-text-fill-color:#000000 !important;
+  text-shadow:none !important;
+}
+
+/* Coverage was still intense because previous animations/rules were competing.
+   This override keeps the entire blink in a very translucent range. */
+@keyframes coverageVerySoftBlink{
+  0%,100%{
+    background:rgba(217,54,62,.105) !important;
+    border-color:rgba(217,54,62,.28) !important;
+  }
+  50%{
+    background:rgba(217,54,62,.045) !important;
+    border-color:rgba(217,54,62,.18) !important;
+  }
+}
+
+#coverageDateSelector,
+#coverageDateSelector.coverage-date-selector,
+#coverageDateSelector.coverage-date-selector:not(.active),
+.right-column > .coverage-panel #coverageDateSelector,
+.right-column > .coverage-panel .coverage-date-selector{
+  background:rgba(217,54,62,.105) !important;
+  background-image:none !important;
+  color:#B53A42 !important;
+  border:1px solid rgba(217,54,62,.28) !important;
+  opacity:1 !important;
+  filter:none !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  transform:none !important;
+  animation:coverageVerySoftBlink 2.2s ease-in-out infinite !important;
+}
+
+#coverageDateSelector:hover,
+#coverageDateSelector:focus,
+#coverageDateSelector:active{
+  background:rgba(217,54,62,.13) !important;
+  border-color:rgba(217,54,62,.34) !important;
+  color:#A92F38 !important;
+  box-shadow:none !important;
+  filter:none !important;
+}
+
+
+/* IMPORTANT INFORMATION — soft pulse, black ! */
+@keyframes importantIconPulseSoft{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 4px rgba(220,38,38,.26),
+      0 0 8px rgba(220,38,38,.12);
+  }
+  50%{
+    transform:scale(1.12);
+    box-shadow:
+      0 0 7px rgba(220,38,38,.42),
+      0 0 14px rgba(220,38,38,.20);
+  }
+}
+
+.important-icon{
+  color:#000000 !important;
+  -webkit-text-fill-color:#000000 !important;
+  text-shadow:none !important;
+  transform-origin:center !important;
+  animation:importantIconPulseSoft 1.8s ease-in-out infinite !important;
+}
+
+.important-icon::before,
+.important-icon::after{
+  color:#000000 !important;
+  -webkit-text-fill-color:#000000 !important;
+  text-shadow:none !important;
+}
+
+
+@keyframes coverageEE6C4DPulse{
+  0%,100%{background:rgba(238,108,77,.18);border-color:rgba(238,108,77,.42);}
+  50%{background:rgba(238,108,77,.08);border-color:rgba(238,108,77,.25);}
+}
+#coverageDateSelector,
+.right-column > .coverage-panel #coverageDateSelector{
+  background:rgba(238,108,77,.18) !important;
+  background-image:none !important;
+  border:1px solid rgba(238,108,77,.42) !important;
+  color:#c84f35 !important;
+  opacity:1 !important;
+  filter:none !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  animation:coverageEE6C4DPulse 2.2s ease-in-out infinite !important;
+}
+#coverageDateSelector:hover,
+#coverageDateSelector:focus,
+#coverageDateSelector:active{
+  background:rgba(238,108,77,.23) !important;
+  border-color:rgba(238,108,77,.52) !important;
+  color:#b9442d !important;
+  box-shadow:none !important;
+}
+
+
+/* Coverage #ee6c4d — softer translucency */
+@keyframes coverageEE6C4DSoftPulse{
+  0%,100%{
+    background:rgba(238,108,77,.10);
+    border-color:rgba(238,108,77,.28);
+  }
+  50%{
+    background:rgba(238,108,77,.045);
+    border-color:rgba(238,108,77,.17);
+  }
+}
+
+#coverageDateSelector,
+.right-column > .coverage-panel #coverageDateSelector{
+  background:rgba(238,108,77,.10) !important;
+  border-color:rgba(238,108,77,.28) !important;
+  color:#b85a45 !important;
+  animation:coverageEE6C4DSoftPulse 2.2s ease-in-out infinite !important;
+}
+
+#coverageDateSelector:hover,
+#coverageDateSelector:focus,
+#coverageDateSelector:active{
+  background:rgba(238,108,77,.14) !important;
+  border-color:rgba(238,108,77,.34) !important;
+}
+
+
+
+
+/* =========================================================
+   COVERAGE DATE SELECTOR — CANONICAL STYLE
+   Visually behaves like one more active Area row.
+   DAY = BLUE / NIGHT = PURPLE
+   ========================================================= */
+
+.right-column > .coverage-panel .coverage-switch.coverage-date-switch{
+  display:block !important;
+  width:100% !important;
+  margin:10px 0 16px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+html body #coverageDateSelector.coverage-date-selector{
+  width:100% !important;
+  min-height:56px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  border-radius:14px !important;
+  font:inherit !important;
+  font-weight:800 !important;
+  letter-spacing:.02em !important;
+  cursor:pointer !important;
+  opacity:1 !important;
+  filter:none !important;
+  text-shadow:none !important;
+  animation:none !important;
+  transition:
+    background .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .18s ease !important;
+}
+
+/* DAY — same family as an active blue Area */
+html body:not(.dark) #coverageDateSelector.coverage-date-selector{
+  background:rgba(28,112,196,.16) !important;
+  background-image:none !important;
+  border:1px solid rgba(28,112,196,.48) !important;
+  color:#1C70C4 !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.20),
+    0 0 14px rgba(28,112,196,.12) !important;
+}
+
+html body:not(.dark) #coverageDateSelector.coverage-date-selector::before{
+  content:"" !important;
+  width:8px !important;
+  height:8px !important;
+  flex:0 0 8px !important;
+  border-radius:50% !important;
+  background:#1C70C4 !important;
+  box-shadow:
+    0 0 6px rgba(28,112,196,.72),
+    0 0 12px rgba(28,112,196,.28) !important;
+}
+
+/* NIGHT — same family as an active purple Area */
+html body.dark #coverageDateSelector.coverage-date-selector{
+  background:rgba(168,85,247,.16) !important;
+  background-image:none !important;
+  border:1px solid rgba(168,85,247,.50) !important;
+  color:#C084FC !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.035),
+    0 0 14px rgba(168,85,247,.14) !important;
+}
+
+html body.dark #coverageDateSelector.coverage-date-selector::before{
+  content:"" !important;
+  width:8px !important;
+  height:8px !important;
+  flex:0 0 8px !important;
+  border-radius:50% !important;
+  background:#A855F7 !important;
+  box-shadow:
+    0 0 6px rgba(168,85,247,.78),
+    0 0 12px rgba(168,85,247,.30) !important;
+}
+
+html body #coverageDateSelector.coverage-date-selector:hover{
+  transform:translateY(-1px) !important;
+}
+
+html body #coverageDateSelector.coverage-date-selector:active{
+  transform:translateY(0) !important;
 }
 
 </style>
@@ -4867,45 +5109,16 @@ COVERAGE TOGGLE — FULL WIDTH + ACTIVE/INACTIVE EMPHASIS
 
 <section class="panel coverage-panel">
 
-  <div class="panel-header coverage-panel-header">
-
-    <div>
-
-      <h2 class="panel-title">
-        Coverage
-      </h2>
-
-      <p class="panel-sub">
-        Daily coordinator coverage
-      </p>
-
-    </div>
-
+  <div class="coverage-switch coverage-date-switch">
+    <button
+      id="coverageDateSelector"
+      class="coverage-date-selector"
+      type="button"
+      aria-label="Select coverage date">
+      Coverage
+    </button>
   </div>
 
-  <div class="coverage-switch">
-
-    <button
-      id="weekdayMode"
-      class="coverage-mode active"
-      type="button">
-
-      <span class="coverage-mode-dot"></span>
-      WEEKDAY
-
-    </button>
-
-    <button
-      id="weekendMode"
-      class="coverage-mode weekend"
-      type="button">
-
-      <span class="coverage-mode-dot"></span>
-      WEEKEND
-
-    </button>
-
-  </div>
 
   <div
     id="coverageGrid"
@@ -5044,7 +5257,6 @@ COVERAGE TOGGLE — FULL WIDTH + ACTIVE/INACTIVE EMPHASIS
       </textarea>
 
     </div>
-
 
 
   </div>
@@ -5656,7 +5868,7 @@ const firebaseConfig = {
 
   authDomain:
     "paramed-daily-operations.firebaseapp.com",
- 
+
   projectId:
     "paramed-daily-operations",
 
@@ -5703,7 +5915,6 @@ const operationsRef =
     "paramedOperations",
     "main"
   );
-
 
 
 /* =========================================================
@@ -6445,20 +6656,11 @@ let directoryEdits =
 COVERAGE MODE
 ========================================================= */
 
-let coverageMode =
-  localStorage.getItem(
-    "paramedCoverageMode"
-  ) || "weekday";
 
-const weekdayMode =
-  document.getElementById(
-    "weekdayMode"
-  );
+let coverageMode = "";
+const coverageDateSelector =
+  document.getElementById("coverageDateSelector");
 
-const weekendMode =
-  document.getElementById(
-    "weekendMode"
-  );
 
 const coverageGrid =
   document.getElementById(
@@ -6693,7 +6895,7 @@ async function saveToFirebase(){
 }
 
 findNestedArrays(payload);
-          
+
           console.log(
             "Saving to Firebase:",
             payload
@@ -7979,22 +8181,116 @@ function render(){
 RENDER COVERAGE
 ========================================================= */
 
+
+function getCoverageDateKey(date){
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2,"0");
+  const day = String(date.getDate()).padStart(2,"0");
+
+  return `${year}-${month}-${day}`;
+
+}
+
+function createEmptyCoverageDay(){
+
+  return {
+    psw:{
+      coordinators:[],
+      notes:""
+    },
+    nursing:{
+      coordinators:[],
+      notes:""
+    },
+    intake:{
+      coordinators:[],
+      notes:""
+    },
+    supervisors:[]
+  };
+
+}
+
+function ensureCoverageDate(){
+
+  coverageMode =
+    getCoverageDateKey(selectedDate);
+
+  if(
+    !coverageData[coverageMode] ||
+    typeof coverageData[coverageMode] !== "object" ||
+    Array.isArray(coverageData[coverageMode])
+  ){
+    coverageData[coverageMode] =
+      createEmptyCoverageDay();
+  }
+
+  const dayData =
+    coverageData[coverageMode];
+
+  ["psw","nursing","intake"].forEach(key=>{
+
+    if(
+      !dayData[key] ||
+      typeof dayData[key] !== "object" ||
+      Array.isArray(dayData[key])
+    ){
+      dayData[key] = {
+        coordinators:[],
+        notes:""
+      };
+    }
+
+    if(!Array.isArray(dayData[key].coordinators)){
+      dayData[key].coordinators = [];
+    }
+
+    if(typeof dayData[key].notes !== "string"){
+      dayData[key].notes = "";
+    }
+
+  });
+
+  if(!Array.isArray(dayData.supervisors)){
+    dayData.supervisors = [];
+  }
+
+  return dayData;
+
+}
+
+function updateCoverageDateSelector(){
+
+  if(!coverageDateSelector) return;
+
+  const month =
+    selectedDate.toLocaleDateString(
+      "en-US",
+      {month:"long"}
+    );
+
+  const day =
+    selectedDate.getDate();
+
+  coverageDateSelector.textContent =
+    `Coverage ${month} ${day}`;
+
+}
+
 function renderCoverage(){
 
   normalizeCoverageData();
 
-  coverageGrid.classList.toggle(
+  coverageGrid.classList.remove(
     "weekday-mode",
-    coverageMode === "weekday"
-  );
-
-  coverageGrid.classList.toggle(
-    "weekend-mode",
-    coverageMode === "weekend"
+    "weekend-mode"
   );
 
   const current =
-    coverageData[coverageMode];
+    ensureCoverageDate();
+
+  updateCoverageDateSelector();
 
   [
     "psw",
@@ -8563,55 +8859,22 @@ Object.keys(
 WEEKDAY / WEEKEND
 ========================================================= */
 
+
 function applyCoverageMode(){
 
-  weekdayMode.classList.toggle(
-    "active",
-    coverageMode === "weekday"
-  );
-
-  weekendMode.classList.toggle(
-    "active",
-    coverageMode === "weekend"
-  );
-
+  ensureCoverageDate();
+  updateCoverageDateSelector();
   renderCoverage();
 
 }
 
-weekdayMode.addEventListener(
+coverageDateSelector.addEventListener(
   "click",
   ()=>{
-
-    coverageMode =
-      "weekday";
-
-    localStorage.setItem(
-      "paramedCoverageMode",
-      coverageMode
-    );
-
-    applyCoverageMode();
-
+    calendarButton.click();
   }
 );
 
-weekendMode.addEventListener(
-  "click",
-  ()=>{
-
-    coverageMode =
-      "weekend";
-
-    localStorage.setItem(
-      "paramedCoverageMode",
-      coverageMode
-    );
-
-    applyCoverageMode();
-
-  }
-);
 /* =========================================================
 IMPORTANT NOTES
 ========================================================= */
@@ -9503,6 +9766,11 @@ function renderCalendar(){
 
         updateCoverageMonthTitle();
 
+        coverageMode =
+          getCoverageDateKey(selectedDate);
+
+        renderCoverage();
+
         calendarButtonDate.textContent =
           selectedDate.getDate();
 
@@ -9571,7 +9839,10 @@ function updateCoverageMonthTitle(){
     "Coverage " +
     selectedDate.toLocaleDateString(
       "en-US",
-      { month:"long" }
+      {
+        month:"long",
+        day:"numeric"
+      }
     );
 
   currentDate.textContent =
@@ -9579,6 +9850,8 @@ function updateCoverageMonthTitle(){
 
   document.title =
     coverageTitle;
+
+  updateCoverageDateSelector();
 
 }
 
