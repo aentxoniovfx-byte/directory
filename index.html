@@ -3629,6 +3629,1053 @@ body.dark .date-icon{
   box-shadow:none !important;
 }
 
+
+
+/* =========================================================
+CLEAN + HARMONIOUS UI PASS
+========================================================= */
+
+.wrap{
+  padding:18px 20px 28px !important;
+}
+
+@media(max-width:900px){
+  .wrap{
+    padding:14px 14px 22px !important;
+  }
+}
+
+.topbar{
+  margin:0 0 14px 0 !important;
+  padding:2px 2px 0 !important;
+  min-height:auto !important;
+  align-items:center !important;
+}
+
+.date-area{ gap:10px !important; }
+.date-title{
+  line-height:1.08 !important;
+  margin:0 !important;
+}
+.date-sub{
+  margin-top:3px !important;
+  line-height:1.2 !important;
+}
+.top-actions{ gap:8px !important; }
+
+.panel,
+.coverage-panel,
+.directory-section,
+.important-notes{
+  border-radius:16px !important;
+}
+
+.panel,
+.coverage-panel,
+.directory-section{
+  padding:16px !important;
+}
+
+@media(max-width:700px){
+  .panel,
+  .coverage-panel,
+  .directory-section{
+    padding:13px !important;
+  }
+}
+
+.panel + .panel,
+.directory-section + .directory-section{
+  margin-top:14px !important;
+}
+
+.panel-title,
+.directory-title,
+.coverage-title{
+  margin:0 0 10px 0 !important;
+  line-height:1.15 !important;
+}
+
+.card{
+  margin:0 0 8px 0 !important;
+  border-radius:13px !important;
+}
+
+.card:last-child{ margin-bottom:0 !important; }
+
+.card .area{
+  min-height:46px !important;
+  padding:10px 14px !important;
+  gap:10px !important;
+}
+
+.area-name{ line-height:1.15 !important; }
+
+.card.open .details,
+.card.open .details-wrapper{
+  padding-top:0 !important;
+  margin-top:0 !important;
+}
+
+.card.open .details{ gap:0 !important; }
+
+.card.open .info,
+.card.open .oncall-cell{
+  padding:12px 14px !important;
+}
+
+input,
+textarea,
+select{
+  border-radius:10px !important;
+}
+
+.card.open input,
+.card.open select{
+  min-height:38px !important;
+  padding:8px 10px !important;
+}
+
+.card.open textarea{
+  padding:10px !important;
+}
+
+.coverage-panel{ margin-top:14px !important; }
+.coverage-grid{ gap:10px !important; }
+
+.coverage-card{
+  border-radius:14px !important;
+  padding:13px !important;
+}
+
+.coverage-category{
+  margin-bottom:8px !important;
+  line-height:1.15 !important;
+}
+
+.coverage-coordinator-row,
+.coverage-supervisor-row{
+  gap:8px !important;
+  margin-bottom:8px !important;
+}
+
+.coverage-coordinator-row:last-child,
+.coverage-supervisor-row:last-child{
+  margin-bottom:0 !important;
+}
+
+.coverage-tabs,
+.coverage-mode{
+  margin-bottom:10px !important;
+}
+
+.coverage-tabs button,
+.coverage-mode button{
+  box-shadow:none !important;
+}
+
+.important-notes{
+  padding:14px 16px !important;
+  min-height:88px !important;
+}
+
+.important-editor-toolbar{
+  gap:6px !important;
+  padding:8px !important;
+  margin-bottom:8px !important;
+  border-radius:12px !important;
+}
+
+.important-tool,
+.important-tool-select,
+.important-color-wrap{
+  min-height:34px !important;
+  border-radius:9px !important;
+}
+
+button,
+.small-button{
+  border-radius:10px !important;
+}
+
+main > :first-child{ margin-top:0 !important; }
+main > :last-child{ margin-bottom:0 !important; }
+
+.directory-section,
+.coverage-panel,
+.panel{
+  border-width:1px !important;
+}
+
+body:not(.dark) .panel-title,
+body:not(.dark) .directory-title,
+body:not(.dark) .coverage-title,
+body:not(.dark) .date-title{
+  color:#0B3266 !important;
+}
+
+body.dark .panel-title,
+body.dark .directory-title,
+body.dark .coverage-title,
+body.dark .date-title{
+  color:#F3F4FF !important;
+}
+
+body:not(.dark) .date-sub,
+body:not(.dark) .secondary,
+body:not(.dark) .muted{
+  color:#5D7693 !important;
+}
+
+@media(max-width:620px){
+  .topbar{ gap:10px !important; }
+  .top-actions{ gap:6px !important; }
+
+  .small-button{
+    padding-left:10px !important;
+    padding-right:10px !important;
+  }
+
+  .coverage-grid{ gap:8px !important; }
+
+  .card .area{
+    padding:10px 12px !important;
+  }
+}
+
+
+
+/* =========================================================
+COVERAGE — MINIMAL / FLAT / LESS VISUAL NOISE
+========================================================= */
+
+/* Remove the outer Coverage box feeling */
+.coverage-panel{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  padding:8px 0 0 !important;
+  border-radius:0 !important;
+  -webkit-backdrop-filter:none !important;
+  backdrop-filter:none !important;
+}
+
+/* Remove extra framing around Coverage header / mode controls */
+.coverage-header,
+.coverage-title,
+.coverage-tabs,
+.coverage-mode{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+/* Let the cards breathe without looking like nested glowing boxes */
+.coverage-grid{
+  gap:8px !important;
+}
+
+.coverage-grid .coverage-card{
+  box-shadow:none !important;
+  border-width:0 !important;
+  outline:0 !important;
+}
+
+/* Softer card surfaces — color remains, halo disappears */
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
+  background:rgba(255,116,23,.13) !important;
+}
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.nursing{
+  background:rgba(11,78,162,.12) !important;
+}
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
+  background:rgba(41,169,232,.14) !important;
+}
+
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.psw{
+  box-shadow:none !important;
+}
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.nursing{
+  box-shadow:none !important;
+}
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
+  box-shadow:none !important;
+}
+
+/* Supervisors card should feel like part of the same group */
+.coverage-card.supervisors,
+.coverage-supervisor-card,
+.supervisor-card,
+.coverage-supervisors{
+  box-shadow:none !important;
+  border:0 !important;
+  outline:0 !important;
+}
+
+/* Remove internal divider lines between Coverage sections */
+.coverage-grid .coverage-card + .coverage-card{
+  border-left:0 !important;
+}
+
+.coverage-grid .coverage-card::before,
+.coverage-grid .coverage-card::after{
+  box-shadow:none !important;
+  border:0 !important;
+}
+
+/* Remove extra borders from rows and controls inside Coverage */
+.coverage-coordinator-row,
+.coverage-supervisor-row,
+.coverage-note-row,
+.coverage-notes{
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+.coverage-card input,
+.coverage-card textarea,
+.coverage-card select{
+  box-shadow:none !important;
+}
+
+/* Night mode: same clean treatment */
+body.dark .coverage-panel{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+body.dark .coverage-grid .coverage-card{
+  box-shadow:none !important;
+  border:0 !important;
+}
+
+/* =========================================================
+REMOVE TOP LOGO BOX
+========================================================= */
+
+/* Hide the square logo/icon block at the very top */
+.date-icon{
+  display:none !important;
+}
+
+/* Close the gap left by the removed icon */
+.date-area{
+  gap:0 !important;
+}
+
+
+
+/* =========================================================
+COVERAGE — REMOVE BACKPLATE + HEADER DIVIDER
+========================================================= */
+
+/* Completely remove the shaded rectangle behind
+   Supervisors / PSW / Nursing / Intake */
+.coverage-panel,
+body:not(.dark) .coverage-panel,
+body.dark .coverage-panel{
+  background:none !important;
+  background-color:transparent !important;
+  background-image:none !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  -webkit-backdrop-filter:none !important;
+  backdrop-filter:none !important;
+}
+
+/* Remove any pseudo-layer that could still create a backplate */
+.coverage-panel::before,
+.coverage-panel::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+/* Keep each individual Coverage card as the only visible surface */
+.coverage-grid .coverage-card{
+  box-shadow:none !important;
+}
+
+/* Remove the line between Coverage title / Weekday-Weekend controls
+   and the cards */
+.coverage-header,
+.coverage-mode,
+.coverage-tabs{
+  border-bottom:0 !important;
+  border-top:0 !important;
+  box-shadow:none !important;
+}
+
+.coverage-header::after,
+.coverage-mode::after,
+.coverage-tabs::after{
+  content:none !important;
+  display:none !important;
+  border:0 !important;
+  background:transparent !important;
+}
+
+/* If the divider belongs to the grid itself, make it invisible */
+.coverage-grid{
+  border-top:0 !important;
+  box-shadow:none !important;
+}
+
+/* Preserve clean spacing without recreating a visible container */
+.coverage-grid{
+  margin-top:8px !important;
+}
+
+
+
+/* =========================================================
+FINAL COVERAGE CLEANUP — TARGET ACTUAL COVERAGE PANEL
+========================================================= */
+
+/* Day palette contains no green */
+body:not(.dark){
+  --green:#FF2D2D !important;
+}
+
+/* Actual outer Coverage panel: completely invisible */
+.right-column > .coverage-panel,
+body:not(.dark) .right-column > .coverage-panel,
+body.dark .right-column > .coverage-panel{
+  background:transparent !important;
+  background-image:none !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  overflow:visible !important;
+  -webkit-backdrop-filter:none !important;
+  backdrop-filter:none !important;
+}
+
+/* Remove divider under Coverage title */
+.right-column > .coverage-panel > .panel-header,
+.right-column > .coverage-panel .coverage-panel-header{
+  border-bottom:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+
+/* Remove the colored/shaded backplate behind ALL coverage cards */
+.right-column > .coverage-panel .coverage-grid,
+.right-column > .coverage-panel .coverage-grid.weekday-mode,
+.right-column > .coverage-panel .coverage-grid.weekend-mode{
+  background:transparent !important;
+  background-image:none !important;
+  box-shadow:none !important;
+  border:0 !important;
+  outline:0 !important;
+}
+
+/* Keep only the individual cards */
+.right-column > .coverage-panel .coverage-card{
+  box-shadow:none !important;
+}
+
+/* Day Supervisors: replace green with intense red */
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
+  background:rgba(255,45,45,.13) !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors .coverage-category{
+  color:#B80F1F !important;
+}
+
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors .coverage-dot{
+  background:#FF2D2D !important;
+  box-shadow:none !important;
+}
+
+/* Any green status/accent in Day becomes the same red */
+body:not(.dark) .firebase-dot,
+body:not(.dark) .status-dot,
+body:not(.dark) [class*="status"]::before{
+  border-color:transparent;
+}
+
+/* Weekday/Weekend switch: no enclosing framed strip */
+.right-column > .coverage-panel .coverage-switch{
+  background:transparent !important;
+  border-color:rgba(var(--accent-rgb),.08) !important;
+  box-shadow:none !important;
+}
+
+/* Keep spacing, not framing */
+.right-column > .coverage-panel .coverage-panel-header{
+  padding-bottom:8px !important;
+}
+
+.right-column > .coverage-panel .coverage-grid{
+  padding:8px 10px 10px !important;
+  margin-top:0 !important;
+}
+
+
+
+/* =========================================================
+COVERAGE CARDS — RESTORE COLOR SURFACES WITHOUT HALO
+========================================================= */
+
+/* Weekday */
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
+  background:rgba(255,45,45,.16) !important;
+}
+
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
+  background:rgba(255,116,23,.18) !important;
+}
+
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.nursing{
+  background:rgba(11,78,162,.18) !important;
+}
+
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
+  background:rgba(41,169,232,.20) !important;
+}
+
+/* Weekend */
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.supervisors{
+  background:rgba(184,15,31,.16) !important;
+}
+
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.psw{
+  background:rgba(214,44,44,.18) !important;
+}
+
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.nursing{
+  background:rgba(255,116,23,.20) !important;
+}
+
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
+  background:rgba(255,184,57,.22) !important;
+}
+
+/* Keep cards visible but clean */
+.right-column > .coverage-panel .coverage-card{
+  border:1px solid rgba(var(--accent-rgb),.07) !important;
+  box-shadow:none !important;
+}
+
+/* Softer per-card borders matching their tones */
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
+  border-color:rgba(255,45,45,.18) !important;
+}
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
+  border-color:rgba(255,116,23,.18) !important;
+}
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.nursing{
+  border-color:rgba(11,78,162,.18) !important;
+}
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
+  border-color:rgba(41,169,232,.20) !important;
+}
+
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.supervisors{
+  border-color:rgba(184,15,31,.18) !important;
+}
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.psw{
+  border-color:rgba(214,44,44,.18) !important;
+}
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.nursing{
+  border-color:rgba(255,116,23,.20) !important;
+}
+body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
+  border-color:rgba(255,184,57,.22) !important;
+}
+
+
+
+/* =========================================================
+COVERAGE WEEKDAY / WEEKEND BUTTONS
+Navy & Tangerine Floral — Cobalt Bloom / Midnight Navy / Dusty Taupe
+========================================================= */
+
+/* Base segmented controls */
+.coverage-switch,
+.coverage-tabs,
+.coverage-mode{
+  background:rgba(173,157,145,.13) !important; /* dusty taupe */
+  border:1px solid rgba(18,38,70,.09) !important;
+  box-shadow:none !important;
+  padding:3px !important;
+  border-radius:11px !important;
+}
+
+/* Both buttons always have a visible palette color */
+.coverage-switch button,
+.coverage-tabs button,
+.coverage-mode button{
+  border:0 !important;
+  box-shadow:none !important;
+  border-radius:8px !important;
+  transition:
+    background .18s ease,
+    color .18s ease,
+    opacity .18s ease !important;
+}
+
+/* WEEKDAY — Cobalt Bloom */
+body:not(.dark) .coverage-switch button:first-child,
+body:not(.dark) .coverage-tabs button:first-child,
+body:not(.dark) .coverage-mode button:first-child{
+  background:#1D55A5 !important;
+  color:#FFFFFF !important;
+}
+
+/* WEEKEND — Tangerine */
+body:not(.dark) .coverage-switch button:last-child,
+body:not(.dark) .coverage-tabs button:last-child,
+body:not(.dark) .coverage-mode button:last-child{
+  background:#E96F32 !important;
+  color:#FFFFFF !important;
+}
+
+/* Selected state gets stronger; inactive stays colored, not transparent */
+body:not(.dark) .coverage-switch button.active:first-child,
+body:not(.dark) .coverage-tabs button.active:first-child,
+body:not(.dark) .coverage-mode button.active:first-child{
+  background:#16488F !important;
+  color:#FFFFFF !important;
+  opacity:1 !important;
+}
+
+body:not(.dark) .coverage-switch button.active:last-child,
+body:not(.dark) .coverage-tabs button.active:last-child,
+body:not(.dark) .coverage-mode button.active:last-child{
+  background:#D95D26 !important;
+  color:#FFFFFF !important;
+  opacity:1 !important;
+}
+
+body:not(.dark) .coverage-switch button:not(.active),
+body:not(.dark) .coverage-tabs button:not(.active),
+body:not(.dark) .coverage-mode button:not(.active){
+  opacity:.72 !important;
+}
+
+/* Night: Midnight Navy base with cobalt/tangerine identity */
+body.dark .coverage-switch,
+body.dark .coverage-tabs,
+body.dark .coverage-mode{
+  background:#111D34 !important;
+  border-color:rgba(255,255,255,.07) !important;
+}
+
+body.dark .coverage-switch button:first-child,
+body.dark .coverage-tabs button:first-child,
+body.dark .coverage-mode button:first-child{
+  background:#234F91 !important;
+  color:#F8FAFF !important;
+}
+
+body.dark .coverage-switch button:last-child,
+body.dark .coverage-tabs button:last-child,
+body.dark .coverage-mode button:last-child{
+  background:#C85C2B !important;
+  color:#FFF8F4 !important;
+}
+
+body.dark .coverage-switch button:not(.active),
+body.dark .coverage-tabs button:not(.active),
+body.dark .coverage-mode button:not(.active){
+  opacity:.64 !important;
+}
+
+
+
+/* =========================================================
+COVERAGE TOGGLE — MATCH ONCALL ACTIVE VISUAL DEPTH
+========================================================= */
+
+body:not(.dark) .coverage-switch,
+body:not(.dark) .coverage-tabs,
+body:not(.dark) .coverage-mode{
+  background:rgba(255,255,255,.10) !important;
+  border:1px solid rgba(11,78,162,.10) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.55),
+    0 8px 20px rgba(11,78,162,.08) !important;
+  padding:4px !important;
+  border-radius:12px !important;
+}
+
+/* Weekday — same intense layered treatment as active On Call areas */
+body:not(.dark) .coverage-switch button:first-child,
+body:not(.dark) .coverage-tabs button:first-child,
+body:not(.dark) .coverage-mode button:first-child{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(11,78,162,.98) 0%,
+      rgba(22,72,184,.94) 48%,
+      rgba(41,169,232,.90) 100%
+    ) !important;
+  color:#FFFFFF !important;
+  border:1px solid rgba(11,78,162,.72) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 7px 16px rgba(11,78,162,.22) !important;
+  opacity:1 !important;
+}
+
+/* Weekend — same depth, using Tangerine */
+body:not(.dark) .coverage-switch button:last-child,
+body:not(.dark) .coverage-tabs button:last-child,
+body:not(.dark) .coverage-mode button:last-child{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(217,93,38,.98) 0%,
+      rgba(233,111,50,.96) 52%,
+      rgba(255,143,74,.90) 100%
+    ) !important;
+  color:#FFFFFF !important;
+  border:1px solid rgba(201,75,24,.68) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 7px 16px rgba(217,93,38,.22) !important;
+  opacity:1 !important;
+}
+
+/* Active mode is even stronger, like an On Call active card */
+body:not(.dark) .coverage-switch button.active:first-child,
+body:not(.dark) .coverage-tabs button.active:first-child,
+body:not(.dark) .coverage-mode button.active:first-child{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.28),
+    0 0 0 1px rgba(11,78,162,.20),
+    0 9px 22px rgba(11,78,162,.30) !important;
+  transform:translateY(-1px);
+}
+
+body:not(.dark) .coverage-switch button.active:last-child,
+body:not(.dark) .coverage-tabs button.active:last-child,
+body:not(.dark) .coverage-mode button.active:last-child{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.28),
+    0 0 0 1px rgba(217,93,38,.18),
+    0 9px 22px rgba(217,93,38,.30) !important;
+  transform:translateY(-1px);
+}
+
+/* Inactive still rich, just slightly calmer */
+body:not(.dark) .coverage-switch button:not(.active),
+body:not(.dark) .coverage-tabs button:not(.active),
+body:not(.dark) .coverage-mode button:not(.active){
+  opacity:.78 !important;
+  filter:saturate(.90) brightness(.97);
+}
+
+/* NIGHT — Midnight Navy with cobalt/tangerine depth */
+body.dark .coverage-switch,
+body.dark .coverage-tabs,
+body.dark .coverage-mode{
+  background:rgba(10,18,33,.52) !important;
+  border:1px solid rgba(255,255,255,.06) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 8px 20px rgba(0,0,0,.16) !important;
+}
+
+body.dark .coverage-switch button:first-child,
+body.dark .coverage-tabs button:first-child,
+body.dark .coverage-mode button:first-child{
+  background:
+    linear-gradient(
+      135deg,
+      #193E77 0%,
+      #234F91 56%,
+      #386DB3 100%
+    ) !important;
+  border:1px solid rgba(88,133,205,.34) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.09),
+    0 7px 16px rgba(18,47,91,.28) !important;
+  color:#F8FAFF !important;
+}
+
+body.dark .coverage-switch button:last-child,
+body.dark .coverage-tabs button:last-child,
+body.dark .coverage-mode button:last-child{
+  background:
+    linear-gradient(
+      135deg,
+      #9F431F 0%,
+      #C85C2B 55%,
+      #E7773D 100%
+    ) !important;
+  border:1px solid rgba(231,119,61,.30) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 7px 16px rgba(116,47,20,.28) !important;
+  color:#FFF9F5 !important;
+}
+
+body.dark .coverage-switch button.active,
+body.dark .coverage-tabs button.active,
+body.dark .coverage-mode button.active{
+  transform:translateY(-1px);
+  filter:saturate(1.08) brightness(1.04);
+}
+
+
+
+/* =========================================================
+COVERAGE — BRIGHT COBALT BLOOM + TANGERINE PETAL
+Centered toggle + glass panel background
+========================================================= */
+
+/* Restore a soft panel background like Directory / Important Information */
+.right-column > .coverage-panel,
+body:not(.dark) .right-column > .coverage-panel{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.58),
+      rgba(232,245,255,.34)
+    ) !important;
+  border:1px solid rgba(255,255,255,.66) !important;
+  border-radius:16px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.78),
+    0 10px 26px rgba(11,78,162,.075) !important;
+  -webkit-backdrop-filter:blur(16px) saturate(135%) !important;
+  backdrop-filter:blur(16px) saturate(135%) !important;
+  padding:16px !important;
+}
+
+body.dark .right-column > .coverage-panel{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(28,31,54,.58),
+      rgba(17,20,39,.34)
+    ) !important;
+  border:1px solid rgba(200,190,255,.10) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 12px 28px rgba(0,0,0,.18) !important;
+  -webkit-backdrop-filter:blur(16px) saturate(125%) !important;
+  backdrop-filter:blur(16px) saturate(125%) !important;
+  border-radius:16px !important;
+  padding:16px !important;
+}
+
+/* Center Weekday / Weekend in their own organized container */
+.right-column > .coverage-panel .coverage-switch,
+.right-column > .coverage-panel .coverage-tabs,
+.right-column > .coverage-panel .coverage-mode{
+  width:max-content !important;
+  min-width:260px !important;
+  margin:10px auto 14px !important;
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:6px !important;
+  padding:5px !important;
+  border-radius:14px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.64),
+      rgba(226,239,250,.40)
+    ) !important;
+  border:1px solid rgba(11,78,162,.10) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.82),
+    0 7px 18px rgba(11,78,162,.08) !important;
+}
+
+/* Buttons equally sized and centered */
+.right-column > .coverage-panel .coverage-switch button,
+.right-column > .coverage-panel .coverage-tabs button,
+.right-column > .coverage-panel .coverage-mode button{
+  flex:1 1 0 !important;
+  min-width:118px !important;
+  text-align:center !important;
+  justify-content:center !important;
+  font-weight:800 !important;
+  letter-spacing:.01em !important;
+  border-radius:10px !important;
+  padding:10px 16px !important;
+}
+
+/* WEEKDAY — brighter Cobalt Bloom */
+body:not(.dark) .coverage-switch button:first-child,
+body:not(.dark) .coverage-tabs button:first-child,
+body:not(.dark) .coverage-mode button:first-child{
+  background:
+    linear-gradient(
+      135deg,
+      #1457D9 0%,
+      #1D67F2 48%,
+      #48A9FF 100%
+    ) !important;
+  color:#FFFFFF !important;
+  border:1px solid rgba(20,87,217,.72) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -1px 0 rgba(0,42,125,.12),
+    0 8px 20px rgba(29,103,242,.30) !important;
+  filter:saturate(1.12) brightness(1.06) !important;
+}
+
+/* WEEKEND — brighter Tangerine Petal */
+body:not(.dark) .coverage-switch button:last-child,
+body:not(.dark) .coverage-tabs button:last-child,
+body:not(.dark) .coverage-mode button:last-child{
+  background:
+    linear-gradient(
+      135deg,
+      #FF6A1A 0%,
+      #FF7F2A 48%,
+      #FFA15C 100%
+    ) !important;
+  color:#FFFFFF !important;
+  border:1px solid rgba(232,82,18,.70) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -1px 0 rgba(145,44,6,.12),
+    0 8px 20px rgba(255,106,26,.30) !important;
+  filter:saturate(1.12) brightness(1.06) !important;
+}
+
+/* Selected mode: brighter and more polished */
+body:not(.dark) .coverage-switch button.active,
+body:not(.dark) .coverage-tabs button.active,
+body:not(.dark) .coverage-mode button.active{
+  opacity:1 !important;
+  transform:translateY(-1px) !important;
+  filter:saturate(1.18) brightness(1.10) !important;
+}
+
+/* Inactive still colorful, not dull */
+body:not(.dark) .coverage-switch button:not(.active),
+body:not(.dark) .coverage-tabs button:not(.active),
+body:not(.dark) .coverage-mode button:not(.active){
+  opacity:.86 !important;
+  filter:saturate(1.02) brightness(1.02) !important;
+}
+
+/* Night container stays organized */
+body.dark .right-column > .coverage-panel .coverage-switch,
+body.dark .right-column > .coverage-panel .coverage-tabs,
+body.dark .right-column > .coverage-panel .coverage-mode{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(16,24,43,.82),
+      rgba(28,31,54,.58)
+    ) !important;
+  border:1px solid rgba(200,190,255,.08) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 7px 18px rgba(0,0,0,.16) !important;
+}
+
+/* Night buttons with a little more luminance */
+body.dark .coverage-switch button:first-child,
+body.dark .coverage-tabs button:first-child,
+body.dark .coverage-mode button:first-child{
+  background:
+    linear-gradient(
+      135deg,
+      #244C91 0%,
+      #2F65BE 52%,
+      #4A83DF 100%
+    ) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 8px 18px rgba(32,77,145,.26) !important;
+}
+
+body.dark .coverage-switch button:last-child,
+body.dark .coverage-tabs button:last-child,
+body.dark .coverage-mode button:last-child{
+  background:
+    linear-gradient(
+      135deg,
+      #B94E20 0%,
+      #DD682D 52%,
+      #F28B50 100%
+    ) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.11),
+    0 8px 18px rgba(165,70,29,.25) !important;
+}
+
+
+
+/* =========================================================
+COVERAGE TOGGLE — FULL WIDTH + ACTIVE/INACTIVE EMPHASIS
+========================================================= */
+
+/* Toggle container uses the full available width */
+.right-column > .coverage-panel .coverage-switch,
+.right-column > .coverage-panel .coverage-tabs,
+.right-column > .coverage-panel .coverage-mode{
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+  margin:10px 0 16px !important;
+  padding:5px !important;
+  gap:7px !important;
+}
+
+/* Both buttons fill half of the Coverage window */
+.right-column > .coverage-panel .coverage-switch button,
+.right-column > .coverage-panel .coverage-tabs button,
+.right-column > .coverage-panel .coverage-mode button{
+  flex:1 1 50% !important;
+  width:50% !important;
+  min-width:0 !important;
+  min-height:48px !important;
+  padding:12px 18px !important;
+  font-size:14px !important;
+  font-weight:800 !important;
+}
+
+/* Selected button: full brightness */
+.right-column > .coverage-panel .coverage-switch button.active,
+.right-column > .coverage-panel .coverage-tabs button.active,
+.right-column > .coverage-panel .coverage-mode button.active{
+  opacity:1 !important;
+  filter:saturate(1.18) brightness(1.10) !important;
+  transform:translateY(-1px) !important;
+}
+
+/* Unselected button: clearly muted, but keeps its palette identity */
+.right-column > .coverage-panel .coverage-switch button:not(.active),
+.right-column > .coverage-panel .coverage-tabs button:not(.active),
+.right-column > .coverage-panel .coverage-mode button:not(.active){
+  opacity:.42 !important;
+  filter:saturate(.58) brightness(.94) !important;
+  transform:none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 3px 8px rgba(20,35,60,.08) !important;
+}
+
+/* Hover gives the inactive option a small preview without competing */
+.right-column > .coverage-panel .coverage-switch button:not(.active):hover,
+.right-column > .coverage-panel .coverage-tabs button:not(.active):hover,
+.right-column > .coverage-panel .coverage-mode button:not(.active):hover{
+  opacity:.62 !important;
+  filter:saturate(.78) brightness(1) !important;
+}
+
 </style>
 </head>
 
@@ -3818,7 +4865,7 @@ body.dark .date-icon{
 
 <aside class="right-column">
 
-<section class="panel">
+<section class="panel coverage-panel">
 
   <div class="panel-header coverage-panel-header">
 
