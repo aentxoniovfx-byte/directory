@@ -3804,6 +3804,14 @@ body.dark .coverage-mode button:last-child{
 .right-column > .coverage-panel .coverage-card.reception .coverage-category{color:#A94F3E !important;}
 .right-column > .coverage-panel .coverage-card.reception .coverage-dot{background:#B85C4A !important;box-shadow:none !important;}
 
+.right-column > .coverage-panel .coverage-card.clinical-supervisor{
+  background:rgba(255,210,31,.18) !important;
+  border:1px solid rgba(255,210,31,.44) !important;
+  box-shadow:none !important;
+}
+.right-column > .coverage-panel .coverage-card.clinical-supervisor .coverage-category{color:#B88900 !important;}
+.right-column > .coverage-panel .coverage-card.clinical-supervisor .coverage-dot{background:#FFD21F !important;box-shadow:none !important;}
+
 .right-column > .coverage-panel .coverage-card.psw{
   background:rgba(244,135,19,.17) !important;
   border:1px solid rgba(244,135,19,.40) !important;
@@ -3830,6 +3838,7 @@ body.dark .coverage-mode button:last-child{
 
 body.dark .right-column > .coverage-panel .coverage-card.supervisors .coverage-category{color:#8BA9C7 !important;}
 body.dark .right-column > .coverage-panel .coverage-card.reception .coverage-category{color:#E38B78 !important;}
+body.dark .right-column > .coverage-panel .coverage-card.clinical-supervisor .coverage-category{color:#FFE36B !important;}
 body.dark .right-column > .coverage-panel .coverage-card.psw .coverage-category{color:#FFB044 !important;}
 body.dark .right-column > .coverage-panel .coverage-card.nursing .coverage-category{color:#6E9EFF !important;}
 body.dark .right-column > .coverage-panel .coverage-card.intake .coverage-category{color:#8FD3FF !important;}
@@ -4263,6 +4272,29 @@ html body .right-column > .coverage-panel
         class="coverage-add supervisor-add"
         type="button">
         ＋ Add Reception
+      </button>
+
+    </div>
+
+    <!-- CLINICAL SUPERVISOR -->
+
+    <div class="coverage-card clinical-supervisor">
+
+      <div class="coverage-category">
+        <span class="coverage-dot"></span>
+        Clinical Supervisor
+      </div>
+
+      <div
+        id="coverageClinicalSupervisors"
+        class="coverage-supervisors">
+      </div>
+
+      <button
+        id="addCoverageClinicalSupervisor"
+        class="coverage-add supervisor-add"
+        type="button">
+        ＋ Add Clinical Supervisor
       </button>
 
     </div>
@@ -5362,7 +5394,8 @@ const defaultCoverageData = {
     },
 
     supervisors:[],
-    reception:[]
+    reception:[],
+    clinicalSupervisors:[]
 
   },
 
@@ -5384,7 +5417,8 @@ const defaultCoverageData = {
     },
 
     supervisors:[],
-    reception:[]
+    reception:[],
+    clinicalSupervisors:[]
 
   }
 
@@ -5771,6 +5805,31 @@ function normalizeCoverageData(){
             })
           );
 
+      if(!Array.isArray(coverageData[mode].clinicalSupervisors)){
+        coverageData[mode].clinicalSupervisors = [];
+      }
+
+      coverageData[mode].clinicalSupervisors =
+        coverageData[mode].clinicalSupervisors
+          .filter(
+            supervisor=>
+              supervisor &&
+              typeof supervisor === "object" &&
+              !Array.isArray(supervisor)
+          )
+          .map(
+            supervisor=>({
+              name:
+                supervisor.name == null
+                  ? ""
+                  : String(supervisor.name),
+              schedule:
+                supervisor.schedule == null
+                  ? ""
+                  : String(supervisor.schedule)
+            })
+          );
+
     }
   );
 
@@ -5874,6 +5933,16 @@ const coverageReception =
 const addCoverageReception =
   document.getElementById(
     "addCoverageReception"
+  );
+
+const coverageClinicalSupervisors =
+  document.getElementById(
+    "coverageClinicalSupervisors"
+  );
+
+const addCoverageClinicalSupervisor =
+  document.getElementById(
+    "addCoverageClinicalSupervisor"
   );
 
 /* =========================================================
@@ -7365,7 +7434,8 @@ function createEmptyCoverageDay(){
       notes:""
     },
     supervisors:[],
-    reception:[]
+    reception:[],
+    clinicalSupervisors:[]
   };
 
 }
@@ -7416,6 +7486,10 @@ function ensureCoverageDate(){
 
   if(!Array.isArray(dayData.reception)){
     dayData.reception = [];
+  }
+
+  if(!Array.isArray(dayData.clinicalSupervisors)){
+    dayData.clinicalSupervisors = [];
   }
 
   return dayData;
@@ -7937,6 +8011,116 @@ function renderCoverage(){
     }
   );
 
+  /*
+    CLINICAL SUPERVISOR
+  */
+
+  coverageClinicalSupervisors.innerHTML = "";
+
+  current.clinicalSupervisors.forEach(
+    (clinicalSupervisor,index)=>{
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "coverage-supervisor-row coverage-clinical-supervisor-row";
+
+      const nameInput =
+        document.createElement("input");
+
+      nameInput.className =
+        "coverage-input clinical-supervisor-name-input";
+      nameInput.type = "text";
+      nameInput.placeholder =
+        "Enter clinical supervisor…";
+      nameInput.autocomplete = "off";
+      nameInput.value =
+        clinicalSupervisor.name || "";
+      nameInput.disabled =
+        !adminMode;
+
+      const scheduleInput =
+        document.createElement("input");
+
+      scheduleInput.className =
+        "coverage-input clinical-supervisor-schedule-input";
+      scheduleInput.type = "text";
+      scheduleInput.placeholder =
+        "e.g. 8:00 AM – 4:00 PM";
+      scheduleInput.autocomplete = "off";
+      scheduleInput.value =
+        clinicalSupervisor.schedule || "";
+      scheduleInput.disabled =
+        !adminMode;
+
+      nameInput.addEventListener(
+        "input",
+        ()=>{
+          if(!adminMode) return;
+          syncVisibleClinicalSupervisorsToData();
+          saveState();
+        }
+      );
+
+      scheduleInput.addEventListener(
+        "input",
+        ()=>{
+          if(!adminMode) return;
+          syncVisibleClinicalSupervisorsToData();
+          saveState();
+        }
+      );
+
+      row.appendChild(nameInput);
+      row.appendChild(scheduleInput);
+
+      if(adminMode){
+
+        const remove =
+          document.createElement("button");
+
+        remove.className = "coverage-remove";
+        remove.type = "button";
+        remove.textContent = "×";
+        remove.title =
+          "Remove clinical supervisor";
+
+        remove.addEventListener(
+          "click",
+          ()=>{
+
+            if(!adminMode) return;
+
+            syncVisibleClinicalSupervisorsToData();
+
+            const supervisors =
+              coverageData[coverageMode]
+                .clinicalSupervisors;
+
+            if(
+              Array.isArray(supervisors) &&
+              index >= 0 &&
+              index < supervisors.length
+            ){
+              supervisors.splice(index,1);
+            }
+
+            saveState();
+            renderCoverage();
+
+          }
+        );
+
+        row.appendChild(remove);
+
+      }
+
+      coverageClinicalSupervisors.appendChild(row);
+
+    }
+  );
+
 }
 
 
@@ -8098,6 +8282,83 @@ addCoverageReception.addEventListener(
     receptionInputs[
       receptionInputs.length - 1
     ]?.focus();
+
+  }
+);
+
+
+/* =========================================================
+CLINICAL SUPERVISOR COVERAGE
+========================================================= */
+
+function syncVisibleClinicalSupervisorsToData(){
+
+  normalizeCoverageData();
+
+  const current =
+    ensureCoverageDate();
+
+  const rows =
+    coverageClinicalSupervisors.querySelectorAll(
+      ".coverage-clinical-supervisor-row"
+    );
+
+  rows.forEach(
+    (row,index)=>{
+
+      const nameInput =
+        row.querySelector(
+          ".clinical-supervisor-name-input"
+        );
+
+      const scheduleInput =
+        row.querySelector(
+          ".clinical-supervisor-schedule-input"
+        );
+
+      while(
+        current.clinicalSupervisors.length <= index
+      ){
+        current.clinicalSupervisors.push({
+          name:"",
+          schedule:""
+        });
+      }
+
+      current.clinicalSupervisors[index].name =
+        nameInput?.value ?? "";
+
+      current.clinicalSupervisors[index].schedule =
+        scheduleInput?.value ?? "";
+
+    }
+  );
+
+}
+
+addCoverageClinicalSupervisor.addEventListener(
+  "click",
+  ()=>{
+
+    if(!adminMode) return;
+
+    syncVisibleClinicalSupervisorsToData();
+
+    coverageData[coverageMode]
+      .clinicalSupervisors.push({
+        name:"",
+        schedule:""
+      });
+
+    saveState();
+    renderCoverage();
+
+    const inputs =
+      coverageClinicalSupervisors.querySelectorAll(
+        ".clinical-supervisor-name-input"
+      );
+
+    inputs[inputs.length - 1]?.focus();
 
   }
 );
