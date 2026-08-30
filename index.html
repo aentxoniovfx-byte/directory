@@ -9,9 +9,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 
-
-
-
 *{
   box-sizing:border-box;
 }
@@ -58,11 +55,6 @@ textarea:disabled{
   justify-content:flex-end;
   margin-bottom:18px;
 }
-
-
-
-
-
 
 
 .date-sub{
@@ -144,17 +136,62 @@ body.dark .small-button:hover{
   background:#9aa2b2;
 }
 
+@keyframes adminConnectedBlink{
+  0%,100%{
+    opacity:1;
+    filter:brightness(1.35);
+  }
+  50%{
+    opacity:.18;
+    filter:brightness(.75);
+  }
+}
+
 .admin-button.active{
-  border-color:rgba(0,217,149,.78);
-  background:rgba(0,217,149,.12);
+  color:#EAF7FF;
+  border-color:#63B8FF;
+  background:linear-gradient(180deg,rgba(113,196,255,.34),rgba(22,102,220,.22));
+  text-shadow:0 0 8px rgba(152,218,255,.75);
   box-shadow:
-    0 0 0 3px rgba(0,217,149,.08),
-    0 0 20px rgba(0,217,149,.18);
+    inset 0 1px 0 rgba(255,255,255,.38),
+    inset 0 0 14px rgba(104,190,255,.16),
+    0 0 0 1px rgba(126,204,255,.22),
+    0 0 10px rgba(74,169,255,.72),
+    0 0 24px rgba(36,137,255,.52),
+    0 0 42px rgba(36,137,255,.28);
 }
 
 .admin-button.active .admin-dot{
-  background:var(--green);
-  box-shadow:0 0 10px var(--green);
+  background:#F7FCFF;
+  border:1px solid #DDF4FF;
+  box-shadow:
+    0 0 3px #FFFFFF,
+    0 0 7px #FFFFFF,
+    0 0 12px #9DD7FF,
+    0 0 22px #47A9FF,
+    0 0 34px rgba(35,139,255,.92);
+  animation:adminConnectedBlink .42s linear infinite;
+}
+
+body.dark .admin-button.active{
+  color:#F2FAFF;
+  border-color:#78C5FF;
+  background:linear-gradient(180deg,rgba(86,180,255,.30),rgba(14,69,170,.24));
+  text-shadow:0 0 9px rgba(165,222,255,.88);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.30),
+    inset 0 0 16px rgba(76,170,255,.17),
+    0 0 0 1px rgba(120,197,255,.24),
+    0 0 12px rgba(72,170,255,.82),
+    0 0 28px rgba(38,140,255,.58),
+    0 0 48px rgba(38,140,255,.32);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .admin-button.active .admin-dot,
+  .firebase-status.connected .firebase-dot{
+    animation:none;
+  }
 }
 
 .firebase-status{
@@ -162,32 +199,81 @@ body.dark .small-button:hover{
   left:18px;
   bottom:18px;
   z-index:900;
+  min-width:102px;
   display:flex;
   align-items:center;
+  justify-content:center;
   gap:7px;
   padding:7px 11px;
-  border-radius:8px;
+  border-radius:9px;
   background:var(--panel-solid);
   border:1px solid var(--line);
   box-shadow:0 8px 25px rgba(0,0,0,.12);
   color:var(--secondary);
   font-size:10px;
-  font-weight:700;
+  font-weight:800;
   backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+  transition:background .22s ease,border-color .22s ease,box-shadow .22s ease,color .22s ease;
 }
 
 .firebase-dot{
   width:7px;
   height:7px;
+  flex:0 0 7px;
   border-radius:50%;
   background:#9aa2b2;
 }
 
+.firebase-status.connected{
+  color:#111;
+  border-color:#63B8FF;
+  background:linear-gradient(180deg,rgba(113,196,255,.34),rgba(22,102,220,.22));
+  text-shadow:0 0 8px rgba(77,163,255,.52);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.38),
+    inset 0 0 14px rgba(104,190,255,.16),
+    0 0 10px rgba(74,169,255,.72),
+    0 0 24px rgba(36,137,255,.35);
+}
 
+.firebase-status.connected .firebase-dot{
+  background:#4DA3FF;
+  border:1px solid #8CC8FF;
+  box-shadow:
+    0 0 4px rgba(140,200,255,.95),
+    0 0 10px #4DA3FF,
+    0 0 20px rgba(77,163,255,.88),
+    0 0 30px rgba(36,137,255,.58);
+  animation:adminConnectedBlink .42s linear infinite;
+}
+
+.firebase-status.saving{
+  color:#7B5A00;
+  border-color:rgba(255,208,0,.56);
+  background:rgba(255,208,0,.12);
+}
+
+body.dark .firebase-status.saving{
+  color:#FFE98D;
+  background:rgba(255,208,0,.10);
+}
 
 .firebase-status.saving .firebase-dot{
-  background:#ffd000;
-  box-shadow:0 0 10px #ffd000;
+  background:#FFD000;
+  box-shadow:0 0 5px #FFF1A8,0 0 14px rgba(255,208,0,.78);
+}
+
+.firebase-status.saved{
+  color:#EAF7FF;
+  border-color:#8CC8FF;
+  background:linear-gradient(180deg,rgba(140,200,255,.30),rgba(22,102,220,.18));
+  box-shadow:0 0 14px rgba(77,163,255,.38);
+}
+
+.firebase-status.saved .firebase-dot{
+  background:#FFF;
+  box-shadow:0 0 4px #FFF,0 0 12px #8CC8FF,0 0 22px #4DA3FF;
 }
 
 .firebase-status.error .firebase-dot{
@@ -266,9 +352,8 @@ body.dark .small-button:hover{
   border:1px solid var(--line);
   
   box-shadow:0 2px 7px rgba(0,0,0,.025);
-  transition:.25s ease;
+  transition:.22s cubic-bezier(.4,0,.2,1);
 }
-
 
 
 body.dark .panel{
@@ -794,74 +879,6 @@ body.dark
   padding-bottom:12px;
 }
 
-.coverage-switch{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  margin:0 10px 10px;
-  padding:3px;
-  border:1px solid var(--line);
-  border-radius:11px;
-  background:
-    rgba(var(--accent-rgb),.045);
-  box-shadow:
-    inset 0 0 12px
-    rgba(var(--accent-rgb),.035);
-}
-
-.coverage-mode{
-  position:relative;
-  height:34px;
-  border:0;
-  border-radius:8px;
-  background:transparent;
-  color:var(--secondary);
-  font-size:10px;
-  font-weight:850;
-  letter-spacing:.08em;
-  cursor:pointer;
-  transition:.3s ease;
-}
-
-.coverage-mode:hover{
-  color:var(--text);
-}
-
-.coverage-mode.active{
-  color:#fff;
-  background:
-    linear-gradient(
-      135deg,
-      #315BFF,
-      #5E7CFF
-    );
-  box-shadow:
-    0 0 12px rgba(49,91,255,.42),
-    0 0 25px rgba(49,91,255,.18);
-}
-
-.coverage-mode.weekend.active{
-  background:
-    linear-gradient(
-      135deg,
-      #FF7A00,
-      #FFB13B
-    );
-  box-shadow:
-    0 0 12px rgba(255,122,0,.45),
-    0 0 25px rgba(255,122,0,.20);
-}
-
-.coverage-mode-dot{
-  display:inline-block;
-  width:6px;
-  height:6px;
-  margin-right:5px;
-  border-radius:50%;
-  background:currentColor;
-  vertical-align:middle;
-  opacity:.75;
-}
-
 .coverage-grid{
   display:flex;
   flex-direction:column;
@@ -870,38 +887,6 @@ body.dark
   transition:
     background .4s ease,
     box-shadow .4s ease;
-}
-
-.coverage-grid.weekday-mode{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(49,91,255,.075),
-      rgba(168,85,247,.035),
-      rgba(0,210,210,.025)
-    );
-
-  box-shadow:
-    inset 0 0 45px
-      rgba(49,91,255,.055),
-    inset 0 -20px 35px
-      rgba(168,85,247,.025);
-}
-
-.coverage-grid.weekend-mode{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(239,68,68,.075),
-      rgba(255,122,0,.045),
-      rgba(255,210,45,.035)
-    );
-
-  box-shadow:
-    inset 0 0 45px
-      rgba(255,122,0,.060),
-    inset 0 -20px 35px
-      rgba(255,210,45,.025);
 }
 
 .coverage-card{
@@ -916,225 +901,6 @@ body.dark
 
 .coverage-card:hover{
   transform:translateY(-1px);
-}
-
-.coverage-grid.weekday-mode .coverage-card.psw{
-  
-
-  border:1px solid
-    rgba(255,239,0,.58);
-
-  box-shadow:
-    inset 0 0 20px
-      rgba(255,239,0,.06),
-    0 0 15px
-      rgba(255,239,0,.08);
-}
-
-.coverage-grid.weekday-mode .coverage-card.psw
-.coverage-category{
-  color:#D6C900;
-}
-
-.coverage-grid.weekday-mode .coverage-card.psw
-.coverage-dot{
-  background:#FF7A00;
-  box-shadow:
-    0 0 8px #FF7A00,
-    0 0 17px rgba(255,239,0,.65);
-}
-
-.coverage-grid.weekday-mode .coverage-card.nursing{
-  
-
-  border:1px solid
-    rgba(49,91,255,.58);
-
-  box-shadow:
-    inset 0 0 20px
-      rgba(49,91,255,.06),
-    0 0 15px
-      rgba(49,91,255,.08);
-}
-
-.coverage-grid.weekday-mode .coverage-card.nursing
-.coverage-category{
-  color:#315BFF;
-}
-
-.coverage-grid.weekday-mode .coverage-card.nursing
-.coverage-dot{
-  background:#315BFF;
-  box-shadow:
-    0 0 8px #315BFF,
-    0 0 17px rgba(49,91,255,.65);
-}
-
-.coverage-grid.weekday-mode .coverage-card.intake{
-  
-
-  border:1px solid
-    rgba(0,210,210,.58);
-
-  box-shadow:
-    inset 0 0 20px
-      rgba(0,210,210,.06),
-    0 0 15px
-      rgba(0,210,210,.08);
-}
-
-.coverage-grid.weekday-mode .coverage-card.intake
-.coverage-category{
-  color:#00CFCF;
-}
-
-.coverage-grid.weekday-mode .coverage-card.intake
-.coverage-dot{
-  background:#00DADA;
-  box-shadow:
-    0 0 8px #00DADA,
-    0 0 17px rgba(0,218,218,.65);
-}
-
-.coverage-grid.weekend-mode .coverage-card.psw{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(239,68,68,.20),
-      rgba(220,38,38,.08)
-    );
-
-  border:1px solid
-    rgba(239,68,68,.58);
-
-  box-shadow:
-    inset 0 0 20px
-      rgba(239,68,68,.06),
-    0 0 15px
-      rgba(239,68,68,.08);
-}
-
-.coverage-grid.weekend-mode .coverage-card.psw
-.coverage-category{
-  color:#EF4444;
-}
-
-.coverage-grid.weekend-mode .coverage-card.psw
-.coverage-dot{
-  background:#EF4444;
-  box-shadow:
-    0 0 8px #EF4444,
-    0 0 17px rgba(239,68,68,.65);
-}
-
-.coverage-grid.weekend-mode .coverage-card.nursing{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,122,0,.22),
-      rgba(249,115,22,.08)
-    );
-
-  border:1px solid
-    rgba(255,122,0,.60);
-
-  box-shadow:
-    inset 0 0 20px
-      rgba(255,122,0,.06),
-    0 0 15px
-      rgba(255,122,0,.09);
-}
-
-.coverage-grid.weekend-mode .coverage-card.nursing
-.coverage-category{
-  color:#FF7A00;
-}
-
-.coverage-grid.weekend-mode .coverage-card.nursing
-.coverage-dot{
-  background:#FF7A00;
-  box-shadow:
-    0 0 8px #FF7A00,
-    0 0 17px rgba(255,122,0,.68);
-}
-
-.coverage-grid.weekend-mode .coverage-card.intake{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,210,45,.23),
-      rgba(255,177,59,.08)
-    );
-
-  border:1px solid
-    rgba(255,210,45,.62);
-
-  box-shadow:
-    inset 0 0 20px
-      rgba(255,210,45,.06),
-    0 0 15px
-      rgba(255,210,45,.09);
-}
-
-.coverage-grid.weekend-mode .coverage-card.intake
-.coverage-category{
-  color:#FFD21F;
-}
-
-.coverage-grid.weekend-mode .coverage-card.intake
-.coverage-dot{
-  background:#FFD21F;
-  box-shadow:
-    0 0 8px #FFD21F,
-    0 0 17px rgba(255,210,31,.70);
-}
-
-.coverage-grid.weekday-mode .coverage-card.supervisors{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,217,149,.18),
-      rgba(63,169,245,.07)
-    );
-  border:1px solid rgba(0,217,149,.55);
-  box-shadow:
-    inset 0 0 20px rgba(0,217,149,.05),
-    0 0 15px rgba(0,217,149,.08);
-}
-
-.coverage-grid.weekday-mode .coverage-card.supervisors .coverage-category{
-  color:#00B982;
-}
-
-.coverage-grid.weekday-mode .coverage-card.supervisors .coverage-dot{
-  background:#00D995;
-  box-shadow:
-    0 0 8px #00D995,
-    0 0 17px rgba(0,217,149,.62);
-}
-
-.coverage-grid.weekend-mode .coverage-card.supervisors{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(236,72,153,.18),
-      rgba(255,122,0,.07)
-    );
-  border:1px solid rgba(236,72,153,.55);
-  box-shadow:
-    inset 0 0 20px rgba(236,72,153,.05),
-    0 0 15px rgba(236,72,153,.08);
-}
-
-.coverage-grid.weekend-mode .coverage-card.supervisors .coverage-category{
-  color:#EC4899;
-}
-
-.coverage-grid.weekend-mode .coverage-card.supervisors .coverage-dot{
-  background:#EC4899;
-  box-shadow:
-    0 0 8px #EC4899,
-    0 0 17px rgba(236,72,153,.62);
 }
 
 .coverage-supervisors{
@@ -1532,8 +1298,8 @@ body:not(.admin-mode) .coverage-add{
   font-weight:800;
   text-align:left;
   cursor:pointer;
-  text-shadow:
-    0 0 10px rgba(var(--accent-rgb),.28);
+  text-shadow:0 0 10px rgba(var(--accent-rgb),.28);
+  transition:background .2s ease,border-color .2s ease;
 }
 
 .oncall-coordinators-title:hover{
@@ -1554,13 +1320,24 @@ body:not(.admin-mode) .coverage-add{
 }
 
 .oncall-coordinators-table-wrap{
-  display:none;
-  overflow-x:auto;
-  padding:7px;
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  overflow:hidden;
+  padding:0 7px;
+  transition:grid-template-rows .24s ease,opacity .18s ease,padding .24s ease;
+}
+
+.oncall-coordinators-table-wrap > table{
+  min-height:0;
+  overflow:hidden;
 }
 
 .oncall-coordinators-panel.open .oncall-coordinators-table-wrap{
-  display:block;
+  grid-template-rows:1fr;
+  opacity:1;
+  padding:7px;
+  overflow-x:auto;
 }
 
 .oncall-coordinators-table{
@@ -1975,11 +1752,6 @@ body:not(.admin-mode)
 }
 
 
-
-
-
-
-
 body.dark .card.oncall-active .area{
   background:
     linear-gradient(
@@ -2008,7 +1780,6 @@ option{
 }
 
 
-
 .panel,
 .card,
 .topbar,
@@ -2022,7 +1793,6 @@ option{
     blur(18px)
     saturate(145%);
 }
-
 
 
 body:not(.dark) .card{
@@ -2072,9 +1842,6 @@ select{
   -webkit-backdrop-filter:blur(12px) saturate(135%);
   backdrop-filter:blur(12px) saturate(135%);
 }
-
-
-
 
 
 .important-editor-toolbar{
@@ -2252,7 +2019,6 @@ body.admin-mode .important-editor-toolbar{
 }
 
 
-
 body.dark{
   --bg:#0C0E19;
   --panel:rgba(22,25,44,.82);
@@ -2271,7 +2037,6 @@ body.dark{
   --accent-2-rgb:114,189,235;
   --shadow:0 14px 38px rgba(0,0,0,.32);
 }
-
 
 
 body.dark .card.oncall-active{
@@ -2367,39 +2132,8 @@ body.dark .card.oncall-active{
 }
 
 
-
 .supervisor:hover, .card.oncall-active .oncall-label, .coverage-category, .panel-title, .date-sub, .directory-title, .coverage-title, h1, h2, h3, h4, h5, h6{
   text-shadow:none !important;
-}
-
-
-
-
-
-.coverage-grid.weekday-mode .coverage-card.psw .coverage-category,
-.coverage-grid.weekday-mode .coverage-card.nursing .coverage-category,
-.coverage-grid.weekday-mode .coverage-card.intake .coverage-category{
-  color:#243A73 !important;
-  font-weight:800;
-}
-
-.coverage-grid.weekend-mode .coverage-card.psw .coverage-category,
-.coverage-grid.weekend-mode .coverage-card.nursing .coverage-category,
-.coverage-grid.weekend-mode .coverage-card.intake .coverage-category{
-  color:#54233A !important;
-  font-weight:800;
-}
-
-body.dark .coverage-grid.weekday-mode .coverage-card.psw .coverage-category,
-body.dark .coverage-grid.weekday-mode .coverage-card.nursing .coverage-category,
-body.dark .coverage-grid.weekday-mode .coverage-card.intake .coverage-category{
-  color:#F2F4FF !important;
-}
-
-body.dark .coverage-grid.weekend-mode .coverage-card.psw .coverage-category,
-body.dark .coverage-grid.weekend-mode .coverage-card.nursing .coverage-category,
-body.dark .coverage-grid.weekend-mode .coverage-card.intake .coverage-category{
-  color:#FFF2F6 !important;
 }
 
 .coverage-grid .coverage-card.psw,
@@ -2409,43 +2143,6 @@ body.dark .coverage-grid.weekend-mode .coverage-card.intake .coverage-category{
     inset 0 1px 0 rgba(255,255,255,.22),
     0 10px 22px rgba(22,35,70,.10) !important;
 }
-
-.coverage-grid.weekday-mode .coverage-card.psw{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,224,84,.29),
-      rgba(255,241,171,.13)
-    ) !important;
-  border-color:rgba(221,184,24,.48) !important;
-}
-
-.coverage-grid.weekday-mode .coverage-card.nursing{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(79,111,232,.27),
-      rgba(115,194,251,.13)
-    ) !important;
-  border-color:rgba(79,111,232,.46) !important;
-}
-
-.coverage-grid.weekday-mode .coverage-card.intake{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(115,194,251,.30),
-      rgba(151,218,255,.14)
-    ) !important;
-  border-color:rgba(73,164,224,.46) !important;
-}
-
-
-
-
-
-
-
 
 
 body.dark .coverage-supervisor-card .coverage-category,
@@ -2479,7 +2176,6 @@ body.dark [class*="supervisor"] .coverage-category{
 
   --shadow:0 12px 32px rgba(11,78,162,.11);
 }
-
 
 
 body:not(.dark) .panel,
@@ -2554,7 +2250,6 @@ body:not(.dark) .oncall-status{
 }
 
 .important-question,
-.important-icon,
 [data-important-icon],
 .important-information-icon{
   color:#EF233C !important;
@@ -2562,14 +2257,12 @@ body:not(.dark) .oncall-status{
 }
 
 .important-question::before,
-.important-icon::before,
 [data-important-icon]::before,
 .important-information-icon::before{
   color:#EF233C !important;
 }
 
 .important-question,
-.important-icon,
 [data-important-icon],
 .important-information-icon{
   animation:importantQuestionBlink 1.15s ease-in-out infinite;
@@ -2579,11 +2272,6 @@ body:not(.dark) .oncall-status{
 .important-header span:first-child{
   color:#EF233C !important;
 }
-
-
-
-
-
 
 
 body:not(.dark) .coverage-grid .coverage-card .coverage-category{
@@ -2614,16 +2302,6 @@ body.dark .coverage-panel{
   border-color:rgba(200,190,255,.09) !important;
   
 }
-
-.coverage-header,
-.coverage-title,
-.coverage-mode,
-.coverage-tabs{
-  box-shadow:none !important;
-}
-
-
-
 
 
 .card.open{
@@ -2713,7 +2391,6 @@ body.dark .topbar{
 }
 
 
-
 .topbar{
   position:relative;
   background:
@@ -2727,9 +2404,6 @@ body.dark .topbar{
 }
 
 
-
-
-
 body.dark .topbar{
   background:
     linear-gradient(
@@ -2738,9 +2412,6 @@ body.dark .topbar{
       transparent 82%
     ) !important;
 }
-
-
-
 
 
 body{
@@ -2752,7 +2423,7 @@ body:not(.dark){
   background:
     radial-gradient(
       circle at 8% 12%,
-      rgba(49,91,255,.13),
+      rgba(77,163,255,.13),
       transparent 28%
     ),
     radial-gradient(
@@ -2783,31 +2454,31 @@ body:not(.dark){
 body.dark{
   background:
     radial-gradient(
-      circle at 8% 12%,
-      rgba(49,91,255,.20),
-      transparent 30%
+      circle at 10% 14%,
+      rgba(255,122,0,.24),
+      transparent 31%
     ),
     radial-gradient(
-      circle at 91% 18%,
-      rgba(0,218,218,.12),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 78% 82%,
-      rgba(168,85,247,.15),
-      transparent 33%
-    ),
-    radial-gradient(
-      circle at 13% 88%,
-      rgba(255,122,0,.08),
+      circle at 88% 18%,
+      rgba(255,190,46,.14),
       transparent 29%
+    ),
+    radial-gradient(
+      circle at 80% 82%,
+      rgba(184,92,74,.18),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 18% 88%,
+      rgba(168,85,247,.11),
+      transparent 31%
     ),
     linear-gradient(
       145deg,
-      #090B16 0%,
-      #101426 40%,
-      #151126 72%,
-      #17100D 100%
+      #090806 0%,
+      #17100A 34%,
+      #21110B 63%,
+      #160D13 100%
     );
   background-attachment:fixed;
 }
@@ -2820,7 +2491,7 @@ body::before{
   z-index:-1;
   background-image:
     linear-gradient(
-      rgba(49,91,255,.045) 1px,
+      rgba(77,163,255,.045) 1px,
       transparent 1px
     ),
     linear-gradient(
@@ -2836,12 +2507,12 @@ body::before{
 body.dark::before{
   background-image:
     linear-gradient(
-      rgba(155,121,234,.055) 1px,
+      rgba(255,155,54,.05) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(114,189,235,.04) 1px,
+      rgba(184,92,74,.045) 1px,
       transparent 1px
     );
   opacity:.34;
@@ -2857,7 +2528,6 @@ body.dark .topbar{
   -webkit-backdrop-filter:none !important;
   backdrop-filter:none !important;
 }
-
 
 
 .wrap{
@@ -2876,7 +2546,6 @@ body.dark .topbar{
   min-height:auto !important;
   align-items:center !important;
 }
-
 
 
 .date-sub{
@@ -2986,16 +2655,6 @@ select{
   margin-bottom:0 !important;
 }
 
-.coverage-tabs,
-.coverage-mode{
-  margin-bottom:10px !important;
-}
-
-.coverage-tabs button,
-.coverage-mode button{
-  box-shadow:none !important;
-}
-
 .important-notes{
   padding:14px 16px !important;
   min-height:88px !important;
@@ -3069,15 +2728,6 @@ body:not(.dark) .muted{
   backdrop-filter:none !important;
 }
 
-.coverage-header,
-.coverage-title,
-.coverage-tabs,
-.coverage-mode{
-  background:transparent !important;
-  border:0 !important;
-  box-shadow:none !important;
-}
-
 .coverage-grid{
   gap:8px !important;
 }
@@ -3086,20 +2736,6 @@ body:not(.dark) .muted{
   
   border-width:0 !important;
   outline:0 !important;
-}
-
-
-
-
-
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.psw{
-  box-shadow:none !important;
-}
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.nursing{
-  box-shadow:none !important;
-}
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
-  box-shadow:none !important;
 }
 
 .coverage-card.supervisors,
@@ -3147,9 +2783,6 @@ body.dark .coverage-grid .coverage-card{
 }
 
 
-
-
-
 .coverage-panel,
 body:not(.dark) .coverage-panel,
 body.dark .coverage-panel{
@@ -3174,23 +2807,6 @@ body.dark .coverage-panel{
 
 .coverage-grid .coverage-card{
   box-shadow:none !important;
-}
-
-.coverage-header,
-.coverage-mode,
-.coverage-tabs{
-  border-bottom:0 !important;
-  border-top:0 !important;
-  box-shadow:none !important;
-}
-
-.coverage-header::after,
-.coverage-mode::after,
-.coverage-tabs::after{
-  content:none !important;
-  display:none !important;
-  border:0 !important;
-  background:transparent !important;
 }
 
 .coverage-grid{
@@ -3227,43 +2843,10 @@ body.dark .right-column > .coverage-panel{
   background:transparent !important;
 }
 
-.right-column > .coverage-panel .coverage-grid,
-.right-column > .coverage-panel .coverage-grid.weekday-mode,
-.right-column > .coverage-panel .coverage-grid.weekend-mode{
-  background:transparent !important;
-  background-image:none !important;
-  box-shadow:none !important;
-  border:0 !important;
-  outline:0 !important;
-}
-
-
-
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
-  
-  border:0 !important;
-  box-shadow:none !important;
-}
-
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors .coverage-category{
-  color:#B80F1F !important;
-}
-
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors .coverage-dot{
-  background:#FF2D2D !important;
-  box-shadow:none !important;
-}
-
 body:not(.dark) .firebase-dot,
 body:not(.dark) .status-dot,
 body:not(.dark) [class*="status"]::before{
   border-color:transparent;
-}
-
-.right-column > .coverage-panel .coverage-switch{
-  background:transparent !important;
-  border-color:rgba(var(--accent-rgb),.08) !important;
-  box-shadow:none !important;
 }
 
 .right-column > .coverage-panel .coverage-panel-header{
@@ -3275,217 +2858,9 @@ body:not(.dark) [class*="status"]::before{
   margin-top:0 !important;
 }
 
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
-  background:rgba(255,45,45,.16) !important;
-}
-
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
-  background:rgba(255,116,23,.18) !important;
-}
-
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.nursing{
-  background:rgba(11,78,162,.18) !important;
-}
-
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
-  background:rgba(41,169,232,.20) !important;
-}
-
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.supervisors{
-  background:rgba(184,15,31,.16) !important;
-}
-
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.psw{
-  background:rgba(214,44,44,.18) !important;
-}
-
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.nursing{
-  background:rgba(255,116,23,.20) !important;
-}
-
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
-  background:rgba(255,184,57,.22) !important;
-}
-
 .right-column > .coverage-panel .coverage-card{
   border:1px solid rgba(var(--accent-rgb),.07) !important;
   box-shadow:none !important;
-}
-
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.supervisors{
-  border-color:rgba(255,45,45,.18) !important;
-}
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
-  border-color:rgba(255,116,23,.18) !important;
-}
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.nursing{
-  border-color:rgba(11,78,162,.18) !important;
-}
-body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
-  border-color:rgba(41,169,232,.20) !important;
-}
-
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.supervisors{
-  border-color:rgba(184,15,31,.18) !important;
-}
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.psw{
-  border-color:rgba(214,44,44,.18) !important;
-}
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.nursing{
-  border-color:rgba(255,116,23,.20) !important;
-}
-body:not(.dark) .coverage-grid.weekend-mode .coverage-card.intake{
-  border-color:rgba(255,184,57,.22) !important;
-}
-
-.coverage-switch,
-.coverage-tabs,
-.coverage-mode{
-  background:rgba(173,157,145,.13) !important;
-  border:1px solid rgba(18,38,70,.09) !important;
-  box-shadow:none !important;
-  padding:3px !important;
-  border-radius:11px !important;
-}
-
-.coverage-switch button,
-.coverage-tabs button,
-.coverage-mode button{
-  border:0 !important;
-  box-shadow:none !important;
-  border-radius:8px !important;
-  transition:
-    background .18s ease,
-    color .18s ease,
-    opacity .18s ease !important;
-}
-
-
-
-
-
-body:not(.dark) .coverage-switch button.active:first-child,
-body:not(.dark) .coverage-tabs button.active:first-child,
-body:not(.dark) .coverage-mode button.active:first-child{
-  background:#16488F !important;
-  color:#FFFFFF !important;
-  opacity:1 !important;
-}
-
-body:not(.dark) .coverage-switch button.active:last-child,
-body:not(.dark) .coverage-tabs button.active:last-child,
-body:not(.dark) .coverage-mode button.active:last-child{
-  background:#D95D26 !important;
-  color:#FFFFFF !important;
-  opacity:1 !important;
-}
-
-
-
-body.dark .coverage-switch,
-body.dark .coverage-tabs,
-body.dark .coverage-mode{
-  
-  border-color:rgba(255,255,255,.07) !important;
-}
-
-
-
-
-
-body.dark .coverage-switch button:not(.active),
-body.dark .coverage-tabs button:not(.active),
-body.dark .coverage-mode button:not(.active){
-  opacity:.64 !important;
-}
-
-body:not(.dark) .coverage-switch,
-body:not(.dark) .coverage-tabs,
-body:not(.dark) .coverage-mode{
-  background:rgba(255,255,255,.10) !important;
-  border:1px solid rgba(11,78,162,.10) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.55),
-    0 8px 20px rgba(11,78,162,.08) !important;
-  padding:4px !important;
-  border-radius:12px !important;
-}
-
-body:not(.dark) .coverage-switch button:first-child,
-body:not(.dark) .coverage-tabs button:first-child,
-body:not(.dark) .coverage-mode button:first-child{
-  
-  
-  
-  
-  opacity:1 !important;
-}
-
-body:not(.dark) .coverage-switch button:last-child,
-body:not(.dark) .coverage-tabs button:last-child,
-body:not(.dark) .coverage-mode button:last-child{
-  
-  
-  
-  
-  opacity:1 !important;
-}
-
-body:not(.dark) .coverage-switch button.active:first-child,
-body:not(.dark) .coverage-tabs button.active:first-child,
-body:not(.dark) .coverage-mode button.active:first-child{
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.28),
-    0 0 0 1px rgba(11,78,162,.20),
-    0 9px 22px rgba(11,78,162,.30) !important;
-  transform:translateY(-1px);
-}
-
-body:not(.dark) .coverage-switch button.active:last-child,
-body:not(.dark) .coverage-tabs button.active:last-child,
-body:not(.dark) .coverage-mode button.active:last-child{
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.28),
-    0 0 0 1px rgba(217,93,38,.18),
-    0 9px 22px rgba(217,93,38,.30) !important;
-  transform:translateY(-1px);
-}
-
-
-
-body.dark .coverage-switch,
-body.dark .coverage-tabs,
-body.dark .coverage-mode{
-  background:rgba(10,18,33,.52) !important;
-  border:1px solid rgba(255,255,255,.06) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.04),
-    0 8px 20px rgba(0,0,0,.16) !important;
-}
-
-body.dark .coverage-switch button:first-child,
-body.dark .coverage-tabs button:first-child,
-body.dark .coverage-mode button:first-child{
-  
-  border:1px solid rgba(88,133,205,.34) !important;
-  
-  color:#F8FAFF !important;
-}
-
-body.dark .coverage-switch button:last-child,
-body.dark .coverage-tabs button:last-child,
-body.dark .coverage-mode button:last-child{
-  
-  border:1px solid rgba(231,119,61,.30) !important;
-  
-  color:#FFF9F5 !important;
-}
-
-body.dark .coverage-switch button.active,
-body.dark .coverage-tabs button.active,
-body.dark .coverage-mode button.active{
-  transform:translateY(-1px);
-  filter:saturate(1.08) brightness(1.04);
 }
 
 .right-column > .coverage-panel,
@@ -3523,219 +2898,10 @@ body.dark .right-column > .coverage-panel{
   padding:16px !important;
 }
 
-.right-column > .coverage-panel .coverage-switch,
-.right-column > .coverage-panel .coverage-tabs,
-.right-column > .coverage-panel .coverage-mode{
-  
-  
-  
-  display:flex !important;
-  justify-content:center !important;
-  align-items:center !important;
-  
-  
-  border-radius:14px !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.64),
-      rgba(226,239,250,.40)
-    ) !important;
-  border:1px solid rgba(11,78,162,.10) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.82),
-    0 7px 18px rgba(11,78,162,.08) !important;
-}
-
-.right-column > .coverage-panel .coverage-switch button,
-.right-column > .coverage-panel .coverage-tabs button,
-.right-column > .coverage-panel .coverage-mode button{
-  
-  
-  text-align:center !important;
-  justify-content:center !important;
-  
-  letter-spacing:.01em !important;
-  border-radius:10px !important;
-  
-}
-
-body:not(.dark) .coverage-switch button:first-child,
-body:not(.dark) .coverage-tabs button:first-child,
-body:not(.dark) .coverage-mode button:first-child{
-  background:
-    linear-gradient(
-      135deg,
-      #1457D9 0%,
-      #1D67F2 48%,
-      #48A9FF 100%
-    ) !important;
-  color:#FFFFFF !important;
-  border:1px solid rgba(20,87,217,.72) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.34),
-    inset 0 -1px 0 rgba(0,42,125,.12),
-    0 8px 20px rgba(29,103,242,.30) !important;
-  filter:saturate(1.12) brightness(1.06) !important;
-}
-
-body:not(.dark) .coverage-switch button:last-child,
-body:not(.dark) .coverage-tabs button:last-child,
-body:not(.dark) .coverage-mode button:last-child{
-  background:
-    linear-gradient(
-      135deg,
-      #FF6A1A 0%,
-      #FF7F2A 48%,
-      #FFA15C 100%
-    ) !important;
-  color:#FFFFFF !important;
-  border:1px solid rgba(232,82,18,.70) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.34),
-    inset 0 -1px 0 rgba(145,44,6,.12),
-    0 8px 20px rgba(255,106,26,.30) !important;
-  filter:saturate(1.12) brightness(1.06) !important;
-}
-
-body:not(.dark) .coverage-switch button.active,
-body:not(.dark) .coverage-tabs button.active,
-body:not(.dark) .coverage-mode button.active{
-  opacity:1 !important;
-  transform:translateY(-1px) !important;
-  filter:saturate(1.18) brightness(1.10) !important;
-}
-
-body:not(.dark) .coverage-switch button:not(.active),
-body:not(.dark) .coverage-tabs button:not(.active),
-body:not(.dark) .coverage-mode button:not(.active){
-  opacity:.86 !important;
-  filter:saturate(1.02) brightness(1.02) !important;
-}
-
-body.dark .right-column > .coverage-panel .coverage-switch,
-body.dark .right-column > .coverage-panel .coverage-tabs,
-body.dark .right-column > .coverage-panel .coverage-mode{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(16,24,43,.82),
-      rgba(28,31,54,.58)
-    ) !important;
-  border:1px solid rgba(200,190,255,.08) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.05),
-    0 7px 18px rgba(0,0,0,.16) !important;
-}
-
-body.dark .coverage-switch button:first-child,
-body.dark .coverage-tabs button:first-child,
-body.dark .coverage-mode button:first-child{
-  background:
-    linear-gradient(
-      135deg,
-      #244C91 0%,
-      #2F65BE 52%,
-      #4A83DF 100%
-    ) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.12),
-    0 8px 18px rgba(32,77,145,.26) !important;
-}
-
-body.dark .coverage-switch button:last-child,
-body.dark .coverage-tabs button:last-child,
-body.dark .coverage-mode button:last-child{
-  background:
-    linear-gradient(
-      135deg,
-      #B94E20 0%,
-      #DD682D 52%,
-      #F28B50 100%
-    ) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.11),
-    0 8px 18px rgba(165,70,29,.25) !important;
-}
-
-.right-column > .coverage-panel .coverage-switch,
-.right-column > .coverage-panel .coverage-tabs,
-.right-column > .coverage-panel .coverage-mode{
-  width:100% !important;
-  max-width:none !important;
-  min-width:0 !important;
-  box-sizing:border-box !important;
-  margin:10px 0 16px !important;
-  padding:5px !important;
-  gap:7px !important;
-}
-
-.right-column > .coverage-panel .coverage-switch button,
-.right-column > .coverage-panel .coverage-tabs button,
-.right-column > .coverage-panel .coverage-mode button{
-  flex:1 1 50% !important;
-  width:50% !important;
-  min-width:0 !important;
-  min-height:48px !important;
-  padding:12px 18px !important;
-  font-size:14px !important;
-  font-weight:800 !important;
-}
-
-.right-column > .coverage-panel .coverage-switch button.active,
-.right-column > .coverage-panel .coverage-tabs button.active,
-.right-column > .coverage-panel .coverage-mode button.active{
-  opacity:1 !important;
-  filter:saturate(1.18) brightness(1.10) !important;
-  transform:translateY(-1px) !important;
-}
-
-.right-column > .coverage-panel .coverage-switch button:not(.active),
-.right-column > .coverage-panel .coverage-tabs button:not(.active),
-.right-column > .coverage-panel .coverage-mode button:not(.active){
-  opacity:.42 !important;
-  filter:saturate(.58) brightness(.94) !important;
-  transform:none !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.12),
-    0 3px 8px rgba(20,35,60,.08) !important;
-}
-
-.right-column > .coverage-panel .coverage-switch button:not(.active):hover,
-.right-column > .coverage-panel .coverage-tabs button:not(.active):hover,
-.right-column > .coverage-panel .coverage-mode button:not(.active):hover{
-  opacity:.62 !important;
-  filter:saturate(.78) brightness(1) !important;
-}
-
-
-/* Coverage by individual date */
-
-
-.coverage-grid,
-.coverage-grid.weekday-mode,
-.coverage-grid.weekend-mode{
-  background:transparent !important;
-  box-shadow:none !important;
-}
-
-
 
 /* =========================================================
    COVERAGE — FINAL VISUAL OVERRIDE
    ========================================================= */
-.right-column > .coverage-panel .coverage-switch.coverage-date-switch{
-  
-  justify-content:center !important;
-  
-  
-  
-  
-  
-  
-}
-
 /* Palette: Blue Navy / Cempasúchil / Cobalt Blue / Maya Blue */
 .right-column > .coverage-panel .coverage-card.supervisors{
   background:rgba(10,35,66,.15) !important;
@@ -3791,223 +2957,218 @@ body.dark .right-column > .coverage-panel .coverage-card.clinical-supervisor .co
 body.dark .right-column > .coverage-panel .coverage-card.psw .coverage-category{color:#FFB044 !important;}
 body.dark .right-column > .coverage-panel .coverage-card.nursing .coverage-category{color:#6E9EFF !important;}
 body.dark .right-column > .coverage-panel .coverage-card.intake .coverage-category{color:#8FD3FF !important;}
-@keyframes firebaseConnectedFastBlink{
-  0%,100%{opacity:1;}
-  50%{opacity:.18;}
-}
-.firebase-status.connected .firebase-dot{
-  background:#315BFF !important;
-  box-shadow:0 0 10px rgba(49,91,255,.72) !important;
-  animation:firebaseConnectedFastBlink .42s linear infinite !important;
-}
-@media (prefers-reduced-motion: reduce){
-  .firebase-status.connected .firebase-dot{animation:none !important;}
-}
 
 
-
-/* IMPORTANT INFORMATION — intense red glowing ! */
-@keyframes importantAlertGlow{
-  0%,100%{
-    opacity:1;
-    transform:scale(1);
-    box-shadow:0 0 8px rgba(255,31,53,.95),0 0 18px rgba(255,31,53,.72),0 0 30px rgba(255,31,53,.42);
-  }
-  50%{
-    opacity:.78;
-    transform:scale(.92);
-    box-shadow:0 0 4px rgba(255,31,53,.80),0 0 10px rgba(255,31,53,.48),0 0 18px rgba(255,31,53,.25);
-  }
-}
-.important-icon{
-  
-  
-  border:1px solid #FF5364 !important;
-  opacity:1 !important;
-  filter:none !important;
-  
-  
-  
-}
-.important-icon::before{
-  color:#fff !important;
-  text-shadow:0 0 4px rgba(255,255,255,.95) !important;
-}
-
-
-
-@keyframes importantAlertSoftPulse{
-  0%,100%{
-    opacity:1;
-    box-shadow:0 0 5px rgba(220,38,38,.42),0 0 10px rgba(220,38,38,.20);
-  }
-  50%{
-    opacity:.86;
-    box-shadow:0 0 2px rgba(220,38,38,.26),0 0 6px rgba(220,38,38,.12);
-  }
-}
-
-.important-icon{
-  
-  background:#E83B46 !important;
-  border-color:rgba(190,25,38,.62) !important;
-  
-  box-shadow:0 0 5px rgba(220,38,38,.42),0 0 10px rgba(220,38,38,.20) !important;
-  
-}
-
-
-
-
-
-
-
-/* IMPORTANT INFORMATION — soft pulse, black ! */
-@keyframes importantIconPulseSoft{
+/* IMPORTANT INFORMATION — SINGLE FINAL VERSION */
+@keyframes importantIconPulse{
   0%,100%{
     transform:scale(1);
-    box-shadow:
-      0 0 4px rgba(220,38,38,.26),
-      0 0 8px rgba(220,38,38,.12);
+    box-shadow:0 0 4px rgba(220,38,38,.26),0 0 8px rgba(220,38,38,.12);
   }
   50%{
-    transform:scale(1.12);
-    box-shadow:
-      0 0 7px rgba(220,38,38,.42),
-      0 0 14px rgba(220,38,38,.20);
+    transform:scale(1.10);
+    box-shadow:0 0 7px rgba(220,38,38,.42),0 0 14px rgba(220,38,38,.20);
   }
 }
 
 .important-icon{
-  color:#000000 !important;
-  -webkit-text-fill-color:#000000 !important;
-  text-shadow:none !important;
-  transform-origin:center !important;
-  animation:importantIconPulseSoft 1.8s ease-in-out infinite !important;
+  color:#000;
+  -webkit-text-fill-color:#000;
+  background:#E83B46;
+  border:1px solid rgba(190,25,38,.62);
+  text-shadow:none;
+  transform-origin:center;
+  animation:importantIconPulse 1.8s ease-in-out infinite;
 }
 
 .important-icon::before,
 .important-icon::after{
-  color:#000000 !important;
-  -webkit-text-fill-color:#000000 !important;
-  text-shadow:none !important;
+  color:#000;
+  -webkit-text-fill-color:#000;
+  text-shadow:none;
 }
-
-
-
 
 /* =========================================================
-   COVERAGE DATE SELECTOR — CANONICAL STYLE
-   Visually behaves like one more active Area row.
-   DAY = BLUE / NIGHT = PURPLE
+   COVERAGE INTERACTION — FINAL
    ========================================================= */
 
+.coverage-card{
+  padding:0;
+}
 
+.coverage-card-toggle{
+  width:100%;
+  min-height:42px;
+  padding:12px 13px;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  text-align:left;
+}
 
+.coverage-card-toggle:hover{
+  background:rgba(255,255,255,.055);
+}
+
+.coverage-card-chevron{
+  margin-left:auto;
+  font-size:14px;
+  opacity:.72;
+  transition:transform .22s ease;
+}
+
+.coverage-card.collapsed .coverage-card-chevron{
+  transform:rotate(-90deg);
+}
+
+.coverage-card-content{
+  display:grid;
+  grid-template-rows:1fr;
+  opacity:1;
+  padding:0 13px 13px;
+  overflow:hidden;
+  transition:grid-template-rows .24s ease,opacity .18s ease,padding .24s ease;
+}
+
+.coverage-card.collapsed .coverage-card-content{
+  grid-template-rows:0fr;
+  opacity:0;
+  padding-top:0;
+  padding-bottom:0;
+}
+
+.coverage-card-content-inner{
+  min-height:0;
+  overflow:hidden;
+}
+
+.coverage-coordinator-row .coverage-input,
+.coverage-supervisor-row .supervisor-name-input,
+.coverage-supervisor-row .reception-name-input,
+.coverage-supervisor-row .clinical-supervisor-name-input{
+  font-weight:750;
+}
+
+.coverage-supervisor-row .supervisor-schedule-input,
+.coverage-supervisor-row .reception-schedule-input,
+.coverage-supervisor-row .clinical-supervisor-schedule-input{
+  font-weight:500;
+  opacity:.78;
+}
+
+.coverage-empty-state{
+  padding:7px 2px 10px;
+  color:var(--muted);
+  font-size:12px;
+  font-style:italic;
+  letter-spacing:.01em;
+}
+
+.coverage-empty-state[hidden]{
+  display:none;
+}
+
+body.admin-mode{
+  box-shadow:
+    inset 0 0 0 2px rgba(77,163,255,.24),
+    inset 0 0 34px rgba(77,163,255,.07);
+}
+
+body.dark.admin-mode{
+  box-shadow:
+    inset 0 0 0 2px rgba(120,197,255,.30),
+    inset 0 0 42px rgba(77,163,255,.09);
+}
+
+@media(max-width:620px){
+  .coverage-grid{
+    gap:10px;
+  }
+
+  .coverage-card-toggle{
+    min-height:46px;
+    padding:12px;
+  }
+
+  .coverage-card-content{
+    padding:0 11px 11px;
+  }
+
+  .coverage-supervisor-row{
+    grid-template-columns:minmax(0,1fr) 30px;
+  }
+
+  .coverage-supervisor-row .supervisor-schedule-input{
+    grid-column:1 / -1;
+    grid-row:2;
+  }
+
+  .coverage-supervisor-row .coverage-remove{
+    grid-column:2;
+    grid-row:1;
+  }
+
+  body:not(.admin-mode) .coverage-supervisor-row{
+    grid-template-columns:1fr;
+  }
+
+  body:not(.admin-mode) .coverage-supervisor-row .supervisor-schedule-input{
+    grid-column:1;
+  }
+
+  .coverage-coordinator-row{
+    align-items:stretch;
+  }
+
+  .coverage-input,
+  .coverage-notes{
+    font-size:16px;
+  }
+}
+.small-button:focus-visible,
+.coverage-card-toggle:focus-visible,
+.coverage-add:focus-visible,
+.coverage-remove:focus-visible,
+.directory-toggle:focus-visible,
+#coverageDateSelector:focus-visible{
+  outline:2px solid rgba(77,163,255,.86);
+  outline-offset:2px;
+}
 /* =========================================================
-   COVERAGE DATE SELECTOR — AREA WITH ON CALL STYLE
-   ========================================================= */
+   COVERAGE DATE SELECTOR — SINGLE FINAL VERSION
+========================================================= */
 
-.right-column > .coverage-panel .coverage-switch.coverage-date-switch{
-  display:block !important;
-  width:100% !important;
-  margin:10px 0 16px !important;
-  padding:0 !important;
-  border:0 !important;
-  background:transparent !important;
-  box-shadow:none !important;
+.coverage-date-card{
+  width:100%;
 }
 
-html body .right-column > .coverage-panel
-#coverageDateSelector.coverage-date-selector{
-  width:100% !important;
-  min-height:48px !important;
-  padding:10px 13px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-
-  border:1px solid rgba(11,78,162,.68) !important;
-  border-radius:10px !important;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(11,78,162,.34) 0%,
-      rgba(41,169,232,.26) 52%,
-      rgba(255,255,255,.31) 100%
-    ) !important;
-
-  color:var(--text) !important;
-  font-size:13px !important;
-  font-weight:700 !important;
-  letter-spacing:0 !important;
-  text-transform:none !important;
-  text-align:center !important;
-
-  opacity:1 !important;
-  filter:none !important;
-  text-shadow:none !important;
-  animation:none !important;
-  transform:none !important;
-
-  box-shadow:
-    0 0 0 1px rgba(11,78,162,.20),
-    0 0 22px rgba(11,78,162,.14),
-    0 0 44px rgba(41,169,232,.10) !important;
-
-  cursor:pointer !important;
-  user-select:none !important;
-  transition:.25s ease !important;
+#coverageDateSelector{
+  display:flex;
+  width:100%;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
-html body .right-column > .coverage-panel
-#coverageDateSelector.coverage-date-selector:hover{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(11,78,162,.40) 0%,
-      rgba(41,169,232,.31) 52%,
-      rgba(255,255,255,.34) 100%
-    ) !important;
-  color:var(--text) !important;
-  transform:none !important;
+#coverageDateSelector .area-name{
+  display:flex;
+  width:100%;
+  flex:1 1 100%;
+  align-items:center;
+  justify-content:center;
+  margin:0;
+  text-align:center;
 }
 
-body.dark .right-column > .coverage-panel
-#coverageDateSelector.coverage-date-selector{
-  border-color:rgba(166,126,255,.98) !important;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(155,109,255,.58) 0%,
-      rgba(126,104,255,.40) 52%,
-      rgba(110,200,255,.20) 100%
-    ) !important;
-
-  color:var(--text) !important;
-
-  box-shadow:
-    0 0 0 1px rgba(155,109,255,.62),
-    0 0 24px rgba(155,109,255,.50),
-    0 0 50px rgba(110,200,255,.20) !important;
-}
-
-body.dark .right-column > .coverage-panel
-#coverageDateSelector.coverage-date-selector:hover{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(155,109,255,.66) 0%,
-      rgba(126,104,255,.47) 52%,
-      rgba(110,200,255,.25) 100%
-    ) !important;
-}
-
-html body .right-column > .coverage-panel
-#coverageDateSelector.coverage-date-selector:focus-visible{
-  outline:none !important;
+#coverageDateLabel{
+  display:block;
+  width:100%;
+  margin:0;
+  text-align:center;
+  font-size:18px;
+  font-weight:800;
+  line-height:1.2;
 }
 
 </style>
@@ -4176,203 +3337,117 @@ html body .right-column > .coverage-panel
 
 <section class="panel coverage-panel">
 
-  <div class="coverage-switch coverage-date-switch">
+  <article class="card oncall-active coverage-date-card">
     <button
       id="coverageDateSelector"
-      class="coverage-date-selector"
+      class="area coverage-date-area"
       type="button"
       aria-label="Select coverage date">
-      Coverage
+      <span class="area-name">
+        <span id="coverageDateLabel">Coverage</span>
+      </span>
     </button>
-  </div>
+  </article>
 
 
-  <div
-    id="coverageGrid"
-    class="coverage-grid weekday-mode">
-
-    <!-- SUPERVISORS -->
-
-    <div class="coverage-card supervisors">
-
-      <div class="coverage-category">
-        <span class="coverage-dot"></span>
+  <div class="coverage-grid" id="coverageGrid">
+<!-- SUPERVISORS -->
+<div class="coverage-card supervisors">
+<button aria-controls="coverage-content-supervisors" aria-expanded="true" class="coverage-category coverage-card-toggle" type="button">
+<span class="coverage-dot"></span>
         Supervisors
-      </div>
-
-      <div
-        id="coverageSupervisors"
-        class="coverage-supervisors">
-      </div>
-
-      <button
-        id="addCoverageSupervisor"
-        class="coverage-add supervisor-add"
-        type="button">
+      <span aria-hidden="true" class="coverage-card-chevron">⌄</span></button><div class="coverage-card-content" id="coverage-content-supervisors"><div class="coverage-card-content-inner">
+<div class="coverage-supervisors" id="coverageSupervisors">
+</div>
+<button class="coverage-add supervisor-add" id="addCoverageSupervisor" type="button">
         ＋ Add Supervisor
       </button>
-
-    </div>
-
-    <!-- RECEPTION -->
-
-    <div class="coverage-card reception">
-
-      <div class="coverage-category">
-        <span class="coverage-dot"></span>
+</div></div></div>
+<!-- RECEPTION -->
+<div class="coverage-card reception">
+<button aria-controls="coverage-content-reception" aria-expanded="true" class="coverage-category coverage-card-toggle" type="button">
+<span class="coverage-dot"></span>
         Reception
-      </div>
-
-      <div
-        id="coverageReception"
-        class="coverage-supervisors">
-      </div>
-
-      <button
-        id="addCoverageReception"
-        class="coverage-add supervisor-add"
-        type="button">
+      <span aria-hidden="true" class="coverage-card-chevron">⌄</span></button><div class="coverage-card-content" id="coverage-content-reception"><div class="coverage-card-content-inner">
+<div class="coverage-supervisors" id="coverageReception">
+</div>
+<button class="coverage-add supervisor-add" id="addCoverageReception" type="button">
         ＋ Add Reception
       </button>
-
-    </div>
-
-    <!-- CLINICAL SUPERVISOR -->
-
-    <div class="coverage-card clinical-supervisor">
-
-      <div class="coverage-category">
-        <span class="coverage-dot"></span>
+</div></div></div>
+<!-- CLINICAL SUPERVISOR -->
+<div class="coverage-card clinical-supervisor">
+<button aria-controls="coverage-content-clinical-supervisor" aria-expanded="true" class="coverage-category coverage-card-toggle" type="button">
+<span class="coverage-dot"></span>
         Clinical Supervisor
-      </div>
-
-      <div
-        id="coverageClinicalSupervisors"
-        class="coverage-supervisors">
-      </div>
-
-      <button
-        id="addCoverageClinicalSupervisor"
-        class="coverage-add supervisor-add"
-        type="button">
+      <span aria-hidden="true" class="coverage-card-chevron">⌄</span></button><div class="coverage-card-content" id="coverage-content-clinical-supervisor"><div class="coverage-card-content-inner">
+<div class="coverage-supervisors" id="coverageClinicalSupervisors">
+</div>
+<button class="coverage-add supervisor-add" id="addCoverageClinicalSupervisor" type="button">
         ＋ Add Clinical Supervisor
       </button>
-
-    </div>
-
-    <!-- PSW -->
-
-    <div class="coverage-card psw">
-
-      <div class="coverage-category">
-        <span class="coverage-dot"></span>
+</div></div></div>
+<!-- PSW -->
+<div class="coverage-card psw">
+<button aria-controls="coverage-content-psw" aria-expanded="true" class="coverage-category coverage-card-toggle" type="button">
+<span class="coverage-dot"></span>
         PSW
-      </div>
-
-      <label class="coverage-label">
+      <span aria-hidden="true" class="coverage-card-chevron">⌄</span></button><div class="coverage-card-content" id="coverage-content-psw"><div class="coverage-card-content-inner">
+<label class="coverage-label">
         Coordinator
       </label>
-
-      <div
-        id="coverageCoordinatorsPSW"
-        class="coverage-coordinators">
-      </div>
-
-      <button
-        type="button"
-        class="coverage-add"
-        data-coverage="psw">
+<div class="coverage-coordinators" id="coverageCoordinatorsPSW">
+</div>
+<button class="coverage-add" data-coverage="psw" type="button">
         ＋ Add Coordinator
       </button>
-
-      <label class="coverage-label">
+<label class="coverage-label">
         Notes
       </label>
-
-      <textarea
-        id="notesPSW"
-        class="coverage-notes"
-        placeholder="Add notes for today…">
+<textarea class="coverage-notes" id="notesPSW" placeholder="Add notes for today…">
       </textarea>
-
-    </div>
-
-    <!-- NURSING -->
-
-    <div class="coverage-card nursing">
-
-      <div class="coverage-category">
-        <span class="coverage-dot"></span>
+</div></div></div>
+<!-- NURSING -->
+<div class="coverage-card nursing">
+<button aria-controls="coverage-content-nursing" aria-expanded="true" class="coverage-category coverage-card-toggle" type="button">
+<span class="coverage-dot"></span>
         Nursing
-      </div>
-
-      <label class="coverage-label">
+      <span aria-hidden="true" class="coverage-card-chevron">⌄</span></button><div class="coverage-card-content" id="coverage-content-nursing"><div class="coverage-card-content-inner">
+<label class="coverage-label">
         Coordinator
       </label>
-
-      <div
-        id="coverageCoordinatorsNursing"
-        class="coverage-coordinators">
-      </div>
-
-      <button
-        type="button"
-        class="coverage-add"
-        data-coverage="nursing">
+<div class="coverage-coordinators" id="coverageCoordinatorsNursing">
+</div>
+<button class="coverage-add" data-coverage="nursing" type="button">
         ＋ Add Coordinator
       </button>
-
-      <label class="coverage-label">
+<label class="coverage-label">
         Notes
       </label>
-
-      <textarea
-        id="notesNursing"
-        class="coverage-notes"
-        placeholder="Add notes for today…">
+<textarea class="coverage-notes" id="notesNursing" placeholder="Add notes for today…">
       </textarea>
-
-    </div>
-
-    <!-- INTAKE -->
-
-    <div class="coverage-card intake">
-
-      <div class="coverage-category">
-        <span class="coverage-dot"></span>
+</div></div></div>
+<!-- INTAKE -->
+<div class="coverage-card intake">
+<button aria-controls="coverage-content-intake" aria-expanded="true" class="coverage-category coverage-card-toggle" type="button">
+<span class="coverage-dot"></span>
         Intake
-      </div>
-
-      <label class="coverage-label">
+      <span aria-hidden="true" class="coverage-card-chevron">⌄</span></button><div class="coverage-card-content" id="coverage-content-intake"><div class="coverage-card-content-inner">
+<label class="coverage-label">
         Coordinator
       </label>
-
-      <div
-        id="coverageCoordinatorsIntake"
-        class="coverage-coordinators">
-      </div>
-
-      <button
-        type="button"
-        class="coverage-add"
-        data-coverage="intake">
+<div class="coverage-coordinators" id="coverageCoordinatorsIntake">
+</div>
+<button class="coverage-add" data-coverage="intake" type="button">
         ＋ Add Coordinator
       </button>
-
-      <label class="coverage-label">
+<label class="coverage-label">
         Notes
       </label>
-
-      <textarea
-        id="notesIntake"
-        class="coverage-notes"
-        placeholder="Add notes for today…">
+<textarea class="coverage-notes" id="notesIntake" placeholder="Add notes for today…">
       </textarea>
-
-    </div>
-
-
-  </div>
+</div></div></div>
+</div>
 
 </section>
 
@@ -5928,6 +5003,7 @@ function setFirebaseStatus(
   firebaseStatus.classList.remove(
     "connected",
     "saving",
+    "saved",
     "error"
   );
 
@@ -6034,72 +5110,14 @@ async function saveToFirebase(){
           const payload =
             getFirebasePayload();
 
-          function findNestedArrays(value, path = "payload"){
-
-  if(Array.isArray(value)){
-
-    value.forEach(
-      (item,index)=>{
-
-        if(Array.isArray(item)){
-
-          console.error(
-            "NESTED ARRAY FOUND:",
-            path + "[" + index + "]"
-          );
-
-        }
-
-        findNestedArrays(
-          item,
-          path + "[" + index + "]"
-        );
-
-      }
-    );
-
-    return;
-  }
-
-  if(
-    value &&
-    typeof value === "object"
-  ){
-
-    Object.entries(value).forEach(
-      ([key,val])=>{
-
-        findNestedArrays(
-          val,
-          path + "." + key
-        );
-
-      }
-    );
-
-  }
-
-}
-
-findNestedArrays(payload);
-
-          console.log(
-            "Saving to Firebase:",
-            payload
-          );
-
           await setDoc(
   operationsRef,
   payload
 );
 
-          console.log(
-            "Firebase save successful."
-          );
-
           setFirebaseStatus(
-            "connected",
-            "Saved"
+            "saved",
+            "Saved ✓"
           );
 
           setTimeout(
@@ -6243,6 +5261,23 @@ let firstFirebaseLoad = true;
 */
 let localSavePending = false;
 
+function isCoverageEditing(){
+
+  const active =
+    document.activeElement;
+
+  return Boolean(
+    adminMode &&
+    active &&
+    coverageGrid?.contains(active) &&
+    (
+      active.matches("input,textarea") ||
+      active.isContentEditable
+    )
+  );
+
+}
+
 onSnapshot(
 
   operationsRef,
@@ -6253,6 +5288,9 @@ onSnapshot(
 
       const remote =
         snapshot.data();
+
+      const coverageEditing =
+        isCoverageEditing();
 
       /*
         ON-CALL
@@ -6288,7 +5326,8 @@ onSnapshot(
 
       if(
         remote.coverageData &&
-        typeof remote.coverageData === "object"
+        typeof remote.coverageData === "object" &&
+        (!coverageEditing || firstFirebaseLoad)
       ){
 
         coverageData =
@@ -6392,9 +5431,12 @@ onSnapshot(
       */
 
       if(
-        !adminMode ||
-        !localSavePending ||
-        firstFirebaseLoad
+        !coverageEditing &&
+        (
+          !adminMode ||
+          !localSavePending ||
+          firstFirebaseLoad
+        )
       ){
 
         refreshAllUI();
@@ -6576,6 +5618,168 @@ oncallCoordinatorsToggle.addEventListener(
 );
 
 /* =========================================================
+COVERAGE CARD COLLAPSE
+========================================================= */
+
+const coverageCollapseStorageKey =
+  "paramedCoverageCollapsed";
+
+function getCoverageCollapsedState(){
+
+  try{
+    return JSON.parse(
+      localStorage.getItem(
+        coverageCollapseStorageKey
+      ) || "{}"
+    );
+  }catch{
+    return {};
+  }
+
+}
+
+function getCoverageCardKey(card){
+
+  return Array.from(card.classList)
+    .find(
+      value=>value !== "coverage-card"
+    ) || "section";
+
+}
+
+function coverageSectionHasData(key,current){
+
+  if(!current)
+    return false;
+
+  if(["psw","nursing","intake"].includes(key)){
+
+    const section = current[key];
+
+    return Boolean(
+      section &&
+      (
+        section.coordinators?.some(
+          value=>String(value || "").trim()
+        ) ||
+        String(section.notes || "").trim()
+      )
+    );
+
+  }
+
+  const dataKey =
+    key === "clinical-supervisor"
+      ? "clinicalSupervisors"
+      : key;
+
+  const rows = current[dataKey];
+
+  return Array.isArray(rows) &&
+    rows.some(
+      row=>
+        String(row?.name || "").trim() ||
+        String(row?.schedule || "").trim()
+    );
+
+}
+
+function applyCoverageCardStates(current){
+
+  const collapsedState =
+    getCoverageCollapsedState();
+
+  coverageGrid
+    .querySelectorAll(".coverage-card")
+    .forEach(card=>{
+
+      const toggle =
+        card.querySelector(
+          ":scope > .coverage-card-toggle"
+        );
+
+      if(!toggle)
+        return;
+
+      const key =
+        getCoverageCardKey(card);
+
+      const hasManualState =
+        Object.prototype.hasOwnProperty.call(
+          collapsedState,
+          key
+        );
+
+      const collapsed = hasManualState
+        ? collapsedState[key] === true
+        : !coverageSectionHasData(key,current);
+
+      card.classList.toggle(
+        "collapsed",
+        collapsed
+      );
+
+      toggle.setAttribute(
+        "aria-expanded",
+        collapsed ? "false" : "true"
+      );
+
+    });
+
+}
+
+function initializeCoverageCardToggles(){
+
+  coverageGrid
+    .querySelectorAll(".coverage-card")
+    .forEach(card=>{
+
+      const toggle =
+        card.querySelector(
+          ":scope > .coverage-card-toggle"
+        );
+
+      if(!toggle)
+        return;
+
+      const key =
+        getCoverageCardKey(card);
+
+      toggle.addEventListener(
+        "click",
+        ()=>{
+
+          const nowCollapsed =
+            card.classList.toggle(
+              "collapsed"
+            );
+
+          toggle.setAttribute(
+            "aria-expanded",
+            nowCollapsed ? "false" : "true"
+          );
+
+          const nextState =
+            getCoverageCollapsedState();
+
+          nextState[key] =
+            nowCollapsed;
+
+          localStorage.setItem(
+            coverageCollapseStorageKey,
+            JSON.stringify(nextState)
+          );
+
+        }
+      );
+
+    });
+
+}
+
+initializeCoverageCardToggles();
+
+/* =========================================================
 ADMIN
 ========================================================= */
 
@@ -6624,7 +5828,7 @@ function updateAdminUI(){
 
   adminText.textContent =
     adminMode
-      ? "Admin ON"
+      ? "ADMIN MODE"
       : "Admin";
 
   refreshEditableFields();
@@ -6650,10 +5854,6 @@ function openAdmin(){
 
     signOut(auth)
       .then(()=>{
-
-        console.log(
-          "Administrator signed out."
-        );
 
       })
       .catch(error=>{
@@ -6765,11 +5965,6 @@ onAuthStateChanged(
         or the administrator just logged in.
       */
 
-      console.log(
-        "Administrator authenticated:",
-        user.email
-      );
-
       adminMode = true;
 
     }else{
@@ -6777,10 +5972,6 @@ onAuthStateChanged(
       /*
         No authenticated administrator.
       */
-
-      console.log(
-        "No administrator authenticated."
-      );
 
       adminMode = false;
 
@@ -7501,8 +6692,22 @@ function updateCoverageDateSelector(){
   const day =
     selectedDate.getDate();
 
-  coverageDateSelector.textContent =
-    `Coverage ${month} ${day}`;
+  const label =
+    document.getElementById(
+      "coverageDateLabel"
+    );
+
+  if(label){
+    const today = new Date();
+    const isToday =
+      selectedDate.getFullYear() === today.getFullYear() &&
+      selectedDate.getMonth() === today.getMonth() &&
+      selectedDate.getDate() === today.getDate();
+
+    label.textContent = isToday
+      ? `Coverage · Today · ${month} ${day}`
+      : `Coverage · ${month} ${day}`;
+  }
 
 }
 
@@ -7540,14 +6745,76 @@ function syncVisibleCoverageCoordinatorsToData(){
 
 }
 
+function setCoverageEmptyState(container,isEmpty,label){
+
+  if(!container)
+    return;
+
+  let empty =
+    container.parentElement?.querySelector(
+      ":scope > .coverage-empty-state"
+    );
+
+  if(!empty){
+
+    empty =
+      document.createElement("div");
+
+    empty.className =
+      "coverage-empty-state";
+
+    container.insertAdjacentElement(
+      "afterend",
+      empty
+    );
+
+  }
+
+  empty.textContent = label;
+  empty.hidden = !isEmpty || adminMode;
+
+}
+
+function updateCoverageEmptyStates(current){
+
+  ["psw","nursing","intake"].forEach(key=>{
+
+    const hasCoordinator =
+      current[key].coordinators.some(
+        value=>String(value || "").trim()
+      );
+
+    setCoverageEmptyState(
+      coverageCoordinatorContainers[key],
+      !hasCoordinator,
+      "No coordinator assigned"
+    );
+
+  });
+
+  setCoverageEmptyState(
+    coverageSupervisors,
+    !coverageSectionHasData("supervisors",current),
+    "No supervisor assigned"
+  );
+
+  setCoverageEmptyState(
+    coverageReception,
+    !coverageSectionHasData("reception",current),
+    "No reception assigned"
+  );
+
+  setCoverageEmptyState(
+    coverageClinicalSupervisors,
+    !coverageSectionHasData("clinical-supervisor",current),
+    "No clinical supervisor assigned"
+  );
+
+}
+
 function renderCoverage(){
 
   normalizeCoverageData();
-
-  coverageGrid.classList.remove(
-    "weekday-mode",
-    "weekend-mode"
-  );
 
   const current =
     ensureCoverageDate();
@@ -7818,8 +7085,11 @@ function renderCoverage(){
           "Remove supervisor";
 
         remove.addEventListener(
-          "click",
-          ()=>{
+          "pointerdown",
+          event=>{
+
+            event.preventDefault();
+            event.stopPropagation();
 
             if(!adminMode)
               return;
@@ -7951,8 +7221,11 @@ function renderCoverage(){
           "Remove reception";
 
         remove.addEventListener(
-          "click",
-          ()=>{
+          "pointerdown",
+          event=>{
+
+            event.preventDefault();
+            event.stopPropagation();
 
             if(!adminMode)
               return;
@@ -8069,8 +7342,11 @@ function renderCoverage(){
           "Remove clinical supervisor";
 
         remove.addEventListener(
-          "click",
-          ()=>{
+          "pointerdown",
+          event=>{
+
+            event.preventDefault();
+            event.stopPropagation();
 
             if(!adminMode) return;
 
@@ -8102,6 +7378,9 @@ function renderCoverage(){
 
     }
   );
+
+  updateCoverageEmptyStates(current);
+  applyCoverageCardStates(current);
 
 }
 
@@ -8446,7 +7725,7 @@ Object.keys(
 
 
 /* =========================================================
-WEEKDAY / WEEKEND
+COVERAGE DATE
 ========================================================= */
 
 
