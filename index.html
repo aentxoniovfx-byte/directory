@@ -55,35 +55,15 @@ textarea:disabled{
 .topbar{
   display:flex;
   
-  justify-content:space-between;
+  justify-content:flex-end;
   margin-bottom:18px;
 }
 
-.date-area{
-  display:flex;
-  align-items:center;
-  
-}
 
-.date-icon{
-  width:45px;
-  height:45px;
-  
-  align-items:center;
-  justify-content:center;
-  border-radius:14px;
-  
-  border:1px solid rgba(var(--accent-rgb),.58);
-  color:var(--blue);
-  font-size:21px;
-  
-}
 
-.date-title{
-  font-size:21px;
-  font-weight:750;
-  letter-spacing:-.025em;
-}
+
+
+
 
 .date-sub{
   
@@ -128,14 +108,9 @@ textarea:disabled{
   transform:scale(.95);
 }
 
-.calendar-button{
-  min-width:145px;
-}
 
-.calendar-date{
-  color:var(--blue);
-  font-weight:800;
-}
+
+
 
 .admin-dot{
   width:7px;
@@ -461,8 +436,8 @@ body.dark .oncall-coordinators-table td{
   height:7px;
   flex:0 0 7px;
   border-radius:50%;
-  background:#FF7A00;
-  box-shadow:0 0 8px rgba(255,122,0,.9);
+  background:#22C55E;
+  box-shadow: 0 0 8px rgba(34,197,94,.95);
   animation:onCallPreviewDotBlink 1.15s ease-in-out infinite;
 }
 
@@ -471,22 +446,22 @@ body.dark .oncall-coordinators-table td{
     opacity:1;
     transform:scale(1);
     box-shadow:
-      0 0 7px #7EB4FF,
-      0 0 16px rgba(126,180,255,.95),
-      0 0 25px rgba(126,180,255,.65);
+      0 0 7px #22C55E,
+      0 0 16px rgba(34,197,94,.95),
+      0 0 25px rgba(34,197,94,.65);
   }
   50%{
     opacity:.28;
     transform:scale(.68);
     box-shadow:
-      0 0 2px #7EB4FF,
-      0 0 6px rgba(126,180,255,.48);
+      0 0 2px #22C55E,
+      0 0 6px rgba(34,197,94,.48);
   }
 }
 
 body.dark .area-oncall-preview::before{
-  background:#7EB4FF;
-  box-shadow:0 0 8px rgba(126,180,255,.95);
+  background:#22C55E;
+  box-shadow: 0 0 8px rgba(34,197,94,.95);
   animation-name:onCallPreviewDotBlinkDark;
 }
 
@@ -707,17 +682,17 @@ body.dark .area-oncall-preview::before{
     opacity:1;
     transform:scale(1);
     box-shadow:
-      0 0 6px #FF7A00,
-      0 0 14px #FF7A00,
-      0 0 25px rgba(255,122,0,.95);
+      0 0 6px #22C55E,
+      0 0 14px #22C55E,
+      0 0 25px rgba(34,197,94,.95);
   }
 
   50%{
     opacity:.32;
     transform:scale(.72);
     box-shadow:
-      0 0 2px #FF7A00,
-      0 0 6px #FF7A00;
+      0 0 2px #22C55E,
+      0 0 6px #22C55E;
   }
 }
 
@@ -726,17 +701,17 @@ body.dark .area-oncall-preview::before{
     opacity:1;
     transform:scale(1);
     box-shadow:
-      0 0 6px #FF7A00,
-      0 0 14px #FF7A00,
-      0 0 25px rgba(255,122,0,.95);
+      0 0 6px #22C55E,
+      0 0 14px #22C55E,
+      0 0 25px rgba(34,197,94,.95);
   }
 
   50%{
     opacity:.32;
     transform:scale(.72);
     box-shadow:
-      0 0 2px #FF7A00,
-      0 0 6px #FF7A00;
+      0 0 2px #22C55E,
+      0 0 6px #22C55E;
   }
 }
 
@@ -753,7 +728,7 @@ body.dark .area-oncall-preview::before{
   width:9px;
   height:9px;
   margin-right:7px;
-  background:#FF7A00;
+  background:#22C55E;
   animation:
     onCallPulse
     1.15s ease-in-out infinite;
@@ -762,7 +737,7 @@ body.dark .area-oncall-preview::before{
 body.dark
 .card.oncall-active
 .oncall-status{
-  background:#FF7A00;
+  background:#22C55E;
   animation:
     onCallPulseNight
     1.15s ease-in-out infinite;
@@ -1830,25 +1805,13 @@ body:not(.admin-mode)
     align-items:flex-start;
   }
 
-  .date-title{
-    font-size:17px;
-  }
+  
 
-  .date-icon{
-    width:38px;
-    height:38px;
-  }
+  
 
-  .calendar-button{
-    min-width:38px;
-    width:38px;
-    padding:0;
-  }
+  
 
-  .calendar-button .calendar-day,
-  .calendar-button .calendar-date{
-    display:none;
-  }
+  
 
   .workspace{
     display:block;
@@ -2390,7 +2353,7 @@ body.dark{
   --line:rgba(145,111,224,.24);
   --blue:#8C6DE2;
   --cyan:#72BDEB;
-  --green:#00D995;
+  --green:#22C55E;
   --purple:#9B79EA;
   --orange:#B35EDB;
   --input:rgba(28,31,51,.90);
@@ -2495,15 +2458,7 @@ body.dark .card.oncall-active{
 
 
 
-.supervisor:hover,
-.card.oncall-active .oncall-label,
-.coverage-category,
-.panel-title,
-.date-title,
-.date-sub,
-.directory-title,
-.coverage-title,
-h1,h2,h3,h4,h5,h6{
+.supervisor:hover, .card.oncall-active .oncall-label, .coverage-category, .panel-title, .date-sub, .directory-title, .coverage-title, h1, h2, h3, h4, h5, h6{
   text-shadow:none !important;
 }
 
@@ -2603,7 +2558,7 @@ body.dark [class*="supervisor"] .coverage-category{
 
   --blue:#0B4EA2;
   --cyan:#29A9E8;
-  --green:#00CFA5;
+  --green:#22C55E;
   --purple:#1648B8;
   --orange:#FF7417;
 
@@ -2669,10 +2624,10 @@ body:not(.dark) .card.oncall-active .area{
 
 body:not(.dark) .area-oncall-preview::before,
 body:not(.dark) .oncall-status{
-  background:#FF7417 !important;
+  background:#FF7A00 !important;
   box-shadow:
-    0 0 7px rgba(255,116,23,.88),
-    0 0 15px rgba(255,116,23,.48) !important;
+    0 0 7px rgba(255,122,0,.70),
+    0 0 15px rgba(255,122,0,.70) !important;
 }
 
 @keyframes importantQuestionBlink{
@@ -2736,17 +2691,7 @@ body:not(.dark) [class*="supervisor"] .coverage-category{
   text-shadow:none !important;
 }
 
-body:not(.dark) .panel-title,
-body:not(.dark) .date-title,
-body:not(.dark) .date-sub,
-body:not(.dark) .directory-title,
-body:not(.dark) .coverage-title,
-body:not(.dark) h1,
-body:not(.dark) h2,
-body:not(.dark) h3,
-body:not(.dark) h4,
-body:not(.dark) h5,
-body:not(.dark) h6{
+body:not(.dark) .panel-title, body:not(.dark) .date-sub, body:not(.dark) .directory-title, body:not(.dark) .coverage-title, body:not(.dark) h1, body:not(.dark) h2, body:not(.dark) h3, body:not(.dark) h4, body:not(.dark) h5, body:not(.dark) h6{
   text-shadow:none !important;
 }
 
@@ -2878,11 +2823,7 @@ body.dark .topbar{
   box-shadow:none !important;
 }
 
-.date-icon{
-  background:rgba(255,255,255,.10) !important;
-  border-color:rgba(var(--accent-rgb),.08) !important;
-  box-shadow:none !important;
-}
+
 
 body:not(.dark) .topbar .small-button{
   background:rgba(255,255,255,.18) !important;
@@ -2905,11 +2846,7 @@ body.dark .topbar{
     ) !important;
 }
 
-body.dark .date-icon{
-  background:rgba(255,255,255,.025) !important;
-  border-color:rgba(200,190,255,.055) !important;
-  box-shadow:none !important;
-}
+
 
 body.dark .topbar .small-button{
   background:rgba(255,255,255,.025) !important;
@@ -2962,15 +2899,13 @@ body.dark .topbar{
   backdrop-filter:none !important;
 }
 
-body:not(.dark) .topbar .small-button,
-body:not(.dark) .date-icon{
+body:not(.dark) .topbar .small-button{
   background:rgba(255,255,255,.12) !important;
   border-color:rgba(11,78,162,.055) !important;
   box-shadow:none !important;
 }
 
-body.dark .topbar .small-button,
-body.dark .date-icon{
+body.dark .topbar .small-button{
   background:rgba(255,255,255,.018) !important;
   border-color:rgba(200,190,255,.045) !important;
   box-shadow:none !important;
@@ -2994,10 +2929,7 @@ body.dark .date-icon{
 }
 
 
-.date-title{
-  line-height:1.08 !important;
-  margin:0 !important;
-}
+
 .date-sub{
   margin-top:3px !important;
   line-height:1.2 !important;
@@ -3148,17 +3080,11 @@ main > :last-child{ margin-bottom:0 !important; }
   border-width:1px !important;
 }
 
-body:not(.dark) .panel-title,
-body:not(.dark) .directory-title,
-body:not(.dark) .coverage-title,
-body:not(.dark) .date-title{
+body:not(.dark) .panel-title, body:not(.dark) .directory-title, body:not(.dark) .coverage-title{
   color:#0B3266 !important;
 }
 
-body.dark .panel-title,
-body.dark .directory-title,
-body.dark .coverage-title,
-body.dark .date-title{
+body.dark .panel-title, body.dark .directory-title, body.dark .coverage-title{
   color:#F3F4FF !important;
 }
 
@@ -3271,13 +3197,9 @@ body.dark .coverage-grid .coverage-card{
   border:0 !important;
 }
 
-.date-icon{
-  display:none !important;
-}
 
-.date-area{
-  gap:0 !important;
-}
+
+
 
 .coverage-panel,
 body:not(.dark) .coverage-panel,
@@ -4130,45 +4052,8 @@ html body .right-column > .coverage-panel
 
 <header class="topbar">
 
-  <div class="date-area">
-
-    <div class="date-icon">
-      ▣
-    </div>
-
-    <div>
-
-      <div
-        id="currentDate"
-        class="date-title">
-        Coverage August
-      </div>
-
-    </div>
-
-  </div>
-
   <div class="top-actions">
-
-    <button
-      id="calendarButton"
-      class="small-button calendar-button"
-      type="button">
-
-      <span>▣</span>
-
-      <span class="calendar-day">
-        Today
-      </span>
-
-      <span
-        id="calendarButtonDate"
-        class="calendar-date">
-      </span>
-
-    </button>
-
-    <button
+<button
       id="themeToggle"
       class="small-button"
       type="button">
@@ -8074,7 +7959,13 @@ function applyCoverageMode(){
 coverageDateSelector.addEventListener(
   "click",
   ()=>{
-    calendarButton.click();
+
+    renderCalendar();
+
+    calendarOverlay.classList.add(
+      "show"
+    );
+
   }
 );
 
@@ -8699,11 +8590,6 @@ const calendarOverlay =
     "calendarOverlay"
   );
 
-const calendarButton =
-  document.getElementById(
-    "calendarButton"
-  );
-
 const calendarClose =
   document.getElementById(
     "calendarClose"
@@ -8717,16 +8603,6 @@ const calendarMonth =
 const calendarDays =
   document.getElementById(
     "calendarDays"
-  );
-
-const currentDate =
-  document.getElementById(
-    "currentDate"
-  );
-
-const calendarButtonDate =
-  document.getElementById(
-    "calendarButtonDate"
   );
 
 let selectedDate =
@@ -8973,11 +8849,7 @@ function renderCalendar(){
           getCoverageDateKey(selectedDate);
 
         renderCoverage();
-
-        calendarButtonDate.textContent =
-          selectedDate.getDate();
-
-        calendarOverlay.classList.remove(
+calendarOverlay.classList.remove(
           "show"
         );
 
@@ -8993,19 +8865,6 @@ function renderCalendar(){
   }
 
 }
-
-calendarButton.addEventListener(
-  "click",
-  ()=>{
-
-    renderCalendar();
-
-    calendarOverlay.classList.add(
-      "show"
-    );
-
-  }
-);
 
 calendarClose.addEventListener(
   "click",
@@ -9047,11 +8906,7 @@ function updateCoverageMonthTitle(){
         day:"numeric"
       }
     );
-
-  currentDate.textContent =
-    coverageTitle;
-
-  document.title =
+document.title =
     coverageTitle;
 
   updateCoverageDateSelector();
@@ -9063,9 +8918,6 @@ INITIALIZE
 ========================================================= */
 
 updateCoverageMonthTitle();
-
-calendarButtonDate.textContent =
-  selectedDate.getDate();
 
 renderCalendar();
 
