@@ -2586,6 +2586,134 @@ body.dark .card.oncall-active{
     ) !important;
 }
 
+
+
+/* =========================================================
+IMPORTANT INFORMATION — RICH TEXT EDITOR
+========================================================= */
+
+.important-editor-toolbar{
+  display:none;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+  padding:9px 11px;
+  margin:0 12px 2px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:rgba(255,255,255,.22);
+  -webkit-backdrop-filter:blur(14px) saturate(145%);
+  backdrop-filter:blur(14px) saturate(145%);
+}
+
+body.dark .important-editor-toolbar{
+  background:rgba(18,21,42,.28);
+  border-color:rgba(200,190,255,.14);
+}
+
+body.admin-mode .important-editor-toolbar{
+  display:flex;
+}
+
+.important-tool,
+.important-tool-select{
+  min-width:34px;
+  height:32px;
+  border:1px solid transparent;
+  border-radius:8px;
+  background:transparent;
+  color:var(--text);
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:
+    background .16s ease,
+    border-color .16s ease,
+    transform .16s ease;
+}
+
+.important-tool{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 9px;
+}
+
+.important-tool:hover,
+.important-tool-select:hover{
+  background:rgba(var(--accent-rgb),.10);
+  border-color:rgba(var(--accent-rgb),.18);
+}
+
+.important-tool:active{
+  transform:scale(.95);
+}
+
+.important-tool.active{
+  background:rgba(var(--accent-rgb),.16);
+  border-color:rgba(var(--accent-rgb),.30);
+}
+
+.important-tool-select{
+  padding:0 8px;
+  outline:none;
+}
+
+.important-tool-separator{
+  width:1px;
+  height:20px;
+  margin:0 1px;
+  background:var(--line);
+}
+
+.important-align-center{
+  text-align:center;
+}
+
+.important-align-right{
+  text-align:right;
+}
+
+.important-list-tool{
+  min-width:40px;
+  letter-spacing:-1px;
+}
+
+.important-clear-tool{
+  font-size:11px;
+}
+
+.important-rich-editor{
+  overflow:auto;
+  cursor:default;
+  white-space:normal;
+}
+
+.important-rich-editor[contenteditable="true"]{
+  cursor:text;
+}
+
+.important-rich-editor:empty::before{
+  content:attr(data-placeholder);
+  color:var(--muted);
+  pointer-events:none;
+}
+
+.important-rich-editor p,
+.important-rich-editor div{
+  margin:.18em 0;
+}
+
+.important-rich-editor ul,
+.important-rich-editor ol{
+  margin:.4em 0 .4em 1.35em;
+  padding-left:.8em;
+}
+
+.important-rich-editor li{
+  margin:.16em 0;
+}
+
 </style>
 </head>
 
@@ -2989,11 +3117,53 @@ IMPORTANT INFORMATION
 
   </div>
 
-  <textarea
+  <div
+    id="importantEditorToolbar"
+    class="important-editor-toolbar"
+    aria-label="Important Information text formatting tools">
+
+    <button type="button" class="important-tool" data-command="bold" title="Bold"><strong>B</strong></button>
+    <button type="button" class="important-tool" data-command="italic" title="Italic"><em>I</em></button>
+    <button type="button" class="important-tool" data-command="underline" title="Underline"><u>U</u></button>
+
+    <span class="important-tool-separator"></span>
+
+    <select
+      id="importantFontSize"
+      class="important-tool-select"
+      title="Text size"
+      aria-label="Text size">
+      <option value="2">Small</option>
+      <option value="3" selected>Normal</option>
+      <option value="4">Large</option>
+      <option value="5">XL</option>
+    </select>
+
+    <span class="important-tool-separator"></span>
+
+    <button type="button" class="important-tool" data-command="justifyLeft" title="Align left">≡</button>
+    <button type="button" class="important-tool important-align-center" data-command="justifyCenter" title="Center">≡</button>
+    <button type="button" class="important-tool important-align-right" data-command="justifyRight" title="Align right">≡</button>
+
+    <span class="important-tool-separator"></span>
+
+    <button type="button" class="important-tool important-list-tool" data-command="insertUnorderedList" title="Bullet list">•☰</button>
+    <button type="button" class="important-tool important-list-tool" data-command="insertOrderedList" title="Numbered list">1☰</button>
+
+    <span class="important-tool-separator"></span>
+
+    <button type="button" class="important-tool important-clear-tool" data-command="removeFormat" title="Clear formatting">Tx</button>
+
+  </div>
+
+  <div
     id="importantNotes"
-    class="important-notes"
-    placeholder="Write an important notice for today…">
-  </textarea>
+    class="important-notes important-rich-editor"
+    contenteditable="false"
+    role="textbox"
+    aria-multiline="true"
+    data-placeholder="Write an important notice for today…">
+  </div>
 
 </section>
 
@@ -6476,6 +6646,185 @@ const importantNotesField =
     "importantNotes"
   );
 
+const importantEditorToolbar =
+  document.getElementById(
+    "importantEditorToolbar"
+  );
+
+const importantFontSize =
+  document.getElementById(
+    "importantFontSize"
+  );
+
+function escapeImportantText(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;")
+    .replace(/\n/g,"<br>");
+
+}
+
+function looksLikeRichImportantText(value){
+
+  return /<(br|div|p|strong|b|em|i|u|ul|ol|li|font|span)\b/i
+    .test(String(value || ""));
+
+}
+
+function sanitizeImportantHTML(html){
+
+  const template =
+    document.createElement("template");
+
+  template.innerHTML =
+    String(html || "");
+
+  const allowedTags =
+    new Set([
+      "BR",
+      "DIV",
+      "P",
+      "STRONG",
+      "B",
+      "EM",
+      "I",
+      "U",
+      "UL",
+      "OL",
+      "LI",
+      "FONT",
+      "SPAN"
+    ]);
+
+  const walk =
+    node=>{
+
+      Array.from(node.childNodes)
+        .forEach(
+          child=>{
+
+            if(
+              child.nodeType ===
+              Node.ELEMENT_NODE
+            ){
+
+              if(
+                !allowedTags.has(
+                  child.tagName
+                )
+              ){
+
+                const fragment =
+                  document.createDocumentFragment();
+
+                while(child.firstChild){
+
+                  fragment.appendChild(
+                    child.firstChild
+                  );
+
+                }
+
+                child.replaceWith(
+                  fragment
+                );
+
+                return;
+
+              }
+
+              Array.from(
+                child.attributes
+              ).forEach(
+                attribute=>{
+
+                  const name =
+                    attribute.name
+                      .toLowerCase();
+
+                  if(
+                    child.tagName === "FONT" &&
+                    name === "size"
+                  ){
+
+                    return;
+
+                  }
+
+                  if(
+                    name === "style"
+                  ){
+
+                    const cleanStyle =
+                      child.style.textAlign
+                        ? `text-align:${child.style.textAlign};`
+                        : "";
+
+                    if(cleanStyle){
+
+                      child.setAttribute(
+                        "style",
+                        cleanStyle
+                      );
+
+                    }else{
+
+                      child.removeAttribute(
+                        "style"
+                      );
+
+                    }
+
+                    return;
+
+                  }
+
+                  child.removeAttribute(
+                    attribute.name
+                  );
+
+                }
+              );
+
+              walk(child);
+
+            }
+
+          }
+        );
+
+    };
+
+  walk(template.content);
+
+  return template.innerHTML;
+
+}
+
+function getImportantHTML(){
+
+  return sanitizeImportantHTML(
+    importantNotesField.innerHTML
+  );
+
+}
+
+function setImportantHTML(value){
+
+  const raw =
+    String(value || "");
+
+  importantNotesField.innerHTML =
+    looksLikeRichImportantText(raw)
+      ? sanitizeImportantHTML(raw)
+      : escapeImportantText(raw);
+
+}
+
 importantNotesField.addEventListener(
   "input",
   ()=>{
@@ -6484,7 +6833,72 @@ importantNotesField.addEventListener(
       return;
 
     importantNotes =
-      importantNotesField.value;
+      getImportantHTML();
+
+    saveState();
+
+  }
+);
+
+importantEditorToolbar
+  .querySelectorAll(
+    "[data-command]"
+  )
+  .forEach(
+    button=>{
+
+      button.addEventListener(
+        "mousedown",
+        event=>{
+
+          event.preventDefault();
+
+        }
+      );
+
+      button.addEventListener(
+        "click",
+        ()=>{
+
+          if(!adminMode)
+            return;
+
+          importantNotesField.focus();
+
+          document.execCommand(
+            button.dataset.command,
+            false,
+            null
+          );
+
+          importantNotes =
+            getImportantHTML();
+
+          saveState();
+
+        }
+      );
+
+    }
+  );
+
+importantFontSize.addEventListener(
+  "change",
+  ()=>{
+
+    if(!adminMode)
+      return;
+
+    importantNotesField.focus();
+
+    document.execCommand(
+      "fontSize",
+      false,
+      importantFontSize.value
+    );
+
+    importantNotes =
+      getImportantHTML();
 
     saveState();
 
@@ -6499,11 +6913,23 @@ function refreshEditableFields(){
 
   renderCoverage();
 
-  importantNotesField.disabled =
-    !adminMode;
+  importantNotesField.setAttribute(
+    "contenteditable",
+    adminMode
+      ? "true"
+      : "false"
+  );
 
-  importantNotesField.value =
-    importantNotes || "";
+  importantNotesField.setAttribute(
+    "aria-readonly",
+    adminMode
+      ? "false"
+      : "true"
+  );
+
+  setImportantHTML(
+    importantNotes || ""
+  );
 
 }
 
