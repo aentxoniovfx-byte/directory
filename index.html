@@ -7644,9 +7644,12 @@ function renderCoverage(){
           if(!adminMode)
             return;
 
-          current.supervisors[index].name =
-            nameInput.value;
-
+          /*
+            Always sync the values currently visible
+            in the supervisor rows into the CURRENT
+            coverageData object before saving.
+          */
+          syncVisibleSupervisorsToData();
           saveState();
 
         }
@@ -7659,9 +7662,11 @@ function renderCoverage(){
           if(!adminMode)
             return;
 
-          current.supervisors[index].schedule =
-            scheduleInput.value;
-
+          /*
+            Same immediate-save behavior as the
+            Important Information editor.
+          */
+          syncVisibleSupervisorsToData();
           saveState();
 
         }
@@ -7686,10 +7691,31 @@ function renderCoverage(){
           "click",
           ()=>{
 
-            current.supervisors.splice(
-              index,
-              1
-            );
+            if(!adminMode)
+              return;
+
+            /*
+              Preserve any text currently being edited,
+              then remove from the CURRENT data object.
+            */
+            syncVisibleSupervisorsToData();
+
+            const supervisors =
+              coverageData[coverageMode]
+                .supervisors;
+
+            if(
+              Array.isArray(supervisors) &&
+              index >= 0 &&
+              index < supervisors.length
+            ){
+
+              supervisors.splice(
+                index,
+                1
+              );
+
+            }
 
             saveState();
             renderCoverage();
