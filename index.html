@@ -2714,6 +2714,637 @@ body.admin-mode .important-editor-toolbar{
   margin:.16em 0;
 }
 
+
+
+.important-color-wrap{
+  height:32px;
+  min-width:40px;
+  padding:0 7px;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  border:1px solid transparent;
+  border-radius:8px;
+  cursor:pointer;
+  transition:
+    background .16s ease,
+    border-color .16s ease;
+}
+
+.important-color-wrap:hover{
+  background:rgba(var(--accent-rgb),.10);
+  border-color:rgba(var(--accent-rgb),.18);
+}
+
+.important-color-icon{
+  font-size:13px;
+  font-weight:800;
+  line-height:1;
+}
+
+.important-color-input{
+  width:18px;
+  height:18px;
+  min-width:18px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  overflow:hidden;
+  background:transparent;
+  cursor:pointer;
+}
+
+.important-color-input::-webkit-color-swatch-wrapper{
+  padding:0;
+}
+
+.important-color-input::-webkit-color-swatch{
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:50%;
+}
+
+.important-color-input::-moz-color-swatch{
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:50%;
+}
+
+
+/* =========================================================
+SOFTER GLOBAL THEME + STRONGER COVERAGE CARDS
+========================================================= */
+
+/* DAY — slightly softer aqua intensity */
+:root{
+  --bg:#F3FBFC;
+  --panel:rgba(255,255,255,.74);
+  --panel-solid:#FFFFFF;
+  --text:#17343A;
+  --secondary:#60757A;
+  --muted:#93A6AA;
+  --line:rgba(0,160,173,.20);
+  --blue:#16A7B3;
+  --cyan:#4BCDD8;
+  --green:#00D995;
+  --purple:#30BBC7;
+  --orange:#18AEBB;
+  --input:rgba(248,253,254,.90);
+  --accent-rgb:22,167,179;
+  --accent-2-rgb:75,205,216;
+  --shadow:0 12px 32px rgba(22,167,179,.10);
+}
+
+/* NIGHT — same identity, just a little calmer */
+body.dark{
+  --bg:#0C0E19;
+  --panel:rgba(22,25,44,.82);
+  --panel-solid:#171A2D;
+  --text:#F5F4FA;
+  --secondary:#B6B3CC;
+  --muted:#7E7B91;
+  --line:rgba(145,111,224,.24);
+  --blue:#8C6DE2;
+  --cyan:#72BDEB;
+  --green:#00D995;
+  --purple:#9B79EA;
+  --orange:#B35EDB;
+  --input:rgba(28,31,51,.90);
+  --accent-rgb:140,109,226;
+  --accent-2-rgb:114,189,235;
+  --shadow:0 14px 38px rgba(0,0,0,.32);
+}
+
+/* Slightly calmer active/on-call treatment */
+body:not(.dark) .card.oncall-active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(22,167,179,.34) 0%,
+      rgba(75,205,216,.24) 52%,
+      rgba(255,255,255,.26) 100%
+    ) !important;
+  border-color:rgba(22,167,179,.76) !important;
+  box-shadow:
+    0 0 0 1px rgba(22,167,179,.32),
+    0 0 18px rgba(22,167,179,.22),
+    0 0 34px rgba(75,205,216,.12) !important;
+}
+
+body.dark .card.oncall-active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(140,109,226,.34) 0%,
+      rgba(114,189,235,.18) 60%,
+      rgba(255,255,255,.035) 100%
+    ) !important;
+  border-color:rgba(155,121,234,.72) !important;
+  box-shadow:
+    0 0 0 1px rgba(155,121,234,.28),
+    0 0 18px rgba(140,109,226,.23),
+    0 0 36px rgba(114,189,235,.10) !important;
+}
+
+/* Coverage cards: more separation, depth and color */
+.coverage-card,
+.coverage-item,
+.coverage-section-card{
+  position:relative;
+  overflow:hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.20),
+    0 10px 24px rgba(0,0,0,.10);
+}
+
+.coverage-card::before,
+.coverage-item::before,
+.coverage-section-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.10),
+      transparent 42%
+    );
+}
+
+/* Try common per-coverage hooks already used by the app */
+.coverage-psw,
+[data-coverage="psw"],
+.psw-coverage{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 12px 26px rgba(255,193,7,.16),
+    0 0 0 1px rgba(255,193,7,.14) !important;
+}
+
+.coverage-nursing,
+[data-coverage="nursing"],
+.nursing-coverage{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.20),
+    0 12px 26px rgba(74,144,226,.16),
+    0 0 0 1px rgba(74,144,226,.14) !important;
+}
+
+.coverage-intake,
+[data-coverage="intake"],
+.intake-coverage{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.20),
+    0 12px 26px rgba(53,215,229,.16),
+    0 0 0 1px rgba(53,215,229,.14) !important;
+}
+
+/* Weekend retains its warm distinction but with more depth */
+.coverage-panel.weekend .coverage-psw,
+.weekend [data-coverage="psw"]{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    0 12px 28px rgba(230,57,70,.18),
+    0 0 0 1px rgba(230,57,70,.16) !important;
+}
+
+.coverage-panel.weekend .coverage-nursing,
+.weekend [data-coverage="nursing"]{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    0 12px 28px rgba(255,139,50,.18),
+    0 0 0 1px rgba(255,139,50,.16) !important;
+}
+
+.coverage-panel.weekend .coverage-intake,
+.weekend [data-coverage="intake"]{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    0 12px 28px rgba(255,210,64,.18),
+    0 0 0 1px rgba(255,210,64,.16) !important;
+}
+
+
+
+/* =========================================================
+FINAL VISUAL TUNING — MAYA / INDIGO DAY + CLEAN TITLES
+========================================================= */
+
+/* DAY: Maya blue + indigo instead of aqua */
+:root{
+  --bg:#F3F7FF;
+  --panel:rgba(255,255,255,.74);
+  --panel-solid:#FFFFFF;
+  --text:#17233F;
+  --secondary:#64708A;
+  --muted:#96A0B5;
+  --line:rgba(72,111,210,.20);
+  --blue:#4F6FE8;
+  --cyan:#73C2FB;
+  --green:#00D995;
+  --purple:#6675E8;
+  --orange:#5B8DEF;
+  --input:rgba(248,250,255,.92);
+  --accent-rgb:79,111,232;
+  --accent-2-rgb:115,194,251;
+  --shadow:0 12px 32px rgba(79,111,232,.10);
+}
+
+/* Remove title/label glow effects */
+.supervisor:hover,
+.card.oncall-active .oncall-label,
+.coverage-category,
+.panel-title,
+.date-title,
+.date-sub,
+.directory-title,
+.coverage-title,
+h1,h2,h3,h4,h5,h6{
+  text-shadow:none !important;
+}
+
+/* DAY active areas now use Maya blue / indigo */
+body:not(.dark) .card.oncall-active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(79,111,232,.30) 0%,
+      rgba(115,194,251,.21) 55%,
+      rgba(255,255,255,.28) 100%
+    ) !important;
+  border-color:rgba(79,111,232,.70) !important;
+  box-shadow:
+    0 0 0 1px rgba(79,111,232,.25),
+    0 10px 24px rgba(79,111,232,.13) !important;
+}
+
+body:not(.dark) .card.oncall-active .area{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(79,111,232,.14),
+      rgba(115,194,251,.08)
+    ) !important;
+}
+
+/* Coverage titles: high contrast instead of matching each card */
+.coverage-grid.weekday-mode .coverage-card.psw .coverage-category,
+.coverage-grid.weekday-mode .coverage-card.nursing .coverage-category,
+.coverage-grid.weekday-mode .coverage-card.intake .coverage-category{
+  color:#243A73 !important;
+  font-weight:800;
+}
+
+.coverage-grid.weekend-mode .coverage-card.psw .coverage-category,
+.coverage-grid.weekend-mode .coverage-card.nursing .coverage-category,
+.coverage-grid.weekend-mode .coverage-card.intake .coverage-category{
+  color:#54233A !important;
+  font-weight:800;
+}
+
+body.dark .coverage-grid.weekday-mode .coverage-card.psw .coverage-category,
+body.dark .coverage-grid.weekday-mode .coverage-card.nursing .coverage-category,
+body.dark .coverage-grid.weekday-mode .coverage-card.intake .coverage-category{
+  color:#F2F4FF !important;
+}
+
+body.dark .coverage-grid.weekend-mode .coverage-card.psw .coverage-category,
+body.dark .coverage-grid.weekend-mode .coverage-card.nursing .coverage-category,
+body.dark .coverage-grid.weekend-mode .coverage-card.intake .coverage-category{
+  color:#FFF2F6 !important;
+}
+
+/* Keep the cards colorful, but use softer shadows instead of glow */
+.coverage-grid .coverage-card.psw,
+.coverage-grid .coverage-card.nursing,
+.coverage-grid .coverage-card.intake{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 10px 22px rgba(22,35,70,.10) !important;
+}
+
+/* Slightly richer weekday card fills so Coverage stays visible */
+.coverage-grid.weekday-mode .coverage-card.psw{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,224,84,.29),
+      rgba(255,241,171,.13)
+    ) !important;
+  border-color:rgba(221,184,24,.48) !important;
+}
+
+.coverage-grid.weekday-mode .coverage-card.nursing{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(79,111,232,.27),
+      rgba(115,194,251,.13)
+    ) !important;
+  border-color:rgba(79,111,232,.46) !important;
+}
+
+.coverage-grid.weekday-mode .coverage-card.intake{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(115,194,251,.30),
+      rgba(151,218,255,.14)
+    ) !important;
+  border-color:rgba(73,164,224,.46) !important;
+}
+
+
+
+/* =========================================================
+DAY MODE — MAYA BLUE + SUPERVISOR TITLE CONTRAST
+========================================================= */
+
+:root{
+  --bg:#F3F9FF;
+  --panel:rgba(255,255,255,.75);
+  --panel-solid:#FFFFFF;
+  --text:#18304B;
+  --secondary:#64788E;
+  --muted:#96A8B9;
+  --line:rgba(74,163,224,.21);
+  --blue:#73C2FB;
+  --cyan:#8DD3FF;
+  --green:#00D995;
+  --purple:#5CAFEA;
+  --orange:#4AA3E0;
+  --input:rgba(248,252,255,.92);
+  --accent-rgb:115,194,251;
+  --accent-2-rgb:141,211,255;
+  --shadow:0 12px 32px rgba(74,163,224,.10);
+}
+
+/* Day on-call areas — Maya blue, not indigo */
+body:not(.dark) .card.oncall-active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(115,194,251,.34) 0%,
+      rgba(141,211,255,.23) 55%,
+      rgba(255,255,255,.30) 100%
+    ) !important;
+  border-color:rgba(74,163,224,.68) !important;
+  box-shadow:
+    0 0 0 1px rgba(74,163,224,.22),
+    0 10px 24px rgba(74,163,224,.13) !important;
+}
+
+body:not(.dark) .card.oncall-active .area{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(115,194,251,.17),
+      rgba(141,211,255,.09)
+    ) !important;
+}
+
+/* Supervisor title — contrast against its green/aqua card */
+body:not(.dark) .coverage-supervisor-card .coverage-category,
+body:not(.dark) .supervisor-card .coverage-category,
+body:not(.dark) .coverage-supervisors .coverage-category,
+body:not(.dark) [class*="supervisor"] .coverage-category{
+  color:#173C63 !important;
+  text-shadow:none !important;
+  font-weight:800 !important;
+}
+
+/* Night supervisor title — bright neutral contrast */
+body.dark .coverage-supervisor-card .coverage-category,
+body.dark .supervisor-card .coverage-category,
+body.dark .coverage-supervisors .coverage-category,
+body.dark [class*="supervisor"] .coverage-category{
+  color:#F4F2FF !important;
+  text-shadow:none !important;
+  font-weight:800 !important;
+}
+
+
+
+/* =========================================================
+DAY THEME — COBALT + MAYA BLUE + CYAN + ORANGE
+Inspired by supplied palette
+========================================================= */
+
+:root{
+  --bg:#EAF6FF;
+  --panel:rgba(255,255,255,.75);
+  --panel-solid:#FFFFFF;
+  --text:#092B57;
+  --secondary:#536E8D;
+  --muted:#8DA5BB;
+  --line:rgba(13,87,166,.22);
+
+  --blue:#0B4EA2;
+  --cyan:#29A9E8;
+  --green:#00CFA5;
+  --purple:#1648B8;
+  --orange:#FF7417;
+
+  --input:rgba(247,252,255,.92);
+
+  --accent-rgb:11,78,162;
+  --accent-2-rgb:41,169,232;
+
+  --shadow:0 12px 32px rgba(11,78,162,.11);
+}
+
+/* DAY background — rich blue atmosphere, still light */
+body:not(.dark){
+  background:
+    radial-gradient(
+      ellipse at 10% 8%,
+      rgba(41,169,232,.14),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 88% 20%,
+      rgba(11,78,162,.10),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 48% 100%,
+      rgba(22,72,184,.07),
+      transparent 46%
+    ),
+    linear-gradient(
+      145deg,
+      #F6FBFF 0%,
+      #EAF6FF 52%,
+      #F2F9FF 100%
+    ) !important;
+}
+
+/* Glass surfaces tuned to the new blue palette */
+body:not(.dark) .panel,
+body:not(.dark) .topbar,
+body:not(.dark) .coverage-panel,
+body:not(.dark) .important-notes,
+body:not(.dark) .directory-section{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.66),
+      rgba(226,244,255,.38)
+    ) !important;
+  border-color:rgba(255,255,255,.78) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.88),
+    0 12px 30px rgba(11,78,162,.075) !important;
+}
+
+body:not(.dark) .card{
+  background:
+    linear-gradient(
+      110deg,
+      rgba(255,255,255,.55),
+      rgba(220,241,255,.31)
+    ) !important;
+  border-color:rgba(13,87,166,.15) !important;
+}
+
+/* Covered areas — cobalt into Maya blue */
+body:not(.dark) .card.oncall-active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11,78,162,.34) 0%,
+      rgba(41,169,232,.26) 58%,
+      rgba(255,255,255,.31) 100%
+    ) !important;
+  border-color:rgba(11,78,162,.68) !important;
+  box-shadow:
+    0 0 0 1px rgba(11,78,162,.20),
+    0 10px 24px rgba(11,78,162,.14) !important;
+}
+
+body:not(.dark) .card.oncall-active .area{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(11,78,162,.16),
+      rgba(41,169,232,.10)
+    ) !important;
+}
+
+/* Orange becomes the deliberate warm accent */
+body:not(.dark) .area-oncall-preview::before,
+body:not(.dark) .oncall-status{
+  background:#FF7417 !important;
+  box-shadow:
+    0 0 7px rgba(255,116,23,.88),
+    0 0 15px rgba(255,116,23,.48) !important;
+}
+
+/* Important Information question mark — red blinking alert */
+@keyframes importantQuestionBlink{
+  0%,100%{
+    opacity:1;
+    transform:scale(1);
+    filter:none;
+  }
+  50%{
+    opacity:.32;
+    transform:scale(.82);
+    filter:none;
+  }
+}
+
+.important-question,
+.important-icon,
+[data-important-icon],
+.important-information-icon{
+  color:#EF233C !important;
+  text-shadow:none !important;
+}
+
+.important-question::before,
+.important-icon::before,
+[data-important-icon]::before,
+.important-information-icon::before{
+  color:#EF233C !important;
+}
+
+.important-question,
+.important-icon,
+[data-important-icon],
+.important-information-icon{
+  animation:importantQuestionBlink 1.15s ease-in-out infinite;
+}
+
+/* If the ? is a literal text/icon inside the important heading */
+.important-title span:first-child,
+.important-header span:first-child{
+  color:#EF233C !important;
+}
+
+/* Coverage cards — richer color, controlled shadow */
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.psw{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,116,23,.25),
+      rgba(255,181,88,.12)
+    ) !important;
+  border-color:rgba(255,116,23,.48) !important;
+}
+
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.nursing{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(11,78,162,.27),
+      rgba(22,72,184,.13)
+    ) !important;
+  border-color:rgba(11,78,162,.48) !important;
+}
+
+body:not(.dark) .coverage-grid.weekday-mode .coverage-card.intake{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(41,169,232,.30),
+      rgba(105,207,247,.14)
+    ) !important;
+  border-color:rgba(41,169,232,.50) !important;
+}
+
+/* Coverage titles — dark contrast instead of matching the card */
+body:not(.dark) .coverage-grid .coverage-card .coverage-category{
+  color:#082D61 !important;
+  font-weight:800 !important;
+  text-shadow:none !important;
+}
+
+/* Supervisors: keep card identity, use contrasting cobalt title */
+body:not(.dark) .coverage-supervisor-card .coverage-category,
+body:not(.dark) .supervisor-card .coverage-category,
+body:not(.dark) .coverage-supervisors .coverage-category,
+body:not(.dark) [class*="supervisor"] .coverage-category{
+  color:#083A78 !important;
+  font-weight:800 !important;
+  text-shadow:none !important;
+}
+
+/* No title glow */
+body:not(.dark) .panel-title,
+body:not(.dark) .date-title,
+body:not(.dark) .date-sub,
+body:not(.dark) .directory-title,
+body:not(.dark) .coverage-title,
+body:not(.dark) h1,
+body:not(.dark) h2,
+body:not(.dark) h3,
+body:not(.dark) h4,
+body:not(.dark) h5,
+body:not(.dark) h6{
+  text-shadow:none !important;
+}
+
 </style>
 </head>
 
@@ -3138,6 +3769,19 @@ IMPORTANT INFORMATION
       <option value="4">Large</option>
       <option value="5">XL</option>
     </select>
+
+    <label
+      class="important-color-wrap"
+      title="Text color"
+      aria-label="Text color">
+      <span class="important-color-icon">A</span>
+      <input
+        id="importantTextColor"
+        class="important-color-input"
+        type="color"
+        value="#00AEBB"
+        aria-label="Choose text color">
+    </label>
 
     <span class="important-tool-separator"></span>
 
@@ -6656,6 +7300,11 @@ const importantFontSize =
     "importantFontSize"
   );
 
+const importantTextColor =
+  document.getElementById(
+    "importantTextColor"
+  );
+
 function escapeImportantText(value){
 
   return String(value ?? "")
@@ -6748,7 +7397,10 @@ function sanitizeImportantHTML(html){
 
                   if(
                     child.tagName === "FONT" &&
-                    name === "size"
+                    (
+                      name === "size" ||
+                      name === "color"
+                    )
                   ){
 
                     return;
@@ -6759,16 +7411,33 @@ function sanitizeImportantHTML(html){
                     name === "style"
                   ){
 
-                    const cleanStyle =
-                      child.style.textAlign
-                        ? `text-align:${child.style.textAlign};`
-                        : "";
+                    const cleanParts = [];
 
-                    if(cleanStyle){
+                    if(
+                      child.style.textAlign
+                    ){
+
+                      cleanParts.push(
+                        `text-align:${child.style.textAlign}`
+                      );
+
+                    }
+
+                    if(
+                      child.style.color
+                    ){
+
+                      cleanParts.push(
+                        `color:${child.style.color}`
+                      );
+
+                    }
+
+                    if(cleanParts.length){
 
                       child.setAttribute(
                         "style",
-                        cleanStyle
+                        cleanParts.join(";") + ";"
                       );
 
                     }else{
@@ -6895,6 +7564,29 @@ importantFontSize.addEventListener(
       "fontSize",
       false,
       importantFontSize.value
+    );
+
+    importantNotes =
+      getImportantHTML();
+
+    saveState();
+
+  }
+);
+
+importantTextColor.addEventListener(
+  "input",
+  ()=>{
+
+    if(!adminMode)
+      return;
+
+    importantNotesField.focus();
+
+    document.execCommand(
+      "foreColor",
+      false,
+      importantTextColor.value
     );
 
     importantNotes =
