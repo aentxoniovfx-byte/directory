@@ -6,42 +6,44 @@
 <title>Coverage August</title>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
 :root{
-  --bg:#eef0ff;
-  --panel:rgba(255,255,255,.58);
-  --panel-solid:#fff;
-  --text:#17172b;
-  --secondary:#626886;
-  --muted:#9298b2;
-  --line:rgba(28,112,196,.22);
-  --blue:#1C70C4;
-  --cyan:#3FA9F5;
-  --green:#00d995;
-  --purple:#FF7A00;
-  --orange:#ff8b32;
-  --input:rgba(248,251,255,.72);
-  --accent-rgb:28,112,196;
-  --accent-2-rgb:63,169,245;
-  --shadow:0 12px 35px rgba(28,112,196,.12);
+  --bg:#F0FBFC;
+  --panel:rgba(255,255,255,.76);
+  --panel-solid:#FFFFFF;
+  --text:#15343A;
+  --secondary:#5C7479;
+  --muted:#8FA6AA;
+  --line:rgba(0,174,188,.24);
+  --blue:#00AEBB;
+  --cyan:#35D7E5;
+  --green:#00D995;
+  --purple:#21C4D3;
+  --orange:#00B8C8;
+  --input:rgba(247,253,254,.92);
+  --accent-rgb:0,174,187;
+  --accent-2-rgb:53,215,229;
+  --shadow:0 12px 35px rgba(0,174,187,.13);
 }
 
 body.dark{
-  --bg:#080704;
-  --panel:rgba(22,18,8,.66);
-  --panel-solid:#17140a;
-  --text:#fffbea;
-  --secondary:#b9ae8c;
-  --muted:#766f5a;
-  --line:rgba(255,122,0,.25);
-  --blue:#FF7A00;
-  --cyan:#FFE45C;
+  --bg:#0B0D18;
+  --panel:rgba(21,24,42,.86);
+  --panel-solid:#15182A;
+  --text:#F7F5FF;
+  --secondary:#B9B6D3;
+  --muted:#77758F;
+  --line:rgba(155,109,255,.30);
+  --blue:#9B6DFF;
+  --cyan:#6EC8FF;
   --green:#00e69a;
-  --purple:#FF7A00;
-  --orange:#FF7A00;
-  --input:rgba(25,21,8,.82);
-  --accent-rgb:255,122,0;
-  --accent-2-rgb:255,228,92;
-  --shadow:0 15px 45px rgba(0,0,0,.48);
+  --purple:#B58AFF;
+  --orange:#D65CFF;
+  --input:rgba(27,30,52,.92);
+  --accent-rgb:155,109,255;
+  --accent-2-rgb:110,200,255;
+  --shadow:0 15px 42px rgba(0,0,0,.38);
 }
 
 *{
@@ -334,10 +336,43 @@ body.dark .card{
   background:
     linear-gradient(
       90deg,
-      rgba(29,24,10,.86),
-      rgba(20,17,9,.74)
+      rgba(31,34,59,.94),
+      rgba(22,25,45,.90)
     );
 }
+
+body.dark .panel{
+  background:rgba(21,24,42,.88);
+  border-color:rgba(155,109,255,.30);
+  box-shadow:
+    0 12px 34px rgba(0,0,0,.30),
+    inset 0 0 24px rgba(155,109,255,.025);
+}
+
+body.dark .area{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(155,109,255,.085),
+      rgba(110,200,255,.035)
+    );
+}
+
+body.dark .area:hover{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(155,109,255,.17),
+      rgba(110,200,255,.075)
+    );
+}
+
+body.dark .important-notes,
+body.dark .directory-section,
+body.dark .oncall-coordinators-table td{
+  background-color:rgba(255,255,255,.025);
+}
+
 
 .card:hover{
   transform:translateY(-1px);
@@ -518,22 +553,22 @@ body.dark .card{
     opacity:1;
     transform:scale(1);
     box-shadow:
-      0 0 7px #4A90E2,
-      0 0 16px rgba(74,144,226,.95),
+      0 0 7px #7EB4FF,
+      0 0 16px rgba(126,180,255,.95),
       0 0 25px rgba(126,180,255,.65);
   }
   50%{
     opacity:.28;
     transform:scale(.68);
     box-shadow:
-      0 0 2px #4A90E2,
-      0 0 6px rgba(74,144,226,.48);
+      0 0 2px #7EB4FF,
+      0 0 6px rgba(126,180,255,.48);
   }
 }
 
 body.dark .area-oncall-preview::before{
-  background:#4A90E2;
-  box-shadow:0 0 8px rgba(74,144,226,.95);
+  background:#7EB4FF;
+  box-shadow:0 0 8px rgba(126,180,255,.95);
   animation-name:onCallPreviewDotBlinkDark;
 }
 
@@ -2111,6 +2146,446 @@ RESPONSIVE
   }
 
 }
+
+/* =========================================================
+STRONGER VISUAL DIFFERENCE — AREAS WITH ON CALL
+========================================================= */
+
+/* DAY — aqua / cyan covered state */
+body:not(.dark) .card.oncall-active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,174,187,.44) 0%,
+      rgba(53,215,229,.31) 52%,
+      rgba(105,225,235,.19) 100%
+    );
+  border-color:rgba(0,174,187,.96);
+  box-shadow:
+    0 0 0 1px rgba(0,174,187,.50),
+    0 0 22px rgba(0,174,187,.34),
+    0 0 44px rgba(53,215,229,.20);
+}
+
+body:not(.dark) .card.oncall-active .area{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,174,187,.21),
+      rgba(53,215,229,.11)
+    );
+}
+
+/* NIGHT — midnight violet/electric blue covered state */
+body.dark .card.oncall-active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(155,109,255,.58) 0%,
+      rgba(126,104,255,.40) 52%,
+      rgba(110,200,255,.20) 100%
+    );
+  border-color:rgba(166,126,255,.98);
+  box-shadow:
+    0 0 0 1px rgba(155,109,255,.62),
+    0 0 24px rgba(155,109,255,.50),
+    0 0 50px rgba(110,200,255,.20);
+}
+
+body.dark .card.oncall-active .area{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(155,109,255,.27),
+      rgba(110,200,255,.12)
+    );
+}
+
+/* Make the active Area indicator unmistakable */
+.card.oncall-active .area-indicator{
+  background:var(--blue);
+  box-shadow:
+    0 0 8px var(--blue),
+    0 0 18px rgba(var(--accent-rgb),.85);
+}
+
+
+/* =========================================================
+GLOBAL TYPOGRAPHY — INTER
+========================================================= */
+html,
+body,
+body *,
+button,
+input,
+textarea,
+select,
+option{
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+}
+
+
+
+/* =========================================================
+SUBTLE APP BACKGROUND VISUAL
+========================================================= */
+
+body{
+  background:
+    radial-gradient(
+      circle at 14% 18%,
+      rgba(53,215,229,.075) 0%,
+      rgba(53,215,229,.025) 18%,
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 86% 12%,
+      rgba(0,174,187,.055) 0%,
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 72% 82%,
+      rgba(110,200,255,.050) 0%,
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.22),
+      rgba(240,251,252,.10)
+    ),
+    var(--bg);
+  background-attachment:fixed;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.18;
+  background-image:
+    linear-gradient(
+      rgba(0,174,187,.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0,174,187,.035) 1px,
+      transparent 1px
+    );
+  background-size:42px 42px;
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.45),
+      transparent 78%
+    );
+}
+
+body.dark{
+  background:
+    radial-gradient(
+      circle at 12% 16%,
+      rgba(155,109,255,.095) 0%,
+      rgba(155,109,255,.030) 20%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 88% 14%,
+      rgba(110,200,255,.060) 0%,
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 68% 86%,
+      rgba(126,180,255,.045) 0%,
+      transparent 40%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.012),
+      rgba(155,109,255,.012)
+    ),
+    var(--bg);
+  background-attachment:fixed;
+}
+
+body.dark::before{
+  opacity:.14;
+  background-image:
+    linear-gradient(
+      rgba(155,109,255,.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(110,200,255,.028) 1px,
+      transparent 1px
+    );
+}
+
+
+
+/* =========================================================
+LIQUID GLASS / BUBBLE BACKGROUND
+========================================================= */
+
+/* Soft floating bubble atmosphere — DAY */
+body::after{
+  content:"";
+  position:fixed;
+  inset:-8%;
+  pointer-events:none;
+  z-index:-2;
+  background:
+    radial-gradient(
+      circle at 10% 22%,
+      rgba(255,255,255,.72) 0 5.5%,
+      rgba(53,215,229,.18) 6.5%,
+      rgba(53,215,229,.055) 11%,
+      transparent 17%
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(255,255,255,.56) 0 4%,
+      rgba(0,174,187,.15) 5%,
+      rgba(110,200,255,.045) 10%,
+      transparent 16%
+    ),
+    radial-gradient(
+      circle at 76% 68%,
+      rgba(255,255,255,.46) 0 6%,
+      rgba(53,215,229,.13) 7%,
+      rgba(0,174,187,.035) 13%,
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 23% 83%,
+      rgba(255,255,255,.48) 0 3.5%,
+      rgba(110,200,255,.12) 4.5%,
+      transparent 12%
+    );
+  filter:blur(1px);
+  opacity:.88;
+}
+
+/* A little more depth behind the app */
+body{
+  background:
+    radial-gradient(
+      ellipse at 18% 12%,
+      rgba(255,255,255,.68),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 78% 24%,
+      rgba(53,215,229,.13),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(110,200,255,.11),
+      transparent 44%
+    ),
+    linear-gradient(
+      145deg,
+      #F8FEFF 0%,
+      #EDF9FB 48%,
+      #F4FCFD 100%
+    );
+  background-attachment:fixed;
+}
+
+/* NIGHT — violet / blue liquid bubbles */
+body.dark{
+  background:
+    radial-gradient(
+      ellipse at 14% 10%,
+      rgba(155,109,255,.13),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 82% 24%,
+      rgba(110,200,255,.095),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 48% 100%,
+      rgba(126,104,255,.10),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      #090B16 0%,
+      #0E1121 50%,
+      #0A0D19 100%
+    );
+  background-attachment:fixed;
+}
+
+body.dark::after{
+  background:
+    radial-gradient(
+      circle at 10% 22%,
+      rgba(210,198,255,.16) 0 5.5%,
+      rgba(155,109,255,.15) 6.5%,
+      rgba(155,109,255,.035) 12%,
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(190,226,255,.12) 0 4%,
+      rgba(110,200,255,.12) 5%,
+      rgba(110,200,255,.025) 11%,
+      transparent 17%
+    ),
+    radial-gradient(
+      circle at 76% 68%,
+      rgba(190,174,255,.12) 0 6%,
+      rgba(155,109,255,.12) 7%,
+      rgba(126,104,255,.025) 14%,
+      transparent 21%
+    ),
+    radial-gradient(
+      circle at 23% 83%,
+      rgba(185,225,255,.10) 0 3.5%,
+      rgba(110,200,255,.10) 4.5%,
+      transparent 12%
+    );
+  opacity:.92;
+}
+
+/* Reduce the old grid so bubbles become the visual language */
+body::before{
+  opacity:.07;
+}
+
+body.dark::before{
+  opacity:.055;
+}
+
+
+
+/* =========================================================
+TRUE LIQUID GLASS — TRANSPARENCY / REFRACTION FEEL
+========================================================= */
+
+/* Remove the obvious bubble illustration feel */
+body::after{
+  opacity:.20 !important;
+  filter:blur(18px) !important;
+}
+
+/* Let the background show through the main surfaces */
+.panel,
+.card,
+.topbar,
+.coverage-panel,
+.important-notes,
+.directory-section{
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(145%);
+  backdrop-filter:
+    blur(18px)
+    saturate(145%);
+}
+
+/* DAY — translucent milky aqua glass */
+body:not(.dark) .panel,
+body:not(.dark) .topbar,
+body:not(.dark) .coverage-panel,
+body:not(.dark) .important-notes,
+body:not(.dark) .directory-section{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.58),
+      rgba(240,253,254,.32)
+    ) !important;
+  border-color:rgba(255,255,255,.72) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.82),
+    inset 0 -1px 0 rgba(0,174,187,.05),
+    0 12px 34px rgba(21,94,105,.08) !important;
+}
+
+body:not(.dark) .card{
+  background:
+    linear-gradient(
+      110deg,
+      rgba(255,255,255,.48),
+      rgba(225,250,252,.26)
+    ) !important;
+  border-color:rgba(255,255,255,.68) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.78),
+    0 7px 20px rgba(0,174,187,.055);
+}
+
+/* NIGHT — smoked violet glass */
+body.dark .panel,
+body.dark .topbar,
+body.dark .coverage-panel,
+body.dark .important-notes,
+body.dark .directory-section{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(28,31,54,.62),
+      rgba(17,20,39,.38)
+    ) !important;
+  border-color:rgba(200,190,255,.14) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.075),
+    inset 0 -1px 0 rgba(155,109,255,.035),
+    0 14px 38px rgba(0,0,0,.22) !important;
+}
+
+body.dark .card{
+  background:
+    linear-gradient(
+      110deg,
+      rgba(35,38,65,.52),
+      rgba(19,22,43,.30)
+    ) !important;
+  border-color:rgba(200,190,255,.11) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 8px 24px rgba(0,0,0,.15);
+}
+
+/* Glass controls */
+.small-button,
+button,
+input,
+textarea,
+select{
+  -webkit-backdrop-filter:blur(12px) saturate(135%);
+  backdrop-filter:blur(12px) saturate(135%);
+}
+
+/* Preserve strong covered/on-call visual over the glass */
+body:not(.dark) .card.oncall-active{
+  background:
+    linear-gradient(
+      100deg,
+      rgba(0,174,187,.40),
+      rgba(53,215,229,.22),
+      rgba(255,255,255,.30)
+    ) !important;
+}
+
+body.dark .card.oncall-active{
+  background:
+    linear-gradient(
+      100deg,
+      rgba(155,109,255,.43),
+      rgba(126,104,255,.26),
+      rgba(110,200,255,.12)
+    ) !important;
+}
+
 </style>
 </head>
 
