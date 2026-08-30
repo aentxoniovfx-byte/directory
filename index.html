@@ -3345,6 +3345,290 @@ body:not(.dark) h6{
   text-shadow:none !important;
 }
 
+
+
+/* =========================================================
+CLEANER UI — FEWER BORDERS / SOFTER OPEN AREAS
+========================================================= */
+
+/* Coverage shell: remove the stacked-box feeling */
+.coverage-panel{
+  border-color:rgba(var(--accent-rgb),.12) !important;
+  box-shadow:
+    0 12px 28px rgba(11,78,162,.07) !important;
+}
+
+body.dark .coverage-panel{
+  border-color:rgba(200,190,255,.09) !important;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.18) !important;
+}
+
+/* Coverage August / section headings: clean edge, no extra outline */
+.coverage-header,
+.coverage-title,
+.coverage-mode,
+.coverage-tabs{
+  box-shadow:none !important;
+}
+
+/* Coverage cards keep color, but lose unnecessary outline-on-outline */
+.coverage-grid .coverage-card{
+  border-width:1px !important;
+  box-shadow:
+    0 8px 18px rgba(22,35,70,.075) !important;
+}
+
+body.dark .coverage-grid .coverage-card{
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.14) !important;
+}
+
+/* Open directory areas: one clean container instead of many visible boxes */
+.card.open{
+  border-color:rgba(var(--accent-rgb),.20) !important;
+  box-shadow:
+    0 8px 20px rgba(var(--accent-rgb),.075) !important;
+  overflow:hidden;
+}
+
+.card.open .area{
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+.card.open .details-wrapper,
+.card.open .details{
+  border-top-color:rgba(var(--accent-rgb),.11) !important;
+  border-right:0 !important;
+  border-bottom:0 !important;
+  box-shadow:none !important;
+}
+
+.card.open .details{
+  border-left-color:rgba(var(--accent-rgb),.10) !important;
+}
+
+/* Individual information cells should feel like sections, not nested cards */
+.card.open .info,
+.card.open .oncall-cell{
+  border-radius:0 !important;
+  box-shadow:none !important;
+  outline:none !important;
+}
+
+.card.open .info{
+  border-color:transparent !important;
+}
+
+.card.open .oncall-cell{
+  border-color:rgba(var(--accent-rgb),.10) !important;
+}
+
+/* Inputs: softer edges when editing */
+.card.open input,
+.card.open textarea,
+.card.open select{
+  border-color:rgba(var(--accent-rgb),.16) !important;
+  box-shadow:none !important;
+  outline:none;
+}
+
+.card.open input:focus,
+.card.open textarea:focus,
+.card.open select:focus{
+  border-color:rgba(var(--accent-rgb),.36) !important;
+  box-shadow:
+    0 0 0 2px rgba(var(--accent-rgb),.07) !important;
+}
+
+/* Avoid doubled separators between adjacent cells */
+.card.open .details > * + *{
+  border-left-color:rgba(var(--accent-rgb),.09) !important;
+}
+
+/* Mobile: use only horizontal separators */
+@media(max-width:750px){
+  .card.open .details{
+    border-left:0 !important;
+  }
+
+  .card.open .details > * + *{
+    border-left:0 !important;
+    border-top:1px solid rgba(var(--accent-rgb),.09) !important;
+  }
+}
+
+
+
+/* =========================================================
+TOP BAR — BLEND INTO APP BACKGROUND
+========================================================= */
+
+/* Remove the strong separate strip around Coverage August */
+.topbar{
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  -webkit-backdrop-filter:none !important;
+  backdrop-filter:none !important;
+}
+
+/* Keep the actual controls readable without recreating a full-width bar */
+.topbar .small-button{
+  background:rgba(255,255,255,.42) !important;
+  border-color:rgba(11,78,162,.11) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.65),
+    0 5px 14px rgba(11,78,162,.055) !important;
+}
+
+body.dark .topbar{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+body.dark .topbar .small-button{
+  background:rgba(28,31,54,.38) !important;
+  border-color:rgba(200,190,255,.09) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.045),
+    0 5px 14px rgba(0,0,0,.12) !important;
+}
+
+
+
+/* =========================================================
+TOP AREA — FULLY DIFFUSED / NO VISIBLE CELL
+========================================================= */
+
+/* Make the whole first row visually melt into the page */
+.topbar{
+  position:relative;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.04),
+      transparent 82%
+    ) !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+/* Remove the boxed look from the date icon */
+.date-icon{
+  background:rgba(255,255,255,.10) !important;
+  border-color:rgba(var(--accent-rgb),.08) !important;
+  box-shadow:none !important;
+}
+
+/* Controls become much closer to the page background */
+body:not(.dark) .topbar .small-button{
+  background:rgba(255,255,255,.18) !important;
+  border-color:rgba(11,78,162,.07) !important;
+  box-shadow:none !important;
+}
+
+body:not(.dark) .topbar .small-button:hover{
+  background:rgba(255,255,255,.30) !important;
+  border-color:rgba(11,78,162,.13) !important;
+  box-shadow:none !important;
+}
+
+/* Night: same treatment, almost no visible rectangular strip */
+body.dark .topbar{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.012),
+      transparent 82%
+    ) !important;
+}
+
+body.dark .date-icon{
+  background:rgba(255,255,255,.025) !important;
+  border-color:rgba(200,190,255,.055) !important;
+  box-shadow:none !important;
+}
+
+body.dark .topbar .small-button{
+  background:rgba(255,255,255,.025) !important;
+  border-color:rgba(200,190,255,.055) !important;
+  box-shadow:none !important;
+}
+
+body.dark .topbar .small-button:hover{
+  background:rgba(255,255,255,.055) !important;
+  border-color:rgba(200,190,255,.10) !important;
+  box-shadow:none !important;
+}
+
+
+
+/* =========================================================
+UNIFORM PAGE BACKGROUND — REMOVE TOP COLOR BAND
+========================================================= */
+
+/* DAY: continuous background from top to bottom */
+body:not(.dark){
+  background:
+    linear-gradient(
+      145deg,
+      #F5FAFF 0%,
+      #EEF7FF 48%,
+      #F4FAFF 100%
+    ) !important;
+  background-attachment:fixed;
+}
+
+/* NIGHT: same idea, no concentrated halo at the top */
+body.dark{
+  background:
+    linear-gradient(
+      145deg,
+      #0C0E19 0%,
+      #101321 50%,
+      #0D101C 100%
+    ) !important;
+  background-attachment:fixed;
+}
+
+/* Kill any remaining decorative layer that creates a different top strip */
+body::before,
+body::after{
+  opacity:0 !important;
+  background:none !important;
+}
+
+/* Top row must be visually identical to the page behind it */
+.topbar,
+body:not(.dark) .topbar,
+body.dark .topbar{
+  background:none !important;
+  background-color:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  -webkit-backdrop-filter:none !important;
+  backdrop-filter:none !important;
+}
+
+/* Make header controls float softly instead of forming another color band */
+body:not(.dark) .topbar .small-button,
+body:not(.dark) .date-icon{
+  background:rgba(255,255,255,.12) !important;
+  border-color:rgba(11,78,162,.055) !important;
+  box-shadow:none !important;
+}
+
+body.dark .topbar .small-button,
+body.dark .date-icon{
+  background:rgba(255,255,255,.018) !important;
+  border-color:rgba(200,190,255,.045) !important;
+  box-shadow:none !important;
+}
+
 </style>
 </head>
 
