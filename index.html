@@ -5711,6 +5711,53 @@ function renderCoverage(){
 SUPERVISOR COVERAGE
 ========================================================= */
 
+function syncVisibleSupervisorsToData(){
+
+  normalizeCoverageData();
+
+  const current =
+    coverageData[coverageMode];
+
+  const rows =
+    coverageSupervisors.querySelectorAll(
+      ".coverage-supervisor-row"
+    );
+
+  rows.forEach(
+    (row,index)=>{
+
+      const nameInput =
+        row.querySelector(
+          ".supervisor-name-input"
+        );
+
+      const scheduleInput =
+        row.querySelector(
+          ".supervisor-schedule-input"
+        );
+
+      while(
+        current.supervisors.length <= index
+      ){
+
+        current.supervisors.push({
+          name:"",
+          schedule:""
+        });
+
+      }
+
+      current.supervisors[index].name =
+        nameInput?.value ?? "";
+
+      current.supervisors[index].schedule =
+        scheduleInput?.value ?? "";
+
+    }
+  );
+
+}
+
 addCoverageSupervisor.addEventListener(
   "click",
   ()=>{
@@ -5718,7 +5765,11 @@ addCoverageSupervisor.addEventListener(
     if(!adminMode)
       return;
 
-    normalizeCoverageData();
+    /*
+      Preserve exactly what is currently visible
+      BEFORE normalizing/re-rendering the list.
+    */
+    syncVisibleSupervisorsToData();
 
     coverageData[coverageMode]
       .supervisors.push({
