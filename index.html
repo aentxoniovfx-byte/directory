@@ -1358,6 +1358,20 @@ body.admin-mode .directory-admin-actions{
   line-height:1.5;
 }
 
+
+.directory-compact-table{
+  min-width:0;
+}
+
+.directory-compact-table th,
+.directory-compact-table td{
+  white-space:normal;
+}
+
+.directory-office-phones{
+  grid-column:1 / -1;
+}
+
 .oncall-coordinators-panel{
   margin-top:14px;
 }
@@ -3674,11 +3688,6 @@ DIRECTORY
           Administration
         </div>
 
-        <div class="directory-fax">
-          Administration Fax:
-          <strong>(416) 977-4153</strong>
-        </div>
-
         <div class="directory-table-wrap">
 
           <table class="directory-table">
@@ -3783,11 +3792,6 @@ DIRECTORY
 
         <div class="directory-section-title">
           Admin / Reception
-        </div>
-
-        <div class="directory-fax">
-          CSR Right Fax:
-          <strong>(416) 977-2781</strong>
         </div>
 
         <div class="directory-table-wrap">
@@ -3966,8 +3970,39 @@ DIRECTORY
             Clinical Office Supervisors
           </div>
 
-          <div class="directory-people">
-            Atiyya Mohammed / Chandni Patel
+          <div class="directory-table-wrap">
+
+            <table class="directory-table directory-compact-table">
+
+              <thead>
+                <tr>
+                  <th>Name</th>
+                </tr>
+              </thead>
+
+              <tbody id="clinicalOfficeSupervisorsOneBody">
+
+                <tr>
+                  <td>Atiyya Mohammed</td>
+                </tr>
+
+                <tr>
+                  <td>Chandni Patel</td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+          <div class="directory-admin-actions">
+            <button
+              class="directory-add"
+              type="button"
+              data-directory-add="clinicalOfficeSupervisorsOneBody">
+              + Add person
+            </button>
           </div>
 
         </section>
@@ -3978,8 +4013,39 @@ DIRECTORY
             Clinical Office Supervisors
           </div>
 
-          <div class="directory-people">
-            Simran Kaur / Jilah Parungao
+          <div class="directory-table-wrap">
+
+            <table class="directory-table directory-compact-table">
+
+              <thead>
+                <tr>
+                  <th>Name</th>
+                </tr>
+              </thead>
+
+              <tbody id="clinicalOfficeSupervisorsTwoBody">
+
+                <tr>
+                  <td>Simran Kaur</td>
+                </tr>
+
+                <tr>
+                  <td>Jilah Parungao</td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+          <div class="directory-admin-actions">
+            <button
+              class="directory-add"
+              type="button"
+              data-directory-add="clinicalOfficeSupervisorsTwoBody">
+              + Add person
+            </button>
           </div>
 
         </section>
@@ -3990,8 +4056,85 @@ DIRECTORY
             Clinical Educator
           </div>
 
-          <div class="directory-people">
-            Ramandeep Kaur / Onika Rousseau
+          <div class="directory-table-wrap">
+
+            <table class="directory-table directory-compact-table">
+
+              <thead>
+                <tr>
+                  <th>Name</th>
+                </tr>
+              </thead>
+
+              <tbody id="clinicalEducatorBody">
+
+                <tr>
+                  <td>Ramandeep Kaur</td>
+                </tr>
+
+                <tr>
+                  <td>Onika Rousseau</td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+          <div class="directory-admin-actions">
+            <button
+              class="directory-add"
+              type="button"
+              data-directory-add="clinicalEducatorBody">
+              + Add person
+            </button>
+          </div>
+
+        </section>
+
+        <section class="directory-section directory-office-phones">
+
+          <div class="directory-section-title">
+            Office Phones &amp; Fax
+          </div>
+
+          <div class="directory-table-wrap">
+
+            <table class="directory-table directory-compact-table">
+
+              <thead>
+                <tr>
+                  <th>Office / Contact</th>
+                  <th>Number</th>
+                </tr>
+              </thead>
+
+              <tbody id="officePhonesDirectoryBody">
+
+                <tr>
+                  <td>Administration Fax</td>
+                  <td>(416) 977-4153</td>
+                </tr>
+
+                <tr>
+                  <td>CSR Right Fax</td>
+                  <td>(416) 977-2781</td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+          <div class="directory-admin-actions">
+            <button
+              class="directory-add"
+              type="button"
+              data-directory-add="officePhonesDirectoryBody">
+              + Add contact
+            </button>
           </div>
 
         </section>
@@ -5131,11 +5274,53 @@ const initialDirectoryData = {
       "Barbara Lavinsky",
       "Recruiter"
     ]
+  ],
+  "clinicalOfficeSupervisorsOneBody": [
+    [
+      "Atiyya Mohammed"
+    ],
+    [
+      "Chandni Patel"
+    ]
+  ],
+  "clinicalOfficeSupervisorsTwoBody": [
+    [
+      "Simran Kaur"
+    ],
+    [
+      "Jilah Parungao"
+    ]
+  ],
+  "clinicalEducatorBody": [
+    [
+      "Ramandeep Kaur"
+    ],
+    [
+      "Onika Rousseau"
+    ]
+  ],
+  "officePhonesDirectoryBody": [
+    [
+      "Administration Fax",
+      "(416) 977-4153"
+    ],
+    [
+      "CSR Right Fax",
+      "(416) 977-2781"
+    ]
   ]
 };
 
 const directoryTableOrder =
-  ["adminDirectoryBody", "receptionDirectoryBody", "hrDirectoryBody"];
+  [
+    "adminDirectoryBody",
+    "receptionDirectoryBody",
+    "hrDirectoryBody",
+    "clinicalOfficeSupervisorsOneBody",
+    "clinicalOfficeSupervisorsTwoBody",
+    "clinicalEducatorBody",
+    "officePhonesDirectoryBody"
+  ];
 
 function normalizeDirectoryData(
   source
