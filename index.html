@@ -5358,6 +5358,118 @@ function normalizeDirectoryData(
 
 }
 
+
+function getFirebaseDirectoryData(){
+
+  const safe = {};
+
+  directoryTableOrder.forEach(
+    tbodyId=>{
+
+      const rows =
+        Array.isArray(
+          directoryData[tbodyId]
+        )
+          ? directoryData[tbodyId]
+          : [];
+
+      safe[tbodyId] =
+        rows.map(
+          row=>({
+
+            cells:
+              Array.isArray(row)
+                ? row.map(
+                    value=>
+                      String(value ?? "")
+                  )
+                : []
+
+          })
+        );
+
+    }
+  );
+
+  return safe;
+
+}
+
+function parseFirebaseDirectoryData(
+  source
+){
+
+  const parsed = {};
+
+  directoryTableOrder.forEach(
+    tbodyId=>{
+
+      const fallback =
+        initialDirectoryData[
+          tbodyId
+        ] || [];
+
+      const incoming =
+        source &&
+        Array.isArray(
+          source[tbodyId]
+        )
+          ? source[tbodyId]
+          : null;
+
+      if(!incoming){
+
+        parsed[tbodyId] =
+          fallback.map(
+            row=>[...row]
+          );
+
+        return;
+
+      }
+
+      parsed[tbodyId] =
+        incoming.map(
+          item=>{
+
+            if(
+              item &&
+              typeof item === "object" &&
+              Array.isArray(item.cells)
+            ){
+
+              return item.cells.map(
+                value=>
+                  String(value ?? "")
+              );
+
+            }
+
+            /*
+              Compatibility in case an older/local
+              representation is encountered.
+            */
+            if(Array.isArray(item)){
+
+              return item.map(
+                value=>
+                  String(value ?? "")
+              );
+
+            }
+
+            return [];
+
+          }
+        );
+
+    }
+  );
+
+  return parsed;
+
+}
+
 function migrateLegacyDirectoryEdits(
   edits
 ){
@@ -5614,7 +5726,8 @@ function getFirebasePayload(){
     importantNotes,
     onCallCoordinators:
       getFirebaseOnCallCoordinators(),
-    directoryData,
+    directoryData:
+      getFirebaseDirectoryData(),
     updatedAt:
       new Date().toISOString()
   };
@@ -5989,7 +6102,7 @@ onSnapshot(
       ){
 
         directoryData =
-          normalizeDirectoryData(
+          parseFirebaseDirectoryData(
             remote.directoryData
           );
 
