@@ -1266,6 +1266,86 @@ body:not(.admin-mode) .coverage-add{
   font-size:11px;
 }
 
+
+.directory-admin-actions{
+  display:none;
+  align-items:center;
+  justify-content:flex-end;
+  padding:8px 10px 10px;
+  border-top:1px solid var(--line);
+}
+
+body.admin-mode .directory-admin-actions{
+  display:flex;
+}
+
+.directory-add{
+  min-height:30px;
+  padding:5px 10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  border:1px solid rgba(var(--accent-rgb),.30);
+  border-radius:9px;
+  background:rgba(var(--accent-rgb),.08);
+  color:var(--blue);
+  font-size:10px;
+  font-weight:800;
+  cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+
+.directory-add:hover{
+  background:rgba(var(--accent-rgb),.14);
+  border-color:rgba(var(--accent-rgb),.48);
+}
+
+.directory-add:active{
+  transform:scale(.97);
+}
+
+.directory-action-head,
+.directory-action-cell{
+  width:38px;
+  padding-left:4px !important;
+  padding-right:7px !important;
+  text-align:center !important;
+}
+
+.directory-remove{
+  width:27px;
+  height:27px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(220,38,38,.24);
+  border-radius:8px;
+  background:rgba(220,38,38,.07);
+  color:#d62f3b;
+  font-size:16px;
+  font-weight:800;
+  line-height:1;
+  cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+
+.directory-remove:hover{
+  background:rgba(220,38,38,.13);
+  border-color:rgba(220,38,38,.42);
+}
+
+.directory-remove:active{
+  transform:scale(.95);
+}
+
+.directory-add:focus-visible,
+.directory-remove:focus-visible,
+.directory-edit:focus-visible{
+  outline:2px solid rgba(77,163,255,.86);
+  outline-offset:2px;
+}
+
 .directory-bottom-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -3685,6 +3765,16 @@ DIRECTORY
 
         </div>
 
+        <div class="directory-admin-actions">
+          <button
+            class="directory-add"
+            type="button"
+            data-directory-add="adminDirectoryBody">
+            + Add person
+          </button>
+        </div>
+
+
       </section>
 
       <!-- ADMIN / RECEPTION -->
@@ -3794,6 +3884,16 @@ DIRECTORY
 
         </div>
 
+        <div class="directory-admin-actions">
+          <button
+            class="directory-add"
+            type="button"
+            data-directory-add="receptionDirectoryBody">
+            + Add person
+          </button>
+        </div>
+
+
       </section>
 
       <!-- HR -->
@@ -3843,6 +3943,16 @@ DIRECTORY
           </table>
 
         </div>
+
+        <div class="directory-admin-actions">
+          <button
+            class="directory-add"
+            type="button"
+            data-directory-add="hrDirectoryBody">
+            + Add person
+          </button>
+        </div>
+
 
       </section>
 
@@ -4888,11 +4998,269 @@ let onCallCoordinators =
     defaultOnCallCoordinators
   );
 
-let directoryEdits =
+const initialDirectoryData = {
+  "adminDirectoryBody": [
+    [
+      "Kevin Das Neves",
+      "District Director",
+      "(905)-510-5552"
+    ],
+    [
+      "Shenxi Liu",
+      "Operations Manager",
+      "(647)-453-3682"
+    ],
+    [
+      "Erin Connolly",
+      "Care & Service Manager",
+      "(647)-206-1953"
+    ],
+    [
+      "Victoria Elliott",
+      "Care & Service Manager",
+      "(647)-471-9564"
+    ],
+    [
+      "Maria Solema",
+      "Care & Service Manager",
+      "(647)-876-8595"
+    ],
+    [
+      "Anushka Sokhi",
+      "Manager of Coordination",
+      "(647)-879-3864"
+    ],
+    [
+      "Meghat Anderbrhan",
+      "Supervisor of Coordination",
+      "(647) 572-2628"
+    ],
+    [
+      "Aishwarya Ramaswamy",
+      "Supervisor of Coordination",
+      "(519)-615-2619"
+    ],
+    [
+      "Alisha Batra",
+      "Supervisor of Coordination",
+      "(437)-438-2912"
+    ],
+    [
+      "Rebolina Paul",
+      "Supervisor of Coordination",
+      "(647)-863-4784"
+    ],
+    [
+      "Meenakshi Sharma",
+      "Supervisor of Coordination",
+      "(437)-928-2407"
+    ]
+  ],
+  "receptionDirectoryBody": [
+    [
+      "Julieta Pinera",
+      "Customer Service Coordinator"
+    ],
+    [
+      "Doreen Sanguinetti-Harty",
+      "Customer Service Coordinator"
+    ],
+    [
+      "Dona Alzaeim",
+      "Customer Service Coordinator"
+    ],
+    [
+      "Neethra Vipulananandan",
+      "Customer Service Coordinator"
+    ],
+    [
+      "Michelle Vanegas",
+      "Customer Service Coordinator"
+    ],
+    [
+      "Ashley Akera",
+      "Customer Service Coordinator"
+    ],
+    [
+      "Jordan Solema Path",
+      "Customer Service Coordinator"
+    ],
+    [
+      "Jorge Antonio Rodriguez Gonzalez",
+      "Customer Service Coordinator"
+    ],
+    [
+      "Kamali Neevan Pope",
+      "General Admin/Reception"
+    ],
+    [
+      "Chemia Palmer",
+      "General Admin/Reception"
+    ],
+    [
+      "Diego Garcia Loaiza",
+      "Mobility Device Mgmt Coordinator"
+    ],
+    [
+      "George Zoric",
+      "General Admin/Reception"
+    ],
+    [
+      "Maria Pereira",
+      "Data Verification Coordinator"
+    ],
+    [
+      "Tebebe Mekuria",
+      "Data Verification Coordinator"
+    ],
+    [
+      "Sandy Arevalo",
+      "Customer Care Coordinator"
+    ]
+  ],
+  "hrDirectoryBody": [
+    [
+      "Lillian Dey",
+      "Onboarding & Engagement Partner"
+    ],
+    [
+      "Aiswa Chughtai",
+      "Recruiter"
+    ],
+    [
+      "Barbara Lavinsky",
+      "Recruiter"
+    ]
+  ]
+};
+
+const directoryTableOrder =
+  ["adminDirectoryBody", "receptionDirectoryBody", "hrDirectoryBody"];
+
+function normalizeDirectoryData(
+  source
+){
+
+  const result = {};
+
+  directoryTableOrder.forEach(
+    tbodyId=>{
+
+      const fallback =
+        initialDirectoryData[tbodyId] || [];
+
+      const incoming =
+        source &&
+        Array.isArray(source[tbodyId])
+          ? source[tbodyId]
+          : fallback;
+
+      result[tbodyId] =
+        incoming.map(
+          row=>
+            Array.isArray(row)
+              ? row.map(
+                  value=>
+                    String(value ?? "")
+                )
+              : []
+        );
+
+    }
+  );
+
+  return result;
+
+}
+
+function migrateLegacyDirectoryEdits(
+  edits
+){
+
+  const migrated =
+    normalizeDirectoryData(
+      initialDirectoryData
+    );
+
+  if(
+    !edits ||
+    typeof edits !== "object"
+  ){
+    return migrated;
+  }
+
+  Object.entries(edits)
+    .forEach(
+      ([key,value])=>{
+
+        const parts =
+          key.split("-")
+            .map(Number);
+
+        if(
+          parts.length !== 3 ||
+          parts.some(Number.isNaN)
+        ){
+          return;
+        }
+
+        const [
+          tableIndex,
+          rowIndex,
+          colIndex
+        ] = parts;
+
+        const tbodyId =
+          directoryTableOrder[
+            tableIndex
+          ];
+
+        if(
+          !tbodyId ||
+          !migrated[tbodyId]?.[rowIndex]
+        ){
+          return;
+        }
+
+        migrated[tbodyId][rowIndex][colIndex] =
+          String(value ?? "");
+
+      }
+    );
+
+  return migrated;
+
+}
+
+const storedDirectoryData =
+  localGet(
+    "paramedDirectoryData",
+    null
+  );
+
+const legacyDirectoryEdits =
   localGet(
     "paramedDirectoryEdits",
-    {}
+    null
   );
+
+let directoryData =
+  storedDirectoryData
+    ? normalizeDirectoryData(
+        storedDirectoryData
+      )
+    : migrateLegacyDirectoryEdits(
+        legacyDirectoryEdits
+      );
+
+localSet(
+  "paramedDirectoryData",
+  directoryData
+);
+
+localStorage.removeItem(
+  "paramedDirectoryEdits"
+);
 
 /* =========================================================
 COVERAGE MODE
@@ -5061,7 +5429,7 @@ function getFirebasePayload(){
     importantNotes,
     onCallCoordinators:
       getFirebaseOnCallCoordinators(),
-    directoryEdits,
+    directoryData,
     updatedAt:
       new Date().toISOString()
   };
@@ -5205,8 +5573,8 @@ function saveState(){
   );
 
   localSet(
-    "paramedDirectoryEdits",
-    directoryEdits
+    "paramedDirectoryData",
+    directoryData
   );
 
   saveToFirebase();
@@ -5244,8 +5612,8 @@ function saveLocalOnly(){
   );
 
   localSet(
-    "paramedDirectoryEdits",
-    directoryEdits
+    "paramedDirectoryData",
+    directoryData
   );
 
 }
@@ -5273,6 +5641,25 @@ function isCoverageEditing(){
     (
       active.matches("input,textarea") ||
       active.isContentEditable
+    )
+  );
+
+}
+
+
+function isDirectoryEditing(){
+
+  const active =
+    document.activeElement;
+
+  return Boolean(
+    adminMode &&
+    active &&
+    active.closest(
+      ".directory-panel"
+    ) &&
+    active.matches(
+      ".directory-edit"
     )
   );
 
@@ -5407,13 +5794,36 @@ onSnapshot(
         DIRECTORY
       */
 
+      const directoryEditing =
+        isDirectoryEditing();
+
       if(
-        remote.directoryEdits &&
-        typeof remote.directoryEdits === "object"
+        remote.directoryData &&
+        typeof remote.directoryData === "object" &&
+        (!directoryEditing || firstFirebaseLoad)
       ){
 
-        directoryEdits =
-          remote.directoryEdits;
+        directoryData =
+          normalizeDirectoryData(
+            remote.directoryData
+          );
+
+      }else if(
+        !remote.directoryData &&
+        remote.directoryEdits &&
+        typeof remote.directoryEdits === "object" &&
+        (!directoryEditing || firstFirebaseLoad)
+      ){
+
+        /*
+          One-time compatibility with Directory data
+          saved by older versions of the page.
+        */
+
+        directoryData =
+          migrateLegacyDirectoryEdits(
+            remote.directoryEdits
+          );
 
       }
 
@@ -8183,185 +8593,243 @@ function renderOnCallCoordinators(){
 }
 
 /* =========================================================
-DIRECTORY EDITING
+DIRECTORY
 ========================================================= */
 
-function makeDirectoryEditable(){
+function getDirectoryColumnCount(
+  tbodyId
+){
 
-  const tables =
-    document.querySelectorAll(
+  const table =
+    document.getElementById(
+      tbodyId
+    )?.closest(
       ".directory-table"
     );
 
-  tables.forEach(
-    (table,tableIndex)=>{
-
-      const rows =
-        table.querySelectorAll(
-          "tbody tr"
-        );
-
-      rows.forEach(
-        (row,rowIndex)=>{
-
-          const cells =
-            row.querySelectorAll(
-              "td"
-            );
-
-          cells.forEach(
-            (cell,colIndex)=>{
-
-              const key =
-                `${tableIndex}-${rowIndex}-${colIndex}`;
-
-              /*
-                If this cell is already editable, keep the
-                current input value. Re-rendering Admin Mode
-                must never turn an existing field blank.
-              */
-              const existingInput =
-                cell.querySelector(
-                  ".directory-edit"
-                );
-
-              if(existingInput){
-
-                existingInput.dataset.key =
-                  key;
-
-                return;
-
-              }
-
-              /*
-                Use a saved edit when one exists.
-                Otherwise use the actual Directory text
-                currently present in the table.
-              */
-              const value =
-                Object.prototype.hasOwnProperty.call(
-                  directoryEdits,
-                  key
-                )
-                  ? directoryEdits[key]
-                  : cell.textContent.trim();
-
-              cell.innerHTML = `
-
-                <input
-                  class="directory-edit"
-                  data-key="${key}"
-                  value="${escapeHTML(value)}"
-                  autocomplete="off">
-
-              `;
-
-            }
-          );
-
-        }
-      );
-
-    }
-  );
-
-  document.querySelectorAll(
-    ".directory-edit"
-  ).forEach(
-    input=>{
-
-      /*
-        Avoid attaching the same input listener more
-        than once if Admin UI is refreshed.
-      */
-      if(
-        input.dataset.directoryListener ===
-        "true"
-      ){
-        return;
-      }
-
-      input.dataset.directoryListener =
-        "true";
-
-      input.addEventListener(
-        "input",
-        ()=>{
-
-          directoryEdits[
-            input.dataset.key
-          ] =
-            input.value;
-
-          saveState();
-
-        }
-      );
-
-    }
-  );
+  return table
+    ? table.querySelectorAll(
+        "thead th:not(.directory-action-head)"
+      ).length
+    : 0;
 
 }
 
 function renderDirectory(){
 
-  if(adminMode){
+  directoryTableOrder.forEach(
+    tbodyId=>{
 
-    makeDirectoryEditable();
+      const tbody =
+        document.getElementById(
+          tbodyId
+        );
 
-  }else{
+      if(!tbody)
+        return;
 
-    restoreDirectoryFromEdits();
+      const table =
+        tbody.closest(
+          ".directory-table"
+        );
 
-  }
+      const headerRow =
+        table?.querySelector(
+          "thead tr"
+        );
 
-}
+      if(headerRow){
 
-/* =========================================================
-RESTORE DIRECTORY
-========================================================= */
+        headerRow
+          .querySelectorAll(
+            ".directory-action-head"
+          )
+          .forEach(
+            node=>node.remove()
+          );
 
-function restoreDirectoryFromEdits(){
+        if(adminMode){
 
-  const tables =
-    document.querySelectorAll(
-      ".directory-table"
-    );
+          const actionHead =
+            document.createElement(
+              "th"
+            );
 
-  tables.forEach(
-    (table,tableIndex)=>{
+          actionHead.className =
+            "directory-action-head";
+
+          actionHead.setAttribute(
+            "aria-label",
+            "Actions"
+          );
+
+          headerRow.appendChild(
+            actionHead
+          );
+
+        }
+
+      }
 
       const rows =
-        table.querySelectorAll(
-          "tbody tr"
-        );
+        Array.isArray(
+          directoryData[tbodyId]
+        )
+          ? directoryData[tbodyId]
+          : [];
+
+      tbody.innerHTML = "";
 
       rows.forEach(
         (row,rowIndex)=>{
 
-          const cells =
-            row.querySelectorAll(
-              "td"
+          const tr =
+            document.createElement(
+              "tr"
             );
 
-          cells.forEach(
-            (cell,colIndex)=>{
+          row.forEach(
+            (value,colIndex)=>{
 
-              const key =
-                `${tableIndex}-${rowIndex}-${colIndex}`;
+              const td =
+                document.createElement(
+                  "td"
+                );
 
-              if(
-                directoryEdits[key] !==
-                undefined
-              ){
+              if(colIndex === 1){
+                td.classList.add(
+                  "role"
+                );
+              }
 
-                cell.textContent =
-                  directoryEdits[key];
+              if(adminMode){
+
+                const input =
+                  document.createElement(
+                    "input"
+                  );
+
+                input.className =
+                  "directory-edit";
+
+                input.value =
+                  String(value ?? "");
+
+                input.autocomplete =
+                  "off";
+
+                input.dataset.tbodyId =
+                  tbodyId;
+
+                input.dataset.row =
+                  String(rowIndex);
+
+                input.dataset.col =
+                  String(colIndex);
+
+                input.addEventListener(
+                  "input",
+                  ()=>{
+
+                    const r =
+                      Number(
+                        input.dataset.row
+                      );
+
+                    const c =
+                      Number(
+                        input.dataset.col
+                      );
+
+                    directoryData[
+                      tbodyId
+                    ][r][c] =
+                      input.value;
+
+                    saveState();
+
+                  }
+                );
+
+                td.appendChild(
+                  input
+                );
+
+              }else{
+
+                td.textContent =
+                  String(value ?? "");
 
               }
 
+              tr.appendChild(
+                td
+              );
+
             }
+          );
+
+          if(adminMode){
+
+            const actionCell =
+              document.createElement(
+                "td"
+              );
+
+            actionCell.className =
+              "directory-action-cell";
+
+            const removeButton =
+              document.createElement(
+                "button"
+              );
+
+            removeButton.type =
+              "button";
+
+            removeButton.className =
+              "directory-remove";
+
+            removeButton.textContent =
+              "−";
+
+            removeButton.setAttribute(
+              "aria-label",
+              "Remove person"
+            );
+
+            removeButton.addEventListener(
+              "pointerdown",
+              event=>{
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                directoryData[
+                  tbodyId
+                ].splice(
+                  rowIndex,
+                  1
+                );
+
+                saveState();
+                renderDirectory();
+
+              }
+            );
+
+            actionCell.appendChild(
+              removeButton
+            );
+
+            tr.appendChild(
+              actionCell
+            );
+
+          }
+
+          tbody.appendChild(
+            tr
           );
 
         }
@@ -8371,6 +8839,78 @@ function restoreDirectoryFromEdits(){
   );
 
 }
+
+document.querySelectorAll(
+  "[data-directory-add]"
+).forEach(
+  button=>{
+
+    button.addEventListener(
+      "pointerdown",
+      event=>{
+
+        if(!adminMode)
+          return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const tbodyId =
+          button.dataset.directoryAdd;
+
+        const columnCount =
+          getDirectoryColumnCount(
+            tbodyId
+          );
+
+        if(
+          !tbodyId ||
+          columnCount < 1
+        ){
+          return;
+        }
+
+        if(
+          !Array.isArray(
+            directoryData[tbodyId]
+          )
+        ){
+          directoryData[tbodyId] = [];
+        }
+
+        directoryData[
+          tbodyId
+        ].push(
+          Array(
+            columnCount
+          ).fill("")
+        );
+
+        saveState();
+        renderDirectory();
+
+        const tbody =
+          document.getElementById(
+            tbodyId
+          );
+
+        const newRow =
+          tbody?.querySelector(
+            "tr:last-child"
+          );
+
+        const firstInput =
+          newRow?.querySelector(
+            ".directory-edit"
+          );
+
+        firstInput?.focus();
+
+      }
+    );
+
+  }
+);
 
 /* =========================================================
 REFRESH ALL UI
@@ -8390,7 +8930,7 @@ function refreshAllUI(){
 
   }else{
 
-    restoreDirectoryFromEdits();
+    renderDirectory();
 
   }
 
@@ -8742,7 +9282,7 @@ refreshEditableFields();
 
 renderOnCallCoordinators();
 
-restoreDirectoryFromEdits();
+renderDirectory();
 
 applyCoverageMode();
 
