@@ -8215,27 +8215,47 @@ function makeDirectoryEditable(){
               const key =
                 `${tableIndex}-${rowIndex}-${colIndex}`;
 
-              if(adminMode){
+              /*
+                If this cell is already editable, keep the
+                current input value. Re-rendering Admin Mode
+                must never turn an existing field blank.
+              */
+              const existingInput =
+                cell.querySelector(
+                  ".directory-edit"
+                );
 
-                const saved =
-                  directoryEdits[key];
+              if(existingInput){
 
-                const value =
-                  saved !== undefined
-                    ? saved
-                    : cell.textContent;
+                existingInput.dataset.key =
+                  key;
 
-                cell.innerHTML = `
-
-                  <input
-                    class="directory-edit"
-                    data-key="${key}"
-                    value="${escapeHTML(value)}"
-                    autocomplete="off">
-
-                `;
+                return;
 
               }
+
+              /*
+                Use a saved edit when one exists.
+                Otherwise use the actual Directory text
+                currently present in the table.
+              */
+              const value =
+                Object.prototype.hasOwnProperty.call(
+                  directoryEdits,
+                  key
+                )
+                  ? directoryEdits[key]
+                  : cell.textContent.trim();
+
+              cell.innerHTML = `
+
+                <input
+                  class="directory-edit"
+                  data-key="${key}"
+                  value="${escapeHTML(value)}"
+                  autocomplete="off">
+
+              `;
 
             }
           );
@@ -8250,6 +8270,20 @@ function makeDirectoryEditable(){
     ".directory-edit"
   ).forEach(
     input=>{
+
+      /*
+        Avoid attaching the same input listener more
+        than once if Admin UI is refreshed.
+      */
+      if(
+        input.dataset.directoryListener ===
+        "true"
+      ){
+        return;
+      }
+
+      input.dataset.directoryListener =
+        "true";
 
       input.addEventListener(
         "input",
