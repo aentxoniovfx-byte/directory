@@ -1941,27 +1941,27 @@ body.dark .directory-section{
   background:
     linear-gradient(
       135deg,
-      rgba(28,31,54,.62),
-      rgba(17,20,39,.38)
+      rgba(45,48,73,.76),
+      rgba(29,32,55,.62)
     ) !important;
-  border-color:rgba(200,190,255,.14) !important;
+  border-color:rgba(218,211,255,.22) !important;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.075),
+    inset 0 1px 0 rgba(255,255,255,.12),
     inset 0 -1px 0 rgba(155,109,255,.035),
-    0 14px 38px rgba(0,0,0,.22) !important;
+    0 14px 38px rgba(0,0,0,.17) !important;
 }
 
 body.dark .card{
   background:
     linear-gradient(
       110deg,
-      rgba(35,38,65,.52),
-      rgba(19,22,43,.30)
+      rgba(53,56,84,.67),
+      rgba(34,37,62,.52)
     ) !important;
-  border-color:rgba(200,190,255,.11) !important;
+  border-color:rgba(218,211,255,.18) !important;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.06),
-    0 8px 24px rgba(0,0,0,.15);
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 8px 24px rgba(0,0,0,.12);
 }
 
 .small-button,
@@ -2150,22 +2150,22 @@ body.admin-mode .important-editor-toolbar{
 
 
 body.dark{
-  --bg:#0C0E19;
-  --panel:rgba(22,25,44,.82);
-  --panel-solid:#171A2D;
-  --text:#F5F4FA;
-  --secondary:#B6B3CC;
-  --muted:#7E7B91;
-  --line:rgba(145,111,224,.24);
-  --blue:#8C6DE2;
-  --cyan:#72BDEB;
+  --bg:#181622;
+  --panel:rgba(39,42,65,.88);
+  --panel-solid:#292C45;
+  --text:#FFFFFF;
+  --secondary:#DDD9EB;
+  --muted:#B3AEC5;
+  --line:rgba(185,162,241,.34);
+  --blue:#AA8FF0;
+  --cyan:#91D4FA;
   --green:#22C55E;
   --purple:#9B79EA;
   --orange:#B35EDB;
-  --input:rgba(28,31,51,.90);
+  --input:rgba(45,48,73,.94);
   --accent-rgb:140,109,226;
   --accent-2-rgb:114,189,235;
-  --shadow:0 14px 38px rgba(0,0,0,.32);
+  --shadow:0 14px 38px rgba(0,0,0,.23);
 }
 
 
@@ -2585,30 +2585,30 @@ body.dark{
   background:
     radial-gradient(
       circle at 10% 14%,
-      rgba(255,122,0,.24),
+      rgba(255,139,37,.29),
       transparent 31%
     ),
     radial-gradient(
       circle at 88% 18%,
-      rgba(255,190,46,.14),
+      rgba(255,198,74,.19),
       transparent 29%
     ),
     radial-gradient(
       circle at 80% 82%,
-      rgba(184,92,74,.18),
+      rgba(211,110,86,.22),
       transparent 34%
     ),
     radial-gradient(
       circle at 18% 88%,
-      rgba(168,85,247,.11),
+      rgba(178,111,244,.15),
       transparent 31%
     ),
     linear-gradient(
       145deg,
-      #090806 0%,
-      #17100A 34%,
-      #21110B 63%,
-      #160D13 100%
+      #17120F 0%,
+      #281A11 34%,
+      #351D14 63%,
+      #291720 100%
     );
   background-attachment:fixed;
 }
@@ -5772,12 +5772,73 @@ function getFirebaseOnCallCoordinators(){
 
 }
 
+function getFirebaseCustomAreas(){
+
+  const result = {};
+
+  if(!Array.isArray(customAreas))
+    return result;
+
+  customAreas.forEach(
+    (area,index)=>{
+
+      if(!Array.isArray(area))
+        return;
+
+      result[index] = {
+        code: String(area[0] ?? ""),
+        area: String(area[1] ?? ""),
+        coordinator: String(area[2] ?? ""),
+        supervisor: String(area[3] ?? ""),
+        phone: String(area[4] ?? "")
+      };
+
+    }
+  );
+
+  return result;
+
+}
+
+function parseFirebaseCustomAreas(value){
+
+  if(Array.isArray(value)){
+    return value
+      .filter(Array.isArray)
+      .map(area=>[
+        String(area[0] ?? ""),
+        String(area[1] ?? ""),
+        String(area[2] ?? ""),
+        String(area[3] ?? ""),
+        String(area[4] ?? "")
+      ]);
+  }
+
+  if(!value || typeof value !== "object")
+    return [];
+
+  return Object.keys(value)
+    .sort((a,b)=>Number(a)-Number(b))
+    .map(key=>value[key])
+    .filter(area=>area && typeof area === "object")
+    .map(area=>[
+      String(area.code ?? area[0] ?? ""),
+      String(area.area ?? area[1] ?? ""),
+      String(area.coordinator ?? area[2] ?? ""),
+      String(area.supervisor ?? area[3] ?? ""),
+      String(area.phone ?? area[4] ?? "")
+    ])
+    .filter(area=>area[0] || area[1]);
+
+}
+
 function getFirebasePayload(){
 
   return {
     onCallData,
     customData,
-    customAreas,
+    customAreas:
+      getFirebaseCustomAreas(),
     coverageData,
     importantNotes,
     onCallCoordinators:
@@ -6080,12 +6141,18 @@ onSnapshot(
       }
 
       if(
-        Array.isArray(remote.customAreas) &&
+        remote.customAreas &&
+        (
+          Array.isArray(remote.customAreas) ||
+          typeof remote.customAreas === "object"
+        ) &&
         (!localSavePending || firstFirebaseLoad)
       ){
 
         customAreas =
-          remote.customAreas;
+          parseFirebaseCustomAreas(
+            remote.customAreas
+          );
 
       }
 
