@@ -1951,6 +1951,50 @@ body.dark .directory-section{
     0 14px 38px rgba(0,0,0,.17) !important;
 }
 
+.area-title-edit{
+  width:min(280px,42vw);
+  min-width:120px;
+  padding:5px 8px;
+  border:1px solid rgba(var(--accent-rgb),.28);
+  border-radius:8px;
+  background:var(--input);
+  color:var(--text);
+  font-size:inherit;
+  font-weight:inherit;
+  line-height:1.2;
+}
+
+.area-drag-handle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:26px;
+  height:30px;
+  margin-left:auto;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1;
+  cursor:grab;
+  user-select:none;
+  touch-action:none;
+}
+
+.area-drag-handle:active{
+  cursor:grabbing;
+}
+
+.card.area-dragging{
+  opacity:.46;
+}
+
+.card.area-drop-before{
+  box-shadow:inset 0 3px 0 var(--cyan) !important;
+}
+
+.card.area-drop-after{
+  box-shadow:inset 0 -3px 0 var(--cyan) !important;
+}
+
 body.dark .card{
   background:
     linear-gradient(
@@ -4714,6 +4758,16 @@ if(!Array.isArray(customAreas)){
   customAreas = [];
 }
 
+let areaOrder =
+  localGet(
+    "paramedAreaOrder",
+    []
+  );
+
+if(!Array.isArray(areaOrder)){
+  areaOrder = [];
+}
+
 /* =========================================================
 DEFAULT COVERAGE
 ========================================================= */
@@ -5839,6 +5893,7 @@ function getFirebasePayload(){
     customData,
     customAreas:
       getFirebaseCustomAreas(),
+    areaOrder,
     coverageData,
     importantNotes,
     onCallCoordinators:
@@ -5985,6 +6040,11 @@ function saveState(){
   );
 
   localSet(
+    "paramedAreaOrder",
+    areaOrder
+  );
+
+  localSet(
     "paramedCoverage",
     coverageData
   );
@@ -6026,6 +6086,11 @@ function saveLocalOnly(){
   localSet(
     "paramedCustomAreas",
     customAreas
+  );
+
+  localSet(
+    "paramedAreaOrder",
+    areaOrder
   );
 
   localSet(
@@ -6153,6 +6218,17 @@ onSnapshot(
           parseFirebaseCustomAreas(
             remote.customAreas
           );
+
+      }
+
+      if(
+        Array.isArray(remote.areaOrder) &&
+        (!localSavePending || firstFirebaseLoad)
+      ){
+
+        areaOrder = remote.areaOrder
+          .map(code=>String(code ?? ""))
+          .filter(Boolean);
 
       }
 
@@ -6977,6 +7053,54 @@ function escapeHTML(value){
 
 }
 
+function getOrderedAreas(){
+
+  const allAreas = [
+    ...data,
+    ...customAreas
+  ];
+
+  const areaByCode = new Map(
+    allAreas.map(area=>[
+      String(area?.[0] ?? ""),
+      area
+    ])
+  );
+
+  const ordered = [];
+  const included = new Set();
+
+  areaOrder.forEach(code=>{
+
+    const normalizedCode =
+      String(code ?? "");
+
+    const area =
+      areaByCode.get(normalizedCode);
+
+    if(area && !included.has(normalizedCode)){
+      ordered.push(area);
+      included.add(normalizedCode);
+    }
+
+  });
+
+  allAreas.forEach(area=>{
+
+    const code =
+      String(area?.[0] ?? "");
+
+    if(!included.has(code)){
+      ordered.push(area);
+      included.add(code);
+    }
+
+  });
+
+  return ordered;
+
+}
+
 /* =========================================================
 ADD AREA
 ========================================================= */
@@ -7043,6 +7167,9 @@ function addArea(){
     ""
   ]);
 
+  areaOrder = getOrderedAreas()
+    .map(item=>String(item[0] ?? ""));
+
   saveState();
   render();
 
@@ -7098,10 +7225,7 @@ function render(){
     );
 
   const allAreas =
-    [
-      ...data,
-      ...customAreas
-    ];
+    getOrderedAreas();
 
   if(!allAreas.length){
 
@@ -7139,9 +7263,10 @@ function render(){
           }"
           data-code="${escapeHTML(code)}">
 
-          <button
+          <div
             class="area"
-            type="button"
+            role="button"
+            tabindex="0"
             aria-expanded="false">
 
             <span class="area-name">
@@ -7151,7 +7276,17 @@ function render(){
 
               <span>
 
-                ${escapeHTML(d.area)}
+                ${
+                  adminMode
+                    ? `<input
+                        class="area-title-edit"
+                        data-code="${escapeHTML(code)}"
+                        data-field="area"
+                        value="${escapeHTML(d.area)}"
+                        aria-label="Area name"
+                        autocomplete="off">`
+                    : escapeHTML(d.area)
+                }
 
                 <span class="code">
                   · ${escapeHTML(code)}
@@ -7161,13 +7296,22 @@ function render(){
 
             </span>
 
+            ${
+              adminMode
+                ? `<span
+                    class="area-drag-handle"
+                    title="Drag to reorder"
+                    aria-label="Drag to reorder">⋮⋮</span>`
+                : ""
+            }
+
             <span
               class="area-oncall-preview"
               data-oncall-preview="${escapeHTML(code)}">
               ${escapeHTML(onCall)}
             </span>
 
-          </button>
+          </div>
 
           <div class="details-wrapper">
 
@@ -7372,6 +7516,14 @@ function render(){
         "click",
         e=>{
 
+          if(
+            e.target.closest(
+              ".area-title-edit,.area-drag-handle"
+            )
+          ){
+            return;
+          }
+
           e.stopPropagation();
 
           const card =
@@ -7421,6 +7573,21 @@ function render(){
               "true"
             );
 
+          }
+
+        }
+      );
+
+      area.addEventListener(
+        "keydown",
+        e=>{
+
+          if(
+            (e.key === "Enter" || e.key === " ") &&
+            e.target === area
+          ){
+            e.preventDefault();
+            area.click();
           }
 
         }
@@ -7498,6 +7665,141 @@ function render(){
 
     }
   );
+
+  el.querySelectorAll(
+    ".area-title-edit"
+  ).forEach(
+    input=>{
+
+      input.addEventListener(
+        "click",
+        e=>e.stopPropagation()
+      );
+
+      input.addEventListener(
+        "keydown",
+        e=>e.stopPropagation()
+      );
+
+      input.addEventListener(
+        "input",
+        ()=>{
+
+          saveAreaEdit(
+            input.dataset.code,
+            "area",
+            input.value
+          );
+
+        }
+      );
+
+    }
+  );
+
+  if(adminMode){
+
+    let draggedCode = "";
+
+    el.querySelectorAll(".card").forEach(card=>{
+
+      card.draggable = true;
+
+      card.addEventListener("dragstart",event=>{
+
+        const handle =
+          event.target.querySelector(
+            ".area-drag-handle:hover"
+          );
+
+        if(!handle){
+          event.preventDefault();
+          return;
+        }
+
+        draggedCode = card.dataset.code || "";
+        card.classList.add("area-dragging");
+
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData(
+          "text/plain",
+          draggedCode
+        );
+
+      });
+
+      card.addEventListener("dragend",()=>{
+        draggedCode = "";
+        el.querySelectorAll(".card").forEach(item=>{
+          item.classList.remove(
+            "area-dragging",
+            "area-drop-before",
+            "area-drop-after"
+          );
+        });
+      });
+
+      card.addEventListener("dragover",event=>{
+
+        if(!draggedCode || draggedCode === card.dataset.code)
+          return;
+
+        event.preventDefault();
+
+        const before =
+          event.clientY <
+          card.getBoundingClientRect().top +
+          card.offsetHeight / 2;
+
+        card.classList.toggle("area-drop-before",before);
+        card.classList.toggle("area-drop-after",!before);
+
+      });
+
+      card.addEventListener("dragleave",()=>{
+        card.classList.remove(
+          "area-drop-before",
+          "area-drop-after"
+        );
+      });
+
+      card.addEventListener("drop",event=>{
+
+        event.preventDefault();
+
+        const targetCode =
+          card.dataset.code || "";
+
+        if(!draggedCode || draggedCode === targetCode)
+          return;
+
+        const before =
+          event.clientY <
+          card.getBoundingClientRect().top +
+          card.offsetHeight / 2;
+
+        const codes = getOrderedAreas()
+          .map(area=>String(area?.[0] ?? ""))
+          .filter(code=>code !== draggedCode);
+
+        const targetIndex =
+          codes.indexOf(targetCode);
+
+        codes.splice(
+          before ? targetIndex : targetIndex + 1,
+          0,
+          draggedCode
+        );
+
+        areaOrder = codes;
+        saveState();
+        render();
+
+      });
+
+    });
+
+  }
 
   /* =====================================================
   ON CALL
