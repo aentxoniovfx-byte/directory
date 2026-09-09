@@ -3345,6 +3345,114 @@ body.dark.admin-mode{
   line-height:1.2;
 }
 
+/* =========================================================
+   COVERAGE FOCUS — AUTOMATIC AT 4:00 PM TORONTO
+========================================================= */
+
+.coverage-focus-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.coverage-focus-status{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:var(--secondary);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+}
+
+.coverage-focus-status::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#9AA2B2;
+}
+
+body.coverage-focus .coverage-focus-status{
+  color:#087A43;
+}
+
+body.coverage-focus .coverage-focus-status::before{
+  background:#22C55E;
+  box-shadow:0 0 9px rgba(34,197,94,.72);
+}
+
+body.dark.coverage-focus .coverage-focus-status{
+  color:#75E7A8;
+}
+
+.coverage-focus-button{
+  min-width:154px;
+  white-space:nowrap;
+}
+
+body.coverage-focus .workspace{
+  grid-template-columns:minmax(275px,.42fr) minmax(0,1.58fr);
+}
+
+body.coverage-focus .right-column > .coverage-panel{
+  position:relative;
+  z-index:2;
+}
+
+body.coverage-focus .right-column > .coverage-panel .coverage-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:start;
+}
+
+body.coverage-focus .workspace > div:first-child .panel-header{
+  padding-left:14px;
+  padding-right:14px;
+}
+
+body.coverage-focus .workspace > div:first-child .panel-sub{
+  display:none;
+}
+
+@media(max-width:1050px){
+  body.coverage-focus .workspace{
+    grid-template-columns:minmax(240px,.5fr) minmax(0,1.5fr);
+  }
+
+  body.coverage-focus .right-column > .coverage-panel .coverage-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:900px){
+  body.coverage-focus .workspace{
+    grid-template-columns:1fr;
+  }
+
+  body.coverage-focus .right-column{
+    grid-row:1;
+  }
+
+  body.coverage-focus .workspace > div:first-child{
+    grid-row:2;
+  }
+}
+
+@media(max-width:520px){
+  .coverage-focus-toolbar{
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .coverage-focus-button{
+    width:100%;
+  }
+}
+
 </style>
 </head>
 
@@ -3519,6 +3627,22 @@ body.dark.admin-mode{
 <aside class="right-column">
 
 <section class="panel coverage-panel">
+
+  <div class="coverage-focus-toolbar">
+    <span
+      id="coverageFocusStatus"
+      class="coverage-focus-status">
+      Standard layout
+    </span>
+
+    <button
+      id="coverageFocusToggle"
+      class="small-button coverage-focus-button"
+      type="button"
+      aria-pressed="false">
+      ⛶ Maximize Coverage
+    </button>
+  </div>
 
   <article class="card oncall-active coverage-date-card">
     <button
@@ -5676,6 +5800,140 @@ COVERAGE MODE
 let coverageMode = "";
 const coverageDateSelector =
   document.getElementById("coverageDateSelector");
+
+const coverageFocusToggle =
+  document.getElementById("coverageFocusToggle");
+
+const coverageFocusStatus =
+  document.getElementById("coverageFocusStatus");
+
+const COVERAGE_FOCUS_TIME_ZONE =
+  "America/Toronto";
+
+const COVERAGE_FOCUS_HOUR = 16;
+
+let activeCoverageFocusDayKey = "";
+
+function getTorontoClockParts(){
+
+  const parts =
+    new Intl.DateTimeFormat(
+      "en-CA",
+      {
+        timeZone:COVERAGE_FOCUS_TIME_ZONE,
+        year:"numeric",
+        month:"2-digit",
+        day:"2-digit",
+        hour:"2-digit",
+        hourCycle:"h23"
+      }
+    ).formatToParts(new Date());
+
+  const values = {};
+
+  parts.forEach(part=>{
+    if(part.type !== "literal"){
+      values[part.type] = part.value;
+    }
+  });
+
+  return {
+    dayKey:`${values.year}-${values.month}-${values.day}`,
+    hour:Number(values.hour)
+  };
+
+}
+
+function getCoverageFocusChoiceKey(dayKey){
+  return `paramedCoverageFocusChoice:${dayKey}`;
+}
+
+function setCoverageFocus(enabled,{remember=false}={}){
+
+  document.body.classList.toggle(
+    "coverage-focus",
+    enabled
+  );
+
+  if(coverageFocusToggle){
+    coverageFocusToggle.setAttribute(
+      "aria-pressed",
+      String(enabled)
+    );
+
+    coverageFocusToggle.textContent = enabled
+      ? "↙ Restore Layout"
+      : "⛶ Maximize Coverage";
+  }
+
+  if(coverageFocusStatus){
+    coverageFocusStatus.textContent = enabled
+      ? "Evening Coverage · Active"
+      : "Standard layout";
+  }
+
+  if(remember){
+    const {dayKey} = getTorontoClockParts();
+    localStorage.setItem(
+      getCoverageFocusChoiceKey(dayKey),
+      enabled ? "focus" : "normal"
+    );
+  }
+
+}
+
+function applyScheduledCoverageFocus(){
+
+  const {dayKey,hour} = getTorontoClockParts();
+
+  if(dayKey !== activeCoverageFocusDayKey){
+    activeCoverageFocusDayKey = dayKey;
+  }
+
+  const savedChoice =
+    localStorage.getItem(
+      getCoverageFocusChoiceKey(dayKey)
+    );
+
+  if(savedChoice === "focus"){
+    setCoverageFocus(true);
+    return;
+  }
+
+  if(savedChoice === "normal"){
+    setCoverageFocus(false);
+    return;
+  }
+
+  setCoverageFocus(
+    hour >= COVERAGE_FOCUS_HOUR
+  );
+
+}
+
+if(coverageFocusToggle){
+  coverageFocusToggle.addEventListener(
+    "click",
+    ()=>{
+      const shouldEnable =
+        !document.body.classList.contains(
+          "coverage-focus"
+        );
+
+      setCoverageFocus(
+        shouldEnable,
+        {remember:true}
+      );
+    }
+  );
+}
+
+applyScheduledCoverageFocus();
+
+setInterval(
+  applyScheduledCoverageFocus,
+  30000
+);
 
 
 const coverageGrid =
