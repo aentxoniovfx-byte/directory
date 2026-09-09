@@ -7350,34 +7350,28 @@ function render(){
                     </div>`
                   }
 
+                  ${
+                    code === "OT"
+                      ? `<div style="margin-top:8px">
+                          ${
+                            adminMode
+                              ? `<input
+                                  class="edit-input area-edit"
+                                  data-code="${escapeHTML(code)}"
+                                  data-field="coordinator2"
+                                  value="${escapeHTML(d.coordinator2)}"
+                                  autocomplete="off">`
+                              : `<div class="person">
+                                  ${escapeHTML(d.coordinator2)}
+                                </div>`
+                          }
+                        </div>`
+                      : ""
+                  }
+
                 </div>
 
               </div>
-
-              ${
-                code === "OT"
-                  ? `<div class="info">
-
-                      <div style="width:100%">
-
-                        ${
-                          adminMode
-                            ? `<input
-                                class="edit-input area-edit"
-                                data-code="${escapeHTML(code)}"
-                                data-field="coordinator2"
-                                value="${escapeHTML(d.coordinator2)}"
-                                autocomplete="off">`
-                            : `<div class="person">
-                                ${escapeHTML(d.coordinator2)}
-                              </div>`
-                        }
-
-                      </div>
-
-                    </div>`
-                  : ""
-              }
 
               <!-- SUPERVISOR -->
 
