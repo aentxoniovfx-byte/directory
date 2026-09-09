@@ -6995,6 +6995,11 @@ function getAreaData(d){
     supervisor:
       edits.supervisor ?? d[3],
 
+    coordinator2:
+      code === "OT"
+        ? (edits.coordinator2 ?? d[5] ?? "")
+        : "",
+
     phone:
       edits.phone ?? d[4]
 
@@ -7324,7 +7329,7 @@ function render(){
                 <div style="width:100%">
 
                   <div class="label">
-                    Coordinator
+                    ${code === "OT" ? "Coordinators" : "Coordinator"}
                   </div>
 
                   ${
@@ -7348,6 +7353,31 @@ function render(){
                 </div>
 
               </div>
+
+              ${
+                code === "OT"
+                  ? `<div class="info">
+
+                      <div style="width:100%">
+
+                        ${
+                          adminMode
+                            ? `<input
+                                class="edit-input area-edit"
+                                data-code="${escapeHTML(code)}"
+                                data-field="coordinator2"
+                                value="${escapeHTML(d.coordinator2)}"
+                                autocomplete="off">`
+                            : `<div class="person">
+                                ${escapeHTML(d.coordinator2)}
+                              </div>`
+                        }
+
+                      </div>
+
+                    </div>`
+                  : ""
+              }
 
               <!-- SUPERVISOR -->
 
