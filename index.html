@@ -3455,25 +3455,81 @@ body.coverage-focus .workspace > div:first-child .panel-sub{
 
 
 /* =========================================================
-   CUSTOMER CARE SCHEDULE — ADMIN ONLY
+   SCHDLS — ADMIN ONLY
 ========================================================= */
 .schedule-customer-care-button{
   display:none;
 }
 
 body.admin-mode .schedule-customer-care-button{
-  display:flex;
-}
-
-.schedule-customer-care-button{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:950;
+  min-width:74px;
+  height:36px;
+  padding:0 13px;
   align-items:center;
   justify-content:center;
-  gap:8px;
+  border:1px solid rgba(var(--accent-rgb),.32);
+  border-radius:11px;
+  background:linear-gradient(
+    120deg,
+    rgba(77,163,255,.22),
+    rgba(155,109,255,.20),
+    rgba(41,169,232,.22),
+    rgba(255,116,23,.16)
+  );
+  background-size:300% 300%;
+  color:var(--text);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:
+    0 8px 22px rgba(var(--accent-rgb),.12),
+    inset 0 1px 0 rgba(255,255,255,.45);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  animation:schdlsSoftShift 9s ease-in-out infinite;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
 }
 
-.schedule-customer-care-button .schedule-icon{
-  font-size:15px;
-  line-height:1;
+body.admin-mode .schedule-customer-care-button:hover{
+  transform:translateY(-2px);
+  border-color:rgba(var(--accent-rgb),.58);
+  box-shadow:
+    0 10px 28px rgba(var(--accent-rgb),.20),
+    inset 0 1px 0 rgba(255,255,255,.55);
+}
+
+body.admin-mode .schedule-customer-care-button:active{
+  transform:scale(.97);
+}
+
+body.dark.admin-mode .schedule-customer-care-button{
+  color:#F7F4FF;
+  border-color:rgba(155,109,255,.40);
+  background:linear-gradient(
+    120deg,
+    rgba(86,180,255,.18),
+    rgba(155,109,255,.22),
+    rgba(211,110,86,.17),
+    rgba(255,139,37,.15)
+  );
+  background-size:300% 300%;
+}
+
+@keyframes schdlsSoftShift{
+  0%,100%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  body.admin-mode .schedule-customer-care-button{
+    animation:none;
+  }
 }
 
 </style>
@@ -3489,13 +3545,10 @@ body.admin-mode .schedule-customer-care-button{
 
     <button
       id="scheduleCustomerCareButton"
-      class="small-button schedule-customer-care-button"
+      class="schedule-customer-care-button"
       type="button"
       title="Open Customer Care Schedule">
-
-      <span class="schedule-icon">▦</span>
-      <span>Schedule Customer Care</span>
-
+      SCHDLS
     </button>
 
 <button
@@ -7019,7 +7072,7 @@ scheduleCustomerCareButton.addEventListener(
   "click",
   ()=>{
     window.location.href =
-      "./scheduling/";
+      "https://aentxoniovfx-byte.github.io/Schedule/";
   }
 );
 
