@@ -3453,6 +3453,29 @@ body.coverage-focus .workspace > div:first-child .panel-sub{
   }
 }
 
+
+/* =========================================================
+   CUSTOMER CARE SCHEDULE — ADMIN ONLY
+========================================================= */
+.schedule-customer-care-button{
+  display:none;
+}
+
+body.admin-mode .schedule-customer-care-button{
+  display:flex;
+}
+
+.schedule-customer-care-button{
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
+.schedule-customer-care-button .schedule-icon{
+  font-size:15px;
+  line-height:1;
+}
+
 </style>
 </head>
 
@@ -3463,6 +3486,18 @@ body.coverage-focus .workspace > div:first-child .panel-sub{
 <header class="topbar">
 
   <div class="top-actions">
+
+    <button
+      id="scheduleCustomerCareButton"
+      class="small-button schedule-customer-care-button"
+      type="button"
+      title="Open Customer Care Schedule">
+
+      <span class="schedule-icon">▦</span>
+      <span>Schedule Customer Care</span>
+
+    </button>
+
 <button
       id="themeToggle"
       class="small-button"
@@ -6969,6 +7004,24 @@ function initializeCoverageCardToggles(){
 }
 
 initializeCoverageCardToggles();
+
+
+/* =========================================================
+CUSTOMER CARE SCHEDULE
+========================================================= */
+
+const scheduleCustomerCareButton =
+  document.getElementById(
+    "scheduleCustomerCareButton"
+  );
+
+scheduleCustomerCareButton.addEventListener(
+  "click",
+  ()=>{
+    window.location.href =
+      "./scheduling/";
+  }
+);
 
 /* =========================================================
 ADMIN
